@@ -1,0 +1,606 @@
+{
+  "environment": "Local Chromium, unthrottled; not field Core Web Vitals",
+  "errors": [],
+  "metrics": [
+    {
+      "width": 320,
+      "overflow": false,
+      "transferBytes": 178371,
+      "navigation": {
+        "name": "http://127.0.0.1:3000/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 543.3000000119209,
+        "navigationId": 8386,
+        "initiatorType": "navigation",
+        "deliveryType": "",
+        "nextHopProtocol": "http/1.1",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.5,
+        "domainLookupStart": 2.7000000178813934,
+        "domainLookupEnd": 5.800000011920929,
+        "connectStart": 5.800000011920929,
+        "secureConnectionStart": 0,
+        "connectEnd": 20.100000023841858,
+        "requestStart": 20.400000005960464,
+        "responseStart": 128.40000000596046,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 128.40000000596046,
+        "responseEnd": 130.90000000596046,
+        "transferSize": 15989,
+        "encodedBodySize": 15689,
+        "decodedBodySize": 78661,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 0,
+        "unloadEventEnd": 0,
+        "domInteractive": 184.80000001192093,
+        "domContentLoadedEventStart": 184.80000001192093,
+        "domContentLoadedEventEnd": 185,
+        "domComplete": 543.2000000178814,
+        "loadEventStart": 543.3000000119209,
+        "loadEventEnd": 543.3000000119209,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "4267a15ba70e562a.css",
+          "bytes": 9227,
+          "type": "link"
+        },
+        {
+          "name": "webpack-ef310d2cec5eea5a.js",
+          "bytes": 2012,
+          "type": "link"
+        },
+        {
+          "name": "5beaad02-dff7b24a977574a0.js",
+          "bytes": 63601,
+          "type": "script"
+        },
+        {
+          "name": "914-0c8b8134f2ecb2d0.js",
+          "bytes": 66657,
+          "type": "script"
+        },
+        {
+          "name": "main-app-6ec34284d239ffbb.js",
+          "bytes": 813,
+          "type": "script"
+        },
+        {
+          "name": "343-eb70e2e8c1c92757.js",
+          "bytes": 8009,
+          "type": "script"
+        },
+        {
+          "name": "page-5414a7643507690e.js",
+          "bytes": 3176,
+          "type": "script"
+        },
+        {
+          "name": "4c9affa5bc8f420e-s.p.woff2",
+          "bytes": 24876,
+          "type": "css"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "transferBytes": 0,
+      "navigation": {
+        "name": "http://127.0.0.1:3000/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 70.2000000178814,
+        "navigationId": 8990,
+        "initiatorType": "navigation",
+        "deliveryType": "cache",
+        "nextHopProtocol": "",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.30000001192092896,
+        "domainLookupStart": 0.30000001192092896,
+        "domainLookupEnd": 0.30000001192092896,
+        "connectStart": 0.30000001192092896,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.30000001192092896,
+        "requestStart": 1,
+        "responseStart": 4.9000000059604645,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 4.9000000059604645,
+        "responseEnd": 5.5,
+        "transferSize": 300,
+        "encodedBodySize": 15689,
+        "decodedBodySize": 78661,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 8.200000017881393,
+        "unloadEventEnd": 8.200000017881393,
+        "domInteractive": 19.100000023841858,
+        "domContentLoadedEventStart": 19.100000023841858,
+        "domContentLoadedEventEnd": 19.200000017881393,
+        "domComplete": 70,
+        "loadEventStart": 70.2000000178814,
+        "loadEventEnd": 70.2000000178814,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "4267a15ba70e562a.css",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "webpack-ef310d2cec5eea5a.js",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "5beaad02-dff7b24a977574a0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "914-0c8b8134f2ecb2d0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "main-app-6ec34284d239ffbb.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "343-eb70e2e8c1c92757.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "page-5414a7643507690e.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "4c9affa5bc8f420e-s.p.woff2",
+          "bytes": 0,
+          "type": "css"
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "transferBytes": 0,
+      "navigation": {
+        "name": "http://127.0.0.1:3000/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 58.599999994039536,
+        "navigationId": 7883,
+        "initiatorType": "navigation",
+        "deliveryType": "cache",
+        "nextHopProtocol": "",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999999403953552,
+        "domainLookupStart": 0.09999999403953552,
+        "domainLookupEnd": 0.09999999403953552,
+        "connectStart": 0.09999999403953552,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.09999999403953552,
+        "requestStart": 1,
+        "responseStart": 5,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 5,
+        "responseEnd": 5.699999988079071,
+        "transferSize": 300,
+        "encodedBodySize": 15689,
+        "decodedBodySize": 78661,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 13.799999982118607,
+        "unloadEventEnd": 13.799999982118607,
+        "domInteractive": 27.399999976158142,
+        "domContentLoadedEventStart": 27.399999976158142,
+        "domContentLoadedEventEnd": 27.399999976158142,
+        "domComplete": 58.599999994039536,
+        "loadEventStart": 58.599999994039536,
+        "loadEventEnd": 58.599999994039536,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "4267a15ba70e562a.css",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "webpack-ef310d2cec5eea5a.js",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "5beaad02-dff7b24a977574a0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "914-0c8b8134f2ecb2d0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "main-app-6ec34284d239ffbb.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "343-eb70e2e8c1c92757.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "page-5414a7643507690e.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "4c9affa5bc8f420e-s.p.woff2",
+          "bytes": 0,
+          "type": "css"
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "overflow": false,
+      "transferBytes": 0,
+      "navigation": {
+        "name": "http://127.0.0.1:3000/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 52.20000001788139,
+        "navigationId": 3715,
+        "initiatorType": "navigation",
+        "deliveryType": "cache",
+        "nextHopProtocol": "",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.10000002384185791,
+        "domainLookupStart": 0.10000002384185791,
+        "domainLookupEnd": 0.10000002384185791,
+        "connectStart": 0.10000002384185791,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.10000002384185791,
+        "requestStart": 0.800000011920929,
+        "responseStart": 3.800000011920929,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 3.800000011920929,
+        "responseEnd": 4.300000011920929,
+        "transferSize": 300,
+        "encodedBodySize": 15689,
+        "decodedBodySize": 78661,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 8.5,
+        "unloadEventEnd": 8.5,
+        "domInteractive": 20,
+        "domContentLoadedEventStart": 20,
+        "domContentLoadedEventEnd": 20.100000023841858,
+        "domComplete": 52.20000001788139,
+        "loadEventStart": 52.20000001788139,
+        "loadEventEnd": 52.20000001788139,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "4267a15ba70e562a.css",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "webpack-ef310d2cec5eea5a.js",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "5beaad02-dff7b24a977574a0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "914-0c8b8134f2ecb2d0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "main-app-6ec34284d239ffbb.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "343-eb70e2e8c1c92757.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "page-5414a7643507690e.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "4c9affa5bc8f420e-s.p.woff2",
+          "bytes": 0,
+          "type": "css"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "transferBytes": 0,
+      "navigation": {
+        "name": "http://127.0.0.1:3000/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 64.19999998807907,
+        "navigationId": 9451,
+        "initiatorType": "navigation",
+        "deliveryType": "cache",
+        "nextHopProtocol": "",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999999403953552,
+        "domainLookupStart": 0.09999999403953552,
+        "domainLookupEnd": 0.09999999403953552,
+        "connectStart": 0.09999999403953552,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.09999999403953552,
+        "requestStart": 0.9000000059604645,
+        "responseStart": 6.5,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 6.5,
+        "responseEnd": 7.5,
+        "transferSize": 300,
+        "encodedBodySize": 15689,
+        "decodedBodySize": 78661,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 16,
+        "unloadEventEnd": 16,
+        "domInteractive": 30.69999998807907,
+        "domContentLoadedEventStart": 30.69999998807907,
+        "domContentLoadedEventEnd": 30.69999998807907,
+        "domComplete": 64.19999998807907,
+        "loadEventStart": 64.19999998807907,
+        "loadEventEnd": 64.19999998807907,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "4267a15ba70e562a.css",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "webpack-ef310d2cec5eea5a.js",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "5beaad02-dff7b24a977574a0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "914-0c8b8134f2ecb2d0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "main-app-6ec34284d239ffbb.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "343-eb70e2e8c1c92757.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "page-5414a7643507690e.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "4c9affa5bc8f420e-s.p.woff2",
+          "bytes": 0,
+          "type": "css"
+        }
+      ]
+    },
+    {
+      "width": 1920,
+      "overflow": false,
+      "transferBytes": 0,
+      "navigation": {
+        "name": "http://127.0.0.1:3000/",
+        "entryType": "navigation",
+        "startTime": 0,
+        "duration": 53.599999994039536,
+        "navigationId": 8032,
+        "initiatorType": "navigation",
+        "deliveryType": "cache",
+        "nextHopProtocol": "",
+        "renderBlockingStatus": "non-blocking",
+        "contentType": "text/html",
+        "contentEncoding": "gzip",
+        "workerStart": 0,
+        "workerRouterEvaluationStart": 0,
+        "workerCacheLookupStart": 0,
+        "workerMatchedSourceType": "",
+        "workerFinalSourceType": "",
+        "redirectStart": 0,
+        "redirectEnd": 0,
+        "fetchStart": 0.09999999403953552,
+        "domainLookupStart": 0.09999999403953552,
+        "domainLookupEnd": 0.09999999403953552,
+        "connectStart": 0.09999999403953552,
+        "secureConnectionStart": 0,
+        "connectEnd": 0.09999999403953552,
+        "requestStart": 0.800000011920929,
+        "responseStart": 3.699999988079071,
+        "firstInterimResponseStart": 0,
+        "finalResponseHeadersStart": 3.699999988079071,
+        "responseEnd": 4.199999988079071,
+        "transferSize": 300,
+        "encodedBodySize": 15689,
+        "decodedBodySize": 78661,
+        "responseStatus": 200,
+        "serverTiming": [],
+        "unloadEventStart": 8.800000011920929,
+        "unloadEventEnd": 8.800000011920929,
+        "domInteractive": 23.5,
+        "domContentLoadedEventStart": 23.5,
+        "domContentLoadedEventEnd": 23.599999994039536,
+        "domComplete": 53.5,
+        "loadEventStart": 53.599999994039536,
+        "loadEventEnd": 53.599999994039536,
+        "type": "navigate",
+        "redirectCount": 0,
+        "activationStart": 0,
+        "criticalCHRestart": 0,
+        "notRestoredReasons": null,
+        "confidence": {
+          "randomizedTriggerRate": 0.4994798,
+          "value": "high"
+        }
+      },
+      "resources": [
+        {
+          "name": "4267a15ba70e562a.css",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "webpack-ef310d2cec5eea5a.js",
+          "bytes": 0,
+          "type": "link"
+        },
+        {
+          "name": "5beaad02-dff7b24a977574a0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "914-0c8b8134f2ecb2d0.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "main-app-6ec34284d239ffbb.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "343-eb70e2e8c1c92757.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "page-5414a7643507690e.js",
+          "bytes": 0,
+          "type": "script"
+        },
+        {
+          "name": "4c9affa5bc8f420e-s.p.woff2",
+          "bytes": 0,
+          "type": "css"
+        }
+      ]
+    }
+  ]
+}
