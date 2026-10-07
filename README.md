@@ -1,71 +1,44 @@
-# Ardú — Brand & Web
+# Ardú — ardugaza.org
 
-A long-form, accessible funding prospectus for a planned youth initiative in Gaza. The source of truth is `docs/ardu-project-summary.pdf`. All capacity and financial figures are plans or estimates, never achieved impact.
+The public site of Ardú, a youth initiative in Gaza City. Two layers: the home page for the public (impact and stages, briefly) and `/plan` for funders and partners (the arithmetic). Every string lives in `src/content/project.ts`; every value that must be supplied or approved (giving link, forms, photographs, LinkedIn page) lives in `src/data/integrations.ts` and renders an honest placeholder until it is set.
+
+Figures are estimates at Gaza prices in October 2026, confirmed by written quotes before spending. All capacity and income figures are plans, never achieved impact.
 
 ## Run locally
 
-Requires Node 22.13+ (verified with 24.19) and pnpm (verified with 11.25).
+Requires Node 22+ and pnpm.
 
 ```sh
 pnpm install --frozen-lockfile
-pnpm dev
+pnpm dev          # http://127.0.0.1:3000
+pnpm build        # static export to ./out
+pnpm start        # serves ./out on http://127.0.0.1:3000
 ```
-
-Preview: http://127.0.0.1:3000. Development and production use Webpack because Turbopack's CSS worker repeatedly failed to spawn on the supplied Windows host.
-
-```sh
-pnpm build
-pnpm start
-pnpm storybook
-```
-
-Storybook: http://localhost:6006. Stop any static Storybook preview on that port before starting its development server.
 
 ## Verify
 
 ```sh
 pnpm lint
 pnpm typecheck
-pnpm test
-pnpm build
-pnpm build-storybook
-pnpm exec playwright install chromium
-pnpm test:e2e
-pnpm test:storybook
-pnpm test:visual
+pnpm test                 # Vitest + Testing Library
+pnpm build && pnpm test:e2e   # Playwright: flows, keyboard, axe (WCAG 2.2 AA), six widths, visual baselines (Linux)
 ```
 
-E2E starts the production server when port 3000 is free. Storybook checks serve the built explorer when port 6006 is free. Reused servers must contain the current build. Visual baselines are Chromium/Windows at 390, 768 and 1440 pixels. Review differences before updating them with `pnpm test:visual --update-snapshots`; another OS may require its own reviewed baselines. `node scripts/capture-review.mjs` records six widths and local resource timings against a running production server.
+If Playwright's own Chromium is not installed, point it at an existing one: `PW_CHROME=/path/to/chrome pnpm test:e2e`.
+
+## Deploy (Cloudflare Pages)
+
+The site is a static export (`output: 'export'`). Pages project settings: framework preset **None**, build command `pnpm build`, build output directory `out`, Node version 22. Custom domains `ardugaza.org` and `www.ardugaza.org` are added under Pages → Custom domains; Cloudflare creates the DNS records itself. `public/_headers` sets the security headers.
 
 ## Structure
 
-- `src/app`: static App Router page, metadata, organization JSON-LD, favicon.
-- `src/styles`: semantic CSS tokens, responsive rules, shared Manrope font and foundation stories. Tailwind 4 is available; authored semantic classes carry the page's visual system.
-- `src/components/ui`: typed action links and semantic section primitive.
-- `src/components/content`: decorative seat visualization and approved-image/placeholder boundary.
-- `src/components/layout`: navigation and footer.
-- `src/components/sections`: focused narrative compositions. Only navigation, capacity and energy need client state.
-- `src/content/project.ts`: typed identity, packages, learning tracks, energy explanations, accountability and roadmap data. Editorial prose remains near its section markup; a future CMS adapter can map validated records to these APIs.
-- `src/data/integrations.ts`: explicit pending/ready integration states.
-- `src/test`, `tests`: component, browser, accessibility, Storybook and screenshot checks.
+- `src/app` — `/` and `/plan`, metadata, icons, robots, sitemap, manifest, Organization JSON-LD.
+- `src/content/project.ts` — all copy and figures. `src/data/integrations.ts` — giving state, contact, forms, approved images.
+- `src/components/sections` — Hero, Story (why + the place), Stages, Impact, Energy, Trust, Who, Doors.
+- `src/components/layout` — Navigation, Footer, Brand (logo lockup). `src/components/content` — SeatMatrix, MediaFrame.
+- `src/styles` — tokens and authored CSS (the Ardú palette: cream, deep green, teal, sand), self-hosted Manrope.
+- `public/brand` — logo, mark, icons; `public/og-image.png` — share image; `public/ardu-project-summary.pdf` — the public summary.
 
-Native links, buttons and disclosure elements carry real behavior. There is no payment collector, tracking integration or fabricated partner carousel. Source PDF is available from the footer.
+## Rules carried in the code
 
-## Design and Figma
-
-[Ardú — Brand & Web](https://www.figma.com/design/bubtWZyxRHNCKGT2h4wnXa) contains three distinct directions, the selected Open frame system, variables, text styles, action components and editable desktop/mobile compositions. These are design references; Storybook and code are authoritative for exact interaction states and full editorial details.
-
-See `PRODUCT.md`, `DESIGN.md`, `.impeccable/design.json`, `docs/design-exploration.md`, `docs/homepage-direction.md` and `docs/validation.md`.
-
-## Supply before public launch
-
-Update `src/data/integrations.ts` only with approved values:
-
-- A secure giving URL and confirmed contribution/accountability arrangements.
-- Canonical public origin and an official contact email if desired.
-- Approved hero, site and founder photography with descriptive alt text and dimensions.
-- Partner logos only after signed agreements and approval.
-
-Pending imagery intentionally renders named schematics or placeholders. No synthetic documentary photography is used. Current funding contact uses the founder's LinkedIn URL supplied in the source. Confirm the public release of the source PDF and revalidate dated costs, structural conditions and registration status before launch.
-
-The app is complete as a tested local preview, not a deployed fundraising service. Accessibility automation supplements manual keyboard and responsive checks; it does not replace assistive-technology testing or real-device validation.
+No address and no exterior photographs; interior photographs only, captioned with the month. No partner name or logo before a signed agreement. Every figure carries its date and its condition. No payment is collected on the site: giving goes only to the configured giving page. Contact is info@ardugaza.org.

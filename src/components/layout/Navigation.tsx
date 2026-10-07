@@ -1,15 +1,19 @@
 'use client';
 import { useState, useRef } from 'react';
+import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { LinkButton } from '@/components/ui/LinkButton';
-const links = [
-  { href: '#place', label: 'The place' },
-  { href: '#plan', label: 'The plan' },
-  { href: '#accountability', label: 'Accountability' },
-];
+import { Brand } from '@/components/layout/Brand';
+import { nav } from '@/content/project';
+import { integrations } from '@/data/integrations';
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
+  const giving = integrations.giving;
+  const cta =
+    giving.status === 'live'
+      ? { href: giving.url, label: 'Fund a stage', external: true }
+      : { href: '/#stages', label: 'See the stages', external: false };
   return (
     <header
       className="site-header"
@@ -20,19 +24,22 @@ export function Navigation() {
         }
       }}
     >
-      <a href="#top" className="wordmark" aria-label="Ardú home">
-        ardú
-        <span className="brand-mark" aria-hidden="true" />
-      </a>
+      <Link href="/" className="wordmark" aria-label="Ardú home">
+        <Brand />
+      </Link>
       <nav aria-label="Main navigation" className="desktop-nav">
-        {links.map((link) => (
+        {nav.map((link) => (
           <a key={link.href} href={link.href}>
             {link.label}
           </a>
         ))}
       </nav>
-      <LinkButton href="#support" className="header-cta">
-        Fund the next seat
+      <LinkButton
+        href={cta.href}
+        className="header-cta"
+        {...(cta.external ? { target: '_blank', rel: 'noopener' } : {})}
+      >
+        {cta.label}
       </LinkButton>
       <button
         ref={trigger}
@@ -50,13 +57,17 @@ export function Navigation() {
         className="mobile-nav"
         hidden={!open}
       >
-        {links.map((link) => (
+        {nav.map((link) => (
           <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
             {link.label}
           </a>
         ))}
-        <a href="#support" onClick={() => setOpen(false)}>
-          Fund the next seat
+        <a
+          href={cta.href}
+          onClick={() => setOpen(false)}
+          {...(cta.external ? { target: '_blank', rel: 'noopener' } : {})}
+        >
+          {cta.label}
         </a>
       </nav>
     </header>

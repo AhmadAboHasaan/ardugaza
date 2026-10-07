@@ -2,64 +2,80 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import { SeatMatrix } from '@/components/content/SeatMatrix';
 import { MediaFrame } from '@/components/content/MediaFrame';
 import { integrations } from '@/data/integrations';
+import { hero } from '@/content/project';
+function formatDate(iso: string) {
+  return new Date(iso + 'T00:00:00Z').toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
 export function Hero() {
+  const giving = integrations.giving;
+  const live = giving.status === 'live';
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-copy">
         <h1 id="hero-title">
-          Talent is here.
-          <br />
-          Make room
-          <br />
-          for its <em>future.</em>
+          Under the rubble of a home in Gaza City, a room for <em>200 young people a day.</em>
         </h1>
-        <p>
-          A reliable place to learn, work and build a career.
-          <br className="desktop-break" /> Built in Gaza, for Gaza.
-        </p>
+        <p>{hero.lead}</p>
         <div className="actions">
-          <LinkButton href="#support">Fund the next seat</LinkButton>
-          <LinkButton href="#plan" variant="text">
-            See the plan
-          </LinkButton>
+          {live ? (
+            <>
+              <LinkButton href={giving.url} target="_blank" rel="noopener">
+                Fund the first stage
+              </LinkButton>
+              <LinkButton href="#stages" variant="text">
+                See the stages
+              </LinkButton>
+            </>
+          ) : (
+            <>
+              <LinkButton href="#stages">See the stages</LinkButton>
+              <LinkButton href="#support" variant="text">
+                Get the launch update
+              </LinkButton>
+            </>
+          )}
         </div>
         <p className="hero-giving-note">
-          Support currently begins with a conversation with Ahmed.
+          {live
+            ? `${formatDate(giving.opensOn)} · ${hero.statusLive}`
+            : `${hero.statusPending} ${formatDate(giving.opensOn)}.`}
         </p>
       </div>
       <MediaFrame
         image={integrations.heroImage}
         priority
-        caption="A seat is the beginning. Power, connection and opportunity make it work."
+        caption={hero.caption}
         className="hero-media"
         fallback={
           <div className="seat-poster">
             <div className="poster-top">
-              <span>Gaza City, Palestine</span>
-              <span>A place to begin</span>
+              <span>{hero.poster.top[0]}</span>
+              <span>{hero.poster.top[1]}</span>
             </div>
             <div className="poster-title">
-              Room for
+              {hero.poster.title[0]}
               <br />
-              possibility.
+              {hero.poster.title[1]}
             </div>
-            <SeatMatrix animated />
+            <SeatMatrix count={hero.poster.seats} animated />
             <div className="poster-bottom">
               <span>
-                <strong>200</strong> planned seats / session
+                <strong>{hero.poster.seats}</strong> {hero.poster.bottom}
               </span>
               <span className="next-seat-key">The next seat</span>
             </div>
-            <p className="poster-note">
-              Schematic · not a floor plan. Opening subject to structural
-              sign-off.
-            </p>
+            <p className="poster-note">{hero.poster.note}</p>
           </div>
         }
       />
       <div className="hero-foot">
-        <span>One place. Many futures.</span>
-        <span>Explore the plan below</span>
+        <span>{hero.foot[0]}</span>
+        <span>{hero.foot[1]}</span>
       </div>
     </section>
   );

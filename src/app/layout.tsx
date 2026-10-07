@@ -1,37 +1,39 @@
 import type { Metadata, Viewport } from 'next';
 import { manrope } from '@/styles/font';
 import { project } from '@/content/project';
-import { integrations } from '@/data/integrations';
+import { contact, integrations } from '@/data/integrations';
 import '@/styles/globals.css';
+const origin =
+  integrations.canonicalOrigin.status === 'ready' ? integrations.canonicalOrigin.value : 'https://ardugaza.org';
 export const metadata: Metadata = {
+  metadataBase: new URL(origin),
   title: project.title,
   description: project.description,
-  ...(integrations.canonicalOrigin.status === 'ready'
-    ? {
-        metadataBase: new URL(integrations.canonicalOrigin.value),
-        alternates: { canonical: '/' },
-      }
-    : {}),
+  alternates: { canonical: '/' },
   openGraph: {
-    title: project.title,
-    description: project.description,
+    title: project.ogTitle,
+    description: project.ogDescription,
     type: 'website',
-    locale: 'en_US',
+    locale: 'en_IE',
+    url: '/',
+    siteName: 'Ardú',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Ardú' }],
   },
   twitter: {
-    card: 'summary',
-    title: project.title,
-    description: project.description,
+    card: 'summary_large_image',
+    title: project.ogTitle,
+    description: project.ogDescription,
+    images: ['/og-image.png'],
   },
 };
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#f4f4ed',
+  themeColor: '#103634',
 };
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const sameAs: string[] = [project.founderLinkedin];
+  if (integrations.linkedinPage.status === 'ready') sameAs.unshift(integrations.linkedinPage.value);
   return (
     <html lang="en" className={manrope.variable}>
       <body id="top">
@@ -46,8 +48,12 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'Ardú',
+              url: origin,
+              logo: `${origin}/brand/ardu-mark.png`,
               description: project.description,
-              founder: { '@type': 'Person', name: project.founder },
+              email: contact.email,
+              sameAs,
+              founder: { '@type': 'Person', name: project.founder, url: project.founderLinkedin },
             }),
           }}
         />

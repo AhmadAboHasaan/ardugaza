@@ -2,73 +2,66 @@
 import { useState } from 'react';
 import { Section } from '@/components/ui/Section';
 import { SeatMatrix } from '@/components/content/SeatMatrix';
+import { impact } from '@/content/project';
 export function Impact() {
   const [expanded, setExpanded] = useState(false);
+  const s = expanded ? impact.scenarios.full : impact.scenarios.opening;
   return (
     <Section className="impact" aria-labelledby="impact-title">
       <div className="section-heading">
         <h2 id="impact-title">
           What opening
           <br />
-          could make possible.
+          makes possible.
         </h2>
         <div>
-          <p>Planned capacity, never claimed as impact already achieved.</p>
-          <div
-            className="segmented"
-            role="group"
-            aria-label="Capacity scenario"
-          >
+          <p>{impact.intro}</p>
+          <div className="segmented" role="group" aria-label="Capacity scenario">
             <button aria-pressed={!expanded} onClick={() => setExpanded(false)}>
-              At opening
+              {impact.toggle[0]}
             </button>
             <button aria-pressed={expanded} onClick={() => setExpanded(true)}>
-              Full build
+              {impact.toggle[1]}
             </button>
           </div>
         </div>
       </div>
       <div className="impact-body">
         <div className="impact-matrix">
-          <SeatMatrix count={expanded ? 500 : 200} />
-          <p className="small">
-            Each mark represents one planned seat per session.
-          </p>
+          <SeatMatrix count={s.seats} />
+          <p className="small">Each mark represents one planned seat per shift.</p>
         </div>
         <div className="impact-data" aria-live="polite" aria-atomic="true">
-          <p className="scenario-label">
-            {expanded
-              ? 'Future scenario · conditional expansion'
-              : 'Opening plan · subject to structural sign-off'}
-          </p>
+          <p className="scenario-label">{s.label}</p>
           <dl className="stats">
             <div>
-              <dt>Seats per session</dt>
-              <dd>{expanded ? '500' : '200'}</dd>
+              <dt>{impact.statLabels[0]}</dt>
+              <dd>{s.perShift}</dd>
             </div>
             <div>
-              <dt>Young adults per day</dt>
-              <dd>{expanded ? 'Up to 1,000' : '≈ 400'}</dd>
+              <dt>{impact.statLabels[1]}</dt>
+              <dd>{s.perDay}</dd>
             </div>
             <div>
-              <dt>Seat-days per year</dt>
-              <dd>{expanded ? '≈ 288,000' : '≈ 115,000'}</dd>
+              <dt>{impact.statLabels[2]}</dt>
+              <dd>{s.seatDays}</dd>
             </div>
           </dl>
-          <p className="small">
-            {expanded
-              ? 'Expansion depends on funding and the engineer’s confirmation that a second floor is viable.'
-              : 'Two sessions daily, for adults 18 and over. Separate sessions for men and women with identical hours and services. Intake criteria will be published before opening.'}
-          </p>
+          <p className="small">{s.note}</p>
         </div>
       </div>
+      <ul className="impact-list">
+        {impact.bullets.map((b) => (
+          <li key={b}>{b}</li>
+        ))}
+      </ul>
+      <p className="lead impact-closing">{impact.closing}</p>
       <div className="impact-bottom">
-        <span>
-          <strong>8</strong> planned positions in Gaza at opening
-        </span>
-        <span>
-          <strong>4</strong> planned recurring course tracks
-        </span>
+        {impact.strip.map((item) => (
+          <span key={item.label}>
+            <strong>{item.value}</strong> {item.label}
+          </span>
+        ))}
       </div>
     </Section>
   );

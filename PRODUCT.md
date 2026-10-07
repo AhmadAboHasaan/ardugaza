@@ -12,16 +12,16 @@ User-specified: Next.js App Router, React, strict TypeScript, Tailwind CSS, Stor
 Institutional funders first, followed by corporate partners and international individual supporters. Universities, professional networks, journalists and eventually young adults in Gaza are secondary audiences.
 
 ## Product Purpose
-Make the infrastructure for professional progress available to young people in Gaza: a seat, electricity, connectivity, skills, mentorship and opportunities. The primary website action is financial support, titled “Fund the next seat”; the secondary action is “See the plan”.
+Make the infrastructure for professional progress available to young people in Gaza: a seat, electricity, connectivity, skills, mentorship and opportunities. The primary website action is financial support, titled “Fund a stage” (or “Fund the first stage”); the secondary action is “See the stages”. The site never shows a funding button that leads to an unavailable route.
 
 ## Positioning
 A concrete plan to restore a roughly 500 m² hall in central Gaza City, built in Gaza for Gaza. Success concerns professional progress and income. All impact figures describe plans, not achievements.
 
 ## Operating Context
-Factual authority: docs/ardu-project-summary.pdf, September 2026, prepared by founder Ahmed Abuhassan. Opening: 200 seats/session, two sessions/day, approximately 400 adults/day and 115,000 seat-days/year, subject to structural sign-off. Eight positions, four planned course tracks. Full build: 500 seats/session and up to 1,000/day, approximately 288,000 seat-days/year, conditional on funding and structural confirmation.
+Factual authority: docs/ardu-project-summary.pdf, October 2026, prepared by founder Ahmed Abuhassan. Opening: 100 seats per shift, two four-hour shifts a day, about 200 adults a day and 57,600 seat-days a year, subject to structural sign-off. Four positions at opening, four planned course tracks. End of phase one: 200 seats per shift, 400 a day, 20 kW. Full build: 500 seats per shift and up to 1,000 a day, conditional on funding and structural confirmation.
 
 ## Capabilities and Constraints
-Packages: building/equipment $117k–$149k; solar/storage about $80k indicative; six months running $48k; second floor $70k–$100k conditional. Packages 1–3: $245k–$277k. Solar estimate excludes cabling, installation and installer fees. Quotes required before spending. Planned 50 kW system; approximately $24k/year avoided paid-supply cost before maintenance and battery replacement. No donation integration exists. No email or approved photographs supplied. No legal, tax, partner or achieved-impact claims may be invented.
+Stages: clear the rubble about $15k; light, water, line about $30k; seats and laptops about $20k; reserve about $10k; six months of running $35k (about $6k a month). Doors open at 100 seats: about $110k. Solar is arranged separately: about $10k per installed kW at today's Gaza prices, one kW per ten seats, a hybrid inverter with headroom to 20 kW. Quotes required before spending. Giving runs through the configured giving page only (the founder's Chuffed campaign, re-pointed to Ardú on 4 October 2026). No legal, tax, partner or achieved-impact claims may be invented.
 
 ## Brand Commitments
 Ardú means “a lifting, a raising up”; explain after the value proposition. Editorial, architectural, technological and human; dignified, specific, warm and credible. Avoid charity templates, pity, fabricated documentary images and generic startup styling.

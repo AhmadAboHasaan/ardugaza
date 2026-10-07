@@ -2,15 +2,17 @@
 name: Ardú
 description: Open frame — dignified, concrete infrastructure for professional opportunity.
 colors:
-  paper: "#f4f4ed"
-  ink: "#282a25"
-  muted: "#606259"
-  accent: "#e4ec8b"
-  line: "#c8cabd"
-  dark-line: "#5a5e4d"
-  surface: "#e8e9df"
-  ink-hover: "#414638"
-  text-hover: "#535a37"
+  paper: "#f3efe4"
+  ink: "#103634"
+  muted: "#5b6865"
+  accent: "#ebdfb3"
+  sand: "#c9a227"
+  teal: "#1f6f6b"
+  line: "#d8d4c8"
+  dark-line: "#2b4a47"
+  surface: "#eef2ef"
+  ink-hover: "#1a4a47"
+  text-hover: "#1f6f6b"
 typography:
   display:
     fontFamily: "Manrope, sans-serif"
@@ -104,11 +106,11 @@ The system presents professional opportunity with dignity. Diagrams are explicit
 
 ## Colors
 
-Warm near-neutrals support one pale citron accent. The frontmatter records the normative values extracted from `src/styles/globals.css`.
+The Ardú palette from the brand sheet: cream paper, deep green ink, teal for eyebrows and links, sand for small accents (the next seat, the hero underline, rules, the selected energy stage) and a light sand for large fields. The frontmatter records the normative values from `src/styles/globals.css`. Deep on light sand ≈ 9:1; deep on sand ≈ 5.4:1, so sand carries bold or large text only and never long body copy.
 
 ### Primary
 
-- **Citron (`accent`)** gives the seat illustration, accountability field, support field and selected energy stage a clear shared identity. It can fill a complete section; it is not restricted to tiny accents.
+- **Light sand (`accent`)** fills the seat poster, the trust field and the three-doors field. **Sand (`sand`)** marks the next seat, underlines the hero, colours the energy figures and the selected energy stage. **Teal (`teal`)** carries eyebrows, table headings and link underlines.
 
 ### Neutral
 
@@ -164,7 +166,7 @@ Primary and text hover colors apply only to fine pointers capable of hovering. P
 
 ### Navigation
 
-A text wordmark and structural mark anchor a horizontal header. The compact layout uses a bordered menu button, `aria-expanded` and a disclosed link list. Escape closes the list and restores trigger focus; choosing a section closes it. The navigation is a disclosure, not a modal.
+The Ardú lockup (rising-stroke mark and wordmark, served as SVG from `public/brand`) anchors a horizontal header. The compact layout uses a bordered menu button, `aria-expanded` and a disclosed link list. Escape closes the list and restores trigger focus; choosing a section closes it. The navigation is a disclosure, not a modal.
 
 ### Funding disclosure
 

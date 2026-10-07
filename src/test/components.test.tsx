@@ -8,8 +8,8 @@ import { MediaFrame } from '@/components/content/MediaFrame';
 import { SeatMatrix } from '@/components/content/SeatMatrix';
 import { Impact } from '@/components/sections/Impact';
 import { Energy } from '@/components/sections/Energy';
-import { Funding } from '@/components/sections/Funding';
-import { Support } from '@/components/sections/Support';
+import { Stages } from '@/components/sections/Stages';
+import { Doors } from '@/components/sections/Doors';
 import { integrations } from '@/data/integrations';
 describe('Navigation and semantic primitives', () => {
   it('opens mobile links and returns focus on Escape', async () => {
@@ -17,14 +17,10 @@ describe('Navigation and semantic primitives', () => {
     render(<Navigation />);
     const open = screen.getByRole('button', { name: 'Open menu' });
     expect(open).toHaveAttribute('aria-expanded', 'false');
-    expect(
-      screen.queryByRole('navigation', { name: 'Mobile navigation' }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('navigation', { name: 'Mobile navigation' })).not.toBeInTheDocument();
     await user.click(open);
     expect(open).toHaveAttribute('aria-expanded', 'true');
-    expect(
-      screen.getByRole('navigation', { name: 'Mobile navigation' }),
-    ).toBeVisible();
+    expect(screen.getByRole('navigation', { name: 'Mobile navigation' })).toBeVisible();
     await user.keyboard('{Escape}');
     expect(open).toHaveFocus();
     expect(open).toHaveAttribute('aria-expanded', 'false');
@@ -39,10 +35,7 @@ describe('Navigation and semantic primitives', () => {
       </Section>,
     );
     expect(screen.getByRole('region', { name: 'Plan' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Read the plan' })).toHaveAttribute(
-      'href',
-      '#plan',
-    );
+    expect(screen.getByRole('link', { name: 'Read the plan' })).toHaveAttribute('href', '#plan');
   });
   it('renders an honest media fallback and caption', () => {
     render(
@@ -54,58 +47,47 @@ describe('Navigation and semantic primitives', () => {
     );
     expect(screen.getByText('Spatial study')).toBeInTheDocument();
     expect(screen.queryByRole('img')).not.toBeInTheDocument();
-    expect(screen.getByText('Site photography pending').tagName).toBe(
-      'FIGCAPTION',
-    );
+    expect(screen.getByText('Site photography pending').tagName).toBe('FIGCAPTION');
   });
   it('keeps decorative seat marks out of the accessibility tree', () => {
-    const { container } = render(<SeatMatrix count={500} />);
+    const { container } = render(<SeatMatrix count={200} />);
     expect(container.firstElementChild).toHaveAttribute('aria-hidden', 'true');
   });
 });
-describe('Planned impact and energy', () => {
-  it('distinguishes opening from conditional full build via keyboard', async () => {
+describe('Planned impact, energy, stages and giving', () => {
+  it('distinguishes opening from the end of phase one via keyboard', async () => {
     const user = userEvent.setup();
     render(<Impact />);
-    const full = screen.getByRole('button', { name: 'Full build' });
+    const full = screen.getByRole('button', { name: 'Full phase one' });
     full.focus();
     await user.keyboard('{Enter}');
     expect(full).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByText('≈ 288,000')).toBeVisible();
-    expect(screen.getByText(/Expansion depends on funding/)).toBeVisible();
-    await user.click(screen.getByRole('button', { name: 'At opening' }));
     expect(screen.getByText('≈ 115,000')).toBeVisible();
+    await user.click(screen.getByRole('button', { name: 'At opening' }));
+    expect(screen.getByText('≈ 57,600')).toBeVisible();
   });
   it('explains selected energy stages without claiming live data', async () => {
     const user = userEvent.setup();
     render(<Energy />);
-    await user.click(screen.getByRole('button', { name: 'Reserve' }));
-    expect(screen.getByRole('button', { name: 'Reserve' })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    );
-    expect(screen.getByText(/Surplus beyond 5 kW/)).toBeVisible();
+    await user.click(screen.getByRole('button', { name: 'The street' }));
+    expect(screen.getByRole('button', { name: 'The street' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByText(/Surplus at half the market price/)).toBeVisible();
     expect(screen.getByText(/not live monitoring data/)).toBeVisible();
   });
-  it('exposes funding details and exclusions', async () => {
+  it('exposes stage details and the sun chapter', async () => {
     const user = userEvent.setup();
-    render(<Funding />);
-    await user.click(screen.getByText('Energy independence'));
-    expect(screen.getByText(/An indicative system-only price/)).toBeVisible();
-    expect(
-      screen.getByText(/Package 4 is additional and conditional/),
-    ).toBeVisible();
+    render(<Stages />);
+    await user.click(screen.getByText('Seats and laptops'));
+    expect(screen.getByText(/10 shared laptops at \$950/)).toBeVisible();
+    expect(screen.getByText(/The sun has its own chapter/)).toBeVisible();
   });
-  it('does not invent a payment endpoint', () => {
-    render(<Support />);
-    expect(
-      screen.getByText(/Online giving is not available yet/),
-    ).toBeVisible();
-    expect(
-      screen.queryByRole('link', { name: 'Continue to secure giving' }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.getByRole('link', { name: 'Discuss support with Ahmed' }),
-    ).toHaveAttribute('href', 'https://www.linkedin.com/in/ahmadabohassan');
+  it('routes giving only through the configured giving page', () => {
+    render(<Doors />);
+    const links = screen.getAllByRole('link', { name: /Fund a stage|Get the launch update/ });
+    expect(links.length).toBeGreaterThan(0);
+    if (integrations.giving.status === 'live') {
+      expect(links[0]).toHaveAttribute('href', integrations.giving.url);
+    }
+    expect(screen.getByText(/No payment is collected on this website/)).toBeVisible();
   });
 });

@@ -13,15 +13,15 @@ export const PlannedSeats: Story = {
   render: () => (
     <div style={{ maxWidth: 500 }}>
       <SeatMatrix />
-      <p>200 planned seats per session</p>
+      <p>100 planned seats per shift</p>
     </div>
   ),
 };
 export const FullBuild: Story = {
   render: () => (
     <div style={{ maxWidth: 500 }}>
-      <SeatMatrix count={500} />
-      <p>500 seats, subject to structural confirmation</p>
+      <SeatMatrix count={200} />
+      <p>200 seats at the end of phase one</p>
     </div>
   ),
 };

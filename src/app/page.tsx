@@ -2,14 +2,12 @@ import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
 import { Story } from '@/components/sections/Story';
+import { Stages } from '@/components/sections/Stages';
 import { Impact } from '@/components/sections/Impact';
-import { Programmes } from '@/components/sections/Programmes';
 import { Energy } from '@/components/sections/Energy';
-import { Funding } from '@/components/sections/Funding';
-import { Accountability } from '@/components/sections/Accountability';
-import { Founder } from '@/components/sections/Founder';
-import { Roadmap } from '@/components/sections/Roadmap';
-import { Support } from '@/components/sections/Support';
+import { Trust } from '@/components/sections/Trust';
+import { Who } from '@/components/sections/Who';
+import { Doors } from '@/components/sections/Doors';
 export default function Home() {
   return (
     <>
@@ -17,14 +15,12 @@ export default function Home() {
       <main id="main">
         <Hero />
         <Story />
+        <Stages />
         <Impact />
-        <Programmes />
         <Energy />
-        <Funding />
-        <Accountability />
-        <Founder />
-        <Roadmap />
-        <Support />
+        <Trust />
+        <Who />
+        <Doors />
       </main>
       <Footer />
     </>
