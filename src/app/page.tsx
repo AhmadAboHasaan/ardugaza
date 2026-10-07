@@ -1,28 +1,30 @@
-import { Navigation } from '@/components/layout/Navigation';
-import { Footer } from '@/components/layout/Footer';
+import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
-import { Story } from '@/components/sections/Story';
-import { Stages } from '@/components/sections/Stages';
-import { Impact } from '@/components/sections/Impact';
-import { Energy } from '@/components/sections/Energy';
-import { Trust } from '@/components/sections/Trust';
-import { Who } from '@/components/sections/Who';
-import { Doors } from '@/components/sections/Doors';
+import { Statement } from '@/components/sections/Statement';
+import { Pillars } from '@/components/sections/Pillars';
+import { Changes } from '@/components/sections/Changes';
+import { Direction } from '@/components/sections/Direction';
+import { Weight } from '@/components/sections/Weight';
+import { Ways } from '@/components/sections/Ways';
+import { FounderStrip, TrustStrip } from '@/components/sections/Strips';
+import { CtaBand } from '@/components/ui/CtaBand';
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+  openGraph: { url: '/' },
+};
 export default function Home() {
   return (
     <>
-      <Navigation />
-      <main id="main">
-        <Hero />
-        <Story />
-        <Stages />
-        <Impact />
-        <Energy />
-        <Trust />
-        <Who />
-        <Doors />
-      </main>
-      <Footer />
+      <Hero />
+      <Statement />
+      <Pillars />
+      <Changes />
+      <Direction />
+      <Weight />
+      <Ways />
+      <TrustStrip />
+      <FounderStrip />
+      <CtaBand />
     </>
   );
 }

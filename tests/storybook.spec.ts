@@ -41,15 +41,5 @@ for (const story of Object.values(index.entries).filter(
         'none',
       );
     }
-    if (story.id === 'compositions--planned-energy') {
-      await expect(
-        page.getByRole('button', { name: 'Reserve', exact: true }),
-      ).toHaveAttribute('aria-pressed', 'true');
-      await expect(page.getByText(/Surplus beyond 5 kW/)).toBeVisible();
-    }
-    if (story.id === 'compositions--opening-impact')
-      await expect(
-        page.getByRole('button', { name: 'At opening' }),
-      ).toHaveAttribute('aria-pressed', 'true');
   });
 }

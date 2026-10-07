@@ -17,7 +17,9 @@ const types = {
   '.xml': 'application/xml',
 };
 createServer(async (req, res) => {
-  let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  let pathname = decodeURIComponent(
+    new URL(req.url, 'http://localhost').pathname,
+  );
   if (pathname.endsWith('/')) pathname += 'index.html';
   else if (!extname(pathname)) pathname += '.html';
   const file = resolve(root, '.' + pathname);
@@ -27,8 +29,17 @@ createServer(async (req, res) => {
   }
   try {
     const data = await readFile(file);
-    res.writeHead(200, { 'Content-Type': types[extname(file)] || 'application/octet-stream' }).end(data);
+    res
+      .writeHead(200, {
+        'Content-Type': types[extname(file)] || 'application/octet-stream',
+      })
+      .end(data);
   } catch {
-    res.writeHead(404).end();
+    try {
+      const notFound = await readFile(resolve(root, '404.html'));
+      res.writeHead(404, { 'Content-Type': types['.html'] }).end(notFound);
+    } catch {
+      res.writeHead(404, { 'Content-Type': types['.txt'] }).end('Not found');
+    }
   }
 }).listen(port, '127.0.0.1');

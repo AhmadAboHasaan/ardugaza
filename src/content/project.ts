@@ -1,327 +1,524 @@
 /**
- * Ardú · site content v3 · October 2026.
- * Every string on the site lives here. Figures are estimates at Gaza prices
- * in October 2026, confirmed by written quotes before any spending.
+ * Ardú · public site content · October 2026.
+ *
+ * This is the public, promotional layer: who Ardú is, where it is going, the
+ * impact it is built to deliver and the ways to support it. Operational detail
+ * (stage costs, payroll, energy arithmetic, running costs) is not published
+ * here; it is shared with partners and funders on request.
  */
 
 export const project = {
   name: 'Ardú',
-  title: 'Ardú · Under the rubble, a room for 200 young people a day',
-  planTitle: 'The full plan · Ardú',
+  title: 'Ardú · A youth initiative in Gaza City',
+  titleTemplate: '%s · Ardú',
   description:
-    'A youth initiative in Gaza City: a hall cleared from the rubble of a home, lit, connected and kept open, with every stage you can see, photograph and count. Not relief. A lifting.',
-  ogTitle: 'Under the rubble of a home in Gaza City, a room for 200 young people a day.',
-  ogDescription: 'Ardú clears it, lights it, connects it and keeps it open. Five stages, each with its receipts.',
+    'Ardú is a youth initiative rising from the rubble of a home in Gaza City: a hall with power that stays on, internet that holds, courses with partner organisations and people who open doors, so young people can learn, earn and compete from where they are.',
+  ogTitle: 'Gaza’s young people have the ability. Ardú gives them the room.',
+  ogDescription:
+    'A youth initiative rising from the rubble of a home in Gaza City. Two hundred young people a day, power that stays on, internet that holds. Not relief. A lifting.',
   founder: 'Ahmed Abuhassan',
   founderLinkedin: 'https://www.linkedin.com/in/ahmadabohassan',
-  figuresDate: 'October 2026',
+  tagline: 'Not relief. A lifting.',
+} as const;
+
+export const pages = {
+  about: { href: '/about', label: 'About', title: 'About Ardú' },
+  whatWeDo: { href: '/what-we-do', label: 'What we do', title: 'What we do' },
+  impact: { href: '/impact', label: 'Impact', title: 'Impact' },
+  partners: {
+    href: '/partners',
+    label: 'Partners',
+    title: 'Partner with Ardú',
+  },
+  support: { href: '/support', label: 'Support', title: 'Support Ardú' },
+  contact: { href: '/contact', label: 'Contact', title: 'Contact' },
 } as const;
 
 export const nav = [
-  { href: '/#place', label: 'The place' },
-  { href: '/#stages', label: 'Stages' },
-  { href: '/#trust', label: 'Trust' },
-  { href: '/plan', label: 'Full plan' },
+  pages.about,
+  pages.whatWeDo,
+  pages.impact,
+  pages.partners,
+  pages.support,
 ] as const;
+
+export const ctas = {
+  give: 'Give now',
+  partner: 'Partner with us',
+  conversation: 'Start a conversation',
+  requestPlan: 'Request the full plan',
+  mailSubjects: {
+    partner: 'Ardú · partnering with you',
+    funder: 'Ardú · funding a stage',
+    plan: 'Ardú · request for the full plan',
+    youth: 'Ardú · tell me when registration opens',
+    press: 'Ardú · press enquiry',
+    general: 'Ardú',
+  },
+} as const;
+
+/* ------------------------------------------------------------------ home */
 
 export const hero = {
-  lead:
-    'Ardú clears it, lights it, connects it and keeps it open. A seat, power that stays on, a connection that holds, and people who have walked the road. Not relief. A lifting.',
-  statusLive: 'Stage one, clearing the rubble, is open for funding.',
-  statusPending: 'Stage one, clearing the rubble, opens for funding on',
+  eyebrow: 'A youth initiative · Gaza City',
+  titleStart: 'Gaza’s young people have the ability. Ardú gives them ',
+  titleEmphasis: 'the room.',
+  lead: 'Ardú is rising from the rubble of a home in Gaza City: a hall where the power stays on, the internet holds, partner organisations teach, and people who have walked the road open doors, so that young people can learn, earn and compete from where they are. Ardú is Irish for a lifting. Not relief. A lifting.',
   poster: {
-    top: ['Gaza City', 'Stage one'],
-    title: ['Room for', 'possibility.'],
-    seats: 100,
-    bottom: 'planned seats per shift · two shifts a day',
-    note: 'Schematic, not a floor plan. Interior photographs follow stage one.',
+    top: ['Gaza City · 500 m²', 'Phase one'],
+    title: ['Room for', '200 futures a day.'],
+    seats: 100 as const,
+    bottom: 'seats a shift · two shifts a day',
+    key: 'The next seat',
   },
-  caption: 'A seat is the beginning. Power, connection and people make it work.',
-  foot: ['One room. Two hundred futures a day.', 'The stages are below'],
+  caption:
+    'One hundred seats, two shifts, two hundred young people a day at opening.',
 } as const;
 
-export const why = {
-  lead: ['A seat. A socket. A connection that stays on.', 'Somebody who has walked the road.'],
-  body:
-    'Young people in Gaza have the talent. What they do not have is a place to sit, power that lasts a working day, a connection that holds, and somebody who has walked the road before them. Ardú puts those four things in one room and measures itself by one result: young people earning, working and competing from where they are.',
-  nameNote: 'Irish for “a lifting, a raising up.”',
+export const statement = {
+  title: ['The missing piece', 'is rarely ability.'],
+  body: 'Gaza’s young people are short of a seat, a socket, a connection that holds, and someone who has walked the road before them. Ardú puts all four in one room, and measures itself by one result: young people earning, working and competing from where they are.',
+  figures: [
+    { value: '500 m²', label: 'a hall under a family home in Gaza City' },
+    { value: '200', label: 'young people a day at opening' },
+    { value: '2', label: 'shifts, women and men, equal hours and services' },
+    { value: '4', label: 'course tracks with partner organisations' },
+  ],
 } as const;
 
-export const place = {
-  body1:
-    'A family home in central Gaza City was brought down in the war. Beneath it stands a hall of about 500 square metres, on columns that held. Stage one clears the rubble, and what comes out of it, steel and stone, goes back into preparing the space.',
-  body2:
-    'Nothing in the opening needs cement, so the opening does not wait on the crossings. The hall is family property, used by Ardú at a symbolic rent that enters the accounts, and before anyone sits under it an engineer signs off the structure.',
-  small:
-    'Interior photographs follow stage one. For the safety of the people in it, the exact location is shared with funders and partners and not published.',
-  caption: 'Central Gaza City · about 500 m² · interior photographs to follow',
-  placeholder: {
-    measure: '500 m²',
-    label: 'A floor you can stand on',
-    note: 'Spatial study only, not an architectural plan',
-  },
-} as const;
-
-export const stages = [
-  {
-    id: 'rubble',
-    number: '01',
-    title: 'Clear the rubble',
-    short: 'The hall beneath the home is freed. The first photographs come from here.',
-    amount: 'about $15,000',
-    detail:
-      'The home’s rubble is removed and the hall beneath it is freed. Salvaged steel and stone go into preparing the floor and the space.',
-    evidence: 'Before-and-after photographs; labour and haulage receipts.',
-  },
-  {
-    id: 'light',
-    number: '02',
-    title: 'Light, water, line',
-    short: 'Wiring and lighting, toilets and water, the fibre line and the network.',
-    amount: 'about $30,000',
-    detail:
-      'Wiring and lighting ($10–12k), toilets and water ($10–12k), fibre installation ($5–8k), internal network and UPS ($3–4k). The space becomes a place.',
-    evidence: 'Invoices; the fibre contract; photographs.',
-  },
-  {
-    id: 'seats',
-    number: '03',
-    title: 'Seats and laptops',
-    short: '100 seats, and 10 shared laptops for those who come without one.',
-    amount: 'about $20,000',
-    detail:
-      'Furniture for 100 seats, and 10 shared laptops at $950–1,000 each, bought locally as they become available, for the people who come without one. With the engineer’s structural report, a secured equipment room and a 10% reserve on top, about $10,000.',
-    evidence: 'Quotes and invoices; photographs of the room ready for its first morning.',
-  },
-  {
-    id: 'running',
-    number: '04',
-    title: 'Keep the doors open',
-    short: 'Six months of running at about $6,000 a month: a team of four, internet, consumables, maintenance.',
-    amount: '$35,000',
-    detail:
-      'A team of four on written contracts at $4,000 a month between them to start, stepping up together as funding grows; a part-time accountant by contract keeps the books; internet, consumables and maintenance. From the first month the place starts paying for part of itself.',
-    evidence: 'Contracts; the monthly payroll sheet; attendance; the course calendar.',
-  },
-  {
-    id: 'grow',
-    number: '05',
-    title: 'Grow on the numbers',
-    short: 'To 200 seats and 20 kilowatts, then a second floor, then online.',
-    amount: 'block by block',
-    detail:
-      'To 200 seats and 20 kilowatts in the current hall, ten seats and one kilowatt at a time. Then a second floor towards 500 seats when the engineer confirms it ($70,000–$100,000). Then the same programme online, beyond the walls. Each step is built only when the numbers and the structure say so.',
-    evidence: 'Structural report; photographs; the inverter’s own monitoring data.',
-  },
-] as const;
-
-export const stagesCopy = {
-  intro:
-    'Every stage is a thing on the ground with its own receipts, funded in order and spent against written quotes. Estimates at Gaza prices, October 2026.',
-  totalLabel: 'Doors open at 100 seats · stages 1 to 4 with the reserve',
-  total: 'about $110,000',
-  sun: {
-    title: 'The sun has its own chapter.',
-    text:
-      'A kilowatt of solar with storage costs about $10,000 in Gaza City today and powers ten seats. The first ten kilowatts are being arranged separately with people in Ireland’s renewable-energy sector, and will be announced here the day they are agreed. Seats go in as kilowatts arrive, ten at a time, because in Gaza today a seat without its own power is not a seat.',
-  },
-  caveat:
-    'Every stage stands on its own and is built in order: the first $15,000 lifts the rubble whether or not another dollar arrives. Estimates at Gaza prices as of October 2026; major expenses require written quotes before spending. Stage five is additional and conditional.',
-  detailHeadings: { buys: 'What it buys', verify: 'How you verify it' },
-} as const;
-
-export const impact = {
-  intro: 'Planned capacity, never claimed as impact already achieved.',
-  toggle: ['At opening', 'Full phase one'],
-  scenarios: {
-    opening: {
-      label: 'Opening plan · subject to the engineer’s sign-off',
-      seats: 100 as const,
-      perShift: '100',
-      perDay: '200',
-      seatDays: '≈ 57,600',
-      note: 'Two four-hour shifts, 8 to 12 and 12 to 4, for adults 18 and over. Women and men in separate sections with identical hours and services. Intake criteria are published before the first intake.',
+export const pillars = {
+  eyebrow: 'What Ardú does',
+  title: ['One room.', 'Four things that turn ability into income.'],
+  items: [
+    {
+      icon: 'power',
+      title: 'A place that works',
+      short:
+        'Power that stays on through the working day and internet that holds, in a hall of five hundred square metres.',
+      long: 'Five hundred square metres with power that stays on through the working day, internet that holds, light, water and quiet. A hundred seats a shift, two shifts a day, with a team on the ground running the floor.',
     },
-    full: {
-      label: 'End of phase one · 20 kilowatts, 200 seats',
-      seats: 200 as const,
-      perShift: '200',
-      perDay: '400',
-      seatDays: '≈ 115,000',
-      note: 'Reached ten seats and one kilowatt at a time. A second floor towards 500 seats, up to 1,000 a day, follows only if the engineer confirms it.',
+    {
+      icon: 'learn',
+      title: 'Learning that counts',
+      short:
+        'Courses with partner organisations in repeating cycles, with certificates from the partner.',
+      long: 'Four course tracks run with partner organisations in repeating cycles, so nobody who misses a round waits long: English; freelancing and remote work; career readiness; digital skills. Certificates come from the partner. Live sessions bring in founders, team leads and academics.',
     },
-  },
-  statLabels: ['Seats per shift', 'Young adults a day', 'Seat-days a year'],
-  bullets: [
-    'A student whose university now exists only online can sit her lectures and her exams on a connection that holds.',
-    'Four course tracks with partner organisations, in repeating cycles so nobody who misses a round waits long: English, freelancing and remote work, career readiness, digital skills. Certificates come from the partner.',
-    'Live sessions with people who run organisations, teach at universities and lead teams.',
-    'Paid desks for freelancers, 8 to 4, at $50 a month.',
-    'Outside the hall’s hours, the street: surplus power and eight-hour blocks of internet at under half the market price.',
+    {
+      icon: 'people',
+      title: 'People who open doors',
+      short:
+        'Live sessions and mentoring with founders, team leads and academics who have walked the road.',
+      long: 'Mentoring, introductions and the kind of advice you only get from someone who has done it: how to land the first client, pass the interview, price the work and keep the job.',
+    },
+    {
+      icon: 'work',
+      title: 'A path to income',
+      short:
+        'Freelancer desks, remote-work pipelines and introductions, so a skill becomes a client, a certificate, an interview, an income.',
+      long: 'Full-day desks for freelancers, remote-work pipelines with partners, and a portfolio built on real work, so a skill turns into a client, a certificate, an interview, an income.',
+    },
   ],
-  closing: 'The measure is not seats filled. It is income earned and work found, published every month.',
-  strip: [
-    { value: '4', label: 'positions in Gaza at opening, on written contracts' },
-    { value: '4', label: 'course tracks in repeating cycles, with partners' },
-  ],
+  more: 'What we do',
 } as const;
 
-export const energy = {
-  intro:
-    'Every kilowatt Ardú installs powers ten seats by day. Outside the hall’s hours and on days off, its surplus goes to the houses on the street at half the market price, and the fibre line does the same with hours of internet. Together with desk fees, that income goes to the running costs, every shekel recorded and published.',
-  facts: [
-    { value: '1 kW', label: 'ten seats, all day' },
-    { value: '6 to 8 months', label: 'payback at today’s prices*' },
+export const changes = {
+  eyebrow: 'Impact',
+  title: ['What changes', 'when the room exists.'],
+  items: [
+    'A student whose university now exists only online sits her lectures and her exams on a connection that holds.',
+    'A self-taught developer stops walking for signal and starts delivering for clients.',
+    'A graduate with a skill and no opening leaves with a certificate, a portfolio and an interview.',
+    'A freelancer who lost her clients to power cuts delivers on time again, from a desk that is hers for the month.',
   ],
-  invitation: 'Select a stage to follow the power.',
-  replay: 'Follow the power',
-  rules: 'Surplus only. Always below the market price. A published tariff and a numbered receipt for every shekel. Everything to the running costs.',
-  caveat:
-    '*Against generator-line prices of $10 to $12 per kilowatt-hour and about $10,000 per installed kilowatt in Gaza City, October 2026. Planned, not live monitoring data.',
+  closing:
+    'The measure is not seats filled. It is income earned and work found, published every month.',
+  more: 'Our impact',
 } as const;
 
-export const energyStages = [
-  { name: 'Sun', title: 'Both shifts sit inside daylight.', text: 'Most of what the panels make is used as it is made, so storage stays small.' },
-  { name: 'Generation', title: 'One kilowatt per ten seats.', text: 'Panels are added one kilowatt at a time, one for every block of ten seats, on an inverter with headroom to 20 kW.' },
-  { name: 'Storage', title: 'Sized for the gaps, not the night.', text: 'Storage covers the hours around the shifts; the generator line is kept for the odd hour.' },
-  { name: 'The hall', title: 'Ten seats per kilowatt, 8 to 4.', text: 'Power that stays on for the seats, the network, the lights and the fans.' },
-  { name: 'The street', title: 'Surplus at half the market price.', text: 'Outside the hall’s hours and on days off, surplus power and eight-hour blocks of internet go to the houses on the street, under a published tariff.' },
-  { name: 'Running costs', title: 'Every shekel back into the place.', text: 'Income from the street and from desks goes to the running costs, with a numbered receipt for each, and is published monthly.' },
-] as const;
-
-export const trust = {
-  intro: 'Accountability is part of the infrastructure. This is the system behind every contribution.',
+export const direction = {
+  eyebrow: 'The direction',
+  title: ['Built from', 'the rubble up.'],
   steps: [
-    { title: 'One route in.', text: 'Contributions are held in the UK by an academic trustee under a signed agreement and released stage by stage.' },
-    { title: 'A stage at a time.', text: 'Each release goes to an account used only for Ardú, against the agreed stage.' },
-    { title: 'A record for every expense.', text: 'Numbered ledger entries, receipts, contracts and photographs of what was bought and built.' },
-    { title: 'Separate duties, monthly statements.', text: 'Whoever spends does not keep the books. Accounts are reconciled monthly and supporters receive an itemised statement.' },
+    {
+      number: '01',
+      title: 'Clear',
+      text: 'The rubble of the home comes off the hall beneath it. The first photographs come from here.',
+    },
+    {
+      number: '02',
+      title: 'Light',
+      text: 'Power, water and a fibre line that holds. A ruin becomes a place.',
+    },
+    {
+      number: '03',
+      title: 'Open',
+      text: 'A hundred seats, two shifts, two hundred young people a day, with partner courses from the first week.',
+    },
+    {
+      number: '04',
+      title: 'Grow',
+      text: 'Two hundred seats on the sun’s own power, a second floor towards five hundred, then the same programme online, beyond the walls.',
+    },
   ],
-  close: 'Funders and partners may request the full ledger, with the personal data of staff and students protected.',
-  small:
-    'Ardú is an unregistered initiative; formal registration is planned. No charitable registration or tax deductibility is claimed. No partner is named before its agreement is signed.',
+  note: 'Each step is funded and built in order, and each stands on its own. The full plan, with figures and how every step is verified, is shared with partners and funders.',
+  more: 'For partners and funders',
 } as const;
 
-export const who = {
-  lead: 'Ardú is designed to run without its founder in the room.',
-  body:
-    'Ardú was founded by Ahmed Abuhassan, a self-taught developer from Gaza City who learned and worked through the conditions this place is built to remove, and who worked in electrical installation before software. He leads the initiative. A site manager runs the floor, and the books are kept by someone else.',
-  caption: 'Ahmed Abuhassan · founder of Ardú',
-  portraitPlaceholder: 'Approved portrait to follow',
-  partners: 'Partners are announced here as agreements are signed.',
+export const weight = {
+  eyebrow: 'Built to last',
+  title: ['Designed to carry', 'its own weight.'],
+  body: 'Every kilowatt of solar Ardú installs works twice: ten seats by day, and outside the hall’s hours surplus power and internet for the neighbourhood at below the market price, with the income going back into keeping the doors open. Together with the freelancer desks, the place is designed to earn a growing share of its own running costs, so that every gift goes further and lasts longer.',
+  figure: {
+    value: '×2',
+    label:
+      'A kilowatt that works twice: the hall by day, the street after hours.',
+  },
 } as const;
 
-export const doors = {
-  lead: ['A seat. Power. A connection.', 'The conditions to begin a professional future.'],
-  youth: {
-    title: 'Young people in Gaza',
-    text: 'Criteria and registration are published before the first intake. Leave your name and we will tell you when.',
-    cta: 'Register interest',
-    mailSubject: 'Ardú · register my interest',
+export const ways = {
+  eyebrow: 'Ways to lift it',
+  title: ['Three ways', 'to lift it.'],
+  give: {
+    title: 'Give',
+    text: 'Fund the room through Ardú’s campaign page. A gift of any size moves the next step, and every step comes with its receipts.',
   },
-  organisations: {
-    title: 'Organisations',
-    text: 'Bring a course, trainers, laptops or jobs for the people who come out of Ardú.',
-    cta: 'Write to info@ardugaza.org',
-    mailSubject: 'Ardú · an organisation with something to offer',
+  partner: {
+    title: 'Partner',
+    text: 'Bring a course, trainers, laptops, or jobs for the people who come out of Ardú. The half that money cannot buy.',
   },
-  supporters: {
-    title: 'Supporters',
-    text: 'Fund a stage. The rubble is $15,000. A seat is $200. A month of the doors staying open is $6,000. A kilowatt that puts ten seats on power that never cuts is $10,000.',
-    ctaLive: 'Fund a stage',
-    ctaPending: 'Get the launch update',
-    pendingText: 'Giving opens on the date above through the trustee route. Until then, write to us.',
-    note: 'On the giving page the figures appear in pounds: after platform and transfer fees, a pound given there arrives in Gaza as about a dollar. No payment is collected on this website.',
+  stage: {
+    title: 'Fund a stage',
+    text: 'Foundations, companies and major donors can take a whole stage, from the rubble to the first kilowatts, and see it through with full figures and reporting.',
   },
+  note: 'Giving runs through Ardú’s campaign page. No payment is collected on this website.',
+} as const;
+
+export const trustStrip = {
+  title: ['Every pound,', 'accounted for.'],
+  body: 'Gifts are held in the United Kingdom by an academic trustee under a signed agreement, released stage by stage to an account used only for Ardú, and spent against written quotes. Every expense gets a number, a receipt and a photograph of what it became, and supporters receive a monthly statement.',
+  more: 'How gifts are safeguarded',
+} as const;
+
+export const founderStrip = {
+  title: ['Founded by someone', 'who needed this room.'],
+  body: 'Ahmed Abuhassan learned to code on a borrowed laptop in Gaza, walking each morning to find a socket and a signal. Ardú is the place he needed, built for the young people who need it now.',
+  more: 'About Ardú',
+} as const;
+
+export const ctaBand = {
+  title: 'Help lift it.',
+  body: 'From the rubble of one home, a place for thousands of young people over the years ahead. Be part of the first step.',
+} as const;
+
+/* ----------------------------------------------------------------- about */
+
+export const about = {
+  hero: {
+    eyebrow: 'About Ardú',
+    title: 'Ardú began under the rubble of a home.',
+    lead: 'In October 2023 an air strike levelled a family home in Gaza City. Beneath it, a hall of five hundred square metres stood on columns that held. Ardú is what rises from it.',
+  },
+  story: {
+    title: 'The story',
+    body: [
+      'The house above the hall did not survive. The hall did, and so did an idea: that a young person with ability should not have to walk for hours to find a socket and a signal to do their work.',
+      'For two years Ardú’s founder did exactly that: learning to code on a borrowed laptop with a cracked screen, charging where there was power, working where there was signal, and mentoring others caught in the same blackout. Along the way he built live websites for local shops, NGOs and startups, and saw the same pattern everywhere. The young people around him were not short of ability. They were short of a seat, a socket, a connection that held, and someone who had walked the road before them.',
+      'Ardú puts those four things in one room, under the rubble of the home where the idea was born, and opens them to two hundred young people a day.',
+    ],
+  },
+  name: {
+    word: 'Ardú',
+    meaning: 'Irish for “a lifting, a raising up.”',
+    body: 'The name is a promise: that the people who come through the door leave higher than they came in, with a skill, a certificate, a client, a job. Not relief. A lifting.',
+  },
+  principles: {
+    title: 'What we stand on',
+    items: [
+      {
+        title: 'Ability is everywhere. Opportunity is not.',
+        text: 'Ardú exists to close that gap, for women and men equally, in separate sections with identical hours and services.',
+      },
+      {
+        title: 'Dignity, not charity.',
+        text: 'People at Ardú earn, build and compete. The place is a workshop, not a waiting room.',
+      },
+      {
+        title: 'Open books.',
+        text: 'Every pound is held by a trustee, spent against a written quote, and reported with a receipt and a photograph.',
+      },
+      {
+        title: 'Built to last.',
+        text: 'Ardú earns a growing share of its own keep, so it does not live or die by the next appeal.',
+      },
+      {
+        title: 'Built in order.',
+        text: 'Each stage stands on its own and is finished before the next begins.',
+      },
+    ],
+  },
+  place: {
+    title: 'The place',
+    body: [
+      'A hall of about five hundred square metres with a six-metre ceiling, under a family home in central Gaza City, standing on columns that held. It is family property, placed at Ardú’s disposal under a written agreement, and an engineer signs off the structure before anyone sits beneath it.',
+      'For the safety of the people who will work in it, the exact location is shared with partners and funders and not published. Interior photographs follow the clearing of the rubble.',
+    ],
+    caption:
+      'Central Gaza City · about 500 m² · interior photographs to follow',
+    placeholder: { measure: '500 m²', label: 'A floor you can stand on' },
+  },
+  founder: {
+    title: 'The founder',
+    body: [
+      'Ahmed Abuhassan is a self-taught software developer from Gaza City. Before software he worked in electrical installation, which is why Ardú’s power is designed with engineers and technicians he has worked beside. He has built live websites for local shops, NGOs and startups, and mentored young people online through the blackout.',
+      'He founded Ardú and leads it, with a team on the ground running the floor, because the place is designed to stand on more than one person.',
+    ],
+    caption: 'Ahmed Abuhassan · founder of Ardú',
+    placeholder: ['From finding a socket', 'to building a place.'],
+    linkedin: 'Ahmed on LinkedIn',
+    partners: 'Partners are announced here as agreements are signed.',
+  },
+} as const;
+
+/* ----------------------------------------------------------- what we do */
+
+export const whatWeDo = {
+  hero: {
+    eyebrow: 'What we do',
+    title: 'One room. Four things that turn ability into income.',
+    lead: 'Ardú brings together the place, the learning, the people and the path to work that Gaza’s young people need, and keeps them open every day.',
+  },
+  day: {
+    title: 'A day at Ardú',
+    body: 'Two four-hour shifts, eight to twelve and twelve to four, a hundred seats each, women and men in separate sections with identical hours and services. Freelancers work full days at their own desks. Partner courses run in the room, and mentors join in person and online.',
+    figures: [
+      { value: '8–12', label: 'first shift' },
+      { value: '12–4', label: 'second shift' },
+      { value: '100', label: 'seats a shift' },
+      { value: '50 · 50', label: 'women and men, each shift' },
+    ],
+  },
+  who: {
+    title: 'Who it is for',
+    body: 'Adults of eighteen and over in Gaza: students whose universities now exist only online, graduates with a skill and no opening, freelancers who lose clients to power cuts, self-taught developers, designers and writers. Places are allocated on published criteria that weigh ability and need together.',
+    note: 'Registration opens before the first intake. Leave your name and we will tell you when.',
+    cta: 'Tell me when',
+  },
+  beyond: {
+    title: 'Beyond the walls',
+    body: 'Outside the hall’s hours, its surplus power and internet reach the neighbourhood at below the market price, and the income goes back into keeping the doors open. When the hall is full, the same programme goes online, beyond the walls.',
+  },
+} as const;
+
+/* --------------------------------------------------------------- impact */
+
+export const impactPage = {
+  hero: {
+    eyebrow: 'Impact',
+    title:
+      'The measure is not seats filled. It is income earned and work found.',
+    lead: 'Ardú is built around one result: young people in Gaza earning, working and competing from where they are. Here is what that looks like, and where it is going.',
+  },
+  changes: {
+    title: 'What changes',
+    eyebrow: 'Who it is built for',
+    lead: 'The people this room is built for. Their own stories follow here, published as they happen.',
+  },
+  scale: {
+    title: 'The scale we are building toward',
+    figures: [
+      { value: '200', label: 'young people a day at opening' },
+      { value: '400', label: 'a day at two hundred seats' },
+      {
+        value: '1,000',
+        label: 'a day at the full build of five hundred seats',
+      },
+    ],
+    note: 'These are the numbers Ardú is built for. What it achieves is published as it happens, every month.',
+  },
+  road: {
+    title: 'The road ahead',
+  },
+  measure: {
+    title: 'How we measure',
+    body: 'Every month Ardú publishes attendance by shift, courses completed and certificates issued, work found and income reported by participants, and the accounts. Supporters receive the statement; partners and funders may ask for the full ledger.',
+    items: [
+      'Attendance, by shift',
+      'Courses completed, certificates issued',
+      'Work found, income reported',
+      'The accounts, reconciled monthly',
+    ],
+  },
+} as const;
+
+/* ------------------------------------------------------------- partners */
+
+export const partners = {
+  hero: {
+    eyebrow: 'Partner with Ardú',
+    title: 'Bring what money cannot buy.',
+    lead: 'A hall in Gaza City with two hundred young people a day, power that stays on and internet that holds, ready for the programmes you already run and the opportunities you can open.',
+  },
+  why: {
+    title: 'Why partner',
+    items: [
+      {
+        title: 'A ready audience',
+        text: 'Two hundred motivated young adults a day, selected on published criteria, in one place, with the connectivity to join your programme live.',
+      },
+      {
+        title: 'A place that works',
+        text: 'Deliver in person or remotely into a room with power, internet, screens and a team on the ground to run the floor.',
+      },
+      {
+        title: 'Reporting you can use',
+        text: 'Attendance, completion and outcomes reported each cycle, with the data your own funders ask for.',
+      },
+    ],
+  },
+  bring: {
+    title: 'What a partner can bring',
+    items: [
+      'A course or curriculum, delivered in cycles',
+      'Trainers and mentors, in person or online',
+      'Laptops and equipment',
+      'Jobs, internships and freelance clients for the people who come out of Ardú',
+      'Certificates and pathways into further study',
+      'Your voice: tell your network what is rising in Gaza City',
+    ],
+  },
+  how: {
+    title: 'How it works',
+    steps: [
+      {
+        title: 'A conversation',
+        text: 'Write to us with what you can bring. We reply within a week.',
+      },
+      {
+        title: 'A short written agreement',
+        text: 'What each side provides, when, and how it is reported.',
+      },
+      {
+        title: 'The first cycle',
+        text: 'Scheduled into Ardú’s calendar, announced to participants, run with our team on the floor.',
+      },
+      {
+        title: 'Reporting',
+        text: 'Each cycle closes with attendance, completion and outcomes.',
+      },
+    ],
+    note: 'No partner is named publicly before its agreement is signed.',
+  },
+  funders: {
+    title: 'For funders and institutions',
+    body: 'Foundations, companies and institutional funders can take a whole stage, from clearing the rubble to the first kilowatts of solar, and follow it through with full figures and reporting. The complete plan, with stages, costs, verification, the energy design and the earned-income model, is shared on request, together with the location of the hall.',
+  },
+} as const;
+
+/* -------------------------------------------------------------- support */
+
+export const support = {
+  hero: {
+    eyebrow: 'Support Ardú',
+    title: 'Lift it with us.',
+    lead: 'From the rubble of one home, a place for thousands of young people over the years ahead. Every gift moves the next step, and every step comes with its receipts.',
+  },
+  give: {
+    title: 'Give',
+    body: 'Giving runs through Ardú’s campaign page, on a trustee route that has already carried two years of public giving with every pound accounted for. Give once or monthly, in the amount that is right for you.',
+  },
+  levels: {
+    title: 'What a gift makes possible',
+    items: [
+      {
+        amount: '£150',
+        title: 'A seat',
+        text: 'A chair, a desk and a share of a laptop for one young person.',
+      },
+      {
+        amount: '£750',
+        title: 'A laptop',
+        text: 'Shared by two shifts a day, for those who come without one.',
+      },
+      {
+        amount: '£4,500',
+        title: 'A month of Ardú',
+        text: 'The team, the internet and the lights for a month: two hundred young people a day.',
+      },
+      {
+        amount: '£7,500',
+        title: 'A kilowatt that works twice',
+        text: 'Ten seats on power that never cuts by day, and the neighbourhood’s light outside the hall’s hours.',
+      },
+    ],
+    note: 'Any amount counts. The campaign page lists these and other levels in pounds.',
+  },
+  stage: {
+    title: 'Fund a stage',
+    body: 'Foundations, companies and major donors can take a whole stage and see it through: clearing the rubble; light, water and the fibre line; seats and laptops; the first months of running; the first kilowatts of solar. Each stands on its own and is built in order. Figures, quotes and verification are shared in a direct conversation.',
+  },
+  safeguards: {
+    title: 'How gifts are safeguarded',
+    steps: [
+      {
+        title: 'One route in.',
+        text: 'Gifts are held in the United Kingdom by an academic trustee under a signed agreement.',
+      },
+      {
+        title: 'Stage by stage.',
+        text: 'Released against each agreed stage to an account used only for Ardú, and spent against written quotes.',
+      },
+      {
+        title: 'A record for every expense.',
+        text: 'A number, a receipt, a contract where it applies, and a photograph of what was bought or built.',
+      },
+      {
+        title: 'Separate hands, monthly statements.',
+        text: 'Whoever spends does not keep the books. Supporters receive an itemised statement every month; funders may ask for the full ledger.',
+      },
+    ],
+    small:
+      'Ardú is an unregistered initiative; formal registration is planned. No charitable registration or tax deductibility is claimed. No partner is named before its agreement is signed. Giving runs through Ardú’s campaign page; no payment is collected on this website.',
+  },
+  share: {
+    title: 'Share it',
+    body: 'If you cannot give, send Ardú to one person who would want to see the rubble go.',
+    text: 'Under the rubble of a home in Gaza City, a place is rising where 200 young people a day will have power, internet, courses and mentors. Not relief. A lifting.',
+  },
+} as const;
+
+/* -------------------------------------------------------------- contact */
+
+export const contactPage = {
+  hero: {
+    eyebrow: 'Contact',
+    title: 'Write to us.',
+    lead: 'One address for everything. We reply within a week.',
+  },
+  routes: [
+    {
+      title: 'Partners and funders',
+      text: 'Ask for the full plan and the location of the hall, or tell us what you can bring.',
+      subject: 'plan',
+    },
+    {
+      title: 'Young people in Gaza',
+      text: 'Registration criteria are published before the first intake. Leave your name and we will tell you when.',
+      subject: 'youth',
+    },
+    {
+      title: 'Press and media',
+      text: 'Interviews, background and photographs as they become available.',
+      subject: 'press',
+    },
+  ],
+  linkedin: 'Follow the work on LinkedIn',
 } as const;
 
 export const footer = {
   tagline: 'Built in Gaza. Not relief. A lifting.',
-  figures: 'Planning figures · October 2026',
-} as const;
-
-export const plan = {
-  meta: 'For funders and partners · updated October 2026',
-  intro:
-    'This page carries the detail behind the five stages: the figures and how they were built, what each stage buys, how spending is verified, how the place earns part of its own keep, and what is still open. Every number is an estimate at Gaza prices in October 2026, confirmed by written quotes before any money is spent. Where a figure depends on a condition, the condition is stated next to it.',
-  sections: [
-    {
-      n: '1',
-      title: 'The place',
-      body: [
-        'A hall of about 500 square metres with a six-metre ceiling under a family home in central Gaza City. The home was brought down in the war; the hall’s columns held, its roof and walls did not. Stage one removes the rubble above and around it, sorts what can be reused, and prepares the floor. The opening uses sheeting, salvaged steel and wood, and no cement, so it does not depend on construction materials crossing into Gaza. An engineer’s structural report is obtained before the hall carries any load. The hall is the family’s property, used by Ardú under a written agreement at a symbolic rent that is entered in the accounts. The exact location is shared with funders and partners on request and is not published.',
-      ],
-    },
-    {
-      n: '2',
-      title: 'Stages, amounts and verification',
-      table: [
-        ['1 · Clear the rubble', 'Clearance, sorting of salvage, preparation of the floor and the space.', 'about $15,000', 'Before-and-after photographs; labour and haulage receipts.'],
-        ['2 · Light, water, line', 'Wiring and lighting ($10–12k), toilets and water ($10–12k), fibre installation ($5–8k), internal network and UPS ($3–4k).', 'about $30,000', 'Invoices; the fibre contract; photographs.'],
-        ['3 · Seats and laptops', 'Furniture for 100 seats; 10 shared laptops at $950–1,000 each, bought locally as they become available.', 'about $20,000', 'Quotes and invoices; photographs.'],
-        ['Reserve', 'Engineer’s structural report, secured equipment room, 10% reserve.', 'about $10,000', 'Report; invoices.'],
-        ['4 · Keep the doors open', 'A team of four on written contracts ($4,000 a month between them to start), a part-time accountant by contract, internet, consumables, maintenance and the generator line for the odd hour.', 'about $6,000 a month; $35,000 for six months', 'Contracts; the monthly payroll sheet; attendance; the course calendar.'],
-        ['Solar, separately', 'About 10 kW of solar with storage at today’s price of about $10,000 per kW, on a hybrid inverter with headroom to 20 kW; arranged separately with contacts in Ireland’s renewable-energy sector.', 'about $100,000', 'Quotes; installation photographs; the inverter’s own monitoring data.'],
-        ['5 · Grow on the numbers', 'Ten seats and one kilowatt at a time to 200 seats and 20 kW; a steel second floor and cement finishing when materials allow, towards 500 seats, conditional on the engineer’s confirmation.', 'about $12,000 per block; second floor $70,000–$100,000', 'Structural report; photographs.'],
-      ],
-      body: ['Doors open at 100 seats: about $110,000 with the reserve inside, plus the solar system arranged separately. Every stage stands on its own and is built in order. Stage five is additional and conditional.'],
-    },
-    {
-      n: '3',
-      title: 'Capacity and the working day',
-      body: [
-        'Two four-hour shifts for the supported group, 8 to 12 and 12 to 4, 100 seats per shift, 50 women and 50 men in separate sections with identical hours and services, which is 200 young adults a day at opening and 400 a day at 200 seats. Freelancers rent full-day desks, 8 to 4, at $50 a month, by capacity, added block by block like every other seat. Intake is adults 18 and over, on criteria published before the first intake that weigh ability and financial situation together. In seat-days: about 57,600 a year at opening, about 115,000 at 200 seats, about 288,000 at the full build.',
-      ],
-    },
-    {
-      n: '4',
-      title: 'Energy: the design and the arithmetic',
-      body: [
-        'In October 2026 a kilowatt of installed solar with storage costs about $10,000 in Gaza City, and a kilowatt-hour from the generator lines costs $10 to $12. One kilowatt yields about 135 kWh a month, worth $1,350 to $1,600 at line prices, so a kilowatt repays itself in six to eight months. The line cannot be the baseline: 100 seats draw about 50 to 55 kWh a day, which is more than $13,000 a month from the lines, more than twice the whole running cost at launch.',
-        'The design is a hybrid inverter and storage with headroom to 20 kW, panels added one kilowatt per block of ten seats, both shifts inside daylight so storage only covers the gaps, and the generator line kept for the odd hour. The policy is to buy kilowatts as fast as they are funded while the payback stays under two years, to re-quote before every purchase, and to treat falling prices as cheaper growth. Every figure here is at today’s prices.',
-      ],
-    },
-    {
-      n: '5',
-      title: 'Earned income',
-      body: [
-        'Three lines. Desks: $50 a month per freelancer desk. Surplus power: a 10 kW system produces about 1,350 kWh a month; the hall uses most of it on working days, and days off and the hours before and after the shifts leave about 400 to 500 kWh a month, which at half the market price is $2,000 to $3,000 a month. Internet hours: the fibre line costs about $500 a month; outside the hall’s hours its capacity is sold to the street in eight-hour blocks at under half the market price, and the line pays for itself first. The target is half of launch-level running costs covered by these three lines within the first year, with the actual figure published every month. Four rules govern all three: surplus only; always below the market price; a published tariff and a numbered receipt for every shekel; everything into the running costs.',
-      ],
-    },
-    {
-      n: '6',
-      title: 'Running costs and the team',
-      body: [
-        'Four positions on written contracts at opening: the founder as chief executive, a mentor-director who runs the floor and the programme, and one service member for each section, $4,000 a month between them to start, stepping up together as funding grows. A part-time accountant by contract keeps the books; technical maintenance of the network and the power system is by call-out contract. Fixed costs are about $2,000 a month (internet, consumables, communications, maintenance and the generator line for the odd hour), so running costs are about $6,000 a month at launch. Trainers come on per-course contracts with partner organisations and sit outside payroll. The team grows to eight as the hall grows to 200 seats, and running costs grow with it. Spending, recording and approval sit with different people.',
-      ],
-    },
-    {
-      n: '7',
-      title: 'Accountability',
-      body: [
-        'Contributions are held in the UK by an academic trustee under a signed agreement, on the model already used to fund the founder’s own studies, and released stage by stage to a bank account used only for Ardú. Every expense has a numbered ledger entry, a receipt, and where it applies a contract and a photograph of what was bought or built. The person who spends is not the person who keeps the books. Accounts are reconciled monthly and supporters receive an itemised monthly statement. Funders and partners may request the full ledger, with the personal data of staff and students protected.',
-      ],
-    },
-    {
-      n: '8',
-      title: 'Status and what is still open',
-      body: [
-        'As of October 2026 Ardú is an unregistered initiative with a plan, a site, a brand, a public presence and an open giving page; formal registration is planned and no charitable registration or tax deductibility is claimed. Open before the first spend: the engineer’s structural report, two written quotes for each stage, the family use agreement, the first tariff for desks, power and internet hours, and the published intake criteria. No partner is named before its agreement is signed.',
-      ],
-    },
-    {
-      n: '9',
-      title: 'The four-year picture',
-      body: [
-        'Capital: about $110,000 to open at 100 seats, about $100,000 for the first ten kilowatts, about $120,000 to reach 200 seats and 20 kW, and $70,000 to $100,000 for the second floor if it is confirmed, which is $400,000 to $430,000 in all. Running: about $6,000 a month at launch, rising with the team to about $23,000 a month at full strength, roughly $830,000 over four years. Together about $1.25 million over four years before earned income. The earned-income target of half the running costs from the place itself would take a large part of that off the donors, and the actual figures are published as they happen rather than promised in advance.',
-      ],
-    },
-    {
-      n: '10',
-      title: 'How to fund it and how to reach us',
-      body: [
-        'The units: the rubble, $15,000. Light, water and line, $30,000. Seats and laptops, $20,000. A month of the doors staying open, $6,000. A kilowatt, $10,000. Contributions go through the giving page, which runs on the trustee route above; larger contributions are arranged in a direct conversation at info@ardugaza.org.',
-      ],
-    },
-  ],
+  explore: 'Explore',
+  connect: 'Connect',
+  small:
+    'Ardú is an unregistered youth initiative in Gaza City; formal registration is planned.',
 } as const;

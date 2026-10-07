@@ -1,29 +1,38 @@
 import Link from 'next/link';
 import { Brand } from '@/components/layout/Brand';
-import { footer, project } from '@/content/project';
+import { footer, nav, pages, project } from '@/content/project';
 import { contact, integrations } from '@/data/integrations';
 export function Footer() {
+  const linkedin =
+    integrations.linkedinPage.status === 'ready'
+      ? { href: integrations.linkedinPage.value, label: 'Ardú on LinkedIn' }
+      : { href: project.founderLinkedin, label: 'Ahmed on LinkedIn' };
   return (
     <footer className="site-footer">
-      <Link className="wordmark" href="/" aria-label="Ardú home">
-        <Brand height={36} />
-      </Link>
-      <p>{footer.tagline}</p>
-      <nav aria-label="Footer" className="footer-links">
-        <Link href="/plan">Full plan</Link>
-        <a href="/ardu-project-summary.pdf">Project summary (PDF)</a>
-        {integrations.linkedinPage.status === 'ready' ? (
-          <a href={integrations.linkedinPage.value} rel="noopener" target="_blank">
-            Ardú on LinkedIn
-          </a>
-        ) : (
-          <a href={project.founderLinkedin} rel="noopener" target="_blank">
-            Ahmed on LinkedIn
-          </a>
-        )}
-        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+      <div className="footer-brand">
+        <Link className="wordmark" href="/" aria-label="Ardú home">
+          <Brand tone="cream" height={40} />
+        </Link>
+        <p>{footer.tagline}</p>
+      </div>
+      <nav aria-label="Footer" className="footer-col">
+        <h2>{footer.explore}</h2>
+        {[...nav, pages.contact].map((link) => (
+          <Link key={link.href} href={link.href}>
+            {link.label}
+          </Link>
+        ))}
       </nav>
-      <span>{footer.figures}</span>
+      <div className="footer-col">
+        <h2>{footer.connect}</h2>
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        <a href={linkedin.href} rel="noopener" target="_blank">
+          {linkedin.label}
+        </a>
+      </div>
+      <p className="footer-small">
+        {footer.small} © {new Date().getFullYear()} Ardú.
+      </p>
     </footer>
   );
 }

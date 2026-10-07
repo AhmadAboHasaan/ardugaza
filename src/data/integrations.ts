@@ -33,19 +33,50 @@ export const integrations: {
     opensOn: '2026-10-04',
     url: 'https://chuffed.org/project/140633-help-ahmad-rebuild-his-future',
   },
-  contactEmail: { status: 'ready', key: 'CONTACT_EMAIL', value: 'info@ardugaza.org' },
-  canonicalOrigin: { status: 'ready', key: 'CANONICAL_ORIGIN', value: 'https://ardugaza.org' },
-  linkedinPage: { status: 'pending', key: 'PLACEHOLDER_LINKEDIN_PAGE', value: null },
-  launchUpdateForm: { status: 'pending', key: 'PLACEHOLDER_LAUNCH_UPDATE_FORM', value: null },
-  interestForm: { status: 'pending', key: 'PLACEHOLDER_INTEREST_FORM', value: null },
+  contactEmail: {
+    status: 'ready',
+    key: 'CONTACT_EMAIL',
+    value: 'info@ardugaza.org',
+  },
+  canonicalOrigin: {
+    status: 'ready',
+    key: 'CANONICAL_ORIGIN',
+    value: 'https://ardugaza.org',
+  },
+  linkedinPage: {
+    status: 'pending',
+    key: 'PLACEHOLDER_LINKEDIN_PAGE',
+    value: null,
+  },
+  launchUpdateForm: {
+    status: 'pending',
+    key: 'PLACEHOLDER_LAUNCH_UPDATE_FORM',
+    value: null,
+  },
+  interestForm: {
+    status: 'pending',
+    key: 'PLACEHOLDER_INTEREST_FORM',
+    value: null,
+  },
   heroImage: { status: 'pending', key: 'PLACEHOLDER_HERO_IMAGE', value: null },
   hallImage: { status: 'pending', key: 'PLACEHOLDER_HALL_IMAGE', value: null },
-  founderImage: { status: 'pending', key: 'PLACEHOLDER_FOUNDER_IMAGE', value: null },
-  partnerLogos: { status: 'pending', key: 'PLACEHOLDER_PARTNER_LOGOS', value: null },
+  founderImage: {
+    status: 'pending',
+    key: 'PLACEHOLDER_FOUNDER_IMAGE',
+    value: null,
+  },
+  partnerLogos: {
+    status: 'pending',
+    key: 'PLACEHOLDER_PARTNER_LOGOS',
+    value: null,
+  },
 };
 
 export const contact = {
-  email: integrations.contactEmail.status === 'ready' ? integrations.contactEmail.value : 'info@ardugaza.org',
+  email:
+    integrations.contactEmail.status === 'ready'
+      ? integrations.contactEmail.value
+      : 'info@ardugaza.org',
   mailto(subject: string) {
     return `mailto:${this.email}?subject=${encodeURIComponent(subject)}`;
   },
