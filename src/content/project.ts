@@ -12,10 +12,11 @@ export const project = {
   title: 'Ardú · A youth initiative in Gaza City',
   titleTemplate: '%s · Ardú',
   description:
-    'Ardú is a youth initiative rising from the rubble of a home in Gaza City: a hall with power that stays on, internet that holds, courses with partner organisations and people who open doors, so young people can learn, earn and compete from where they are.',
-  ogTitle: 'Gaza’s young people have the ability. Ardú gives them the room.',
+    'Ardú is a youth initiative rising from the rubble of a home in Gaza City. It lifts young people over everything between them and their ambition: guidance from people who have walked the road, learning that counts, openings that lead to income, and a place where the power stays on and the internet holds. Not relief. A lifting.',
+  ogTitle:
+    'Ardú lifts Gaza’s young people over everything between them and their ambition.',
   ogDescription:
-    'A youth initiative rising from the rubble of a home in Gaza City. Two hundred young people a day, power that stays on, internet that holds. Not relief. A lifting.',
+    'A youth initiative rising from the rubble of a home in Gaza City: guidance, learning, openings and a place that works, for two hundred young people a day. Not relief. A lifting.',
   founder: 'Ahmed Abuhassan',
   founderLinkedin: 'https://www.linkedin.com/in/ahmadabohassan',
   tagline: 'Not relief. A lifting.',
@@ -61,12 +62,13 @@ export const ctas = {
 
 export const hero = {
   eyebrow: 'A youth initiative · Gaza City',
-  titleStart: 'Gaza’s young people have the ability. Ardú gives them ',
-  titleEmphasis: 'the room.',
-  lead: 'Ardú is rising from the rubble of a home in Gaza City: a hall where the power stays on, the internet holds, partner organisations teach, and people who have walked the road open doors, so that young people can learn, earn and compete from where they are. Ardú is Irish for a lifting. Not relief. A lifting.',
+  titleStart:
+    'Ardú lifts Gaza’s young people over everything between them and ',
+  titleEmphasis: 'their ambition.',
+  lead: 'Ardú is a youth initiative rising from the rubble of a home in Gaza City. The road from ability to income here is full of things that trip a young person: nobody ahead to guide them, skills the market cannot see, doors that stay shut, power and internet that cut mid-sentence. Ardú lifts them over each one, with guidance, learning, openings and a place where the work gets done, so they can learn, earn and compete from where they are. Ardú is Irish for a lifting. Not relief. A lifting.',
   poster: {
     top: ['Gaza City · 500 m²', 'Phase one'],
-    title: ['Room for', '200 futures a day.'],
+    title: ['Two hundred', 'futures a day.'],
     seats: 100 as const,
     bottom: 'seats a shift · two shifts a day',
     key: 'The next seat',
@@ -77,46 +79,46 @@ export const hero = {
 
 export const statement = {
   title: ['The missing piece', 'is rarely ability.'],
-  body: 'Gaza’s young people are short of a seat, a socket, a connection that holds, and someone who has walked the road before them. Ardú puts all four in one room, and measures itself by one result: young people earning, working and competing from where they are.',
+  body: 'Gaza’s young people are not short of ability or ambition. They are short of the road: someone who has walked it to guide them, the skills and tools the market asks for, a door that opens, and a place where the work can be done. Ardú lifts them over each of those gaps, and measures itself by one result: young people earning, working and competing from where they are.',
   figures: [
-    { value: '500 m²', label: 'a hall under a family home in Gaza City' },
     { value: '200', label: 'young people a day at opening' },
-    { value: '2', label: 'shifts, women and men, equal hours and services' },
     { value: '4', label: 'course tracks with partner organisations' },
+    { value: '2', label: 'shifts, women and men, equal hours and services' },
+    { value: '500 m²', label: 'a hall under a family home in Gaza City' },
   ],
 } as const;
 
 export const pillars = {
-  eyebrow: 'What Ardú does',
-  title: ['One room.', 'Four things that turn ability into income.'],
+  eyebrow: 'How Ardú lifts',
+  title: ['Everything the road to an ambition needs,', 'in one place.'],
   items: [
     {
-      icon: 'power',
-      title: 'A place that works',
+      icon: 'people',
+      title: 'Guidance from people who have walked the road',
       short:
-        'Power that stays on through the working day and internet that holds, in a hall of five hundred square metres.',
-      long: 'Five hundred square metres with power that stays on through the working day, internet that holds, light, water and quiet. A hundred seats a shift, two shifts a day, with a team on the ground running the floor.',
+        'Mentors and introductions from people who have done it: how to land the first client, pass the interview, price the work.',
+      long: 'Guidance comes first. Mentoring, introductions and the kind of advice you only get from someone who has done it: how to land the first client, pass the interview, price the work and keep the job. Live sessions bring in founders, team leads and academics.',
     },
     {
       icon: 'learn',
       title: 'Learning that counts',
       short:
         'Courses with partner organisations in repeating cycles, with certificates from the partner.',
-      long: 'Four course tracks run with partner organisations in repeating cycles, so nobody who misses a round waits long: English; freelancing and remote work; career readiness; digital skills. Certificates come from the partner. Live sessions bring in founders, team leads and academics.',
-    },
-    {
-      icon: 'people',
-      title: 'People who open doors',
-      short:
-        'Live sessions and mentoring with founders, team leads and academics who have walked the road.',
-      long: 'Mentoring, introductions and the kind of advice you only get from someone who has done it: how to land the first client, pass the interview, price the work and keep the job.',
+      long: 'Four course tracks run with partner organisations in repeating cycles, so nobody who misses a round waits long: English; freelancing and remote work; career readiness; digital skills. Certificates come from the partner.',
     },
     {
       icon: 'work',
-      title: 'A path to income',
+      title: 'Openings that lead to income',
       short:
         'Freelancer desks, remote-work pipelines and introductions, so a skill becomes a client, a certificate, an interview, an income.',
       long: 'Full-day desks for freelancers, remote-work pipelines with partners, and a portfolio built on real work, so a skill turns into a client, a certificate, an interview, an income.',
+    },
+    {
+      icon: 'power',
+      title: 'A place where the work gets done',
+      short:
+        'Power that stays on, internet that holds, a seat and quiet, so nothing on the road is lost to a blackout.',
+      long: 'Five hundred square metres with power that stays on through the working day, internet that holds, light, water and quiet, because a road is no use if the work is lost to a blackout. A hundred seats a shift, two shifts a day, with a team on the ground running the floor.',
     },
   ],
   more: 'What we do',
@@ -124,7 +126,7 @@ export const pillars = {
 
 export const changes = {
   eyebrow: 'Impact',
-  title: ['What changes', 'when the room exists.'],
+  title: ['What changes', 'when the road opens.'],
   items: [
     'A student whose university now exists only online sits her lectures and her exams on a connection that holds.',
     'A self-taught developer stops walking for signal and starts delivering for clients.',
@@ -181,7 +183,7 @@ export const ways = {
   title: ['Three ways', 'to lift it.'],
   give: {
     title: 'Give',
-    text: 'Fund the room through Ardú’s campaign page. A gift of any size moves the next step, and every step comes with its receipts.',
+    text: 'Fund the next step through Ardú’s campaign page. A gift of any size moves it, and every step comes with its receipts.',
   },
   partner: {
     title: 'Partner',
@@ -201,14 +203,14 @@ export const trustStrip = {
 } as const;
 
 export const founderStrip = {
-  title: ['Founded by someone', 'who needed this room.'],
-  body: 'Ahmed Abuhassan learned to code on a borrowed laptop in Gaza, walking each morning to find a socket and a signal. Ardú is the place he needed, built for the young people who need it now.',
+  title: ['Founded by someone', 'who walked this road alone.'],
+  body: 'Ahmed Abuhassan learned to code on a borrowed laptop in Gaza, walking each morning to find a socket and a signal, with nobody ahead of him on the road. Ardú is the lifting he needed, built for the young people who need it now.',
   more: 'About Ardú',
 } as const;
 
 export const ctaBand = {
   title: 'Help lift it.',
-  body: 'From the rubble of one home, a place for thousands of young people over the years ahead. Be part of the first step.',
+  body: 'From the rubble of one home, a road opened for thousands of young people over the years ahead. Be part of the first step.',
 } as const;
 
 /* ----------------------------------------------------------------- about */
@@ -223,8 +225,8 @@ export const about = {
     title: 'The story',
     body: [
       'The house above the hall did not survive. The hall did, and so did an idea: that a young person with ability should not have to walk for hours to find a socket and a signal to do their work.',
-      'For two years Ardú’s founder did exactly that: learning to code on a borrowed laptop with a cracked screen, charging where there was power, working where there was signal, and mentoring others caught in the same blackout. Along the way he built live websites for local shops, NGOs and startups, and saw the same pattern everywhere. The young people around him were not short of ability. They were short of a seat, a socket, a connection that held, and someone who had walked the road before them.',
-      'Ardú puts those four things in one room, under the rubble of the home where the idea was born, and opens them to two hundred young people a day.',
+      'For two years Ardú’s founder did exactly that: learning to code on a borrowed laptop with a cracked screen, charging where there was power, working where there was signal, and mentoring others caught in the same blackout. Along the way he built live websites for local shops, NGOs and startups, and saw the same pattern everywhere. The young people around him were not short of ability or ambition. They were short of the road: someone ahead of them who had walked it, the skills and tools the market asks for, a door that opens, and a place where the work could be done.',
+      'Ardú puts all of that in one place, under the rubble of the home where the idea was born, and opens it to two hundred young people a day.',
     ],
   },
   name: {
@@ -285,8 +287,9 @@ export const about = {
 export const whatWeDo = {
   hero: {
     eyebrow: 'What we do',
-    title: 'One room. Four things that turn ability into income.',
-    lead: 'Ardú brings together the place, the learning, the people and the path to work that Gaza’s young people need, and keeps them open every day.',
+    title:
+      'Everything a young person needs to reach their ambition, in one place.',
+    lead: 'Ardú lifts young people over what trips them on the road: with people who guide, learning that counts, openings that lead to income, and a place where the work gets done, every day.',
   },
   day: {
     title: 'A day at Ardú',
@@ -421,7 +424,7 @@ export const support = {
   hero: {
     eyebrow: 'Support Ardú',
     title: 'Lift it with us.',
-    lead: 'From the rubble of one home, a place for thousands of young people over the years ahead. Every gift moves the next step, and every step comes with its receipts.',
+    lead: 'From the rubble of one home, a road opened for thousands of young people over the years ahead. Every gift moves the next step, and every step comes with its receipts.',
   },
   give: {
     title: 'Give',
@@ -483,7 +486,7 @@ export const support = {
   share: {
     title: 'Share it',
     body: 'If you cannot give, send Ardú to one person who would want to see the rubble go.',
-    text: 'Under the rubble of a home in Gaza City, a place is rising where 200 young people a day will have power, internet, courses and mentors. Not relief. A lifting.',
+    text: 'From under the rubble of a home in Gaza City, Ardú is rising to lift 200 young people a day over everything between them and their ambition: guidance, learning, openings, and a place that works. Not relief. A lifting.',
   },
 } as const;
 

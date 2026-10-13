@@ -31,7 +31,7 @@ export const integrations: {
   giving: {
     status: 'live',
     opensOn: '2026-10-04',
-    url: 'https://chuffed.org/project/140633-help-ahmad-rebuild-his-future',
+    url: 'https://chuffed.org/project/140633',
   },
   contactEmail: {
     status: 'ready',

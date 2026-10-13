@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 const pages = [
-  { path: '/', h1: /Gaza’s young people have the ability/ },
+  { path: '/', h1: /Ardú lifts Gaza’s young people/ },
   { path: '/about', h1: /began under the rubble/ },
-  { path: '/what-we-do', h1: /One room\. Four things/ },
+  { path: '/what-we-do', h1: /Everything a young person needs/ },
   { path: '/impact', h1: /income earned and work found/ },
   { path: '/partners', h1: /Bring what money cannot buy/ },
   { path: '/support', h1: /Lift it with us/ },
@@ -17,7 +17,7 @@ test('home page leads with the brand, the impact and the giving route', async ({
 }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'Ardú gives them the room.',
+    'their ambition.',
   );
   const give = page.getByRole('link', { name: 'Give now' }).first();
   await expect(give).toHaveAttribute('href', /chuffed\.org/);
