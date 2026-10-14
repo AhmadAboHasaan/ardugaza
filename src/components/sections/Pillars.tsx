@@ -1,7 +1,7 @@
 import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
-import { pages, pillars } from '@/content/project';
+import { pages, pillars, statement } from '@/content/project';
 type Props = { expanded?: boolean; heading?: boolean };
 /** The four things Ardú gives a young person. Short on the home page, in full on What we do. */
 export function Pillars({ expanded = false, heading = true }: Props) {
@@ -17,11 +17,7 @@ export function Pillars({ expanded = false, heading = true }: Props) {
             <h2 id="pillars-title">
               {pillars.title[0]} {pillars.title[1]}
             </h2>
-            {!expanded && (
-              <LinkButton href={pages.whatWeDo.href} variant="text">
-                {pillars.more}
-              </LinkButton>
-            )}
+            <p className="lead">{statement.body}</p>
           </div>
         )}
         <div
@@ -35,6 +31,15 @@ export function Pillars({ expanded = false, heading = true }: Props) {
             </article>
           ))}
         </div>
+        {heading && !expanded && (
+          <LinkButton
+            href={pages.whatWeDo.href}
+            variant="text"
+            className="section-more"
+          >
+            {pillars.more}
+          </LinkButton>
+        )}
       </div>
     </Section>
   );

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
-import { Statement } from '@/components/sections/Statement';
+import { Vision } from '@/components/sections/Vision';
 import { Pillars } from '@/components/sections/Pillars';
 import { Changes } from '@/components/sections/Changes';
 import { Direction } from '@/components/sections/Direction';
@@ -16,10 +16,10 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Statement />
+      <Vision />
+      <Direction />
       <Pillars />
       <Changes />
-      <Direction />
       <Weight />
       <Ways />
       <TrustStrip />

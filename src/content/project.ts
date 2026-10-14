@@ -74,27 +74,15 @@ export const hero = {
   },
 } as const;
 
+export const vision = {
+  figure: { value: '1,000', label: 'young people a day, at the full build' },
+  title: 'A thousand young people a day, lifted.',
+  body: 'That is the full size of Ardú: five hundred seats under what was a family home in Gaza City, two shifts a day, and a thousand young people walking in with ability and walking out with a client, a certificate, an interview, an income. Mentors who have walked the road. Courses with partner organisations, in cycles that never stop. Power that never cuts, shared with the street after hours. And when the hall is full, the same programme online, beyond the walls.',
+  bridge: 'Nobody gets there in one step. Ardú gets there in four.',
+} as const;
+
 export const statement = {
-  title: ['The missing piece', 'is rarely ability.'],
   body: 'Gaza’s young people are not short of ability or ambition. They are short of the road: someone who has walked it to guide them, the skills and tools the market asks for, a door that opens, and a place where the work can be done. Ardú lifts them over each of those gaps, and measures itself by one result: young people earning, working and competing from where they are.',
-  figures: [
-    { icon: 'users', value: '200', label: 'young people a day at opening' },
-    {
-      icon: 'book',
-      value: '4',
-      label: 'course tracks with partner organisations',
-    },
-    {
-      icon: 'clock',
-      value: '2',
-      label: 'shifts, women and men, equal hours and services',
-    },
-    {
-      icon: 'building',
-      value: '500 m²',
-      label: 'a hall under a family home in Gaza City',
-    },
-  ],
 } as const;
 
 export const pillars = {
@@ -158,34 +146,36 @@ export const changes = {
 } as const;
 
 export const direction = {
-  title: ['Built from', 'the rubble up.'],
+  title: 'The road there has four stages.',
+  lead: 'Each one is a thing you can see, photograph and count, finished before the next begins, with a receipt for everything. The first is open now.',
   steps: [
     {
       number: '01',
       icon: 'clear',
       title: 'Clear',
-      text: 'The rubble of the home comes off the hall beneath it. The first photographs come from here.',
+      text: 'The rubble comes off the hall beneath the home. The first photographs come from here, and the first proof that this is real.',
     },
     {
       number: '02',
       icon: 'light',
       title: 'Light',
-      text: 'Power, water and a fibre line that holds. A ruin becomes a place.',
+      text: 'Power, water and a fibre line that holds. The day the lights come on, a ruin becomes a place.',
     },
     {
       number: '03',
       icon: 'open',
       title: 'Open',
-      text: 'A hundred seats, two shifts, two hundred young people a day, with partner courses from the first week.',
+      text: 'A hundred seats, two shifts, the first partner courses, and the first two hundred young people a day. The day the first certificate is issued.',
     },
     {
       number: '04',
       icon: 'grow',
       title: 'Grow',
-      text: 'Two hundred seats on the sun’s own power, a second floor towards five hundred, then the same programme online, beyond the walls.',
+      text: 'Two hundred seats on the sun’s own power, a second floor towards five hundred, then online beyond the walls. The day the place starts paying part of its own way.',
     },
   ],
-  note: 'Each step is funded and built in order, and each stands on its own. The full plan, with figures and how every step is verified, is shared with partners and funders.',
+  note: 'The full plan, with figures and how every stage is verified, is shared with partners and funders.',
+  fund: 'Fund the first stage',
   more: 'For partners and funders',
 } as const;
 

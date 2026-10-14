@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Hero } from './Hero';
-import { Statement } from './Statement';
+import { Vision } from './Vision';
 import { Pillars } from './Pillars';
 import { Changes } from './Changes';
 import { Direction } from './Direction';
@@ -23,7 +23,7 @@ export const MobileHero: Story = {
   render: () => <Hero />,
   globals: { viewport: { value: 'mobile390', isRotated: false } },
 };
-export const StatementBand: Story = { render: () => <Statement /> };
+export const FullPicture: Story = { render: () => <Vision /> };
 export const FourPillars: Story = { render: () => <Pillars /> };
 export const FourPillarsExpanded: Story = {
   render: () => <Pillars expanded heading={false} />,
