@@ -77,7 +77,7 @@ export const hero = {
 export const vision = {
   figure: { value: '1,000', label: 'young people a day, at the full build' },
   title: 'A thousand young people a day, lifted.',
-  body: 'That is the full size of Ardú: five hundred seats under what was a family home in Gaza City, two shifts a day, and a thousand young people walking in with ability and walking out with a client, a certificate, an interview, an income. Mentors who have walked the road. Courses with partner organisations, in cycles that never stop. Power that never cuts, shared with the street after hours. And when the hall is full, the same programme online, beyond the walls.',
+  body: 'That is the full size of Ardú: five hundred seats in the hall under the rubble where its founder’s road began, two shifts a day, and a thousand young people walking in with ability and walking out with a client, a certificate, an interview, an income. Mentors who have walked the road. Courses with partner organisations, in cycles that never stop. Power that never cuts, shared with the street after hours. And when the hall is full, the same programme online, beyond the walls.',
   bridge: 'Nobody gets there in one step. Ardú gets there in four.',
 } as const;
 
