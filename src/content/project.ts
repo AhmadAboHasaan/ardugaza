@@ -12,11 +12,11 @@ export const project = {
   title: 'Ardú · A youth initiative in Gaza City',
   titleTemplate: '%s · Ardú',
   description:
-    'Ardú is a youth initiative rising from the rubble of a home in Gaza City. It lifts young people over everything between them and their ambition: guidance from people who have walked the road, learning that counts, openings that lead to income, and a place where the power stays on and the internet holds. Not relief. A lifting.',
+    'Ardú is a youth initiative rising from under the rubble of the home in Gaza City where its founder’s road began. It lifts young people over everything between them and their ambition: guidance from people who have walked the road, learning that counts, openings that lead to income, and a place where the power stays on and the internet holds. Not relief. A lifting.',
   ogTitle:
     'Ardú lifts Gaza’s young people over everything between them and their ambition.',
   ogDescription:
-    'A youth initiative rising from the rubble of a home in Gaza City: guidance, learning, openings and a place that works, for two hundred young people a day. Not relief. A lifting.',
+    'A youth initiative rising from under the rubble of the home in Gaza City where its founder’s road began: guidance, learning, openings and a place that works. Two hundred young people a day at the opening, a thousand at the full build. Not relief. A lifting.',
   founder: 'Ahmed Abuhassan',
   founderLinkedin: 'https://www.linkedin.com/in/ahmadabohassan',
   tagline: 'Not relief. A lifting.',
@@ -64,7 +64,7 @@ export const hero = {
   titleStart:
     'Ardú lifts Gaza’s young people over everything between them and ',
   titleEmphasis: 'their ambition.',
-  lead: 'Ardú is a youth initiative rising from the rubble of a home in Gaza City. The road from ability to income here is full of things that trip a young person: nobody ahead to guide them, skills the market cannot see, doors that stay shut, power and internet that cut mid-sentence. Ardú lifts them over each one, with guidance, learning, openings and a place where the work gets done, so they can learn, earn and compete from where they are. Ardú is Irish for a lifting. Not relief. A lifting.',
+  lead: 'Ardú is a youth initiative rising from under the rubble of the home in Gaza City where its founder’s road began. The road from ability to income here is full of things that trip a young person: nobody ahead to guide them, skills the market cannot see, doors that stay shut, power and internet that cut mid-sentence. Ardú lifts them over each one, with guidance, learning, openings and a place where the work gets done, so they can learn, earn and compete from where they are. Ardú is Irish for a lifting. Not relief. A lifting.',
   road: {
     start: 'Under the rubble',
     stops: ['Guidance', 'Learning', 'Openings', 'A place that works'],
@@ -194,7 +194,7 @@ export const ways = {
   give: {
     icon: 'heart',
     title: 'Give',
-    text: 'Fund the next step through Ardú’s campaign page. A gift of any size moves it, and every step comes with its receipts.',
+    text: 'Fund the next stage through Ardú’s campaign page. A gift of any size moves it, and every stage comes with its receipts.',
   },
   partner: {
     icon: 'handshake',
@@ -217,28 +217,28 @@ export const trustStrip = {
 
 export const founderStrip = {
   title: ['Founded by someone', 'who walked this road alone.'],
-  body: 'Ahmed Abuhassan learned to code on a borrowed laptop in Gaza, walking each morning to find a socket and a signal, with nobody ahead of him on the road. Ardú is the lifting he needed, built for the young people who need it now.',
+  body: 'Ahmed Abuhassan was pulled out of the rubble of this home in October 2023. He learned to code afterwards on a borrowed laptop, walking each morning to find a socket and a signal, with nobody ahead of him on the road. Ardú is the lifting he needed, built for the young people who need it now.',
   more: 'About Ardú',
 } as const;
 
 export const ctaBand = {
   title: 'Help lift it.',
-  body: 'From the rubble of one home, a road opened for thousands of young people over the years ahead. Be part of the first step.',
+  body: 'One road began under this rubble. Ardú opens it for thousands of young people over the years ahead. Be part of the first stage.',
 } as const;
 
 /* ----------------------------------------------------------------- about */
 
 export const about = {
   hero: {
-    title: 'Ardú began under the rubble of a home.',
-    lead: 'In October 2023 an air strike levelled a family home in Gaza City. Beneath it, a hall of five hundred square metres stood on columns that held. Ardú is what rises from it.',
+    title: 'Ardú rises from the rubble its founder was pulled out of.',
+    lead: 'In October 2023 an air strike levelled his family’s home in Gaza City. Beneath it, a hall of five hundred square metres stood on columns that held. The road he walked from that day is the road Ardú now opens for others.',
   },
   story: {
     title: 'The story',
     body: [
       'The house above the hall did not survive. The hall did, and so did an idea: that a young person with ability should not have to walk for hours to find a socket and a signal to do their work.',
       'For two years Ardú’s founder did exactly that: learning to code on a borrowed laptop with a cracked screen, charging where there was power, working where there was signal, and mentoring others caught in the same blackout. Along the way he built live websites for local shops, NGOs and startups, and saw the same pattern everywhere. The young people around him were not short of ability or ambition. They were short of the road: someone ahead of them who had walked it, the skills and tools the market asks for, a door that opens, and a place where the work could be done.',
-      'Ardú puts all of that in one place, under the rubble of the home where the idea was born, and opens it to two hundred young people a day.',
+      'Ardú puts all of that in one place, in the hall under that rubble, and opens it to two hundred young people a day at the start and a thousand at the full build.',
     ],
   },
   name: {
@@ -279,7 +279,7 @@ export const about = {
   place: {
     title: 'The place',
     body: [
-      'A hall of about five hundred square metres with a six-metre ceiling, under a family home in central Gaza City, standing on columns that held. It is family property, placed at Ardú’s disposal under a written agreement, and an engineer signs off the structure before anyone sits beneath it.',
+      'A hall of about five hundred square metres with a six-metre ceiling, under the founder’s family home in central Gaza City, standing on columns that held. It is family property, placed at Ardú’s disposal under a written agreement, and an engineer signs off the structure before anyone sits beneath it.',
       'For the safety of the people who will work in it, the exact location is shared with partners and funders and not published. Interior photographs follow the clearing of the rubble.',
     ],
     caption:
@@ -339,7 +339,7 @@ export const impactPage = {
   },
   changes: {
     title: 'What changes',
-    lead: 'The people this room is built for. Their own stories follow here, published as they happen.',
+    lead: 'The people this road is built for. Their own stories follow here, published as they happen.',
   },
   scale: {
     title: 'The scale we are building toward',
@@ -355,7 +355,7 @@ export const impactPage = {
     note: 'These are the numbers Ardú is built for. What it achieves is published as it happens, every month.',
   },
   road: {
-    title: 'The road ahead',
+    title: 'The road ahead has four stages.',
   },
   measure: {
     title: 'How we measure',
@@ -440,7 +440,7 @@ export const partners = {
 export const support = {
   hero: {
     title: 'Lift it with us.',
-    lead: 'From the rubble of one home, a road opened for thousands of young people over the years ahead. Every gift moves the next step, and every step comes with its receipts.',
+    lead: 'One road began under this rubble. Every gift opens it a little further for the thousands who come next, and every stage comes with its receipts.',
   },
   give: {
     icon: 'heart',
@@ -512,7 +512,7 @@ export const support = {
   share: {
     title: 'Share it',
     body: 'If you cannot give, send Ardú to one person who would want to see the rubble go.',
-    text: 'From under the rubble of a home in Gaza City, Ardú is rising to lift 200 young people a day over everything between them and their ambition: guidance, learning, openings, and a place that works. Not relief. A lifting.',
+    text: 'From under the rubble of the home where its founder’s road began, Ardú is rising in Gaza City to lift young people over everything between them and their ambition: guidance, learning, openings and a place that works. A thousand a day at the full build. Not relief. A lifting.',
   },
 } as const;
 

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 const pages = [
   { path: '/', h1: /Ardú lifts Gaza’s young people/ },
-  { path: '/about', h1: /began under the rubble/ },
+  { path: '/about', h1: /rises from the rubble/ },
   { path: '/what-we-do', h1: /Everything a young person needs/ },
   { path: '/impact', h1: /income earned and work found/ },
   { path: '/partners', h1: /Bring what money cannot buy/ },
