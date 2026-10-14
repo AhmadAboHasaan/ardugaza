@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { Icon } from '@/components/ui/Icon';
 import { MediaFrame } from '@/components/content/MediaFrame';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { integrations } from '@/data/integrations';
@@ -34,17 +35,20 @@ export default function AboutPage() {
         </div>
       </Section>
       <Section className="principles" aria-labelledby="principles-title">
-        <div className="section-heading">
-          <h2 id="principles-title">{about.principles.title}</h2>
+        <div className="panel">
+          <div className="section-heading">
+            <h2 id="principles-title">{about.principles.title}</h2>
+          </div>
+          <ul className="card-grid card-grid--three">
+            {about.principles.items.map((item) => (
+              <li key={item.title} className="card">
+                <Icon name={item.icon} />
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ol className="principle-list">
-          {about.principles.items.map((item) => (
-            <li key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </li>
-          ))}
-        </ol>
       </Section>
       <Section className="place" aria-labelledby="place-title">
         <div className="place-copy">
@@ -95,7 +99,7 @@ export default function AboutPage() {
           <div className="actions">
             <LinkButton
               href={project.founderLinkedin}
-              variant="text"
+              variant="outline"
               target="_blank"
               rel="noopener"
             >
@@ -104,7 +108,7 @@ export default function AboutPage() {
             {integrations.linkedinPage.status === 'ready' && (
               <LinkButton
                 href={integrations.linkedinPage.value}
-                variant="text"
+                variant="outline"
                 target="_blank"
                 rel="noopener"
               >

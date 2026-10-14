@@ -3,6 +3,7 @@ import { Globe, Hash, Mail, MessageCircle } from 'lucide-react';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { Icon } from '@/components/ui/Icon';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { contact, integrations } from '@/data/integrations';
 import { ctas, pages, support } from '@/content/project';
@@ -25,22 +26,22 @@ const shareLinks = [
   {
     label: 'LinkedIn',
     href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(origin)}`,
-    Icon: Globe,
+    Glyph: Globe,
   },
   {
     label: 'WhatsApp',
     href: `https://wa.me/?text=${encodeURIComponent(shareText)}`,
-    Icon: MessageCircle,
+    Glyph: MessageCircle,
   },
   {
     label: 'X',
     href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`,
-    Icon: Hash,
+    Glyph: Hash,
   },
   {
     label: 'Email',
-    href: `mailto:?subject=${encodeURIComponent('Ardú · a place rising in Gaza City')}&body=${encodeURIComponent(shareText)}`,
-    Icon: Mail,
+    href: `mailto:?subject=${encodeURIComponent('Ardú, a place rising in Gaza City')}&body=${encodeURIComponent(shareText)}`,
+    Glyph: Mail,
   },
 ];
 export default function SupportPage() {
@@ -49,7 +50,8 @@ export default function SupportPage() {
     <>
       <PageHero {...support.hero} />
       <Section className="give" aria-labelledby="give-title">
-        <div className="give-inner">
+        <div className="panel panel--deep give-panel">
+          <Icon name={support.give.icon} tone="sand" />
           <h2 id="give-title">{support.give.title}</h2>
           <p className="lead">{support.give.body}</p>
           {giving.status === 'live' ? (
@@ -74,9 +76,10 @@ export default function SupportPage() {
           <h2 id="levels-title">{support.levels.title}</h2>
           <p className="small">{support.levels.note}</p>
         </div>
-        <ul className="level-list">
+        <ul className="card-grid card-grid--four">
           {support.levels.items.map((level) => (
-            <li key={level.amount} className="level">
+            <li key={level.amount} className="card level">
+              <Icon name={level.icon} />
               <span className="level-amount">{level.amount}</span>
               <h3>{level.title}</h3>
               <p>{level.text}</p>
@@ -101,10 +104,10 @@ export default function SupportPage() {
         <div className="section-heading">
           <h2 id="safeguards-title">{support.safeguards.title}</h2>
         </div>
-        <ol className="steps steps--plain">
+        <ol className="sequence">
           {support.safeguards.steps.map((step, i) => (
-            <li key={step.title} className="step">
-              <span className="step-number">0{i + 1}</span>
+            <li key={step.title}>
+              <span className="sequence-number">{i + 1}</span>
               <h3>{step.title}</h3>
               <p>{step.text}</p>
             </li>
@@ -117,10 +120,10 @@ export default function SupportPage() {
         <div className="split-body">
           <p>{support.share.body}</p>
           <ul className="share-list">
-            {shareLinks.map(({ label, href, Icon }) => (
+            {shareLinks.map(({ label, href, Glyph }) => (
               <li key={label}>
                 <a href={href} target="_blank" rel="noopener">
-                  <Icon size={18} aria-hidden="true" />
+                  <Glyph size={18} aria-hidden="true" />
                   {label}
                 </a>
               </li>

@@ -33,22 +33,32 @@ export function CtaBand({
   );
   return (
     <section className="cta-band" aria-labelledby="cta-title">
-      <div>
-        <h2 id="cta-title">{title}</h2>
-        <p>{body}</p>
-      </div>
-      <div className="actions">
-        {lead === 'partner' ? (
-          <>
-            {partner}
-            {give}
-          </>
-        ) : (
-          <>
-            {give}
-            {partner}
-          </>
-        )}
+      <div className="cta-panel">
+        <svg
+          className="cta-road"
+          viewBox="0 0 640 200"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d="M-20 190 C180 190 260 120 340 90 S560 40 660 10" />
+        </svg>
+        <div className="cta-copy">
+          <h2 id="cta-title">{title}</h2>
+          <p>{body}</p>
+          <div className="actions">
+            {lead === 'partner' ? (
+              <>
+                {partner}
+                {give}
+              </>
+            ) : (
+              <>
+                {give}
+                {partner}
+              </>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -146,17 +146,15 @@ for (const { path } of pages) {
     ).toEqual([]);
   });
 }
-test('reduced motion leaves all content visible', async ({ page }) => {
+test('reduced motion leaves the road fully drawn', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await expect(page.locator('.seat-matrix--entrance')).toHaveCSS(
-    'animation-name',
-    'none',
+  await expect(page.locator('.road-line')).toHaveCSS('animation-name', 'none');
+  await expect(page.locator('.road-line')).toHaveCSS(
+    'stroke-dashoffset',
+    '0px',
   );
-  await expect(page.locator('.seat-matrix--entrance')).toHaveCSS(
-    'opacity',
-    '1',
-  );
+  await expect(page.locator('.road-node').first()).toHaveCSS('opacity', '1');
 });
 for (const width of [1440, 768, 390]) {
   test(`visual homepage ${width}`, async ({ page }) => {

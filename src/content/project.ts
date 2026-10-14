@@ -61,35 +61,43 @@ export const ctas = {
 /* ------------------------------------------------------------------ home */
 
 export const hero = {
-  eyebrow: 'A youth initiative · Gaza City',
   titleStart:
     'Ardú lifts Gaza’s young people over everything between them and ',
   titleEmphasis: 'their ambition.',
   lead: 'Ardú is a youth initiative rising from the rubble of a home in Gaza City. The road from ability to income here is full of things that trip a young person: nobody ahead to guide them, skills the market cannot see, doors that stay shut, power and internet that cut mid-sentence. Ardú lifts them over each one, with guidance, learning, openings and a place where the work gets done, so they can learn, earn and compete from where they are. Ardú is Irish for a lifting. Not relief. A lifting.',
-  poster: {
-    top: ['Gaza City · 500 m²', 'Phase one'],
-    title: ['Two hundred', 'futures a day.'],
-    seats: 100 as const,
-    bottom: 'seats a shift · two shifts a day',
-    key: 'The next seat',
+  road: {
+    start: 'Under the rubble',
+    stops: ['Guidance', 'Learning', 'Openings', 'A place that works'],
+    end: 'their ambition',
+    caption:
+      'The road Ardú opens: guidance from people who have walked it, learning that counts, openings that lead to income, and a place where the work gets done.',
   },
-  caption:
-    'One hundred seats, two shifts, two hundred young people a day at opening.',
 } as const;
 
 export const statement = {
   title: ['The missing piece', 'is rarely ability.'],
   body: 'Gaza’s young people are not short of ability or ambition. They are short of the road: someone who has walked it to guide them, the skills and tools the market asks for, a door that opens, and a place where the work can be done. Ardú lifts them over each of those gaps, and measures itself by one result: young people earning, working and competing from where they are.',
   figures: [
-    { value: '200', label: 'young people a day at opening' },
-    { value: '4', label: 'course tracks with partner organisations' },
-    { value: '2', label: 'shifts, women and men, equal hours and services' },
-    { value: '500 m²', label: 'a hall under a family home in Gaza City' },
+    { icon: 'users', value: '200', label: 'young people a day at opening' },
+    {
+      icon: 'book',
+      value: '4',
+      label: 'course tracks with partner organisations',
+    },
+    {
+      icon: 'clock',
+      value: '2',
+      label: 'shifts, women and men, equal hours and services',
+    },
+    {
+      icon: 'building',
+      value: '500 m²',
+      label: 'a hall under a family home in Gaza City',
+    },
   ],
 } as const;
 
 export const pillars = {
-  eyebrow: 'How Ardú lifts',
   title: ['Everything the road to an ambition needs,', 'in one place.'],
   items: [
     {
@@ -125,13 +133,24 @@ export const pillars = {
 } as const;
 
 export const changes = {
-  eyebrow: 'Impact',
   title: ['What changes', 'when the road opens.'],
   items: [
-    'A student whose university now exists only online sits her lectures and her exams on a connection that holds.',
-    'A self-taught developer stops walking for signal and starts delivering for clients.',
-    'A graduate with a skill and no opening leaves with a certificate, a portfolio and an interview.',
-    'A freelancer who lost her clients to power cuts delivers on time again, from a desk that is hers for the month.',
+    {
+      icon: 'graduation',
+      text: 'A student whose university now exists only online sits her lectures and her exams on a connection that holds.',
+    },
+    {
+      icon: 'code',
+      text: 'A self-taught developer stops walking for signal and starts delivering for clients.',
+    },
+    {
+      icon: 'briefcase',
+      text: 'A graduate with a skill and no opening leaves with a certificate, a portfolio and an interview.',
+    },
+    {
+      icon: 'laptop',
+      text: 'A freelancer who lost her clients to power cuts delivers on time again, from a desk that is hers for the month.',
+    },
   ],
   closing:
     'The measure is not seats filled. It is income earned and work found, published every month.',
@@ -139,26 +158,29 @@ export const changes = {
 } as const;
 
 export const direction = {
-  eyebrow: 'The direction',
   title: ['Built from', 'the rubble up.'],
   steps: [
     {
       number: '01',
+      icon: 'clear',
       title: 'Clear',
       text: 'The rubble of the home comes off the hall beneath it. The first photographs come from here.',
     },
     {
       number: '02',
+      icon: 'light',
       title: 'Light',
       text: 'Power, water and a fibre line that holds. A ruin becomes a place.',
     },
     {
       number: '03',
+      icon: 'open',
       title: 'Open',
       text: 'A hundred seats, two shifts, two hundred young people a day, with partner courses from the first week.',
     },
     {
       number: '04',
+      icon: 'grow',
       title: 'Grow',
       text: 'Two hundred seats on the sun’s own power, a second floor towards five hundred, then the same programme online, beyond the walls.',
     },
@@ -168,7 +190,6 @@ export const direction = {
 } as const;
 
 export const weight = {
-  eyebrow: 'Built to last',
   title: ['Designed to carry', 'its own weight.'],
   body: 'Every kilowatt of solar Ardú installs works twice: ten seats by day, and outside the hall’s hours surplus power and internet for the neighbourhood at below the market price, with the income going back into keeping the doors open. Together with the freelancer desks, the place is designed to earn a growing share of its own running costs, so that every gift goes further and lasts longer.',
   figure: {
@@ -179,17 +200,19 @@ export const weight = {
 } as const;
 
 export const ways = {
-  eyebrow: 'Ways to lift it',
   title: ['Three ways', 'to lift it.'],
   give: {
+    icon: 'heart',
     title: 'Give',
     text: 'Fund the next step through Ardú’s campaign page. A gift of any size moves it, and every step comes with its receipts.',
   },
   partner: {
+    icon: 'handshake',
     title: 'Partner',
     text: 'Bring a course, trainers, laptops, or jobs for the people who come out of Ardú. The half that money cannot buy.',
   },
   stage: {
+    icon: 'landmark',
     title: 'Fund a stage',
     text: 'Foundations, companies and major donors can take a whole stage, from the rubble to the first kilowatts, and see it through with full figures and reporting.',
   },
@@ -217,7 +240,6 @@ export const ctaBand = {
 
 export const about = {
   hero: {
-    eyebrow: 'About Ardú',
     title: 'Ardú began under the rubble of a home.',
     lead: 'In October 2023 an air strike levelled a family home in Gaza City. Beneath it, a hall of five hundred square metres stood on columns that held. Ardú is what rises from it.',
   },
@@ -238,22 +260,27 @@ export const about = {
     title: 'What we stand on',
     items: [
       {
+        icon: 'sparkles',
         title: 'Ability is everywhere. Opportunity is not.',
         text: 'Ardú exists to close that gap, for women and men equally, in separate sections with identical hours and services.',
       },
       {
+        icon: 'handheart',
         title: 'Dignity, not charity.',
         text: 'People at Ardú earn, build and compete. The place is a workshop, not a waiting room.',
       },
       {
+        icon: 'bookcheck',
         title: 'Open books.',
         text: 'Every pound is held by a trustee, spent against a written quote, and reported with a receipt and a photograph.',
       },
       {
+        icon: 'recycle',
         title: 'Built to last.',
         text: 'Ardú earns a growing share of its own keep, so it does not live or die by the next appeal.',
       },
       {
+        icon: 'list',
         title: 'Built in order.',
         text: 'Each stage stands on its own and is finished before the next begins.',
       },
@@ -275,7 +302,7 @@ export const about = {
       'Ahmed Abuhassan is a self-taught software developer from Gaza City. Before software he worked in electrical installation, which is why Ardú’s power is designed with engineers and technicians he has worked beside. He has built live websites for local shops, NGOs and startups, and mentored young people online through the blackout.',
       'He founded Ardú and leads it, with a team on the ground running the floor, because the place is designed to stand on more than one person.',
     ],
-    caption: 'Ahmed Abuhassan · founder of Ardú',
+    caption: 'Ahmed Abuhassan, founder of Ardú',
     placeholder: ['From finding a socket', 'to building a place.'],
     linkedin: 'Ahmed on LinkedIn',
     partners: 'Partners are announced here as agreements are signed.',
@@ -286,7 +313,6 @@ export const about = {
 
 export const whatWeDo = {
   hero: {
-    eyebrow: 'What we do',
     title:
       'Everything a young person needs to reach their ambition, in one place.',
     lead: 'Ardú lifts young people over what trips them on the road: with people who guide, learning that counts, openings that lead to income, and a place where the work gets done, every day.',
@@ -295,10 +321,10 @@ export const whatWeDo = {
     title: 'A day at Ardú',
     body: 'Two four-hour shifts, eight to twelve and twelve to four, a hundred seats each, women and men in separate sections with identical hours and services. Freelancers work full days at their own desks. Partner courses run in the room, and mentors join in person and online.',
     figures: [
-      { value: '8–12', label: 'first shift' },
-      { value: '12–4', label: 'second shift' },
-      { value: '100', label: 'seats a shift' },
-      { value: '50 · 50', label: 'women and men, each shift' },
+      { icon: 'clock', value: '8 to 12', label: 'first shift' },
+      { icon: 'clock', value: '12 to 4', label: 'second shift' },
+      { icon: 'armchair', value: '100', label: 'seats a shift' },
+      { icon: 'users', value: '50 + 50', label: 'women and men, each shift' },
     ],
   },
   who: {
@@ -317,22 +343,21 @@ export const whatWeDo = {
 
 export const impactPage = {
   hero: {
-    eyebrow: 'Impact',
     title:
       'The measure is not seats filled. It is income earned and work found.',
     lead: 'Ardú is built around one result: young people in Gaza earning, working and competing from where they are. Here is what that looks like, and where it is going.',
   },
   changes: {
     title: 'What changes',
-    eyebrow: 'Who it is built for',
     lead: 'The people this room is built for. Their own stories follow here, published as they happen.',
   },
   scale: {
     title: 'The scale we are building toward',
     figures: [
-      { value: '200', label: 'young people a day at opening' },
-      { value: '400', label: 'a day at two hundred seats' },
+      { icon: 'users', value: '200', label: 'young people a day at opening' },
+      { icon: 'users', value: '400', label: 'a day at two hundred seats' },
       {
+        icon: 'users',
         value: '1,000',
         label: 'a day at the full build of five hundred seats',
       },
@@ -346,10 +371,10 @@ export const impactPage = {
     title: 'How we measure',
     body: 'Every month Ardú publishes attendance by shift, courses completed and certificates issued, work found and income reported by participants, and the accounts. Supporters receive the statement; partners and funders may ask for the full ledger.',
     items: [
-      'Attendance, by shift',
-      'Courses completed, certificates issued',
-      'Work found, income reported',
-      'The accounts, reconciled monthly',
+      { icon: 'calendar', text: 'Attendance, by shift' },
+      { icon: 'award', text: 'Courses completed, certificates issued' },
+      { icon: 'briefcase', text: 'Work found, income reported' },
+      { icon: 'receipt', text: 'The accounts, reconciled monthly' },
     ],
   },
 } as const;
@@ -358,7 +383,6 @@ export const impactPage = {
 
 export const partners = {
   hero: {
-    eyebrow: 'Partner with Ardú',
     title: 'Bring what money cannot buy.',
     lead: 'A hall in Gaza City with two hundred young people a day, power that stays on and internet that holds, ready for the programmes you already run and the opportunities you can open.',
   },
@@ -366,14 +390,17 @@ export const partners = {
     title: 'Why partner',
     items: [
       {
+        icon: 'users',
         title: 'A ready audience',
         text: 'Two hundred motivated young adults a day, selected on published criteria, in one place, with the connectivity to join your programme live.',
       },
       {
+        icon: 'building',
         title: 'A place that works',
         text: 'Deliver in person or remotely into a room with power, internet, screens and a team on the ground to run the floor.',
       },
       {
+        icon: 'chart',
         title: 'Reporting you can use',
         text: 'Attendance, completion and outcomes reported each cycle, with the data your own funders ask for.',
       },
@@ -422,11 +449,11 @@ export const partners = {
 
 export const support = {
   hero: {
-    eyebrow: 'Support Ardú',
     title: 'Lift it with us.',
     lead: 'From the rubble of one home, a road opened for thousands of young people over the years ahead. Every gift moves the next step, and every step comes with its receipts.',
   },
   give: {
+    icon: 'heart',
     title: 'Give',
     body: 'Giving runs through Ardú’s campaign page, on a trustee route that has already carried two years of public giving with every pound accounted for. Give once or monthly, in the amount that is right for you.',
   },
@@ -435,21 +462,25 @@ export const support = {
     items: [
       {
         amount: '£150',
+        icon: 'armchair',
         title: 'A seat',
         text: 'A chair, a desk and a share of a laptop for one young person.',
       },
       {
         amount: '£750',
+        icon: 'laptop',
         title: 'A laptop',
         text: 'Shared by two shifts a day, for those who come without one.',
       },
       {
         amount: '£4,500',
+        icon: 'calendar',
         title: 'A month of Ardú',
         text: 'The team, the internet and the lights for a month: two hundred young people a day.',
       },
       {
         amount: '£7,500',
+        icon: 'sun',
         title: 'A kilowatt that works twice',
         text: 'Ten seats on power that never cuts by day, and the neighbourhood’s light outside the hall’s hours.',
       },
@@ -457,6 +488,7 @@ export const support = {
     note: 'Any amount counts. The campaign page lists these and other levels in pounds.',
   },
   stage: {
+    icon: 'landmark',
     title: 'Fund a stage',
     body: 'Foundations, companies and major donors can take a whole stage and see it through: clearing the rubble; light, water and the fibre line; seats and laptops; the first months of running; the first kilowatts of solar. Each stands on its own and is built in order. Figures, quotes and verification are shared in a direct conversation.',
   },
@@ -464,18 +496,22 @@ export const support = {
     title: 'How gifts are safeguarded',
     steps: [
       {
+        icon: 'shield',
         title: 'One route in.',
         text: 'Gifts are held in the United Kingdom by an academic trustee under a signed agreement.',
       },
       {
+        icon: 'milestone',
         title: 'Stage by stage.',
         text: 'Released against each agreed stage to an account used only for Ardú, and spent against written quotes.',
       },
       {
+        icon: 'receipt',
         title: 'A record for every expense.',
         text: 'A number, a receipt, a contract where it applies, and a photograph of what was bought or built.',
       },
       {
+        icon: 'users',
         title: 'Separate hands, monthly statements.',
         text: 'Whoever spends does not keep the books. Supporters receive an itemised statement every month; funders may ask for the full ledger.',
       },
@@ -494,22 +530,24 @@ export const support = {
 
 export const contactPage = {
   hero: {
-    eyebrow: 'Contact',
     title: 'Write to us.',
     lead: 'One address for everything. We reply within a week.',
   },
   routes: [
     {
+      icon: 'handshake',
       title: 'Partners and funders',
       text: 'Ask for the full plan and the location of the hall, or tell us what you can bring.',
       subject: 'plan',
     },
     {
+      icon: 'graduation',
       title: 'Young people in Gaza',
       text: 'Registration criteria are published before the first intake. Leave your name and we will tell you when.',
       subject: 'youth',
     },
     {
+      icon: 'newspaper',
       title: 'Press and media',
       text: 'Interviews, background and photographs as they become available.',
       subject: 'press',

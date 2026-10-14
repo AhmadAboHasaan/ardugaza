@@ -1,41 +1,37 @@
 import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { Icon } from '@/components/ui/Icon';
 import { direction, pages } from '@/content/project';
-type Props = { title?: string; eyebrow?: string };
-/** The four steps from the rubble to the full build, in words, not figures. */
-export function Direction({ title, eyebrow = direction.eyebrow }: Props) {
+type Props = { title?: string };
+/** The four steps from the rubble to the full build, as stops on one road. */
+export function Direction({ title }: Props) {
   return (
     <Section
       id="direction"
       className="direction"
       aria-labelledby="direction-title"
     >
-      <div className="section-heading">
-        <div>
-          <p className="eyebrow">{eyebrow}</p>
+      <div className="panel panel--deep">
+        <div className="section-heading">
           <h2 id="direction-title">
-            {title ?? (
-              <>
-                {direction.title[0]}
-                <br />
-                {direction.title[1]}
-              </>
-            )}
+            {title ?? `${direction.title[0]} ${direction.title[1]}`}
           </h2>
+          <p className="lead">{direction.note}</p>
         </div>
-      </div>
-      <ol className="steps">
-        {direction.steps.map((step) => (
-          <li key={step.number} className="step">
-            <span className="step-number">{step.number}</span>
-            <h3>{step.title}</h3>
-            <p>{step.text}</p>
-          </li>
-        ))}
-      </ol>
-      <div className="direction-note">
-        <p>{direction.note}</p>
-        <LinkButton href={pages.partners.href} variant="text">
+        <ol className="steps">
+          {direction.steps.map((step) => (
+            <li key={step.number} className="step">
+              <Icon name={step.icon} tone="cream" />
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+        <LinkButton
+          href={pages.partners.href}
+          variant="outline"
+          className="section-more"
+        >
           {direction.more}
         </LinkButton>
       </div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { Figures } from '@/components/ui/Figures';
+import { Icon } from '@/components/ui/Icon';
 import { Changes } from '@/components/sections/Changes';
 import { Direction } from '@/components/sections/Direction';
 import { Weight } from '@/components/sections/Weight';
@@ -24,27 +25,31 @@ export default function ImpactPage() {
       <Changes
         full
         title={impactPage.changes.title}
-        eyebrow={impactPage.changes.eyebrow}
         lead={impactPage.changes.lead}
       />
       <Section className="scale" aria-labelledby="scale-title">
-        <div className="section-heading">
-          <h2 id="scale-title">{impactPage.scale.title}</h2>
-          <p className="small">{impactPage.scale.note}</p>
+        <div className="panel">
+          <div className="section-heading">
+            <h2 id="scale-title">{impactPage.scale.title}</h2>
+            <p className="small">{impactPage.scale.note}</p>
+          </div>
+          <Figures
+            figures={impactPage.scale.figures}
+            className="figures--large"
+          />
         </div>
-        <Figures
-          figures={impactPage.scale.figures}
-          className="figures--large"
-        />
       </Section>
-      <Direction title={impactPage.road.title} eyebrow="Where it is going" />
+      <Direction title={impactPage.road.title} />
       <Section className="split" aria-labelledby="measure-title">
         <h2 id="measure-title">{impactPage.measure.title}</h2>
         <div className="split-body">
           <p>{impactPage.measure.body}</p>
-          <ul className="check-list">
+          <ul className="icon-list">
             {impactPage.measure.items.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item.text}>
+                <Icon name={item.icon} size={18} />
+                <span>{item.text}</span>
+              </li>
             ))}
           </ul>
         </div>

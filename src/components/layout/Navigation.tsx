@@ -31,37 +31,39 @@ export function Navigation() {
         }
       }}
     >
-      <Link href="/" className="wordmark" aria-label="Ardú home">
-        <Brand />
-      </Link>
-      <nav aria-label="Main navigation" className="desktop-nav">
-        {nav.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            aria-current={current(link.href)}
-          >
-            {link.label}
-          </Link>
-        ))}
-      </nav>
-      <LinkButton
-        href={cta.href}
-        className="header-cta"
-        {...(cta.external ? { target: '_blank', rel: 'noopener' } : {})}
-      >
-        {cta.label}
-      </LinkButton>
-      <button
-        ref={trigger}
-        className="menu-toggle"
-        aria-label={open ? 'Close menu' : 'Open menu'}
-        aria-expanded={open}
-        aria-controls="mobile-navigation"
-        onClick={() => setOpen(!open)}
-      >
-        {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-      </button>
+      <div className="site-header-inner">
+        <Link href="/" className="wordmark" aria-label="Ardú home">
+          <Brand height={40} />
+        </Link>
+        <nav aria-label="Main navigation" className="desktop-nav">
+          {nav.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={current(link.href)}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        <LinkButton
+          href={cta.href}
+          className="header-cta"
+          {...(cta.external ? { target: '_blank', rel: 'noopener' } : {})}
+        >
+          {cta.label}
+        </LinkButton>
+        <button
+          ref={trigger}
+          className="menu-toggle"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+        </button>
+      </div>
       <nav
         id="mobile-navigation"
         aria-label="Mobile navigation"

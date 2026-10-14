@@ -36,8 +36,8 @@ The site is a static export (`output: 'export'`). Pages project settings: framew
 - `src/app` — `/`, `/about`, `/what-we-do`, `/impact`, `/partners`, `/support`, `/contact`; layout with navigation and footer, per-page metadata, icons, robots, sitemap, manifest, Organization JSON-LD.
 - `src/content/project.ts` — all copy. `src/data/integrations.ts` — giving state, contact, forms, approved images.
 - `src/components/sections` — Hero, Statement, Pillars, Changes, Direction, Weight, Ways, Strips (trust, founder).
-- `src/components/ui` — Section, LinkButton, PageHero, Figures, CtaBand. `src/components/layout` — Navigation, Footer, Brand. `src/components/content` — SeatMatrix, MediaFrame.
-- `src/styles` — tokens and authored CSS (the Ardú palette: cream, deep green, teal, sand), self-hosted Manrope.
+- `src/components/ui` — Section, LinkButton, PageHero, Figures, CtaBand, Icon (the one icon registry). `src/components/layout` — Navigation, Footer, Brand. `src/components/content` — Road (the hero illustration), MediaFrame, SeatMatrix.
+- `src/styles` — tokens and authored CSS (white and mist surfaces, deep green, teal, sand; see DESIGN.md), self-hosted Manrope and Bricolage Grotesque.
 - `public/brand` — logo, mark, icons; `public/og-image.png` — share image.
 
 ## Rules carried in the code

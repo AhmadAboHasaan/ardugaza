@@ -1,50 +1,40 @@
-import { BookOpen, Briefcase, Users, Zap } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { Icon } from '@/components/ui/Icon';
 import { pages, pillars } from '@/content/project';
-const icons = {
-  power: Zap,
-  learn: BookOpen,
-  people: Users,
-  work: Briefcase,
-} as const;
 type Props = { expanded?: boolean; heading?: boolean };
-/** The four things Ardú puts in one room. Short on the home page, in full on What we do. */
+/** The four things Ardú gives a young person. Short on the home page, in full on What we do. */
 export function Pillars({ expanded = false, heading = true }: Props) {
   return (
     <Section
       className="pillars"
       aria-labelledby={heading ? 'pillars-title' : undefined}
-      aria-label={heading ? undefined : 'What Ardú does'}
+      aria-label={heading ? undefined : 'How Ardú lifts'}
     >
-      {heading && (
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">{pillars.eyebrow}</p>
+      <div className="panel">
+        {heading && (
+          <div className="section-heading">
             <h2 id="pillars-title">
-              {pillars.title[0]}
-              <br />
-              {pillars.title[1]}
+              {pillars.title[0]} {pillars.title[1]}
             </h2>
+            {!expanded && (
+              <LinkButton href={pages.whatWeDo.href} variant="text">
+                {pillars.more}
+              </LinkButton>
+            )}
           </div>
-          {!expanded && (
-            <LinkButton href={pages.whatWeDo.href} variant="text">
-              {pillars.more}
-            </LinkButton>
-          )}
-        </div>
-      )}
-      <div className={`pillar-grid ${expanded ? 'pillar-grid--expanded' : ''}`}>
-        {pillars.items.map((item) => {
-          const Icon = icons[item.icon];
-          return (
+        )}
+        <div
+          className={`pillar-grid ${expanded ? 'pillar-grid--expanded' : ''}`}
+        >
+          {pillars.items.map((item) => (
             <article key={item.title} className="pillar">
-              <Icon size={28} strokeWidth={1.6} aria-hidden="true" />
+              <Icon name={item.icon} />
               <h3>{item.title}</h3>
               <p>{expanded ? item.long : item.short}</p>
             </article>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </Section>
   );

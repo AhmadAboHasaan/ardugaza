@@ -1,17 +1,12 @@
 import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
+import { Icon } from '@/components/ui/Icon';
 import { changes, pages } from '@/content/project';
-type Props = {
-  full?: boolean;
-  title?: string;
-  eyebrow?: string;
-  lead?: string;
-};
-/** What changes for a young person when the room exists. */
+type Props = { full?: boolean; title?: string; lead?: string };
+/** What changes for a young person when the road opens. */
 export function Changes({
   full = false,
   title,
-  eyebrow = changes.eyebrow,
   lead = changes.closing,
 }: Props) {
   const items = full ? changes.items : changes.items.slice(0, 3);
@@ -22,25 +17,19 @@ export function Changes({
       aria-labelledby="changes-title"
     >
       <div className="section-heading">
-        <div>
-          <p className="eyebrow">{eyebrow}</p>
-          <h2 id="changes-title">
-            {title ?? (
-              <>
-                {changes.title[0]}
-                <br />
-                {changes.title[1]}
-              </>
-            )}
-          </h2>
-        </div>
+        <h2 id="changes-title">
+          {title ?? `${changes.title[0]} ${changes.title[1]}`}
+        </h2>
         <p className="lead">{lead}</p>
       </div>
-      <ol className="change-list">
+      <ul className="change-list">
         {items.map((item) => (
-          <li key={item}>{item}</li>
+          <li key={item.text} className="change">
+            <Icon name={item.icon} />
+            <p>{item.text}</p>
+          </li>
         ))}
-      </ol>
+      </ul>
       {!full && (
         <LinkButton
           href={pages.impact.href}

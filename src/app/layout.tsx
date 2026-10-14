@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { manrope } from '@/styles/font';
+import { bricolage, manrope } from '@/styles/font';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { project } from '@/content/project';
@@ -40,7 +40,7 @@ export default function RootLayout({
   if (integrations.linkedinPage.status === 'ready')
     sameAs.unshift(integrations.linkedinPage.value);
   return (
-    <html lang="en" className={manrope.variable}>
+    <html lang="en" className={`${manrope.variable} ${bricolage.variable}`}>
       <body id="top">
         <a href="#main" className="skip-link">
           Skip to content

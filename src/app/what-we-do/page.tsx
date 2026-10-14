@@ -26,7 +26,7 @@ export default function WhatWeDoPage() {
     <>
       <PageHero {...whatWeDo.hero} />
       <Pillars expanded heading={false} />
-      <Section className="split split--day" aria-labelledby="day-title">
+      <Section className="split" aria-labelledby="day-title">
         <h2 id="day-title">{whatWeDo.day.title}</h2>
         <div className="split-body">
           <p>{whatWeDo.day.body}</p>
@@ -36,17 +36,17 @@ export default function WhatWeDoPage() {
           />
         </div>
       </Section>
-      <Section className="split" aria-labelledby="who-title">
+      <Section className="split split--muted" aria-labelledby="who-title">
         <h2 id="who-title">{whatWeDo.who.title}</h2>
         <div className="split-body">
           <p>{whatWeDo.who.body}</p>
           <p>{whatWeDo.who.note}</p>
-          <LinkButton href={register} variant="text">
+          <LinkButton href={register} variant="outline">
             {whatWeDo.who.cta}
           </LinkButton>
         </div>
       </Section>
-      <Section className="split split--muted" aria-labelledby="beyond-title">
+      <Section className="split" aria-labelledby="beyond-title">
         <h2 id="beyond-title">{whatWeDo.beyond.title}</h2>
         <div className="split-body">
           <p>{whatWeDo.beyond.body}</p>

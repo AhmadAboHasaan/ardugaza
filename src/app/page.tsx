@@ -6,7 +6,7 @@ import { Changes } from '@/components/sections/Changes';
 import { Direction } from '@/components/sections/Direction';
 import { Weight } from '@/components/sections/Weight';
 import { Ways } from '@/components/sections/Ways';
-import { FounderStrip, TrustStrip } from '@/components/sections/Strips';
+import { TrustStrip } from '@/components/sections/Strips';
 import { CtaBand } from '@/components/ui/CtaBand';
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -23,7 +23,6 @@ export default function Home() {
       <Weight />
       <Ways />
       <TrustStrip />
-      <FounderStrip />
       <CtaBand />
     </>
   );

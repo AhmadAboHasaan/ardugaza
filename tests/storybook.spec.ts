@@ -32,11 +32,11 @@ for (const story of Object.values(index.entries).filter(
         ),
       ).toBe(true);
       const actions = await page.locator('.hero .actions').boundingBox();
-      const diagram = await page.locator('.hero-media').boundingBox();
+      const diagram = await page.locator('.road').boundingBox();
       expect(actions).not.toBeNull();
       expect(diagram).not.toBeNull();
       expect(diagram!.y).toBeGreaterThan(actions!.y + actions!.height);
-      await expect(page.locator('.seat-matrix--entrance')).toHaveCSS(
+      await expect(page.locator('.road-line')).toHaveCSS(
         'animation-name',
         'none',
       );

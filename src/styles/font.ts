@@ -25,3 +25,15 @@ export const manrope = localFont({
   display: 'swap',
   variable: '--font-manrope',
 });
+/** Bricolage Grotesque, the wordmark's face, for headlines and big figures. Variable weight axis only. */
+export const bricolage = localFont({
+  src: [
+    {
+      path: './fonts/bricolage-grotesque-latin-wght-normal.woff2',
+      weight: '200 800',
+      style: 'normal',
+    },
+  ],
+  display: 'swap',
+  variable: '--font-bricolage',
+});
