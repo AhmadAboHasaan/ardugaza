@@ -1,0 +1,7 @@
+أردو · معاينة الموقع
+
+فك الضغط وافتح الملف index.html بأي متصفح. كل الصفحات شغالة من جهازك بدون إنترنت:
+index.html · about.html · what-we-do.html · impact.html · partners.html · support.html · contact.html
+
+هاي نسخة معاينة ثابتة، الشكل والمحتوى هما نفسهم اللي رح يطلعوا على ardugaza.org.
+الكود الكامل على GitHub: github.com/AhmadAboHasaan/ardu (فرع main).
