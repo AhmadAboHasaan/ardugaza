@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+import { asset } from '@/lib/paths';
 type Props = { tone?: 'teal' | 'cream'; height?: number; className?: string };
 /** The Ardú lockup (rising-stroke mark + wordmark) as a static SVG asset. */
 export function Brand({ tone = 'teal', height = 46, className = '' }: Props) {
-  const src =
+  const src = asset(
     tone === 'cream'
       ? '/brand/ardu-logo-horizontal-cream-on-deep.svg'
-      : '/brand/ardu-logo-horizontal-teal.svg';
+      : '/brand/ardu-logo-horizontal-teal.svg',
+  );
   return (
     <img
       src={src}

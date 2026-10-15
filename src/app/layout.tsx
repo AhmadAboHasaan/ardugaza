@@ -4,11 +4,13 @@ import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { project } from '@/content/project';
 import { contact, integrations } from '@/data/integrations';
+import { asset } from '@/lib/paths';
 import '@/styles/globals.css';
 const origin =
-  integrations.canonicalOrigin.status === 'ready'
+  process.env.NEXT_PUBLIC_SITE_ORIGIN ||
+  (integrations.canonicalOrigin.status === 'ready'
     ? integrations.canonicalOrigin.value
-    : 'https://ardugaza.org';
+    : 'https://ardugaza.org');
 export const metadata: Metadata = {
   metadataBase: new URL(origin),
   title: { default: project.title, template: project.titleTemplate },
@@ -19,13 +21,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IE',
     siteName: 'Ardú',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Ardú' }],
+    images: [
+      { url: asset('/og-image.png'), width: 1200, height: 630, alt: 'Ardú' },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: project.ogTitle,
     description: project.ogDescription,
-    images: ['/og-image.png'],
+    images: [asset('/og-image.png')],
   },
 };
 export const viewport: Viewport = {

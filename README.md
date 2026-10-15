@@ -27,9 +27,11 @@ pnpm build-storybook && pnpm test:storybook   # every story renders without erro
 
 If Playwright's own Chromium is not installed, point it at an existing one: `PW_CHROME=/path/to/chrome pnpm test:e2e`.
 
-## Deploy (Cloudflare Pages)
+## Deploy
 
-The site is a static export (`output: 'export'`). Pages project settings: framework preset **None**, build command `pnpm build`, build output directory `out`, Node version 22. Custom domains `ardugaza.org` and `www.ardugaza.org` are added under Pages → Custom domains; Cloudflare creates the DNS records itself. `public/_headers` sets the security headers.
+**GitHub Pages (automatic).** `.github/workflows/pages.yml` builds the site on every push to `main` and publishes it with GitHub Pages. In the repository, Settings → Pages → Build and deployment → Source must be **GitHub Actions** (the workflow asks for this itself on its first run). While the site lives under the repository path (`ahmadabohasaan.github.io/ardu/`) the workflow builds with `NEXT_PUBLIC_BASE_PATH=/ardu`; once the custom domain `ardugaza.org` is added under Settings → Pages → Custom domain, the same workflow builds for the domain root with no base path. DNS for the domain: at Cloudflare, an A record set for `ardugaza.org` pointing at GitHub Pages' four addresses (185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153) and a CNAME `www` → `ahmadabohasaan.github.io`, proxy off, then "Enforce HTTPS" in the Pages settings. `public/.nojekyll` keeps GitHub from dropping the `_next` folder.
+
+**Cloudflare Pages (alternative).** Framework preset **None**, build command `pnpm build`, build output directory `out`, Node version 22, no base path. Custom domains are added under Pages → Custom domains; `public/_headers` sets the security headers.
 
 ## Structure
 
