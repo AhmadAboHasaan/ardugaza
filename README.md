@@ -2,7 +2,7 @@
 
 The public site of Ardú, a youth initiative in Gaza City. It is a promotional site: who Ardú is, where it is going, the impact it is built to deliver, and the ways to support it. Seven pages: home, About, What we do, Impact, Partners, Support, Contact. Operational detail (stage costs, payroll, energy arithmetic, running costs) is not published here; partners and funders request the full plan by email, and the e2e suite fails if an operational figure reaches a public page.
 
-Every string lives in `src/content/project.ts`; every value that must be supplied or approved (giving link, forms, photographs, LinkedIn page) lives in `src/data/integrations.ts` and renders an honest placeholder until it is set. Capacity figures on the site are what Ardú is built for; achieved impact is published as it happens.
+Every string lives in `src/content/project.ts`; every value that must be supplied or approved (giving checkouts, forms, photographs, LinkedIn page) lives in `src/data/integrations.ts` and renders an honest placeholder until it is set. Capacity figures on the site are what Ardú is built for; achieved impact is published as it happens.
 
 ## Run locally
 
@@ -44,4 +44,4 @@ If Playwright's own Chromium is not installed, point it at an existing one: `PW_
 
 ## Rules carried in the code
 
-No address and no exterior photographs; interior photographs only, captioned with the month. No partner name or logo before a signed agreement. No operational figures on the public site (tested). No payment is collected on the site: giving goes only to the configured giving page, in pounds. Contact is info@ardugaza.org.
+No address and no exterior photographs; interior photographs only, captioned with the month. No partner name or logo before a signed agreement. No operational figures on the public site (tested). No payment is collected on the site: every gift opens a hosted Stripe checkout in pounds (one per giving level, plus any amount), configured in `src/data/integrations.ts`. Contact is info@ardugaza.org.

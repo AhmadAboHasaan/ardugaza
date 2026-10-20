@@ -1,12 +1,14 @@
 import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
-import { integrations } from '@/data/integrations';
-import { direction, pages } from '@/content/project';
-type Props = { title?: string };
+import { direction, giveAnchor, pages } from '@/content/project';
+type Props = {
+  title?: string;
+  /** Where "Fund the first stage" goes: the giving panel on this page, or on the support page. */
+  giveHref?: string;
+};
 /** The four stages from the rubble to the full build, as stops on one road, written for the people who fund them. */
-export function Direction({ title }: Props) {
-  const giving = integrations.giving;
+export function Direction({ title, giveHref = giveAnchor.href }: Props) {
   return (
     <Section
       id="direction"
@@ -29,20 +31,9 @@ export function Direction({ title }: Props) {
         </ol>
         <div className="direction-foot">
           <div className="actions">
-            {giving.status === 'live' ? (
-              <LinkButton
-                href={giving.url}
-                variant="light"
-                target="_blank"
-                rel="noopener"
-              >
-                {direction.fund}
-              </LinkButton>
-            ) : (
-              <LinkButton href={pages.support.href} variant="light">
-                {direction.fund}
-              </LinkButton>
-            )}
+            <LinkButton href={giveHref} variant="light">
+              {direction.fund}
+            </LinkButton>
             <LinkButton href={pages.partners.href} variant="outline">
               {direction.more}
             </LinkButton>

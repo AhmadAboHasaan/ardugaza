@@ -5,21 +5,15 @@ import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Brand } from '@/components/layout/Brand';
-import { ctas, nav, pages } from '@/content/project';
-import { integrations } from '@/data/integrations';
+import { ctas, giveAnchor, nav, pages } from '@/content/project';
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
-  const giving = integrations.giving;
-  const cta =
-    giving.status === 'live'
-      ? { href: giving.url, label: ctas.give, external: true }
-      : {
-          href: pages.support.href,
-          label: pages.support.title,
-          external: false,
-        };
+  const cta = {
+    href: pathname === '/' ? giveAnchor.here : giveAnchor.href,
+    label: ctas.give,
+  };
   const current = (href: string) => (pathname === href ? 'page' : undefined);
   return (
     <header
@@ -46,11 +40,7 @@ export function Navigation() {
             </Link>
           ))}
         </nav>
-        <LinkButton
-          href={cta.href}
-          className="header-cta"
-          {...(cta.external ? { target: '_blank', rel: 'noopener' } : {})}
-        >
+        <LinkButton href={cta.href} className="header-cta">
           {cta.label}
         </LinkButton>
         <button
@@ -80,25 +70,13 @@ export function Navigation() {
             {link.label}
           </Link>
         ))}
-        {cta.external ? (
-          <a
-            href={cta.href}
-            className="mobile-nav__cta"
-            onClick={() => setOpen(false)}
-            target="_blank"
-            rel="noopener"
-          >
-            {cta.label}
-          </a>
-        ) : (
-          <Link
-            href={cta.href}
-            className="mobile-nav__cta"
-            onClick={() => setOpen(false)}
-          >
-            {cta.label}
-          </Link>
-        )}
+        <Link
+          href={cta.href}
+          className="mobile-nav__cta"
+          onClick={() => setOpen(false)}
+        >
+          {cta.label}
+        </Link>
       </nav>
     </header>
   );

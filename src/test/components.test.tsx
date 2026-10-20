@@ -13,7 +13,7 @@ import { Ways } from '@/components/sections/Ways';
 import { Direction } from '@/components/sections/Direction';
 import { Pillars } from '@/components/sections/Pillars';
 import { integrations } from '@/data/integrations';
-import { direction, nav, pages, pillars } from '@/content/project';
+import { direction, nav, pages, pillars, support } from '@/content/project';
 vi.mock('next/navigation', () => ({ usePathname: () => '/about' }));
 describe('Navigation and semantic primitives', () => {
   it('opens mobile links and returns focus on Escape', async () => {
@@ -101,15 +101,24 @@ describe('Navigation and semantic primitives', () => {
   });
 });
 describe('Promotional sections', () => {
-  it('routes giving only through the configured giving page', () => {
+  it('routes every gift to its own hosted checkout and nothing through the site', () => {
     render(<Ways />);
-    const give = screen.getByRole('link', { name: /Give now|Support Ardú/ });
-    if (integrations.giving.status === 'live') {
-      expect(give).toHaveAttribute('href', integrations.giving.url);
-      expect(give).toHaveAttribute('rel', 'noopener');
-    } else {
-      expect(give).toHaveAttribute('href', pages.support.href);
+    const giving = integrations.giving;
+    const any = screen.getByRole('link', { name: 'Give any amount' });
+    if (giving.status === 'live') {
+      expect(any).toHaveAttribute('href', giving.any);
+      expect(any).toHaveAttribute('rel', 'noopener');
+      expect(any).toHaveAttribute('target', '_blank');
+      for (const level of support.levels.items) {
+        const link = screen.getByRole('link', {
+          name: new RegExp(`^${level.amount.replace(/[,]/g, ',')}`),
+        });
+        expect(link).toHaveAttribute('href', giving.levels[level.key]);
+        expect(link).toHaveAttribute('rel', 'noopener');
+      }
     }
+    expect(screen.queryByRole('form')).not.toBeInTheDocument();
+    expect(document.querySelector('input')).toBeNull();
     expect(
       screen.getByRole('link', { name: 'Partner with us' }),
     ).toHaveAttribute('href', pages.partners.href);
@@ -120,7 +129,7 @@ describe('Promotional sections', () => {
       expect.stringMatching(/^mailto:info@ardugaza\.org/),
     );
     expect(
-      screen.getByText(/No payment is collected on this website/),
+      screen.getByText(/No payment details touch this website/),
     ).toBeVisible();
   });
   it('states the direction in four steps without publishing figures', () => {

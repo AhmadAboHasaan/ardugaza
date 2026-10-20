@@ -8,6 +8,7 @@ import { Weight } from '@/components/sections/Weight';
 import { Ways } from '@/components/sections/Ways';
 import { TrustStrip } from '@/components/sections/Strips';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { giveAnchor } from '@/content/project';
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
   openGraph: { url: '/' },
@@ -17,13 +18,13 @@ export default function Home() {
     <>
       <Hero />
       <Vision />
-      <Direction />
+      <Direction giveHref={giveAnchor.here} />
       <Pillars />
       <Changes />
       <Weight />
       <Ways />
       <TrustStrip />
-      <CtaBand />
+      <CtaBand giveHref={giveAnchor.here} />
     </>
   );
 }

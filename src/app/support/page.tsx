@@ -3,10 +3,10 @@ import { Globe, Hash, Mail, MessageCircle } from 'lucide-react';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
-import { Icon } from '@/components/ui/Icon';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { Give } from '@/components/sections/Give';
 import { contact, integrations } from '@/data/integrations';
-import { ctas, pages, support } from '@/content/project';
+import { ctas, giveAnchor, pages, support } from '@/content/project';
 export const metadata: Metadata = {
   title: pages.support.title,
   description: support.hero.lead,
@@ -45,47 +45,11 @@ const shareLinks = [
   },
 ];
 export default function SupportPage() {
-  const giving = integrations.giving;
   return (
     <>
       <PageHero {...support.hero} />
       <Section className="give" aria-labelledby="give-title">
-        <div className="panel panel--deep give-panel">
-          <Icon name={support.give.icon} tone="sand" />
-          <h2 id="give-title">{support.give.title}</h2>
-          <p className="lead">{support.give.body}</p>
-          {giving.status === 'live' ? (
-            <LinkButton
-              href={giving.url}
-              variant="light"
-              target="_blank"
-              rel="noopener"
-            >
-              {ctas.give}
-            </LinkButton>
-          ) : (
-            <p>
-              Giving opens through Ardú’s campaign page; write to us to be told
-              when.
-            </p>
-          )}
-        </div>
-      </Section>
-      <Section className="levels" aria-labelledby="levels-title">
-        <div className="section-heading">
-          <h2 id="levels-title">{support.levels.title}</h2>
-          <p className="small">{support.levels.note}</p>
-        </div>
-        <ul className="card-grid card-grid--four">
-          {support.levels.items.map((level) => (
-            <li key={level.amount} className="card level">
-              <Icon name={level.icon} />
-              <span className="level-amount">{level.amount}</span>
-              <h3>{level.title}</h3>
-              <p>{level.text}</p>
-            </li>
-          ))}
-        </ul>
+        <Give />
       </Section>
       <Section className="split split--muted" aria-labelledby="stage-title">
         <h2 id="stage-title">{support.stage.title}</h2>
@@ -131,7 +95,7 @@ export default function SupportPage() {
           </ul>
         </div>
       </Section>
-      <CtaBand />
+      <CtaBand giveHref={giveAnchor.here} />
     </>
   );
 }

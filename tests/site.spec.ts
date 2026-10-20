@@ -19,11 +19,27 @@ test('home page leads with the brand, the impact and the giving route', async ({
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
     'their ambition.',
   );
-  const give = page.getByRole('link', { name: 'Give now' }).first();
-  await expect(give).toHaveAttribute('href', /chuffed\.org/);
-  await expect(give).toHaveAttribute('rel', 'noopener');
+  const give = page.locator('.hero').getByRole('link', { name: 'Give now' });
+  await expect(give).toHaveAttribute('href', '#give');
+  await give.click();
+  await expect(page).toHaveURL(/#give$/);
+  const panel = page.locator('#give');
+  await expect(panel).toBeInViewport();
+  const any = panel.getByRole('link', { name: 'Give any amount' });
+  await expect(any).toHaveAttribute('href', /^https:\/\/buy\.stripe\.com\//);
+  await expect(any).toHaveAttribute('rel', 'noopener');
+  await expect(any).toHaveAttribute('target', '_blank');
+  const levels = panel.locator('.give-level');
+  await expect(levels).toHaveCount(4);
+  for (const level of await levels.all()) {
+    await expect(level).toHaveAttribute(
+      'href',
+      /^https:\/\/buy\.stripe\.com\//,
+    );
+  }
+  expect(await page.locator('input, form').count()).toBe(0);
   await expect(
-    page.getByText(/No payment is collected on this website/),
+    page.getByText(/No payment details touch this website/),
   ).toBeVisible();
   await expect(page.getByRole('heading', { name: /Three ways/ })).toBeVisible();
   await expect(
@@ -82,8 +98,9 @@ test('partners and funders are pointed to a conversation, not a table', async ({
   ).toBeVisible();
   await page.goto('/support');
   await expect(
-    page.getByRole('link', { name: 'Give now' }).first(),
-  ).toHaveAttribute('href', /chuffed\.org/);
+    page.locator('#give').getByRole('link', { name: 'Give any amount' }),
+  ).toHaveAttribute('href', /^https:\/\/buy\.stripe\.com\//);
+  await expect(page.locator('#give .give-level')).toHaveCount(4);
   await expect(
     page.getByRole('heading', { name: 'How gifts are safeguarded' }),
   ).toBeVisible();

@@ -35,6 +35,13 @@ export const pages = {
   contact: { href: '/contact', label: 'Contact', title: 'Contact' },
 } as const;
 
+/** The giving panel's anchor: on the home page in place, elsewhere on the support page. */
+export const giveAnchor = {
+  id: 'give',
+  here: '#give',
+  href: `${pages.support.href}#give`,
+} as const;
+
 export const nav = [
   pages.about,
   pages.whatWeDo,
@@ -189,13 +196,24 @@ export const weight = {
   },
 } as const;
 
+export const give = {
+  icon: 'heart',
+  title: ['Lift it', 'with a gift.'],
+  body: 'Choose what your gift lifts, or give any amount. It travels a trustee route that has already carried two years of public giving with every pound accounted for, and every stage comes with its receipts.',
+  label: 'What a gift lifts',
+  levelCta: 'Give',
+  any: {
+    text: 'Every pound moves the road.',
+    cta: 'Give any amount',
+  },
+  secure:
+    'Secure checkout by Stripe, in pounds, by card or digital wallet. No payment details touch this website.',
+  more: 'How gifts are safeguarded',
+  pending: 'Giving opens shortly. Write to us to be told the moment it does.',
+} as const;
+
 export const ways = {
   title: ['Three ways', 'to lift it.'],
-  give: {
-    icon: 'heart',
-    title: 'Give',
-    text: 'Fund the next stage through Ardú’s campaign page. A gift of any size moves it, and every stage comes with its receipts.',
-  },
   partner: {
     icon: 'handshake',
     title: 'Partner',
@@ -206,7 +224,7 @@ export const ways = {
     title: 'Fund a stage',
     text: 'Foundations, companies and major donors can take a whole stage, from the rubble to the first kilowatts, and see it through with full figures and reporting.',
   },
-  note: 'Giving runs through Ardú’s campaign page. No payment is collected on this website.',
+  note: 'A gift, a partnership, or a whole stage. Each one moves the road.',
 } as const;
 
 export const trustStrip = {
@@ -442,40 +460,38 @@ export const support = {
     title: 'Lift it with us.',
     lead: 'One road began under this rubble. Every gift opens it a little further for the thousands who come next, and every stage comes with its receipts.',
   },
-  give: {
-    icon: 'heart',
-    title: 'Give',
-    body: 'Giving runs through Ardú’s campaign page, on a trustee route that has already carried two years of public giving with every pound accounted for. Give once or monthly, in the amount that is right for you.',
-  },
   levels: {
     title: 'What a gift makes possible',
     items: [
       {
+        key: 'seat',
         amount: '£150',
         icon: 'armchair',
         title: 'A seat',
         text: 'A chair, a desk and a share of a laptop for one young person.',
       },
       {
+        key: 'laptop',
         amount: '£750',
         icon: 'laptop',
         title: 'A laptop',
         text: 'Shared by two shifts a day, for those who come without one.',
       },
       {
+        key: 'month',
         amount: '£4,500',
         icon: 'calendar',
         title: 'A month of Ardú',
         text: 'The team, the internet and the lights for a month: two hundred young people a day.',
       },
       {
+        key: 'kilowatt',
         amount: '£7,500',
         icon: 'sun',
         title: 'A kilowatt that works twice',
         text: 'Ten seats on power that never cuts by day, and the neighbourhood’s light outside the hall’s hours.',
       },
     ],
-    note: 'Any amount counts. The campaign page lists these and other levels in pounds.',
   },
   stage: {
     icon: 'landmark',
@@ -507,7 +523,7 @@ export const support = {
       },
     ],
     small:
-      'Ardú is an unregistered initiative; formal registration is planned. No charitable registration or tax deductibility is claimed. No partner is named before its agreement is signed. Giving runs through Ardú’s campaign page; no payment is collected on this website.',
+      'Ardú is an unregistered initiative; formal registration is planned. No charitable registration or tax deductibility is claimed. No partner is named before its agreement is signed. Gifts are taken on Stripe’s hosted checkout; no payment details are collected on this website.',
   },
   share: {
     title: 'Share it',

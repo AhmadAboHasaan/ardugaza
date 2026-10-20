@@ -7,9 +7,18 @@ export type ApprovedImage = {
   width: number;
   height: number;
 };
+/** The four things a gift lifts, each on its own checkout. Keys match `support.levels.items`. */
+export type GivingLevel = 'seat' | 'laptop' | 'month' | 'kilowatt';
 export type Giving =
-  | { status: 'pending'; opensOn: string; url: null }
-  | { status: 'live'; opensOn: string; url: string };
+  | { status: 'pending'; opensOn: string; any: null; levels: null }
+  | {
+      status: 'live';
+      opensOn: string;
+      /** Checkout where the giver enters their own amount. */
+      any: string;
+      /** Fixed-amount checkouts, one per level. */
+      levels: Record<GivingLevel, string>;
+    };
 
 /**
  * Everything that must be supplied or approved before it appears on the site.
@@ -27,11 +36,18 @@ export const integrations: {
   founderImage: PendingIntegration<ApprovedImage>;
   partnerLogos: PendingIntegration<ApprovedImage[]>;
 } = {
-  // The giving page is the founder's existing Chuffed campaign, re-pointed to Ardú on 4 October 2026.
+  // Giving runs on Stripe payment links in pounds (hosted checkout; nothing is collected on the site).
+  // The campaign page used until 18 October 2026 is closed; these links replaced it on 21 October 2026.
   giving: {
     status: 'live',
-    opensOn: '2026-10-04',
-    url: 'https://chuffed.org/project/140633',
+    opensOn: '2026-10-21',
+    any: 'https://buy.stripe.com/PENDING_ANY',
+    levels: {
+      seat: 'https://buy.stripe.com/PENDING_SEAT',
+      laptop: 'https://buy.stripe.com/PENDING_LAPTOP',
+      month: 'https://buy.stripe.com/PENDING_MONTH',
+      kilowatt: 'https://buy.stripe.com/PENDING_KILOWATT',
+    },
   },
   contactEmail: {
     status: 'ready',

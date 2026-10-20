@@ -6,6 +6,7 @@ import { Changes } from './Changes';
 import { Direction } from './Direction';
 import { Weight } from './Weight';
 import { Ways } from './Ways';
+import { Give } from './Give';
 import { TrustStrip } from './Strips';
 import { CtaBand } from '../ui/CtaBand';
 import { PageHero } from '../ui/PageHero';
@@ -32,6 +33,7 @@ export const WhatChanges: Story = { render: () => <Changes /> };
 export const TheDirection: Story = { render: () => <Direction /> };
 export const OwnWeight: Story = { render: () => <Weight /> };
 export const ThreeWays: Story = { render: () => <Ways /> };
+export const GivingPanel: Story = { render: () => <Give /> };
 export const ClosingStrips: Story = { render: () => <TrustStrip /> };
 export const CallToAction: Story = { render: () => <CtaBand /> };
 export const CallToActionPartnerLead: Story = {
