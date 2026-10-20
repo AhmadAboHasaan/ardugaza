@@ -26,7 +26,7 @@ test('home page leads with the brand, the impact and the giving route', async ({
   const panel = page.locator('#give');
   await expect(panel).toBeInViewport();
   const any = panel.getByRole('link', { name: 'Give any amount' });
-  await expect(any).toHaveAttribute('href', /^https:\/\/buy\.stripe\.com\//);
+  await expect(any).toHaveAttribute('href', /^https:\/\/(buy|donate)\.stripe\.com\//);
   await expect(any).toHaveAttribute('rel', 'noopener');
   await expect(any).toHaveAttribute('target', '_blank');
   const levels = panel.locator('.give-level');
@@ -34,7 +34,7 @@ test('home page leads with the brand, the impact and the giving route', async ({
   for (const level of await levels.all()) {
     await expect(level).toHaveAttribute(
       'href',
-      /^https:\/\/buy\.stripe\.com\//,
+      /^https:\/\/(buy|donate)\.stripe\.com\//,
     );
   }
   expect(await page.locator('input, form').count()).toBe(0);
@@ -99,7 +99,7 @@ test('partners and funders are pointed to a conversation, not a table', async ({
   await page.goto('/support');
   await expect(
     page.locator('#give').getByRole('link', { name: 'Give any amount' }),
-  ).toHaveAttribute('href', /^https:\/\/buy\.stripe\.com\//);
+  ).toHaveAttribute('href', /^https:\/\/(buy|donate)\.stripe\.com\//);
   await expect(page.locator('#give .give-level')).toHaveCount(4);
   await expect(
     page.getByRole('heading', { name: 'How gifts are safeguarded' }),
