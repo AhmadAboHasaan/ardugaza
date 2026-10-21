@@ -37,7 +37,7 @@ export const integrations: {
   partnerLogos: PendingIntegration<ApprovedImage[]>;
 } = {
   // Giving runs on Stripe payment links in pounds (hosted checkout; nothing is collected on the site).
-  // Links with a Donate button live on donate.stripe.com, the others on buy.stripe.com; both are Stripe-hosted.
+  // Every link carries a Donate button, so Stripe serves it from donate.stripe.com.
   // The campaign page used until 18 October 2026 is closed; these links replaced it on 21 October 2026.
   giving: {
     status: 'live',
@@ -45,9 +45,9 @@ export const integrations: {
     any: 'https://donate.stripe.com/7sYaEZfrR7d31aj48a0oM02',
     levels: {
       seat: 'https://donate.stripe.com/eVqfZja7xbtj7yHfQS0oM03',
-      laptop: 'https://buy.stripe.com/fZu28t1B1dBr6uD48a0oM04',
-      month: 'https://buy.stripe.com/PENDING_MONTH',
-      kilowatt: 'https://buy.stripe.com/PENDING_KILOWATT',
+      laptop: 'https://donate.stripe.com/fZu28t1B1dBr6uD48a0oM04',
+      month: 'https://donate.stripe.com/14A28t5Rh0OFaKTbAC0oM05',
+      kilowatt: 'https://donate.stripe.com/14AcN7gvV68ZaKTawy0oM06',
     },
   },
   contactEmail: {
