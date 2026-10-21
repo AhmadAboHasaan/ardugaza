@@ -125,9 +125,9 @@ A 1200px content column with a fluid gutter. The hero and footer are full-bleed 
 ## Components
 
 - **Icon chip**: 48px rounded square, teal on teal tint; cream variant on deep, sand variant for the giving card and the sun, deep variant on the sand panel. Small 32px variant inside icon lists.
-- **Buttons**: pills. Primary teal on light, light (sand) as the lead action on deep, outline for the second action, text links underlined in teal.
+- **Buttons**: pills. Primary teal on light, light (sand) as the lead action on deep, white on the deep any-amount strip, outline for the second action, text links underlined in teal.
 - **Figures**: mist tiles with an icon, a Bricolage number and a muted label.
-- **Cards**: mist on white, white on mist; the giving panel is deep, carries a white card of four level tiles and a teal any-amount button, and has the only shadow on the page.
+- **Cards**: mist on white, white on mist; the giving panel is deep, carries a white card of four level tiles and, under them, an inverted deep strip with a white any-amount button (the one block that reads on a fast scroll), and has the only shadow on the page.
 - **Steps and sequences**: a line with chips (direction) or numbered deep circles (how it works, safeguards); vertical on narrow screens.
 - **Road**: `src/components/content/Road.tsx`, a 640×520 SVG with the rubble, the stroke, four stops and the sand tip; drawn with `stroke-dashoffset` over 1.5s, stops fading in after it.
 

@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import type { ComponentProps } from 'react';
 type Props = ComponentProps<'a'> & {
   href: string;
-  variant?: 'primary' | 'text' | 'light' | 'outline';
+  variant?: 'primary' | 'text' | 'light' | 'outline' | 'white';
   arrow?: boolean;
 };
 /** A square, labelled call to action. Internal routes go through next/link; anchors and external URLs stay plain. */

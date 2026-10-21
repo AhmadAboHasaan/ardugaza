@@ -67,7 +67,7 @@ export function Give({ headingLevel = 2 }: Props) {
           {giving.status === 'live' ? (
             <LinkButton
               href={giving.any}
-              variant="primary"
+              variant="white"
               target="_blank"
               rel="noopener"
             >
