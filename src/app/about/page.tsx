@@ -4,6 +4,7 @@ import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { MediaFrame } from '@/components/content/MediaFrame';
+import { Pillars } from '@/components/sections/Pillars';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { integrations } from '@/data/integrations';
 import { about, pages, project } from '@/content/project';
@@ -21,6 +22,46 @@ export default function AboutPage() {
   return (
     <>
       <PageHero {...about.hero} />
+      <Section className="purpose" aria-label="Vision and mission">
+        <div className="purpose-grid">
+          <article className="purpose-card purpose-card--vision">
+            <h2>{about.purpose.vision.title}</h2>
+            <p>{about.purpose.vision.text}</p>
+          </article>
+          <article className="purpose-card">
+            <h2>{about.purpose.mission.title}</h2>
+            <p>{about.purpose.mission.text}</p>
+          </article>
+        </div>
+      </Section>
+      <Section className="goals" aria-labelledby="goals-title">
+        <div className="section-heading">
+          <h2 id="goals-title">{about.goals.title}</h2>
+        </div>
+        <ol className="goal-list">
+          {about.goals.items.map((goal, i) => (
+            <li key={goal.title} className="goal">
+              <span className="goal-number" aria-hidden="true">
+                0{i + 1}
+              </span>
+              <Icon name={goal.icon} />
+              <div>
+                <h3>{goal.title}</h3>
+                <p>{goal.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
+      <Section className="split split--muted" aria-labelledby="serve-title">
+        <h2 id="serve-title">{about.serve.title}</h2>
+        <div className="split-body">
+          {about.serve.body.map((p) => (
+            <p key={p.slice(0, 24)}>{p}</p>
+          ))}
+        </div>
+      </Section>
+      <Pillars expanded />
       <Section className="split" aria-labelledby="story-title">
         <h2 id="story-title">{about.story.title}</h2>
         <div className="split-body">
@@ -50,31 +91,19 @@ export default function AboutPage() {
           </ul>
         </div>
       </Section>
-      <Section className="place" aria-labelledby="place-title">
-        <div className="place-copy">
-          <h2 id="place-title">{about.place.title}</h2>
-          {about.place.body.map((p) => (
-            <p key={p.slice(0, 24)}>{p}</p>
-          ))}
+      <Section className="governance" aria-labelledby="governance-title">
+        <div className="section-heading">
+          <h2 id="governance-title">{about.governance.title}</h2>
         </div>
-        <MediaFrame
-          image={integrations.hallImage}
-          caption={about.place.caption}
-          fallback={
-            <div className="hall-placeholder">
-              <span className="hall-measure">
-                {about.place.placeholder.measure}
-              </span>
-              <div className="hall-frame" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-                <i />
-              </div>
-              <span>{about.place.placeholder.label}</span>
-            </div>
-          }
-        />
+        <ul className="card-grid card-grid--four">
+          {about.governance.items.map((item) => (
+            <li key={item.title} className="card">
+              <Icon name={item.icon} />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
       </Section>
       <Section className="founder" aria-labelledby="founder-title">
         <MediaFrame

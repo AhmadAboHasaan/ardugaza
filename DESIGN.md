@@ -128,7 +128,10 @@ A 1200px content column with a fluid gutter. The hero and footer are full-bleed 
 - **Buttons**: pills. Primary teal on light, light (sand) as the lead action on deep, white on the deep any-amount strip, outline for the second action, text links underlined in teal.
 - **Figures**: mist tiles with an icon, a Bricolage number and a muted label.
 - **Cards**: mist on white, white on mist; the giving panel is deep, carries a white card of four level tiles and, under them, an inverted deep strip with a white any-amount button (the one block that reads on a fast scroll), and has the only shadow on the page.
-- **Steps and sequences**: a line with chips (direction) or numbered deep circles (how it works, safeguards); vertical on narrow screens.
+- **Steps and sequences**: a line with chips (a project's stages, each with a status chip and a funding bar) or numbered deep circles (how it works, safeguards); vertical on narrow screens.
+- **Status tag**: a pill with a dot, sand for a project on the ground, teal for one under construction or live, mist for one in development; it crowns every project card and page.
+- **Progress**: a 10px track with a teal-to-sand fill and a caption that states raised, target, percentage and the date of the last update, so the bar never claims more than the books do.
+- **Project card**: mist card with the status tag on top, the name, the summary, a white "needs now" block with the open stage's bar, and the link to the page; a lone card spreads across the row with the story left and the need right.
 - **Road**: `src/components/content/Road.tsx`, a 640×520 SVG with the rubble, the stroke, four stops and the sand tip; drawn with `stroke-dashoffset` over 1.5s, stops fading in after it.
 
 ## Motion

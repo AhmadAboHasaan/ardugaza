@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
-import { Figures } from '@/components/ui/Figures';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Pillars } from '@/components/sections/Pillars';
+import { Projects } from '@/components/sections/Projects';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { contact, integrations } from '@/data/integrations';
 import { ctas, pages, whatWeDo } from '@/content/project';
@@ -26,16 +26,6 @@ export default function WhatWeDoPage() {
     <>
       <PageHero {...whatWeDo.hero} />
       <Pillars expanded heading={false} />
-      <Section className="split" aria-labelledby="day-title">
-        <h2 id="day-title">{whatWeDo.day.title}</h2>
-        <div className="split-body">
-          <p>{whatWeDo.day.body}</p>
-          <Figures
-            figures={whatWeDo.day.figures}
-            className="figures--compact"
-          />
-        </div>
-      </Section>
       <Section className="split split--muted" aria-labelledby="who-title">
         <h2 id="who-title">{whatWeDo.who.title}</h2>
         <div className="split-body">
@@ -46,12 +36,12 @@ export default function WhatWeDoPage() {
           </LinkButton>
         </div>
       </Section>
-      <Section className="split" aria-labelledby="beyond-title">
-        <h2 id="beyond-title">{whatWeDo.beyond.title}</h2>
-        <div className="split-body">
-          <p>{whatWeDo.beyond.body}</p>
-        </div>
-      </Section>
+      <Projects
+        id="where"
+        title={whatWeDo.where.title}
+        lead={whatWeDo.where.lead}
+        compact
+      />
       <CtaBand lead="partner" />
     </>
   );

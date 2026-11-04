@@ -1350,6 +1350,422 @@ a.give-level:hover .give-level-cta svg {
   gap: 1.1rem;
 }
 
+
+/* ------------------------------------------------- the organisation */
+.org {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.org-copy h2 {
+  margin-bottom: 1.25rem;
+}
+.org-copy .lead {
+  max-width: 52ch;
+}
+.org-copy .link-button--text {
+  margin-top: 1.25rem;
+}
+.org-facts {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.org-fact {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.1rem;
+  align-items: start;
+  padding: 1.25rem 1.4rem;
+  background: var(--mist);
+  border-radius: var(--r-card);
+}
+.org-fact h3 {
+  margin-bottom: 0.3rem;
+  font-size: 1.1rem;
+}
+.org-fact p {
+  font-size: 0.95rem;
+}
+
+/* -------------------------------------------------------- status tags */
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.8rem 0.35rem 0.65rem;
+  border-radius: var(--r-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.status-tag i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.status-tag--sand {
+  background: var(--sand-tint);
+  color: #6b5410;
+}
+.status-tag--teal {
+  background: var(--teal-tint);
+  color: var(--teal);
+}
+.status-tag--mist {
+  background: var(--mist-2);
+  color: var(--muted);
+}
+.panel--deep .status-tag--sand,
+.give-card .status-tag--sand {
+  background: var(--sand-tint);
+  color: #6b5410;
+}
+.page-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: var(--teal);
+}
+
+/* ----------------------------------------------------------- progress */
+.progress {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+.progress-track {
+  position: relative;
+  height: 10px;
+  border-radius: var(--r-pill);
+  background: var(--mist-2);
+  overflow: hidden;
+}
+.progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--teal), var(--sand));
+}
+.progress-caption {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.progress-caption strong {
+  color: var(--ink);
+}
+.progress--ink .progress-track {
+  background: rgba(243, 239, 228, 0.16);
+}
+.progress--ink .progress-caption,
+.panel--deep .progress--ink .progress-caption {
+  color: rgba(243, 239, 228, 0.72);
+  opacity: 1;
+}
+.progress--ink .progress-caption strong {
+  color: var(--cream);
+}
+
+/* ----------------------------------------------------------- projects */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  height: 100%;
+  padding: 1.75rem;
+  background: var(--mist);
+  border-radius: var(--r-card);
+  transition: transform var(--motion-state) var(--ease-out);
+}
+.project-card-title {
+  margin: 0.25rem 0 0;
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+}
+.project-card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+.project-card-title a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--sand);
+}
+.project-card-summary {
+  font-size: 0.95rem;
+}
+.project-needs {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 1rem 1.1rem;
+  background: var(--white);
+  border-radius: var(--r-chip);
+}
+.project-needs .progress {
+  margin-top: 0.6rem;
+}
+.project-needs-label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: var(--ink);
+}
+.project-needs-label span {
+  color: var(--teal);
+}
+.project-card > .link-button {
+  margin-top: auto;
+}
+/* A lone project spreads across the row: the story left, what it needs right. */
+.project-grid > li:only-child .project-card:not(.project-card--compact) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-areas:
+    'tag needs'
+    'title needs'
+    'summary needs'
+    'link needs';
+  gap: 0.9rem clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+.project-grid > li:only-child .project-card:not(.project-card--compact) .status-tag {
+  grid-area: tag;
+}
+.project-grid > li:only-child .project-card:not(.project-card--compact) .project-card-title {
+  grid-area: title;
+}
+.project-grid > li:only-child .project-card:not(.project-card--compact) .project-card-summary {
+  grid-area: summary;
+  max-width: 52ch;
+}
+.project-grid > li:only-child .project-card:not(.project-card--compact) .project-needs {
+  grid-area: needs;
+  align-self: center;
+  margin-top: 0;
+  padding: 1.4rem 1.5rem;
+}
+.project-grid > li:only-child .project-card:not(.project-card--compact) > .link-button {
+  grid-area: link;
+  margin-top: 0.25rem;
+}
+.projects-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-top: 1.75rem;
+}
+.projects-foot .small {
+  max-width: 48ch;
+}
+.projects-foot .section-more {
+  margin-top: 0;
+}
+.project-facts .figures {
+  margin-top: -0.5rem;
+}
+
+/* ---------------------------------------------------- project stages */
+.stage-status {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--r-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(243, 239, 228, 0.8);
+  border: 1px solid rgba(243, 239, 228, 0.35);
+}
+.stage-status--now {
+  color: var(--deep);
+  background: var(--sand);
+  border-color: var(--sand);
+}
+.stage-status--done {
+  color: var(--deep);
+  background: var(--cream);
+  border-color: var(--cream);
+}
+.step:last-child .icon {
+  border-color: rgba(243, 239, 228, 0.55);
+  color: var(--cream);
+}
+.step.step--now .icon {
+  border-color: var(--sand);
+  color: var(--sand);
+}
+.step .stage-status + h3 {
+  margin-top: 0.75rem;
+}
+.step .progress {
+  margin-top: 1rem;
+}
+.stage-unpriced {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: rgba(243, 239, 228, 0.6);
+}
+.panel--deep .stage-unpriced {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------- indicators */
+.indicator-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin: 0;
+}
+.indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.4rem;
+  background: var(--white);
+  border-radius: var(--r-card);
+}
+.indicator dt {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--teal);
+}
+.indicator dd {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.indicators-note {
+  margin-top: 1.5rem;
+}
+
+/* ------------------------------------------- about: purpose and goals */
+.purpose-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 1.25rem;
+}
+.purpose-card {
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  border-radius: var(--r-panel);
+  background: var(--mist);
+}
+.purpose-card--vision {
+  background: var(--deep);
+  color: var(--cream);
+}
+.purpose-card h2 {
+  margin-bottom: 0.9rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--teal);
+}
+.purpose-card--vision h2 {
+  color: var(--sand);
+}
+.purpose-card p {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.1vw, 1.65rem);
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--deep);
+}
+.purpose-card--vision p {
+  color: var(--cream);
+}
+.goal-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.goal {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  padding: 1.5rem 1.75rem;
+  background: var(--mist);
+  border-radius: var(--r-card);
+}
+.goal-number {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--teal);
+  padding-top: 0.7rem;
+}
+.goal h3 {
+  margin-bottom: 0.35rem;
+}
+.goal p {
+  max-width: 62ch;
+}
+
+/* --------------------------------------- giving: the organisation row */
+.give-project {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.give-project-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1rem 1.5rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  background: var(--mist);
+  border-radius: var(--r-chip);
+}
+.give-project-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+.give-card .give-project-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--deep);
+}
+.give-card .give-project-standing {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.give-project .progress {
+  margin-top: 0;
+}
+.give-project .link-button--text {
+  margin-top: 1rem;
+}
+
 /* ------------------------------------------------------- interaction */
 @media (hover: hover) and (pointer: fine) {
   .link-button--primary:hover {
@@ -1381,7 +1797,8 @@ a.give-level:hover .give-level-cta svg {
   }
   .way:hover,
   .card:hover,
-  .pillar:hover {
+  .pillar:hover,
+  .project-card:hover {
     transform: translateY(-3px);
   }
   .way,
@@ -1418,6 +1835,25 @@ a.give-level:hover .give-level-cta svg {
   .steps,
   .sequence {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .org,
+  .purpose-grid {
+    grid-template-columns: 1fr;
+  }
+  .indicator-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .give-project-row {
+    grid-template-columns: 1fr;
+  }
+  .project-grid > li:only-child .project-card:not(.project-card--compact) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'tag'
+      'title'
+      'summary'
+      'needs'
+      'link';
   }
   .steps::before,
   .sequence::before {
@@ -1545,9 +1981,29 @@ a.give-level:hover .give-level-cta svg {
     font-size: 16px;
   }
 }
+@media (max-width: 767px) {
+  .indicator-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .goal {
+    grid-template-columns: auto 1fr;
+  }
+  .goal-number {
+    display: none;
+  }
+  .projects-foot .link-button {
+    width: auto;
+  }
+}
 @media (max-width: 479px) {
   .give-levels {
     grid-template-columns: 1fr;
+  }
+  .indicator-grid {
+    grid-template-columns: 1fr;
+  }
+  .project-card {
+    padding: 1.25rem;
   }
   .give-card {
     padding: 1.1rem;

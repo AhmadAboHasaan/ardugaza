@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
-import { Figures } from '@/components/ui/Figures';
 import { Icon } from '@/components/ui/Icon';
+import { Projects } from '@/components/sections/Projects';
 import { Changes } from '@/components/sections/Changes';
-import { Direction } from '@/components/sections/Direction';
-import { Weight } from '@/components/sections/Weight';
+import { Indicators } from '@/components/sections/Indicators';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { impactPage, pages } from '@/content/project';
 export const metadata: Metadata = {
@@ -22,24 +21,16 @@ export default function ImpactPage() {
   return (
     <>
       <PageHero {...impactPage.hero} />
+      <Projects
+        title={impactPage.projects.title}
+        lead={impactPage.projects.lead}
+      />
       <Changes
         full
         title={impactPage.changes.title}
         lead={impactPage.changes.lead}
       />
-      <Section className="scale" aria-labelledby="scale-title">
-        <div className="panel">
-          <div className="section-heading">
-            <h2 id="scale-title">{impactPage.scale.title}</h2>
-            <p className="small">{impactPage.scale.note}</p>
-          </div>
-          <Figures
-            figures={impactPage.scale.figures}
-            className="figures--large"
-          />
-        </div>
-      </Section>
-      <Direction title={impactPage.road.title} />
+      <Indicators />
       <Section className="split" aria-labelledby="measure-title">
         <h2 id="measure-title">{impactPage.measure.title}</h2>
         <div className="split-body">
@@ -54,7 +45,6 @@ export default function ImpactPage() {
           </ul>
         </div>
       </Section>
-      <Weight />
       <CtaBand />
     </>
   );

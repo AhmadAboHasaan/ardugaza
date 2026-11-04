@@ -10,10 +10,18 @@ import { Figures } from '@/components/ui/Figures';
 import { MediaFrame } from '@/components/content/MediaFrame';
 import { SeatMatrix } from '@/components/content/SeatMatrix';
 import { Ways } from '@/components/sections/Ways';
-import { Direction } from '@/components/sections/Direction';
+import { Stages } from '@/components/sections/Stages';
+import { Give } from '@/components/sections/Give';
+import { ProjectCard } from '@/components/ui/ProjectCard';
 import { Pillars } from '@/components/sections/Pillars';
 import { integrations } from '@/data/integrations';
-import { direction, nav, pages, pillars, support } from '@/content/project';
+import { nav, pages, pillars, support } from '@/content/project';
+import {
+  currentStage,
+  percentFunded,
+  projectHref,
+  projects,
+} from '@/content/projects';
 vi.mock('next/navigation', () => ({ usePathname: () => '/about' }));
 describe('Navigation and semantic primitives', () => {
   it('opens mobile links and returns focus on Escape', async () => {
@@ -101,7 +109,7 @@ describe('Navigation and semantic primitives', () => {
   });
 });
 describe('Promotional sections', () => {
-  it('routes every gift to its own hosted checkout and nothing through the site', () => {
+  it('routes the organisation gift to its hosted checkout and nothing through the site', () => {
     render(<Ways />);
     const giving = integrations.giving;
     const any = screen.getByRole('link', { name: 'Give any amount' });
@@ -109,14 +117,11 @@ describe('Promotional sections', () => {
       expect(any).toHaveAttribute('href', giving.any);
       expect(any).toHaveAttribute('rel', 'noopener');
       expect(any).toHaveAttribute('target', '_blank');
-      for (const level of support.levels.items) {
-        const link = screen.getByRole('link', {
-          name: new RegExp(`^${level.amount.replace(/[,]/g, ',')}`),
-        });
-        expect(link).toHaveAttribute('href', giving.levels[level.key]);
-        expect(link).toHaveAttribute('rel', 'noopener');
-      }
     }
+    expect(screen.queryAllByRole('link', { name: /^£/ })).toHaveLength(0);
+    expect(
+      screen.getByRole('link', { name: 'Fund a project stage' }),
+    ).toHaveAttribute('href', `${projectHref(projects[0].slug)}#fund`);
     expect(screen.queryByRole('form')).not.toBeInTheDocument();
     expect(document.querySelector('input')).toBeNull();
     expect(
@@ -132,13 +137,54 @@ describe('Promotional sections', () => {
       screen.getByText(/No payment details touch this website/),
     ).toBeVisible();
   });
-  it('states the direction in four steps without publishing figures', () => {
-    const { container } = render(<Direction />);
-    const steps = screen.getAllByRole('listitem');
-    expect(steps).toHaveLength(direction.steps.length);
+  it('gives each stage level its own hosted checkout on the project page', () => {
+    render(<Give mode="project" project={projects[0]} id="fund" />);
+    const giving = integrations.giving;
+    if (giving.status === 'live') {
+      for (const level of support.levels.items) {
+        const link = screen.getByRole('link', {
+          name: new RegExp(`^${level.amount}`),
+        });
+        expect(link).toHaveAttribute('href', giving.levels[level.key]);
+        expect(link).toHaveAttribute('rel', 'noopener');
+      }
+      expect(
+        screen.getByRole('link', { name: 'Give any amount' }),
+      ).toHaveAttribute('href', giving.any);
+    }
+    expect(document.querySelector('input')).toBeNull();
+  });
+  it('states a project in stages, each with its status and its funding', () => {
+    const project = projects[0];
+    const { container } = render(<Stages project={project} />);
+    const steps = container.querySelectorAll('.step');
+    expect(steps).toHaveLength(project.stages.items.length);
     expect(steps[0]).toHaveTextContent('Clear');
+    expect(steps[0]).toHaveAttribute('aria-current', 'step');
     expect(steps[3]).toHaveTextContent('Grow');
-    expect(container.textContent).not.toMatch(/[$£€]\s?\d/);
+    const bars = screen.getAllByRole('progressbar');
+    expect(bars).toHaveLength(
+      project.stages.items.filter((stage) => stage.funding).length,
+    );
+    expect(bars[0]).toHaveAttribute(
+      'aria-valuenow',
+      String(Math.round(percentFunded(project.stages.items[0].funding!))),
+    );
+    expect(bars[0]).toHaveAccessibleName(/£50 of £11,000 raised/);
+    expect(container.textContent).toMatch(/updated 4 November 2026/);
+    expect(container.textContent).not.toMatch(/\$\s?\d/);
+  });
+  it('crowns a project card with its status and what it needs now', () => {
+    const project = projects[0];
+    render(<ProjectCard project={project} />);
+    expect(screen.getByText('On the ground now')).toBeVisible();
+    expect(screen.getByText(project.standing)).toBeVisible();
+    expect(
+      screen.getByRole('link', { name: 'See the project' }),
+    ).toHaveAttribute('href', projectHref(project.slug));
+    const stage = currentStage(project);
+    expect(stage?.status).toBe('now');
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
   });
   it('shows the four pillars short on the home page and in full elsewhere', () => {
     const { unmount } = render(<Pillars />);
@@ -170,7 +216,7 @@ describe('Promotional sections', () => {
       screen.getByRole('link', { name: 'info@ardugaza.org' }),
     ).toHaveAttribute('href', 'mailto:info@ardugaza.org');
     expect(
-      screen.getByText(/unregistered youth initiative/),
+      screen.getByText(/unregistered youth organisation/),
     ).toBeInTheDocument();
   });
 });

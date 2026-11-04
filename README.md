@@ -1,8 +1,8 @@
 # Ardú — ardugaza.org
 
-The public site of Ardú, a youth initiative in Gaza City. It is a promotional site: who Ardú is, where it is going, the impact it is built to deliver, and the ways to support it. Seven pages: home, About, What we do, Impact, Partners, Support, Contact. Operational detail (stage costs, payroll, energy arithmetic, running costs) is not published here; partners and funders request the full plan by email, and the e2e suite fails if an operational figure reaches a public page.
+The public site of Ardú, a youth organisation in Gaza City. It presents Ardú as an organisation, not a building: its vision, who it serves, the results it measures itself by, the projects that carry it, and the ways to support it. Pages: home, About, What we do, Impact, Partners, Support, Contact, plus Projects and one page per project (`/projects/<slug>`), each crowned with its status and carrying its stages and their funding. Operational detail (stage costs, payroll, energy arithmetic, running costs) is not published here; partners and funders request the full plan by email, and the e2e suite fails if an operational figure reaches a public page.
 
-Every string lives in `src/content/project.ts`; every value that must be supplied or approved (giving checkouts, forms, photographs, LinkedIn page) lives in `src/data/integrations.ts` and renders an honest placeholder until it is set. Capacity figures on the site are what Ardú is built for; achieved impact is published as it happens.
+Every string lives in `src/content/project.ts`, and every project (status, stages, funding figures, page copy) is one record in `src/content/projects.ts`; adding a project is adding a record, and its card, page and sitemap entry follow. Funding bars are updated by hand with the date of the update. Every value that must be supplied or approved (giving checkouts, forms, photographs, LinkedIn page) lives in `src/data/integrations.ts` and renders an honest placeholder until it is set. Capacity figures on the site are what Ardú is built for; achieved impact is published as it happens.
 
 ## Run locally
 
@@ -44,4 +44,4 @@ If Playwright's own Chromium is not installed, point it at an existing one: `PW_
 
 ## Rules carried in the code
 
-No address and no exterior photographs; interior photographs only, captioned with the month. No partner name or logo before a signed agreement. No operational figures on the public site (tested). No payment is collected on the site: every gift opens a hosted Stripe checkout in pounds (one per giving level, plus any amount), configured in `src/data/integrations.ts`. Contact is info@ardugaza.org.
+No address and no exterior photographs; interior photographs only, captioned with the month. No partner name or logo before a signed agreement. No operational figures on the public site (tested). No payment is collected on the site: every gift opens a hosted Stripe checkout in pounds, configured in `src/data/integrations.ts`: any amount for the organisation, and one checkout per giving level on a project's page. Contact is info@ardugaza.org.

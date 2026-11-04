@@ -5,6 +5,7 @@ import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { Give } from '@/components/sections/Give';
+import { Projects } from '@/components/sections/Projects';
 import { contact, integrations } from '@/data/integrations';
 import { ctas, giveAnchor, pages, support } from '@/content/project';
 export const metadata: Metadata = {
@@ -40,7 +41,7 @@ const shareLinks = [
   },
   {
     label: 'Email',
-    href: `mailto:?subject=${encodeURIComponent('Ardú, a place rising in Gaza City')}&body=${encodeURIComponent(shareText)}`,
+    href: `mailto:?subject=${encodeURIComponent('Ardú, an organisation rising in Gaza City')}&body=${encodeURIComponent(shareText)}`,
     Glyph: Mail,
   },
 ];
@@ -51,6 +52,12 @@ export default function SupportPage() {
       <Section className="give" aria-labelledby="give-title">
         <Give />
       </Section>
+      <Projects
+        id="fund-a-project"
+        title={support.projects.title}
+        lead={support.projects.lead}
+        more={false}
+      />
       <Section className="split split--muted" aria-labelledby="stage-title">
         <h2 id="stage-title">{support.stage.title}</h2>
         <div className="split-body">
