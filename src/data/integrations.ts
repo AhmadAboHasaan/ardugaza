@@ -31,6 +31,7 @@ export const integrations: {
   linkedinPage: PendingIntegration<string>;
   launchUpdateForm: PendingIntegration<string>;
   interestForm: PendingIntegration<string>;
+  educationPlatform: PendingIntegration<string>;
   heroImage: PendingIntegration<ApprovedImage>;
   hallImage: PendingIntegration<ApprovedImage>;
   founderImage: PendingIntegration<ApprovedImage>;
@@ -75,6 +76,13 @@ export const integrations: {
     key: 'PLACEHOLDER_INTEREST_FORM',
     value: null,
   },
+  // The students' platform on its own education domain, once bought and built.
+  // Until then the projects live on this site, which is for supporters.
+  educationPlatform: {
+    status: 'pending',
+    key: 'PLACEHOLDER_EDUCATION_PLATFORM',
+    value: null,
+  },
   heroImage: { status: 'pending', key: 'PLACEHOLDER_HERO_IMAGE', value: null },
   hallImage: { status: 'pending', key: 'PLACEHOLDER_HALL_IMAGE', value: null },
   founderImage: {
@@ -98,3 +106,33 @@ export const contact = {
     return `mailto:${this.email}?subject=${encodeURIComponent(subject)}`;
   },
 };
+
+/* ----------------------------------------------------------- giving */
+
+/** The quick amounts offered for a gift to the organisation, in pounds. */
+export const giftAmounts = [25, 50, 100, 250] as const;
+
+/**
+ * Where each gift is meant to go, carried to Stripe as the checkout's
+ * `client_reference_id` (letters, digits, dashes) so every gift reconciles
+ * against the organisation, a project stage or a gift level.
+ */
+export const giftRef = {
+  organisation: 'ardu-general',
+  stage: (slug: string, stage: number) => `${slug}-stage-${stage}`,
+  level: (slug: string, level: GivingLevel) => `${slug}-${level}`,
+} as const;
+
+/**
+ * A hosted checkout link with its reference and, on the any-amount checkout,
+ * an amount the donor can still change (`prefilled_amount`, in pence).
+ */
+export function checkoutHref(
+  url: string,
+  ref: string,
+  amountPounds?: number,
+): string {
+  const params = new URLSearchParams({ client_reference_id: ref });
+  if (amountPounds) params.set('prefilled_amount', String(amountPounds * 100));
+  return `${url}?${params.toString()}`;
+}

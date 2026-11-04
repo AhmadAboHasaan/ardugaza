@@ -1350,7 +1350,6 @@ a.give-level:hover .give-level-cta svg {
   gap: 1.1rem;
 }
 
-
 /* ------------------------------------------------- the organisation */
 .org {
   display: grid;
@@ -1422,6 +1421,10 @@ a.give-level:hover .give-level-cta svg {
   background: var(--mist-2);
   color: var(--muted);
 }
+.status-tag--deep {
+  background: var(--deep);
+  color: var(--cream);
+}
 .panel--deep .status-tag--sand,
 .give-card .status-tag--sand {
   background: var(--sand-tint);
@@ -1464,6 +1467,12 @@ a.give-level:hover .give-level-cta svg {
 .progress-caption strong {
   color: var(--ink);
 }
+.progress--funded .progress-fill {
+  background: var(--teal);
+}
+.progress--ink.progress--funded .progress-fill {
+  background: #bfe3d9;
+}
 .progress--ink .progress-track {
   background: rgba(243, 239, 228, 0.16);
 }
@@ -1488,17 +1497,50 @@ a.give-level:hover .give-level-cta svg {
 .project-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.9rem;
   height: 100%;
-  padding: 1.75rem;
+  overflow: hidden;
   background: var(--mist);
   border-radius: var(--r-card);
-  transition: transform var(--motion-state) var(--ease-out);
+}
+.project-card-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background:
+    radial-gradient(
+      45% 40% at 90% 40%,
+      rgba(201, 162, 39, 0.2),
+      transparent 70%
+    ),
+    radial-gradient(
+      120% 90% at 100% 0%,
+      rgba(31, 111, 107, 0.55),
+      transparent 60%
+    ),
+    linear-gradient(160deg, var(--deep) 0%, var(--deep-2) 100%);
+}
+/* The status sits on the cover like a crown: the first thing the eye meets. */
+.project-crown {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  box-shadow: 0 6px 18px rgba(11, 40, 38, 0.35);
+}
+.project-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.6rem 1.75rem 1.75rem;
+}
+.project-card-ordinal {
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--teal);
 }
 .project-card-title {
-  margin: 0.25rem 0 0;
-  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  margin: 0;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
 }
 .project-card-title a {
   color: inherit;
@@ -1510,11 +1552,33 @@ a.give-level:hover .give-level-cta svg {
   text-decoration-color: var(--sand);
 }
 .project-card-summary {
-  font-size: 0.95rem;
+  font-size: 0.97rem;
+  max-width: 56ch;
+}
+.project-live {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.project-live li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: var(--teal);
+}
+.project-live svg {
+  flex: none;
+  padding: 2px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
 }
 .project-needs {
   width: 100%;
-  margin-top: 0.25rem;
   padding: 1rem 1.1rem;
   background: var(--white);
   border-radius: var(--r-chip);
@@ -1525,52 +1589,31 @@ a.give-level:hover .give-level-cta svg {
 .project-needs-label {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 0.75rem;
-  font-size: 0.9rem;
+  gap: 0.35rem 0.75rem;
+  font-size: 0.92rem;
   font-weight: 650;
   color: var(--ink);
 }
 .project-needs-label span {
-  color: var(--teal);
+  color: #6b5410;
 }
-.project-card > .link-button {
+.project-card-body > .link-button {
   margin-top: auto;
 }
-/* A lone project spreads across the row: the story left, what it needs right. */
-.project-grid > li:only-child .project-card:not(.project-card--compact) {
+/* A lone project spreads across the row: the cover left, the story right. */
+.project-grid > li:only-child .project-card {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  grid-template-areas:
-    'tag needs'
-    'title needs'
-    'summary needs'
-    'link needs';
-  gap: 0.9rem clamp(1.5rem, 4vw, 3rem);
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
 }
-.project-grid > li:only-child .project-card:not(.project-card--compact) .status-tag {
-  grid-area: tag;
-  justify-self: start;
+.project-grid > li:only-child .project-card .project-card-media {
+  aspect-ratio: auto;
+  min-height: 100%;
 }
-.project-grid > li:only-child .project-card:not(.project-card--compact) > .link-button {
-  justify-self: start;
+.project-grid > li:only-child .project-card .project-card-body {
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
 }
-.project-grid > li:only-child .project-card:not(.project-card--compact) .project-card-title {
-  grid-area: title;
-}
-.project-grid > li:only-child .project-card:not(.project-card--compact) .project-card-summary {
-  grid-area: summary;
-  max-width: 52ch;
-}
-.project-grid > li:only-child .project-card:not(.project-card--compact) .project-needs {
-  grid-area: needs;
-  align-self: center;
-  margin-top: 0;
-  padding: 1.4rem 1.5rem;
-}
-.project-grid > li:only-child .project-card:not(.project-card--compact) > .link-button {
-  grid-area: link;
-  margin-top: 0.25rem;
+.project-card--compact .project-card-media {
+  aspect-ratio: 16 / 7;
 }
 .projects-foot {
   display: flex;
@@ -1590,9 +1633,84 @@ a.give-level:hover .give-level-cta svg {
   margin-top: -0.5rem;
 }
 
+/* -------------------------------------------------------- project cover */
+.project-cover,
+.project-cover svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.cover-rubble-a {
+  fill: rgba(243, 239, 228, 0.16);
+}
+.cover-rubble-b {
+  fill: rgba(243, 239, 228, 0.09);
+}
+.cover-road {
+  fill: none;
+  stroke: rgba(243, 239, 228, 0.28);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 2 9;
+}
+.cover-road-travelled {
+  fill: none;
+  stroke: var(--sand);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.cover-end {
+  fill: var(--sand);
+}
+.cover-end-glow {
+  fill: rgba(201, 162, 39, 0.22);
+}
+.cover-stop-ring {
+  fill: var(--deep);
+  stroke: rgba(243, 239, 228, 0.55);
+  stroke-width: 2.5;
+}
+.cover-stop--live .cover-stop-ring,
+.cover-stop--done .cover-stop-ring {
+  fill: var(--sand);
+  stroke: var(--sand);
+}
+.cover-stop-check {
+  fill: none;
+  stroke: var(--deep);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cover-stop--now .cover-stop-ring {
+  fill: var(--deep);
+  stroke: var(--cream);
+  stroke-width: 3;
+}
+.cover-stop-pulse {
+  fill: rgba(243, 239, 228, 0.16);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cover-pulse 2.4s var(--ease-out) infinite;
+}
+@keyframes cover-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
 /* ---------------------------------------------------- project stages */
 .stage-status {
-  display: inline-block;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.3rem;
   margin-top: 1rem;
   padding: 0.25rem 0.65rem;
   border-radius: var(--r-pill);
@@ -1607,10 +1725,19 @@ a.give-level:hover .give-level-cta svg {
   background: var(--sand);
   border-color: var(--sand);
 }
+.stage-status--live {
+  color: var(--deep);
+  background: #bfe3d9;
+  border-color: #bfe3d9;
+}
 .stage-status--done {
   color: var(--deep);
   background: var(--cream);
   border-color: var(--cream);
+}
+.stage-status--later {
+  color: rgba(243, 239, 228, 0.62);
+  border-color: rgba(243, 239, 228, 0.22);
 }
 .step:last-child .icon {
   border-color: rgba(243, 239, 228, 0.55);
@@ -1620,11 +1747,39 @@ a.give-level:hover .give-level-cta svg {
   border-color: var(--sand);
   color: var(--sand);
 }
-.step .stage-status + h3 {
-  margin-top: 0.75rem;
+.step.step--live .icon,
+.step.step--done .icon {
+  background: #bfe3d9;
+  border-color: #bfe3d9;
+  color: var(--deep);
+}
+.step-number {
+  margin-top: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: rgba(243, 239, 228, 0.66);
+}
+.panel--deep .step-number {
+  opacity: 1;
+}
+.step .step-number + h3 {
+  margin-top: 0.15rem;
 }
 .step .progress {
   margin-top: 1rem;
+}
+.step-fund {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.9rem;
+  min-height: 44px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--sand);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.3em;
 }
 .stage-unpriced {
   margin-top: 1rem;
@@ -1633,6 +1788,81 @@ a.give-level:hover .give-level-cta svg {
 }
 .panel--deep .stage-unpriced {
   opacity: 1;
+}
+
+/* -------------------------------------------- project page: standing */
+.page-hero--split .page-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.standing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: clamp(1.4rem, 2.6vw, 2rem);
+  background: var(--white);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-soft);
+}
+.standing-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #6b5410;
+}
+.standing-stage {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--deep);
+}
+.standing .progress {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+.standing-cta {
+  margin-top: 0.6rem;
+}
+.standing-live {
+  display: grid;
+  gap: 0.45rem;
+  width: 100%;
+  margin: 0.6rem 0 0;
+  padding: 0.9rem 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+.standing-live li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.standing-live svg {
+  flex: none;
+  margin-top: 0.15rem;
+  padding: 2px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--white);
+}
+.standing-live strong {
+  color: var(--ink);
+}
+.standing-more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.92rem;
+  font-weight: 650;
+  color: var(--teal);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.3em;
 }
 
 /* --------------------------------------------------------- indicators */
@@ -1770,6 +2000,38 @@ a.give-level:hover .give-level-cta svg {
   margin-top: 1rem;
 }
 
+/* ------------------------------------------- giving: quick amounts */
+.give-amounts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 0 0 0.25rem;
+  padding: 0;
+  list-style: none;
+}
+.give-amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  border-radius: var(--r-chip);
+  background: var(--mist);
+  border: 1.5px solid transparent;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--teal);
+  text-decoration: none;
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    background-color var(--motion-state) ease,
+    border-color var(--motion-state) ease;
+}
+.give-amount:active {
+  transform: scale(0.98);
+}
+
 /* ------------------------------------------------------- interaction */
 @media (hover: hover) and (pointer: fine) {
   .link-button--primary:hover {
@@ -1783,6 +2045,10 @@ a.give-level:hover .give-level-cta svg {
   }
   .link-button--white:hover {
     background: var(--cream);
+  }
+  .give-amount:hover {
+    background: var(--teal-tint);
+    border-color: var(--teal);
   }
   .link-button--text:hover {
     color: var(--deep);
@@ -1829,6 +2095,9 @@ a.give-level:hover .give-level-cta svg {
   .road-end {
     opacity: 1;
   }
+  .cover-stop-pulse {
+    display: none;
+  }
 }
 
 /* --------------------------------------------------------- responsive */
@@ -1850,14 +2119,19 @@ a.give-level:hover .give-level-cta svg {
   .give-project-row {
     grid-template-columns: 1fr;
   }
-  .project-grid > li:only-child .project-card:not(.project-card--compact) {
+  .project-grid > li:only-child .project-card {
+    display: flex;
+  }
+  .project-grid > li:only-child .project-card .project-card-media {
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+  }
+  .page-hero--split .page-hero-inner {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      'tag'
-      'title'
-      'summary'
-      'needs'
-      'link';
+    align-items: start;
+  }
+  .standing {
+    max-width: 560px;
   }
   .steps::before,
   .sequence::before {
@@ -2002,6 +2276,9 @@ a.give-level:hover .give-level-cta svg {
 @media (max-width: 479px) {
   .give-levels {
     grid-template-columns: 1fr;
+  }
+  .give-amounts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .indicator-grid {
     grid-template-columns: 1fr;

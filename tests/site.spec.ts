@@ -12,7 +12,7 @@ const navPages = [
 const pages = [
   { path: '/', h1: /Ardú lifts Gaza’s young people/ },
   ...navPages,
-  { path: '/projects/ardu-hall', h1: /Ardú Hall/ },
+  { path: '/projects/ardu-space', h1: /Ardú Space/ },
 ];
 const tags = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'];
 const operational =
@@ -26,15 +26,20 @@ test('home page leads with the organisation, its projects and the giving route',
     'their ambition.',
   );
   await expect(
-    page.getByRole('heading', { name: /An organisation, not a building/ }),
+    page.getByRole('heading', {
+      name: /A youth organisation, measured by one result/,
+    }),
   ).toBeVisible();
   const card = page.locator('.project-card').first();
-  await expect(card.locator('.status-tag')).toHaveText('On the ground now');
-  await expect(card.getByRole('progressbar')).toHaveCount(1);
-  await expect(card.getByRole('link', { name: 'See the project' })).toHaveAttribute(
-    'href',
-    '/projects/ardu-hall',
+  await expect(card.locator('.project-crown')).toHaveText('Under construction');
+  await expect(card).toContainText(
+    'Stage one, Clear: funded and on the ground',
   );
+  await expect(card).toContainText('Stage two of four, Light');
+  await expect(card.getByRole('progressbar')).toHaveCount(1);
+  await expect(
+    card.getByRole('link', { name: 'See the project' }),
+  ).toHaveAttribute('href', '/projects/ardu-space');
   const give = page.locator('.hero').getByRole('link', { name: 'Give now' });
   await expect(give).toHaveAttribute('href', '#give');
   await give.click();
@@ -43,12 +48,22 @@ test('home page leads with the organisation, its projects and the giving route',
   await expect(panel).toBeInViewport();
   const any = panel.getByRole('link', { name: 'Give any amount' });
   await expect(any).toHaveAttribute('href', checkout);
+  await expect(any).toHaveAttribute(
+    'href',
+    /client_reference_id=ardu-general$/,
+  );
   await expect(any).toHaveAttribute('rel', 'noopener');
   await expect(any).toHaveAttribute('target', '_blank');
+  const chips = panel.locator('.give-amount');
+  await expect(chips).toHaveCount(4);
+  await expect(chips.first()).toHaveAttribute(
+    'href',
+    /client_reference_id=ardu-general&prefilled_amount=2500$/,
+  );
   await expect(panel.locator('.give-level')).toHaveCount(0);
   await expect(
     panel.getByRole('link', { name: 'Fund a project stage' }),
-  ).toHaveAttribute('href', '/projects/ardu-hall#fund');
+  ).toHaveAttribute('href', '/projects/ardu-space#fund');
   expect(await page.locator('input, form').count()).toBe(0);
   await expect(
     page.getByText(/No payment details touch this website/),
@@ -97,29 +112,49 @@ test('a project page carries its status, its stages and their funding', async ({
     .first()
     .getByRole('link', { name: 'See the project' })
     .click();
-  await expect(page).toHaveURL(/\/projects\/ardu-hall$/);
+  await expect(page).toHaveURL(/\/projects\/ardu-space$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    /Ardú Hall/,
+    /Ardú Space/,
   );
   await expect(page.locator('.page-hero .status-tag')).toHaveText(
-    'On the ground now',
+    'Under construction',
+  );
+  const standing = page.getByRole('complementary', {
+    name: 'Where Ardú Space stands',
+  });
+  await expect(standing).toContainText('Stage two of four: Light');
+  await expect(standing.getByRole('progressbar')).toHaveAttribute(
+    'aria-valuenow',
+    '0',
+  );
+  await expect(
+    standing.getByRole('link', { name: 'Fund this stage' }),
+  ).toHaveAttribute('href', /client_reference_id=ardu-space-stage-2$/);
+  await expect(standing).toContainText(
+    'Stage one, Clear: funded and on the ground',
   );
   const steps = page.locator('#stages .step');
   await expect(steps).toHaveCount(4);
-  await expect(steps.first()).toHaveAttribute('aria-current', 'step');
-  await expect(steps.first().locator('.stage-status')).toHaveText(
-    'Funding now',
-  );
+  await expect(steps.first().locator('.stage-status')).toHaveText('Live');
+  await expect(steps.nth(1)).toHaveAttribute('aria-current', 'step');
+  await expect(steps.nth(1).locator('.stage-status')).toHaveText('Funding now');
+  await expect(steps.nth(2).locator('.stage-status')).toHaveText('Next');
+  await expect(steps.nth(3).locator('.stage-status')).toHaveText('Later');
   const bars = page.locator('#stages [role="progressbar"]');
   await expect(bars).toHaveCount(3);
-  await expect(bars.first()).toHaveAttribute('aria-valuemax', '100');
-  await expect(page.locator('#stages')).toContainText(/updated \d+ \w+ 2026/);
-  await page.locator('#stages').getByRole('link', { name: 'Fund this stage' }).click();
-  await expect(page).toHaveURL(/#fund$/);
+  await expect(bars.first()).toHaveAttribute('aria-valuenow', '100');
+  await expect(page.locator('#stages')).toContainText(/Updated \d+ \w+ 2026/);
+  await expect(
+    steps.nth(1).getByRole('link', { name: 'Fund this stage' }),
+  ).toHaveAttribute('href', checkout);
   const levels = page.locator('#fund .give-level');
   await expect(levels).toHaveCount(4);
   for (const level of await levels.all()) {
     await expect(level).toHaveAttribute('href', checkout);
+    await expect(level).toHaveAttribute(
+      'href',
+      /client_reference_id=ardu-space-/,
+    );
     await expect(level).toHaveAttribute('rel', 'noopener');
   }
   expect(await page.locator('input, form').count()).toBe(0);
@@ -183,7 +218,7 @@ test('mobile navigation closes on navigation and Escape', async ({ page }) => {
 for (const width of [320, 390, 768, 1024, 1440, 1920]) {
   test(`responsive layout ${width}`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    for (const path of ['/', '/support', '/projects/ardu-hall', '/about']) {
+    for (const path of ['/', '/support', '/projects/ardu-space', '/about']) {
       await page.goto(path);
       expect(
         await page.evaluate(

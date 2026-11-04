@@ -7,6 +7,7 @@ import { Icon } from '@/components/ui/Icon';
 import { StatusTag } from '@/components/ui/StatusTag';
 import { MediaFrame } from '@/components/content/MediaFrame';
 import { Stages } from '@/components/sections/Stages';
+import { ProjectStanding } from '@/components/sections/ProjectStanding';
 import { Weight } from '@/components/sections/Weight';
 import { Give } from '@/components/sections/Give';
 import { CtaBand } from '@/components/ui/CtaBand';
@@ -40,7 +41,9 @@ export default async function ProjectPage({ params }: Params) {
     <>
       <PageHero
         {...project.hero}
+        kicker={project.ordinal}
         tag={<StatusTag status={project.status} />}
+        aside={<ProjectStanding project={project} />}
       />
       <Section className="project-facts" aria-label="At a glance">
         <Figures figures={project.facts} />

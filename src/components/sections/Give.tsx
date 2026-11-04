@@ -4,49 +4,75 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { StatusTag } from '@/components/ui/StatusTag';
 import { Progress } from '@/components/ui/Progress';
-import { contact, integrations } from '@/data/integrations';
+import {
+  checkoutHref,
+  contact,
+  giftAmounts,
+  giftRef,
+  integrations,
+} from '@/data/integrations';
 import { ctas, give, giveAnchor, pages, support } from '@/content/project';
 import {
   currentStage,
   projectHref,
   projects,
+  spell,
+  stageName,
   type Project,
 } from '@/content/projects';
 type Props = {
   /** h2 on the support page, h3 under the "Three ways" heading on the home page. */
   headingLevel?: 2 | 3;
   /**
-   * Organisation mode (default): any amount for Ardú itself, with the project
-   * stage open for funding beside it. Project mode: the stage's own levels,
-   * each on its hosted checkout, for the project page.
+   * Organisation mode (default): a gift to Ardú itself, in a quick amount or
+   * any amount, with the project stage open for funding beside it. Project
+   * mode: the project's gift levels and any amount for its open stage.
    */
   mode?: 'organisation' | 'project';
   project?: Project;
   id?: string;
+  /** A heading in place of the default, where the page already says "Support Ardú". */
+  heading?: string;
+  /** Show the project stage open now beside the organisation gift. */
+  withProject?: boolean;
 };
+const external = { target: '_blank', rel: 'noopener' } as const;
 /**
- * The giving panel. Every gift opens a hosted Stripe checkout; nothing is
- * collected on the site itself.
+ * The giving panel. Every gift opens a hosted Stripe checkout carrying a
+ * reference to where it is meant to go; nothing is collected on the site.
  */
 export function Give({
   headingLevel = 2,
   mode = 'organisation',
   project,
   id = giveAnchor.id,
+  heading,
+  withProject = true,
 }: Props) {
   const giving = integrations.giving;
+  const live = giving.status === 'live';
   const Heading = headingLevel === 2 ? 'h2' : 'h3';
   const featured = mode === 'organisation' ? projects[0] : project;
   const stage = featured ? currentStage(featured) : null;
-  const title =
-    mode === 'project' ? (
-      support.levels.title
-    ) : (
-      <>
-        {give.title[0]} {give.title[1]}
-      </>
-    );
+  const title = heading ? (
+    heading
+  ) : mode === 'project' && featured ? (
+    `Fund ${featured.name}.`
+  ) : (
+    <>
+      {give.title[0]} {give.title[1]}
+    </>
+  );
   const body = mode === 'project' ? support.levels.lead : give.body;
+  const anyHref = !live
+    ? null
+    : mode === 'project' && featured && stage
+      ? checkoutHref(giving.any, giftRef.stage(featured.slug, stage.number))
+      : checkoutHref(giving.any, giftRef.organisation);
+  const anyText =
+    mode === 'project' && stage
+      ? `Any amount moves ${stageName(stage).toLowerCase()}.`
+      : give.any.text;
   return (
     <div id={id} className="panel panel--deep give-panel">
       <div className="give-copy">
@@ -59,7 +85,7 @@ export function Give({
         </LinkButton>
       </div>
       <div className="give-card">
-        {mode === 'project' && (
+        {mode === 'project' && featured && (
           <>
             <p className="give-label" id={`${id}-levels-label`}>
               {give.label}
@@ -75,12 +101,14 @@ export function Give({
                 );
                 return (
                   <li key={level.key}>
-                    {giving.status === 'live' ? (
+                    {live ? (
                       <a
                         className="give-level"
-                        href={giving.levels[level.key]}
-                        target="_blank"
-                        rel="noopener"
+                        href={checkoutHref(
+                          giving.levels[level.key],
+                          giftRef.level(featured.slug, level.key),
+                        )}
+                        {...external}
                       >
                         {content}
                         <span className="give-level-cta">
@@ -100,17 +128,39 @@ export function Give({
           </>
         )}
         {mode === 'organisation' && (
-          <p className="give-label">{give.organisationLabel}</p>
+          <>
+            <p className="give-label" id={`${id}-amounts-label`}>
+              {give.organisationLabel}
+            </p>
+            {live && (
+              <ul
+                className="give-amounts"
+                aria-labelledby={`${id}-amounts-label`}
+              >
+                {giftAmounts.map((amount) => (
+                  <li key={amount}>
+                    <a
+                      className="give-amount"
+                      href={checkoutHref(
+                        giving.any,
+                        giftRef.organisation,
+                        amount,
+                      )}
+                      aria-label={`Give £${amount} to Ardú`}
+                      {...external}
+                    >
+                      £{amount}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
         )}
         <div className="give-any">
-          <p>{giving.status === 'live' ? give.any.text : give.pending}</p>
-          {giving.status === 'live' ? (
-            <LinkButton
-              href={giving.any}
-              variant="white"
-              target="_blank"
-              rel="noopener"
-            >
+          <p>{live ? anyText : give.pending}</p>
+          {anyHref ? (
+            <LinkButton href={anyHref} variant="white" {...external}>
               {give.any.cta}
             </LinkButton>
           ) : (
@@ -119,7 +169,7 @@ export function Give({
             </LinkButton>
           )}
         </div>
-        {mode === 'organisation' && featured && (
+        {mode === 'organisation' && withProject && featured && (
           <div className="give-project">
             <p className="give-label">{give.projectLabel}</p>
             <div className="give-project-row">
@@ -127,13 +177,16 @@ export function Give({
                 <StatusTag status={featured.status} />
                 <p className="give-project-name">{featured.name}</p>
                 {stage && (
-                  <p className="give-project-standing">{featured.standing}</p>
+                  <p className="give-project-standing">
+                    Funding now: {stageName(stage).toLowerCase()} of{' '}
+                    {spell(featured.stages.items.length)}, {stage.title}
+                  </p>
                 )}
               </div>
               {stage?.funding && (
                 <Progress
                   funding={stage.funding}
-                  label={`${featured.name}, ${featured.standing}`}
+                  label={`${featured.name}, ${stageName(stage)}, ${stage.title}`}
                 />
               )}
             </div>

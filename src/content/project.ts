@@ -17,7 +17,7 @@ export const project = {
   ogTitle:
     'Ardú lifts Gaza’s young people over everything between them and their ambition.',
   ogDescription:
-    'A youth organisation born under the rubble of the home in Gaza City where its founder’s road began: guidance, learning, openings and places that work, for university students and graduates in technology and medicine first. Its first project is a hall rising over that rubble. Not relief. A lifting.',
+    'A youth organisation born under the rubble of the home in Gaza City where its founder’s road began: guidance, learning, openings and places that work, for university students and graduates in technology and medicine first. Its first project, Ardú Space, rises over that rubble. Not relief. A lifting.',
   founder: 'Ahmed Abuhassan',
   founderLinkedin: 'https://www.linkedin.com/in/ahmadabohassan',
   tagline: 'Not relief. A lifting.',
@@ -88,8 +88,8 @@ export const hero = {
 } as const;
 
 export const organisation = {
-  title: ['An organisation,', 'not a building.'],
-  body: 'Ardú is built to deliver a result, not a product: young people in Gaza reaching the ambition their ability has earned them, from where they are. It works through projects, each with a status you can see, stages you can count and a page with what it needs. The first is a hall rising over the rubble where the founder’s road began. More follow as Ardú adopts them, each with its own figures.',
+  title: ['A youth organisation,', 'measured by one result.'],
+  body: 'Ardú exists for one result: young people in Gaza reaching the ambition their ability has earned them, from where they are. It works through projects, each with a status you can see, stages you can count and a page with what it needs now. The first is Ardú Space, rising over the rubble where the founder’s road began. More join as Ardú adopts them, each with its own figures.',
   facts: [
     {
       icon: 'graduation',
@@ -142,8 +142,8 @@ export const pillars = {
       icon: 'power',
       title: 'A place where the work gets done',
       short:
-        'Power that stays on, internet that holds, a seat and quiet, so nothing on the road is lost to a blackout. The first is Ardú Hall.',
-      long: 'Power that stays on through the working day, internet that holds, light, water and quiet, because a road is no use if the work is lost to a blackout. Ardú builds these places as projects, each with a team on the ground. The first is Ardú Hall, rising over the rubble in Gaza City.',
+        'Power that stays on, internet that holds, a seat and quiet, so nothing on the road is lost to a blackout. The first is Ardú Space.',
+      long: 'Power that stays on through the working day, internet that holds, light, water and quiet, because a road is no use if the work is lost to a blackout. Ardú builds these places as projects, each with a team on the ground. The first is Ardú Space, rising over the rubble in Gaza City.',
     },
   ],
   more: 'How we work',
@@ -175,10 +175,18 @@ export const changes = {
 } as const;
 
 export const projectsSection = {
-  title: ['Our projects,', 'in the open.'],
-  lead: 'Ardú works through projects. Each one has a status you can see, stages you can count, and a page with what it needs and where every pound went.',
-  note: 'More projects are added here as Ardú adopts them, each with its own status and figures.',
-  needs: 'Needs now',
+  title: ['The impact,', 'project by project.'],
+  lead: 'Ardú delivers its impact through projects. Each wears its status on top, carries stages you can count, and opens onto a page with what it needs now and where every pound went.',
+  note: 'More projects join here as Ardú adopts them, each with its own status, stages and figures.',
+  needs: 'Funding now',
+} as const;
+
+export const projectsPage = {
+  hero: {
+    title: 'Our projects, in the open.',
+    lead: 'Ardú works through projects. Each one carries a status you can see, stages you can count, and a page with what it needs now and where every pound went. A stage turns live the moment its funding is complete, and the next one opens.',
+  },
+  list: 'Every project, with its status',
 } as const;
 
 export const weight = {
@@ -222,7 +230,7 @@ export const ways = {
   stage: {
     icon: 'landmark',
     title: 'Fund a stage',
-    text: 'Foundations, companies and major donors can take a whole stage of a project, from the rubble to the first kilowatts, and see it through with full figures and reporting.',
+    text: 'Foundations, companies and major donors can take a whole stage of a project, from light, water and the fibre line to the first kilowatts, and see it through with full figures and reporting.',
   },
   note: 'A gift to the organisation, a partnership, or a whole stage of a project. Each one moves the road.',
 } as const;
@@ -241,7 +249,7 @@ export const founderStrip = {
 
 export const ctaBand = {
   title: 'Help lift it.',
-  body: 'One road began under this rubble. Ardú opens it for thousands of young people over the years ahead. Support the organisation, or fund the first stage of its first project.',
+  body: 'One road began under this rubble. Ardú opens it for thousands of young people over the years ahead. Support the organisation, or fund the stage its first project needs now.',
 } as const;
 
 /* ----------------------------------------------------------------- about */
@@ -298,12 +306,21 @@ export const about = {
       'Both are professions a person can carry anywhere. Ardú starts there, for adults of eighteen and over, women and men equally, and widens as its projects and partners allow.',
     ],
   },
+  impact: {
+    title: 'The impact, project by project',
+    lead: 'Ardú delivers its impact through projects, each wearing its status on top and funded stage by stage in the open. What has been delivered is published on the impact page as it comes in, from the first cohort onward.',
+    more: 'How we measure impact',
+  },
+  partners: {
+    title: 'Partners',
+    body: 'Ardú is built to gather under one roof what organisations working on Palestinian talent and education already offer: courses and curricula, trainers and mentors, laptops, and openings into work for the people who come through its projects. Partners are named here as their agreements are signed.',
+  },
   story: {
     title: 'The story',
     body: [
       'The house above the hall did not survive. The hall did, and so did an idea: that a young person with ability should not have to walk for hours to find a socket and a signal to do their work.',
       'For two years Ardú’s founder did exactly that: learning to code on a borrowed laptop with a cracked screen, charging where there was power, working where there was signal, and mentoring others caught in the same blackout. Along the way he built live websites for local shops, NGOs and startups, and saw the same pattern everywhere. The young people around him were not short of ability or ambition. They were short of the road: someone ahead of them who had walked it, the skills and tools the market asks for, a door that opens, and a place where the work could be done.',
-      'Ardú is the organisation that puts all of that within reach, project by project. Its first project is the hall under that rubble.',
+      'Ardú is the organisation that puts all of that within reach, project by project. Its first project, Ardú Space, rises from the hall under that rubble.',
     ],
   },
   name: {
@@ -472,7 +489,7 @@ export const partners = {
       {
         icon: 'building',
         title: 'Places that work',
-        text: 'Deliver in person or remotely into Ardú Hall, a room with power, internet, screens and a team on the ground, or online through Ardú’s programmes.',
+        text: 'Deliver in person or remotely into Ardú Space, a room with power, internet, screens and a team on the ground, or online through Ardú’s programmes.',
       },
       {
         icon: 'chart',
@@ -516,7 +533,7 @@ export const partners = {
   },
   funders: {
     title: 'For funders and institutions',
-    body: 'Foundations, companies and institutional funders can take a whole stage of a project, from clearing the rubble to the first kilowatts of solar, and follow it through with full figures and reporting. The complete plan, with stages, costs, verification, the energy design and the earned-income model, is shared on request, together with the location of the hall.',
+    body: 'Foundations, companies and institutional funders can take a whole stage of a project, from light, water and the fibre line to the first kilowatts of solar, and follow it through with full figures and reporting. The complete plan, with stages, costs, verification, the energy design and the earned-income model, is shared on request, together with the location of the hall.',
   },
 } as const;
 
@@ -532,8 +549,7 @@ export const support = {
     lead: 'Every project has a stage that is open for funding now. Pick the one you can picture.',
   },
   levels: {
-    title: 'Fund this stage',
-    lead: 'Each gift below is one piece of the hall. Choose what yours lifts, or give any amount; every pound travels the trustee route and comes back to you as a receipt and a photograph.',
+    lead: 'Each gift below is one piece of Ardú Space. Choose what yours lifts, or give any amount to the stage open now; every pound travels the trustee route and comes back to you as a receipt and a photograph.',
     items: [
       {
         key: 'seat',
@@ -568,7 +584,7 @@ export const support = {
   stage: {
     icon: 'landmark',
     title: 'Fund a whole stage',
-    body: 'Foundations, companies and major donors can take a whole stage of a project and see it through: clearing the rubble; light, water and the fibre line; seats and laptops; the first months of running; the first kilowatts of solar. Each stands on its own and is built in order. Figures, quotes and verification are shared in a direct conversation.',
+    body: 'Foundations, companies and major donors can take a whole stage of a project and see it through: light, water and the fibre line; seats and laptops; the first months of running; the first kilowatts of solar. Each stands on its own and is built in order. Figures, quotes and verification are shared in a direct conversation.',
   },
   safeguards: {
     title: 'How gifts are safeguarded',

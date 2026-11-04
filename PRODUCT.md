@@ -20,7 +20,7 @@ Make the infrastructure for professional progress available to young people in G
 
 ## Positioning
 
-An organisation born under the rubble of its founder's family home, working through projects it funds and reports in the open; its first project restores a roughly 500 m² hall in central Gaza City. Success concerns degrees kept, income earned and work found. All impact figures describe plans, not achievements, until the first cohort reports.
+An organisation born under the rubble of its founder's family home, working through projects it funds and reports in the open; its first project, Ardú Space, restores a roughly 500 m² hall in central Gaza City. Success concerns degrees kept, income earned and work found. All impact figures describe plans, not achievements, until the first cohort reports.
 
 ## Operating Context
 
@@ -28,7 +28,7 @@ Factual authority: docs/ardu-project-summary.pdf, October 2026, prepared by foun
 
 ## Capabilities and Constraints
 
-Payroll, energy arithmetic and running costs live in the partner brief (shared on request) and must not appear on the public site; the e2e suite checks this. Project pages publish each stage's funding target in pounds, at today's prices, with the amount raised and the date it was last updated by hand. Giving runs only through hosted Stripe checkouts configured in src/data/integrations.ts (any amount for the organisation, one link per stage level); the campaign page used until 18 October 2026 is closed. No legal, tax, partner or achieved-impact claims may be invented.
+Payroll, energy arithmetic and running costs live in the partner brief (shared on request) and must not appear on the public site; the e2e suite checks this. Project pages publish each stage's funding target in pounds, at today's prices, with the amount raised and the date it was last updated by hand; stage status is derived from those figures, never typed. Giving runs only through hosted Stripe checkouts configured in src/data/integrations.ts (any amount for the organisation, one link per stage level); the campaign page used until 18 October 2026 is closed. No legal, tax, partner or achieved-impact claims may be invented.
 
 ## Brand Commitments
 

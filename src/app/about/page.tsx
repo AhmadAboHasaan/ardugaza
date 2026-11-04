@@ -5,9 +5,10 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { MediaFrame } from '@/components/content/MediaFrame';
 import { Pillars } from '@/components/sections/Pillars';
+import { Projects } from '@/components/sections/Projects';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { integrations } from '@/data/integrations';
-import { about, pages, project } from '@/content/project';
+import { about, ctas, pages, project } from '@/content/project';
 export const metadata: Metadata = {
   title: pages.about.title,
   description: about.hero.lead,
@@ -62,6 +63,27 @@ export default function AboutPage() {
         </div>
       </Section>
       <Pillars expanded />
+      <Projects
+        id="about-impact"
+        title={about.impact.title}
+        lead={about.impact.lead}
+        compact
+      />
+      <Section
+        className="split split--muted"
+        aria-labelledby="about-partners-title"
+      >
+        <h2 id="about-partners-title">{about.partners.title}</h2>
+        <div className="split-body">
+          <p>{about.partners.body}</p>
+          <div className="actions">
+            <LinkButton href={pages.partners.href}>{ctas.partner}</LinkButton>
+            <LinkButton href={pages.impact.href} variant="outline">
+              {about.impact.more}
+            </LinkButton>
+          </div>
+        </div>
+      </Section>
       <Section className="split" aria-labelledby="story-title">
         <h2 id="story-title">{about.story.title}</h2>
         <div className="split-body">
@@ -124,7 +146,6 @@ export default function AboutPage() {
           {about.founder.body.map((p) => (
             <p key={p.slice(0, 24)}>{p}</p>
           ))}
-          <p className="small partners-note">{about.founder.partners}</p>
           <div className="actions">
             <LinkButton
               href={project.founderLinkedin}

@@ -50,7 +50,7 @@ export default function SupportPage() {
     <>
       <PageHero {...support.hero} />
       <Section className="give" aria-labelledby="give-title">
-        <Give />
+        <Give heading="Give to Ardú." withProject={false} />
       </Section>
       <Projects
         id="fund-a-project"

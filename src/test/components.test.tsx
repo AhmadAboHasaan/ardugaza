@@ -14,13 +14,19 @@ import { Stages } from '@/components/sections/Stages';
 import { Give } from '@/components/sections/Give';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 import { Pillars } from '@/components/sections/Pillars';
-import { integrations } from '@/data/integrations';
+import {
+  checkoutHref,
+  giftAmounts,
+  giftRef,
+  integrations,
+} from '@/data/integrations';
 import { nav, pages, pillars, support } from '@/content/project';
 import {
   currentStage,
-  percentFunded,
   projectHref,
   projects,
+  resolveStages,
+  type Project,
 } from '@/content/projects';
 vi.mock('next/navigation', () => ({ usePathname: () => '/about' }));
 describe('Navigation and semantic primitives', () => {
@@ -109,16 +115,33 @@ describe('Navigation and semantic primitives', () => {
   });
 });
 describe('Promotional sections', () => {
-  it('routes the organisation gift to its hosted checkout and nothing through the site', () => {
+  it('routes the organisation gift to its hosted checkout, tracked, and nothing through the site', () => {
     render(<Ways />);
     const giving = integrations.giving;
     const any = screen.getByRole('link', { name: 'Give any amount' });
     if (giving.status === 'live') {
-      expect(any).toHaveAttribute('href', giving.any);
+      expect(any).toHaveAttribute(
+        'href',
+        checkoutHref(giving.any, giftRef.organisation),
+      );
+      expect(any.getAttribute('href')).toMatch(
+        /^https:\/\/donate\.stripe\.com\/.+\?client_reference_id=ardu-general$/,
+      );
       expect(any).toHaveAttribute('rel', 'noopener');
       expect(any).toHaveAttribute('target', '_blank');
+      for (const amount of giftAmounts) {
+        const chip = screen.getByRole('link', {
+          name: `Give £${amount} to Ardú`,
+        });
+        expect(chip).toHaveAttribute(
+          'href',
+          checkoutHref(giving.any, giftRef.organisation, amount),
+        );
+        expect(chip.getAttribute('href')).toContain(
+          `prefilled_amount=${amount * 100}`,
+        );
+      }
     }
-    expect(screen.queryAllByRole('link', { name: /^£/ })).toHaveLength(0);
     expect(
       screen.getByRole('link', { name: 'Fund a project stage' }),
     ).toHaveAttribute('href', `${projectHref(projects[0].slug)}#fund`);
@@ -137,22 +160,75 @@ describe('Promotional sections', () => {
       screen.getByText(/No payment details touch this website/),
     ).toBeVisible();
   });
-  it('gives each stage level its own hosted checkout on the project page', () => {
-    render(<Give mode="project" project={projects[0]} id="fund" />);
+  it('gives each gift level its own tracked checkout on the project page', () => {
+    const project = projects[0];
+    render(<Give mode="project" project={project} id="fund" />);
     const giving = integrations.giving;
+    const open = currentStage(project)!;
     if (giving.status === 'live') {
       for (const level of support.levels.items) {
         const link = screen.getByRole('link', {
           name: new RegExp(`^${level.amount}`),
         });
-        expect(link).toHaveAttribute('href', giving.levels[level.key]);
+        expect(link).toHaveAttribute(
+          'href',
+          checkoutHref(
+            giving.levels[level.key],
+            giftRef.level(project.slug, level.key),
+          ),
+        );
         expect(link).toHaveAttribute('rel', 'noopener');
       }
       expect(
         screen.getByRole('link', { name: 'Give any amount' }),
-      ).toHaveAttribute('href', giving.any);
+      ).toHaveAttribute(
+        'href',
+        checkoutHref(giving.any, giftRef.stage(project.slug, open.number)),
+      );
     }
+    expect(screen.getByText(/Any amount moves stage two\./)).toBeVisible();
     expect(document.querySelector('input')).toBeNull();
+  });
+  it('reads every stage status from the books, never by hand', () => {
+    const project = projects[0];
+    expect(resolveStages(project).map((stage) => stage.state)).toEqual([
+      'live',
+      'now',
+      'next',
+      'later',
+    ]);
+    const fund = (n: number) => ({
+      ...project,
+      stages: {
+        ...project.stages,
+        items: project.stages.items.map((stage) =>
+          stage.number === n && stage.funding
+            ? {
+                ...stage,
+                funding: { ...stage.funding, raised: stage.funding.target },
+              }
+            : stage,
+        ),
+      },
+    });
+    const secondFunded: Project = fund(2);
+    expect(resolveStages(secondFunded).map((stage) => stage.state)).toEqual([
+      'live',
+      'live',
+      'now',
+      'next',
+    ]);
+    const firstReported: Project = {
+      ...secondFunded,
+      stages: {
+        ...secondFunded.stages,
+        items: secondFunded.stages.items.map((stage) =>
+          stage.number === 1 ? { ...stage, done: true } : stage,
+        ),
+      },
+    };
+    expect(resolveStages(firstReported)[0].state).toBe('done');
+    expect(currentStage(firstReported)?.number).toBe(3);
   });
   it('states a project in stages, each with its status and its funding', () => {
     const project = projects[0];
@@ -160,31 +236,48 @@ describe('Promotional sections', () => {
     const steps = container.querySelectorAll('.step');
     expect(steps).toHaveLength(project.stages.items.length);
     expect(steps[0]).toHaveTextContent('Clear');
-    expect(steps[0]).toHaveAttribute('aria-current', 'step');
+    expect(steps[0]).toHaveTextContent('Live');
+    expect(steps[1]).toHaveTextContent('Funding now');
+    expect(steps[1]).toHaveAttribute('aria-current', 'step');
+    expect(steps[2]).toHaveTextContent('Next');
     expect(steps[3]).toHaveTextContent('Grow');
+    expect(steps[3]).toHaveTextContent('Later');
     const bars = screen.getAllByRole('progressbar');
     expect(bars).toHaveLength(
       project.stages.items.filter((stage) => stage.funding).length,
     );
-    expect(bars[0]).toHaveAttribute(
-      'aria-valuenow',
-      String(Math.round(percentFunded(project.stages.items[0].funding!))),
-    );
-    expect(bars[0]).toHaveAccessibleName(/£50 of £11,000 raised/);
-    expect(container.textContent).toMatch(/updated 4 November 2026/);
+    expect(bars[0]).toHaveAttribute('aria-valuenow', '100');
+    expect(bars[0]).toHaveAccessibleName(/fully funded, £11,000/);
+    expect(bars[1]).toHaveAttribute('aria-valuenow', '0');
+    expect(bars[1]).toHaveAccessibleName(/£0 of £22,000 raised/);
+    const giving = integrations.giving;
+    if (giving.status === 'live') {
+      expect(
+        within(steps[1] as HTMLElement).getByRole('link', {
+          name: 'Fund this stage',
+        }),
+      ).toHaveAttribute(
+        'href',
+        checkoutHref(giving.any, giftRef.stage(project.slug, 2)),
+      );
+    }
+    expect(container.textContent).toMatch(/Updated 4 November 2026/);
     expect(container.textContent).not.toMatch(/\$\s?\d/);
   });
-  it('crowns a project card with its status and what it needs now', () => {
+  it('crowns a project card with its status, what is funded and what it needs now', () => {
     const project = projects[0];
     render(<ProjectCard project={project} />);
-    expect(screen.getByText('On the ground now')).toBeVisible();
-    expect(screen.getByText(project.standing)).toBeVisible();
+    expect(screen.getByText('Under construction')).toBeVisible();
+    expect(
+      screen.getByText(/Stage one, Clear: funded and on the ground/),
+    ).toBeVisible();
+    expect(screen.getByText(/Stage two of four, Light/)).toBeVisible();
     expect(
       screen.getByRole('link', { name: 'See the project' }),
     ).toHaveAttribute('href', projectHref(project.slug));
-    const stage = currentStage(project);
-    expect(stage?.status).toBe('now');
-    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+    expect(screen.getByRole('progressbar')).toHaveAccessibleName(
+      /£0 of £22,000 raised/,
+    );
   });
   it('shows the four pillars short on the home page and in full elsewhere', () => {
     const { unmount } = render(<Pillars />);
