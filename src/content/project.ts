@@ -46,6 +46,7 @@ export const giveAnchor = {
 
 export const nav = [
   pages.about,
+  pages.projects,
   pages.whatWeDo,
   pages.impact,
   pages.partners,
@@ -93,7 +94,7 @@ export const organisation = {
     {
       icon: 'graduation',
       title: 'Who it serves',
-      text: 'University students and graduates in technology and medicine, in Gaza, first: the two fields where ability is most concentrated and most stranded.',
+      text: 'University students and graduates in technology and medicine, in Gaza, first: two fields full of ability, and two of the hardest to carry through a war.',
     },
     {
       icon: 'grow',
@@ -293,7 +294,7 @@ export const about = {
   serve: {
     title: 'Who Ardú serves',
     body: [
-      'University students and graduates in technology and medicine, in Gaza, first. Technology because it is the founder’s own road and the field most open to earning from where you are. Medicine because it is where Gaza’s students are most numerous and most stranded: universities that exist only online, no laboratories, exams sat on connections that cut mid-sentence.',
+      'University students and graduates in technology and medicine, in Gaza, first. Technology because it is the founder’s own road and the field most open to earning from where you are. Medicine because the war has stranded its students hardest: long degrees carried through universities that exist only online, without laboratories or wards, with exams sat on connections that cut mid-sentence.',
       'Both are professions a person can carry anywhere. Ardú starts there, for adults of eighteen and over, women and men equally, and widens as its projects and partners allow.',
     ],
   },
@@ -356,7 +357,7 @@ export const about = {
       {
         icon: 'users',
         title: 'An advisory circle',
-        text: 'People who have walked the road, from Gaza and from the organisations Ardú works with, read the plans before they are published. Names appear here as each agrees to be named.',
+        text: 'An advisory circle of people who have walked the road, from Gaza and from the organisations Ardú works with, is being formed to read each plan before it is published. Names appear here as each agrees to be named.',
       },
       {
         icon: 'list',

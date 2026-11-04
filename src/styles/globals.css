@@ -1550,6 +1550,10 @@ a.give-level:hover .give-level-cta svg {
 }
 .project-grid > li:only-child .project-card:not(.project-card--compact) .status-tag {
   grid-area: tag;
+  justify-self: start;
+}
+.project-grid > li:only-child .project-card:not(.project-card--compact) > .link-button {
+  justify-self: start;
 }
 .project-grid > li:only-child .project-card:not(.project-card--compact) .project-card-title {
   grid-area: title;

@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 const navPages = [
   { path: '/about', label: 'About', h1: /born under the rubble/ },
+  { path: '/projects', label: 'Projects', h1: /Our projects/ },
   { path: '/what-we-do', label: 'What we do', h1: /How Ardú lifts/ },
   { path: '/impact', label: 'Impact', h1: /degrees kept/ },
   { path: '/partners', label: 'Partners', h1: /Bring what money cannot buy/ },
@@ -11,7 +12,6 @@ const navPages = [
 const pages = [
   { path: '/', h1: /Ardú lifts Gaza’s young people/ },
   ...navPages,
-  { path: '/projects', h1: /Our projects/ },
   { path: '/projects/ardu-hall', h1: /Ardú Hall/ },
 ];
 const tags = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'];
