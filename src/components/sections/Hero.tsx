@@ -11,12 +11,13 @@ export function Hero() {
             <em>{hero.titleEmphasis}</em>
           </h1>
           <p>{hero.lead}</p>
+          <p className="hero-tagline">{hero.tagline}</p>
           <div className="actions">
             <LinkButton href={giveAnchor.here} variant="light">
               {ctas.give}
             </LinkButton>
-            <LinkButton href={pages.partners.href} variant="outline">
-              {ctas.partner}
+            <LinkButton href={pages.projects.href} variant="outline">
+              {ctas.projects}
             </LinkButton>
           </div>
         </div>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { bricolage, manrope } from '@/styles/font';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
+import { Motion } from '@/components/motion/Motion';
 import { project } from '@/content/project';
 import { contact, integrations } from '@/data/integrations';
 import { asset } from '@/lib/paths';
@@ -52,6 +53,7 @@ export default function RootLayout({
         <Navigation />
         <main id="main">{children}</main>
         <Footer />
+        <Motion />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

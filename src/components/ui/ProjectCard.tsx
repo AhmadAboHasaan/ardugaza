@@ -1,41 +1,31 @@
 import Link from 'next/link';
-import { ArrowUpRight, Check } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { StatusTag } from '@/components/ui/StatusTag';
-import { Progress } from '@/components/ui/Progress';
+import { StageTrack } from '@/components/ui/StageTrack';
 import { ProjectCover } from '@/components/content/ProjectCover';
-import { ctas, projectsSection } from '@/content/project';
-import {
-  currentStage,
-  liveStages,
-  projectHref,
-  spell,
-  stageName,
-  type Project,
-} from '@/content/projects';
+import { ctas } from '@/content/project';
+import { projectHref, type Project } from '@/content/projects';
 type Props = {
   project: Project;
   /** h3 under a section heading, h2 when the card is the section. */
   headingLevel?: 2 | 3;
-  /** Compact cards drop the summary and keep the status, the need and the link. */
-  compact?: boolean;
+  /** Its place in a grid, so cards arrive one after another. */
+  index?: number;
 };
 /**
- * One project: its status as the crown on the cover, what it is, the stages
- * already funded and the one open now with its bar, and the way to its page.
+ * One project, as a door to its own page: its status as the crown on the
+ * cover, what it is in a breath, where its stages stand, and the whole card
+ * to click. Funding lives on the project's page, not here.
  */
-export function ProjectCard({
-  project,
-  headingLevel = 3,
-  compact = false,
-}: Props) {
+export function ProjectCard({ project, headingLevel = 3, index = 0 }: Props) {
   const Heading = headingLevel === 2 ? 'h2' : 'h3';
-  const stage = currentStage(project);
-  const live = liveStages(project);
-  const total = project.stages.items.length;
   const href = projectHref(project.slug);
   return (
     <article
-      className={`project-card ${compact ? 'project-card--compact' : ''}`}
+      className="project-card"
+      data-spotlight
+      data-reveal
+      style={{ ['--i' as string]: index }}
     >
       <div className="project-card-media">
         <ProjectCover project={project} />
@@ -44,37 +34,16 @@ export function ProjectCard({
       <div className="project-card-body">
         <p className="project-card-ordinal">{project.ordinal}</p>
         <Heading className="project-card-title">
-          <Link href={href}>{project.name}</Link>
+          <Link href={href} className="project-card-link">
+            {project.name}
+          </Link>
         </Heading>
-        {!compact && <p className="project-card-summary">{project.summary}</p>}
-        {live.length > 0 && (
-          <ul className="project-live">
-            {live.map((s) => (
-              <li key={s.number}>
-                <Check size={16} aria-hidden="true" />
-                {stageName(s)}, {s.title}: funded and on the ground
-              </li>
-            ))}
-          </ul>
-        )}
-        {stage && (
-          <div className="project-needs">
-            <p className="project-needs-label">
-              <span>{projectsSection.needs}</span>
-              {stageName(stage)} of {spell(total)}, {stage.title}
-            </p>
-            {stage.funding && (
-              <Progress
-                funding={stage.funding}
-                label={`${project.name}, ${stageName(stage)}, ${stage.title}`}
-              />
-            )}
-          </div>
-        )}
-        <Link href={href} className="link-button link-button--text">
+        <p className="project-card-summary">{project.brief}</p>
+        <StageTrack project={project} />
+        <span className="project-card-cta" aria-hidden="true">
           {ctas.project}
-          <ArrowUpRight size={20} aria-hidden="true" />
-        </Link>
+          <ArrowUpRight size={20} />
+        </span>
       </div>
     </article>
   );

@@ -6,11 +6,20 @@ type Props = {
   kicker?: string;
   /** A status tag beside the kicker, on project pages. */
   tag?: ReactNode;
-  /** A panel beside the headline: where a project stands and what it needs. */
+  /** A panel beside the headline: the organisation's own gift on the support page. */
   aside?: ReactNode;
+  /** Anything that belongs under the lead: a few reassurances, say. */
+  children?: ReactNode;
 };
 /** Opening block of every inner page: the headline and one lead paragraph. */
-export function PageHero({ title, lead, kicker, tag, aside }: Props) {
+export function PageHero({
+  title,
+  lead,
+  kicker,
+  tag,
+  aside,
+  children,
+}: Props) {
   return (
     <section
       className={`page-hero ${aside ? 'page-hero--split' : ''}`}
@@ -26,6 +35,7 @@ export function PageHero({ title, lead, kicker, tag, aside }: Props) {
           )}
           <h1 id="page-title">{title}</h1>
           <p className="lead">{lead}</p>
+          {children}
         </div>
         {aside}
       </div>

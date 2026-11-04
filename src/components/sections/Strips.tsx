@@ -6,7 +6,7 @@ import { founderStrip, pages, trustStrip } from '@/content/project';
 export function TrustStrip() {
   return (
     <Section className="strips" aria-label="Trust and founder">
-      <article className="strip" aria-labelledby="trust-title">
+      <article className="strip" aria-labelledby="trust-title" data-reveal>
         <Icon name="shield" />
         <h2 id="trust-title">
           {trustStrip.title[0]} {trustStrip.title[1]}
@@ -16,7 +16,12 @@ export function TrustStrip() {
           {trustStrip.more}
         </LinkButton>
       </article>
-      <article className="strip" aria-labelledby="founder-title">
+      <article
+        className="strip"
+        aria-labelledby="founder-title"
+        data-reveal
+        style={{ ['--i' as string]: 1 }}
+      >
         <Icon name="user" />
         <h2 id="founder-title">
           {founderStrip.title[0]} {founderStrip.title[1]}

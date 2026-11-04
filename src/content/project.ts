@@ -3,9 +3,11 @@
  *
  * Ardú is presented as an organisation, not as a building: a vision, the
  * people it serves, the results it measures itself by, and the projects that
- * carry it. The projects themselves live in `projects.ts`. Operational detail
- * (payroll, energy arithmetic, running costs) is not published here; it is
- * shared with partners and funders on request.
+ * carry it. The projects themselves live in `projects.ts`, each with its own
+ * page and its own giving. Support for the organisation and funding for a
+ * project are two separate choices, and the copy never folds one into the
+ * other. Operational detail (payroll, energy arithmetic, running costs) is not
+ * published here; it is shared with partners and funders on request.
  */
 
 export const project = {
@@ -32,12 +34,12 @@ export const pages = {
     label: 'Partners',
     title: 'Partner with Ardú',
   },
-  support: { href: '/support', label: 'Support', title: 'Support Ardú' },
+  support: { href: '/support', label: 'Support Ardú', title: 'Support Ardú' },
   contact: { href: '/contact', label: 'Contact', title: 'Contact' },
   projects: { href: '/projects', label: 'Projects', title: 'Projects' },
 } as const;
 
-/** The giving panel's anchor: on the home page in place, elsewhere on the support page. */
+/** The organisation's giving panel: on the home page in place, elsewhere on the support page. */
 export const giveAnchor = {
   id: 'give',
   here: '#give',
@@ -50,17 +52,22 @@ export const nav = [
   pages.whatWeDo,
   pages.impact,
   pages.partners,
-  pages.support,
 ] as const;
 
 export const ctas = {
-  give: 'Give now',
+  /** The organisation's own call: a gift to Ardú. */
+  give: 'Support Ardú',
   partner: 'Partner with us',
   conversation: 'Start a conversation',
   requestPlan: 'Request the full plan',
-  project: 'See the project',
+  project: 'Explore the project',
+  projects: 'Explore our projects',
+  chooseProject: 'Choose a project',
   allProjects: 'All projects',
+  /** A project's own call: a gift to that project alone. */
+  fundProject: 'Fund this project',
   fundStage: 'Fund this stage',
+  share: 'Share this project',
   mailSubjects: {
     partner: 'Ardú · partnering with you',
     funder: 'Ardú · funding a stage',
@@ -77,7 +84,8 @@ export const hero = {
   titleStart:
     'Ardú lifts Gaza’s young people over everything between them and ',
   titleEmphasis: 'their ambition.',
-  lead: 'Ardú is a youth organisation born under the rubble of the home in Gaza City where its founder’s road began. The road from ability to income here is full of things that trip a young person: nobody ahead to guide them, a degree that now exists only online, skills the market cannot see, doors that stay shut, power and internet that cut mid-sentence. Ardú lifts them over each one, starting with university students and graduates in technology and medicine, through projects you can see, count and fund in the open. Ardú is Irish for a lifting. Not relief. A lifting.',
+  lead: 'Ardú is a youth organisation born under the rubble of the home in Gaza City where its founder’s road began. It lifts young people over everything that trips them on the road from ability to income, starting with university students and graduates in technology and medicine, through projects you can see, count and fund in the open.',
+  tagline: 'Ardú is Irish for a lifting. Not relief. A lifting.',
   road: {
     start: 'Under the rubble',
     stops: ['Guidance', 'Learning', 'Openings', 'A place that works'],
@@ -89,7 +97,7 @@ export const hero = {
 
 export const organisation = {
   title: ['A youth organisation,', 'measured by one result.'],
-  body: 'Ardú exists for one result: young people in Gaza reaching the ambition their ability has earned them, from where they are. It works through projects, each with a status you can see, stages you can count and a page with what it needs now. The first is Ardú Space, rising over the rubble where the founder’s road began. More join as Ardú adopts them, each with its own figures.',
+  body: 'Ardú exists for one result: young people in Gaza reaching the ambition their ability has earned them, from where they are. The organisation runs and funds its own projects, each with a status you can see and a page of its own. The first is Ardú Space, rising over the rubble where the founder’s road began. More join as Ardú adopts them.',
   facts: [
     {
       icon: 'graduation',
@@ -176,17 +184,22 @@ export const changes = {
 
 export const projectsSection = {
   title: ['The impact,', 'project by project.'],
-  lead: 'Ardú delivers its impact through projects. Each wears its status on top, carries stages you can count, and opens onto a page with what it needs now and where every pound went.',
-  note: 'More projects join here as Ardú adopts them, each with its own status, stages and figures.',
-  needs: 'Funding now',
+  lead: 'Ardú delivers its impact through projects. Each wears its status on top and opens onto a page of its own: what it is, where it stands, and how to fund it.',
+  note: 'More projects join here as Ardú adopts them, each with its own status, stages and page.',
 } as const;
 
 export const projectsPage = {
   hero: {
     title: 'Our projects, in the open.',
-    lead: 'Ardú works through projects. Each one carries a status you can see, stages you can count, and a page with what it needs now and where every pound went. A stage turns live the moment its funding is complete, and the next one opens.',
+    lead: 'Ardú works through projects. Each carries a status you can see, stages you can count and a page of its own, where you can fund it and nothing else. A stage turns live the moment its funding is complete, and the next one opens.',
   },
   list: 'Every project, with its status',
+  filter: 'Show projects',
+  all: 'All',
+  note: {
+    title: 'Rather back all of them?',
+    body: 'A gift to Ardú goes to the organisation that runs and funds every project here, and the ones still to come.',
+  },
 } as const;
 
 export const weight = {
@@ -202,37 +215,48 @@ export const weight = {
 export const give = {
   icon: 'heart',
   title: ['Support', 'Ardú.'],
-  body: 'Give to the organisation with any amount and Ardú puts it where the road is blocked, or fund a stage of a project you can picture. Either way your gift travels a trustee route that has already carried two years of public giving with every pound accounted for, and every stage comes with its receipts.',
-  organisationLabel: 'Support the organisation',
-  projectLabel: 'Or fund a project stage',
-  label: 'What a gift lifts',
-  levelCta: 'Give',
-  any: {
-    text: 'Every pound moves the road.',
-    cta: 'Give any amount',
-  },
-  projects: {
-    cta: 'Fund a project stage',
-  },
+  body: 'A gift to Ardú backs the organisation itself: the one that runs and funds every project it carries, and opens the next. Ardú puts it where the road is blocked, and it travels a trustee route that has already carried two years of public giving with every pound accounted for.',
+  label: 'Choose your gift to Ardú',
+  other: 'Or enter an amount',
+  impact: 'to Ardú, put where the road is blocked.',
+  minimum: 'The smallest gift is £5.',
   secure:
-    'Secure checkout by Stripe, in pounds, by card or digital wallet. No payment details touch this website.',
+    'Secure checkout by Stripe, in pounds, by card or digital wallet. You can still change the amount there. No payment details touch this website.',
   more: 'How gifts are safeguarded',
   pending: 'Giving opens shortly. Write to us to be told the moment it does.',
 } as const;
 
+/** A project's own giving: its open stage in any amount, or one of its pieces. */
+export const fundProject = {
+  label: 'How would you like to give?',
+  any: 'Any amount',
+  pieces: 'A piece of the place',
+  amountLabel: 'Choose an amount for',
+  pieceLabel: 'Choose a piece of',
+  other: 'Or enter an amount',
+  piecesNote: 'Choose how many on the next page.',
+  noStage: 'goes to the project, put where it is needed next.',
+  secure:
+    'Secure checkout by Stripe, in pounds. You can still change the amount there. No payment details touch this website.',
+  organisation: {
+    text: 'Rather back everything Ardú does?',
+    cta: 'Support Ardú instead',
+  },
+} as const;
+
 export const ways = {
   title: ['Three ways', 'to lift it.'],
+  note: 'Give to Ardú and it goes where the road is blocked. Choose a project and your gift goes to that project alone. Or bring what money cannot buy.',
+  project: {
+    icon: 'landmark',
+    title: 'Fund a project',
+    text: 'Pick a project you can picture. Your gift goes to that project alone, to the stage open now, and comes back to you as its own receipts and photographs.',
+  },
   partner: {
     icon: 'handshake',
     title: 'Partner',
     text: 'Bring a course, mentors, laptops, or openings for the people who come through Ardú. The half that money cannot buy.',
   },
-  stage: {
-    icon: 'landmark',
-    title: 'Fund a stage',
-    text: 'Foundations, companies and major donors can take a whole stage of a project, from light, water and the fibre line to the first kilowatts, and see it through with full figures and reporting.',
-  },
-  note: 'A gift to the organisation, a partnership, or a whole stage of a project. Each one moves the road.',
 } as const;
 
 export const trustStrip = {
@@ -249,7 +273,7 @@ export const founderStrip = {
 
 export const ctaBand = {
   title: 'Help lift it.',
-  body: 'One road began under this rubble. Ardú opens it for thousands of young people over the years ahead. Support the organisation, or fund the stage its first project needs now.',
+  body: 'One road began under this rubble. Ardú opens it for thousands of young people over the years ahead.',
 } as const;
 
 /* ----------------------------------------------------------------- about */
@@ -308,7 +332,7 @@ export const about = {
   },
   impact: {
     title: 'The impact, project by project',
-    lead: 'Ardú delivers its impact through projects, each wearing its status on top and funded stage by stage in the open. What has been delivered is published on the impact page as it comes in, from the first cohort onward.',
+    lead: 'Ardú delivers its impact through projects, each wearing its status on top and opening onto a page of its own. What has been delivered is published on the impact page as it comes in, from the first cohort onward.',
     more: 'How we measure impact',
   },
   partners: {
@@ -542,49 +566,57 @@ export const partners = {
 export const support = {
   hero: {
     title: 'Support Ardú.',
-    lead: 'Give to the organisation with any amount, or fund a stage of a project you can picture. Either way your gift travels a trustee route that has carried two years of public giving with every pound accounted for, and comes back to you as receipts and photographs.',
+    lead: 'A gift to Ardú backs the organisation itself: the one that runs and funds every project it carries, Ardú Space today and the projects that follow. Ardú puts it where the road is blocked, and it comes back to you as receipts and photographs.',
+    points: [
+      { icon: 'shield', text: 'Held in the United Kingdom by an academic trustee' },
+      { icon: 'receipt', text: 'A receipt and a photograph for every expense' },
+      { icon: 'bookcheck', text: 'A statement to supporters every month' },
+    ],
   },
-  projects: {
-    title: 'Fund a project',
-    lead: 'Every project has a stage that is open for funding now. Pick the one you can picture.',
-  },
-  levels: {
-    lead: 'Each gift below is one piece of Ardú Space. Choose what yours lifts, or give any amount to the stage open now; every pound travels the trustee route and comes back to you as a receipt and a photograph.',
+  carries: {
+    title: 'What a gift to Ardú carries',
     items: [
       {
-        key: 'seat',
-        amount: '£150',
-        icon: 'armchair',
-        title: 'A seat',
-        text: 'A chair, a desk and a share of a laptop for one young person.',
+        icon: 'milestone',
+        title: 'Every project it runs',
+        text: 'Ardú runs and funds its own projects, stage by stage, each one built in order and reported with its receipts.',
       },
       {
-        key: 'laptop',
-        amount: '£750',
-        icon: 'laptop',
-        title: 'A laptop',
-        text: 'Shared by two shifts a day, for those who come without one.',
+        icon: 'sparkles',
+        title: 'The next project',
+        text: 'New projects join as Ardú adopts them. A gift to the organisation is what lets the next one start.',
       },
       {
-        key: 'month',
-        amount: '£4,500',
-        icon: 'calendar',
-        title: 'A month of Ardú',
-        text: 'The team, the internet and the lights for a month: two hundred young people a day.',
-      },
-      {
-        key: 'kilowatt',
-        amount: '£7,500',
-        icon: 'sun',
-        title: 'A kilowatt that works twice',
-        text: 'Ten seats on power that never cuts by day, and the neighbourhood’s light outside the hall’s hours.',
+        icon: 'bookcheck',
+        title: 'The books that stay open',
+        text: 'A trustee route for every pound, a receipt and a photograph for every expense, and a statement to supporters every month.',
       },
     ],
   },
-  stage: {
-    icon: 'landmark',
-    title: 'Fund a whole stage',
-    body: 'Foundations, companies and major donors can take a whole stage of a project and see it through: light, water and the fibre line; seats and laptops; the first months of running; the first kilowatts of solar. Each stands on its own and is built in order. Figures, quotes and verification are shared in a direct conversation.',
+  project: {
+    title: 'Rather fund one project?',
+    body: 'Every project Ardú runs has a page of its own, with its own stages and its own checkout. A gift there goes to that project alone.',
+  },
+  faq: {
+    title: 'Questions about giving',
+    items: [
+      {
+        q: 'What does a gift to Ardú do?',
+        a: 'It backs the organisation itself, which runs and funds every project it carries: Ardú Space today, and the projects that follow. Ardú puts it where the road is blocked.',
+      },
+      {
+        q: 'Can I give to one project instead?',
+        a: 'Yes. Every project has its own page and its own checkout, and a gift there goes to that project alone. Each checkout carries its own reference, so the two never mix in the books.',
+      },
+      {
+        q: 'Is any payment taken on this website?',
+        a: 'No. Every gift opens Stripe’s secure checkout in pounds, by card or digital wallet. No payment details touch this website.',
+      },
+      {
+        q: 'Is Ardú a registered charity?',
+        a: 'Not yet. Ardú is an unregistered initiative; formal registration is planned once its first project stands. No charitable registration or tax deductibility is claimed.',
+      },
+    ],
   },
   safeguards: {
     title: 'How gifts are safeguarded',

@@ -2,8 +2,12 @@
  * Ardú · the projects that carry the organisation.
  *
  * Each project is one record here: a status the visitor can see, stages with
- * their own funding, and the copy of its page. Adding a project is adding a
- * record; the cards, the pages, the giving links and the sitemap follow.
+ * their own funding, the pieces a giver can fund, and the copy of its own
+ * page. Adding a project is adding a record; its card, its page, its section
+ * of the sitemap and its checkouts (in `integrations.ts`) follow.
+ *
+ * A gift to a project goes to that project alone. A gift to Ardú goes to the
+ * organisation, which runs and funds every project; the two never mix.
  *
  * Stage status is never typed by hand. It follows the books: a stage whose
  * funding is complete turns Live, the first stage still short of its target
@@ -15,6 +19,14 @@
  * written quotes before work on the stage begins.
  */
 import type { IconName } from '@/components/ui/Icon';
+import { isFunded, type StageFunding } from '@/lib/funding';
+export {
+  isFunded,
+  percent,
+  percentFunded,
+  pounds,
+  type StageFunding,
+} from '@/lib/funding';
 
 /* -------------------------------------------------------- vocabulary */
 
@@ -42,14 +54,6 @@ export const stageState: Record<StageState, string> = {
   later: 'Later',
 };
 
-export type StageFunding = {
-  /** Pounds, whole numbers; formatted at render time. */
-  target: number;
-  raised: number;
-  /** The date the figures were last updated by hand. */
-  updatedOn: string;
-};
-
 export type Stage = {
   number: number;
   icon: IconName;
@@ -65,14 +69,31 @@ export type ResolvedStage = Stage & { state: StageState };
 
 export type Figure = { icon: IconName; value: string; label: string };
 
+/** One piece of a project a giver can fund outright, on its own checkout. */
+export type GiftPiece = {
+  key: string;
+  /** Pounds, whole numbers. */
+  amount: number;
+  icon: IconName;
+  title: string;
+  text: string;
+};
+
+export type Question = { q: string; a: string };
+
 export type Project = {
   slug: string;
   name: string;
   status: ProjectStatus;
   /** The order Ardú adopted it in: "Project 01". */
   ordinal: string;
+  /** One or two sentences: the meta description and the share text. */
   summary: string;
+  /** What the project is, in a breath: the text on its card. */
+  brief: string;
   hero: { title: string; lead: string };
+  /** Why this project, told as the place it comes from. */
+  story: { title: string; body: readonly string[] };
   facts: readonly Figure[];
   place: {
     title: string;
@@ -88,10 +109,34 @@ export type Project = {
     more: string;
   };
   serves: { title: string; body: string };
-  day: { title: string; body: string; figures: readonly Figure[] };
+  day: {
+    title: string;
+    body: string;
+    figures: readonly Figure[];
+    /** The working day drawn as a timeline, in 24-hour clock hours. */
+    schedule?: {
+      from: number;
+      to: number;
+      rows: readonly {
+        label: string;
+        from: number;
+        to: number;
+        note: string;
+      }[];
+    };
+  };
   beyond: { title: string; body: string };
   updates: { title: string; body: string };
   partners: { title: string; body: string };
+  /** The project's own giving: its open stage in any amount, and its pieces. */
+  fund: {
+    title: string;
+    body: string;
+    funders: { title: string; body: string };
+  };
+  pieces: readonly GiftPiece[];
+  faq: readonly Question[];
+  closing: { title: string; body: string };
 };
 
 /* ---------------------------------------------------------- projects */
@@ -103,9 +148,18 @@ const arduSpace: Project = {
   ordinal: 'Project 01',
   summary:
     'A place that works, rising over the rubble of the home in Gaza City where the founder’s road began: power that stays on, internet that holds, two hundred young people a day at the opening and a thousand at the full build.',
+  brief:
+    'The hall beneath the founder’s family home in Gaza City, made into a place where the work gets done: power that stays on, internet that holds, and room for two hundred young people a day.',
   hero: {
     title: 'Ardú Space: a place that works, rising over the rubble.',
-    lead: 'Under the rubble of the founder’s family home in Gaza City, a hall of five hundred square metres stands on columns that held. Ardú’s first project turns it into the place its programmes need: power that stays on, internet that holds, seats, quiet, and a team on the ground. Stage one, clearing the rubble, is funded and on the ground now.',
+    lead: 'Ardú’s first project turns the hall beneath the founder’s family home in Gaza City, five hundred square metres on columns that held, into a place where the work gets done: power that stays on, internet that holds, seats, quiet and a team on the ground.',
+  },
+  story: {
+    title: 'Where the founder’s road began.',
+    body: [
+      'The house above the hall did not survive. The hall did, and so did an idea: that a young person with ability should not have to walk for hours to find a socket and a signal to do their work.',
+      'Ardú Space is that idea, built where the founder’s own road began. Stage one, clearing the rubble, is funded and on the ground now; stage two brings the light.',
+    ],
   },
   facts: [
     { icon: 'building', value: '500 m²', label: 'a hall on columns that held' },
@@ -171,6 +225,20 @@ const arduSpace: Project = {
       { icon: 'armchair', value: '100', label: 'seats a shift' },
       { icon: 'users', value: '50 + 50', label: 'women and men, each shift' },
     ],
+    schedule: {
+      from: 8,
+      to: 16,
+      rows: [
+        { label: 'First shift', from: 8, to: 12, note: '100 seats' },
+        { label: 'Second shift', from: 12, to: 16, note: '100 seats' },
+        {
+          label: 'Freelancers',
+          from: 8,
+          to: 16,
+          note: 'full days at their own desks',
+        },
+      ],
+    },
   },
   beyond: {
     title: 'Beyond the walls',
@@ -184,6 +252,74 @@ const arduSpace: Project = {
     title: 'Partners',
     body: 'Partners are named here as their agreements are signed.',
   },
+  fund: {
+    title: 'Fund Ardú Space.',
+    body: 'A gift here goes to Ardú Space alone: to the stage open now, in any amount, or to a piece of the place you can picture. It travels the trustee route every gift to Ardú travels, is recorded against Ardú Space by its own reference, and comes back to you as this project’s receipts and photographs.',
+    funders: {
+      title: 'Fund a whole stage',
+      body: 'Foundations, companies and major donors can take a whole stage of Ardú Space and follow it through with full figures and reporting. The plan, the quotes and the location of the hall are shared in a direct conversation.',
+    },
+  },
+  pieces: [
+    {
+      key: 'seat',
+      amount: 150,
+      icon: 'armchair',
+      title: 'A seat',
+      text: 'A chair, a desk and a share of a laptop for one young person.',
+    },
+    {
+      key: 'laptop',
+      amount: 750,
+      icon: 'laptop',
+      title: 'A laptop',
+      text: 'Shared by two shifts a day, for those who come without one.',
+    },
+    {
+      key: 'month',
+      amount: 4500,
+      icon: 'calendar',
+      title: 'A month of Ardú Space',
+      text: 'The team, the internet and the lights for a month: two hundred young people a day.',
+    },
+    {
+      key: 'kilowatt',
+      amount: 7500,
+      icon: 'sun',
+      title: 'A kilowatt that works twice',
+      text: 'Ten seats on power that never cuts by day, and the neighbourhood’s light outside the hall’s hours.',
+    },
+  ],
+  faq: [
+    {
+      q: 'Where does a gift to Ardú Space go?',
+      a: 'To Ardú Space alone. Every checkout on this page carries the project’s own reference, so the gift is recorded against Ardú Space, held in the United Kingdom by an academic trustee under a signed agreement, and released stage by stage against written quotes.',
+    },
+    {
+      q: 'What happens when a stage is fully funded?',
+      a: 'It turns Live on this page, the work on it begins, and the next stage opens for funding. Nobody types a status: it follows the figures.',
+    },
+    {
+      q: 'How will I know what my gift became?',
+      a: 'Every stage is reported here as it happens, with its quotes, its receipts and photographs of what each pound became, and supporters receive an itemised statement every month.',
+    },
+    {
+      q: 'Where exactly is the hall?',
+      a: 'In central Gaza City. For the safety of the people who will work in it, the exact location is shared with partners and funders and not published.',
+    },
+    {
+      q: 'Can my organisation fund a whole stage?',
+      a: 'Yes. Write to us and we will share the plan, the quotes and the verification for the stage, and report it to you through to its last receipt.',
+    },
+    {
+      q: 'Is my gift tax-deductible?',
+      a: 'No. Ardú is an unregistered initiative; formal registration is planned. No charitable registration or tax deductibility is claimed.',
+    },
+  ],
+  closing: {
+    title: 'Help Ardú Space rise.',
+    body: 'The rubble is coming off. Stage two brings the light, the water and a line that holds, and the day the lights come on, a ruin becomes a place.',
+  },
 };
 
 export const projects: readonly Project[] = [arduSpace];
@@ -192,13 +328,9 @@ export const projects: readonly Project[] = [arduSpace];
 
 export const projectHref = (slug: string) => `/projects/${slug}`;
 
-export const pounds = (n: number) => `£${n.toLocaleString('en-GB')}`;
+export const findProject = (slug: string) =>
+  projects.find((project) => project.slug === slug) ?? null;
 
-export const isFunded = (funding: StageFunding | null) =>
-  !!funding && funding.target > 0 && funding.raised >= funding.target;
-
-export const percentFunded = ({ raised, target }: StageFunding) =>
-  target > 0 ? Math.min(100, Math.round((raised / target) * 1000) / 10) : 0;
 
 /**
  * Every stage with its state, read from the books: Complete when reported
@@ -231,6 +363,13 @@ export const currentStage = (project: Project) =>
 /** Stages that are funded and under way. */
 export const liveStages = (project: Project) =>
   resolveStages(project).filter((stage) => stage.state === 'live');
+
+/** Stages funded so far, whether under way or complete. */
+export const fundedStages = (project: Project) =>
+  resolveStages(project).filter(
+    (stage) => stage.state === 'live' || stage.state === 'done',
+  );
+
 
 const spelled = ['zero', 'one', 'two', 'three', 'four', 'five', 'six'];
 /** Small numbers in words, for running text. */

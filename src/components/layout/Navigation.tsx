@@ -10,11 +10,17 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+  // Support Ardú is the organisation's own call: in place where the page
+  // carries the organisation's giving panel, on the support page elsewhere.
   const cta = {
-    href: pathname === '/' ? giveAnchor.here : giveAnchor.href,
+    href:
+      pathname === '/' || pathname === pages.support.href
+        ? giveAnchor.here
+        : pages.support.href,
     label: ctas.give,
   };
-  const current = (href: string) => (pathname === href ? 'page' : undefined);
+  const current = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`) ? 'page' : undefined;
   return (
     <header
       className="site-header"
@@ -54,6 +60,7 @@ export function Navigation() {
           {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
       </div>
+      <span className="read-progress" aria-hidden="true" />
       <nav
         id="mobile-navigation"
         aria-label="Mobile navigation"

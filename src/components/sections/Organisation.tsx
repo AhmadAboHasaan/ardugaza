@@ -6,7 +6,7 @@ import { organisation, pages } from '@/content/project';
 export function Organisation() {
   return (
     <Section className="org" aria-labelledby="org-title">
-      <div className="org-copy">
+      <div className="org-copy" data-reveal>
         <h2 id="org-title">
           {organisation.title[0]} {organisation.title[1]}
         </h2>
@@ -16,8 +16,13 @@ export function Organisation() {
         </LinkButton>
       </div>
       <ul className="org-facts">
-        {organisation.facts.map((fact) => (
-          <li key={fact.title} className="org-fact">
+        {organisation.facts.map((fact, i) => (
+          <li
+            key={fact.title}
+            className="org-fact"
+            data-reveal
+            style={{ ['--i' as string]: i }}
+          >
             <Icon name={fact.icon} />
             <div>
               <h3>{fact.title}</h3>

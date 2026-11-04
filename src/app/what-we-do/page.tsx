@@ -40,7 +40,7 @@ export default function WhatWeDoPage() {
         id="where"
         title={whatWeDo.where.title}
         lead={whatWeDo.where.lead}
-        compact
+        more={false}
       />
       <CtaBand lead="partner" />
     </>

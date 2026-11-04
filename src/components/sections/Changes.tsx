@@ -16,15 +16,20 @@ export function Changes({
       className={`changes ${full ? 'changes--full' : ''}`}
       aria-labelledby="changes-title"
     >
-      <div className="section-heading">
+      <div className="section-heading" data-reveal>
         <h2 id="changes-title">
           {title ?? `${changes.title[0]} ${changes.title[1]}`}
         </h2>
         <p className="lead">{lead}</p>
       </div>
       <ul className="change-list">
-        {items.map((item) => (
-          <li key={item.text} className="change">
+        {items.map((item, i) => (
+          <li
+            key={item.text}
+            className="change"
+            data-reveal
+            style={{ ['--i' as string]: i }}
+          >
             <Icon name={item.icon} />
             <p>{item.text}</p>
           </li>
