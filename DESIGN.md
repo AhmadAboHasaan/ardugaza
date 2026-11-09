@@ -99,7 +99,7 @@ components:
 
 **Creative North Star: "The lifted road"**
 
-Ardú's whole claim is one gesture: a road rising out of rubble, with the things a young person needs placed along it, ending at their ambition. The brand mark is that gesture in miniature; the hero draws it at full size, once, on load; the direction panel and the closing band repeat it as a line. Everything else on the site stays quiet so that the road is the thing people remember.
+Ardú's whole claim is one gesture: a road rising out of rubble, with the things a student needs placed along it, ending at a working life. The brand mark is that gesture in miniature; the hero draws it at full size on load and then keeps a light travelling it; every programme's cover is the same road with one stop per stage, arriving at the programme's emblem, and the closing band repeats it as a line. The site moves the way that road does: things arrive as you reach them, bars fill, figures count up, and the stage being funded now pulses. Nothing moves for its own sake.
 
 The surfaces are white and a soft green-tinted mist, with deep green for the hero, the direction panel, the giving card and the footer. Corners are rounded on a fixed scale (pill controls, 14px chips, 20px cards, 28px panels, 32px for the closing band). Elevation is used twice, on the giving card and the mobile menu, and nowhere else: contrast between white and mist carries the structure.
 
@@ -107,7 +107,7 @@ The surfaces are white and a soft green-tinted mist, with deep green for the her
 
 - Two typefaces with clearly different jobs: Bricolage Grotesque (the wordmark's face) for headlines and big figures, Manrope for everything read at length.
 - Every list carries an icon chip from one registry (`src/components/ui/Icon.tsx`), so the site scans at a glance and the icon set stays consistent.
-- One load animation (the road), hover lifts on cards, and a complete reduced-motion experience: the road renders fully drawn.
+- Motion with a job: content rises into place as it is reached, bars fill, figures count, the open stage pulses, a card's cover grows into its programme's page. Under reduced motion all of it is off and everything is simply there.
 - No uppercase eyebrow labels, no hairline-everything, no middle-dot meta strings. Structure is carried by panels, chips and the two type faces.
 
 ## Colors
@@ -127,13 +127,35 @@ A 1200px content column with a fluid gutter. The hero and footer are full-bleed 
 - **Icon chip**: 48px rounded square, teal on teal tint; cream variant on deep, sand variant for the giving card and the sun, deep variant on the sand panel. Small 32px variant inside icon lists.
 - **Buttons**: pills. Primary teal on light, light (sand) as the lead action on deep, white on the deep any-amount strip, outline for the second action, text links underlined in teal.
 - **Figures**: mist tiles with an icon, a Bricolage number and a muted label.
-- **Cards**: mist on white, white on mist; the giving panel is deep, carries a white card of four level tiles and, under them, an inverted deep strip with a white any-amount button (the one block that reads on a fast scroll), and has the only shadow on the page.
-- **Steps and sequences**: a line with chips (direction) or numbered deep circles (how it works, safeguards); vertical on narrow screens.
+- **Cards**: mist on white, white on mist; the giving panel is deep and carries a white card holding the gift builder.
+- **Gift builder** (`GiftBuilder`): radio chips for the amounts (selected chip turns deep), an "Or enter an amount" field, and, at its foot, an inverted deep block with the live impact line ("£50 to Ardú, directed to where it is needed most.") and a white button that names the gift ("Give £50 to Ardú"); the block reads on a fast scroll. Below £5 the button is disabled and the line says why. There is one builder, for the one gift to Ardú: on the home page, the support page and every programme's page, where the panel around it makes that programme's case.
+- **Stage explorer** (`StageExplorer`): a programme's stages as tabs on one road, each a round stop (mint with a check when complete or funded, sand ring pulsing when funding is open, outlined next, dashed later) with its name and state; the road fills to the last funded stop; the stage funding now is open when the page loads, any stop opens on click or with the arrow keys, and its panel shows the story, the indicator (which fills each time) and what happens next.
+- **Sequences**: numbered deep circles on a line (how it works, safeguards); vertical on narrow screens.
+- **Status tag**: a pill with a dot: teal for a programme that is running, sand for one under construction, mist for one in preparation, deep for one complete. It crowns every programme card (on the cover, top left) and every programme page.
+- **Stage chip**: derived from the indicators, never typed: mint with a check for Complete and Funded, sand for Funding now, outlined for Next, faint for Later.
+- **Progress**: a 10px track with a teal-to-sand fill and a caption that states the indicator out of a hundred ("0% funded") and the date of its last update, "Fully funded." at a hundred and "Delivered." for a complete stage. No amounts.
+- **Proof** (`Proof`): a mist panel of dated figures from Mu’een's own dashboard (students, newcomers, requests, weekly users), the programme's name and status above the heading, the source and date beneath, and the way through to Mu’een's page. On the home page it follows the hero; on the impact page it is "Delivered so far".
+- **Programme card**: a door to the programme's page. A deep cover drawn by `ProjectCover` (rubble, the road drawing itself as the card arrives to the programme's emblem in a sand disc, one stop per stage: filled with a check when complete or funded, ringed and pulsing where funding is open, and a light travelling the stretch the open stage will cover) with the status tag as its crown; below it the kind ("Study library"), the name (a link stretched over the whole card), the brief, the stage track, and "Explore the programme". On hover the card lifts, the cover leans in and a soft glow follows the pointer.
+- **Stage track** (`StageTrack`): on a card, one short bar per stage filled as far as its funding has come (teal when complete or funded, sand with a pulsing head where funding is open now, tinted next, faint later) with the stage names, and one sentence: "One of four stages complete. Funding now: stage two of four, Sustain, 0% funded."
+- **Programme hero**: a programme's own page opens deep, like the home hero: breadcrumb, kind and status tag, headline, lead, "Support Ardú" in sand and "Share this programme"; beside it the card's cover grown large with each stop named (the card's cover morphs into it when the visitor opens the programme), and the standing panel overlapping its foot: the stage open now with its indicator, and the stages already complete or funded.
+- **How it works**: on a programme people use directly (Mu’een), three mist cards, "Step one" to "Step three", each with its icon.
+- **Section nav** (`SectionNav`): on long pages (a programme, About), the sections held under the header as the page scrolls, the one being read marked deep; on a programme it carries "Support Ardú" in sand. On phones it scrolls sideways and keeps the current section in view.
+- **Fund bar** (`FundBar`): on a phone, a programme's page keeps a deep bar at the foot of the screen once the hero has scrolled away ("Ardú Space · Funding now: Clear, 0%", Support Ardú), out of the way while the giving panel is on screen.
+- **Questions** (`Faq`): mist rows built on `details`, opening in place with a plus that turns; works with no script.
+- **Day timeline**: a programme's working day drawn as lanes over the hours, each shift a bar that fills as it arrives.
 - **Road**: `src/components/content/Road.tsx`, a 640×520 SVG with the rubble, the stroke, four stops and the sand tip; drawn with `stroke-dashoffset` over 1.5s, stops fading in after it.
 
 ## Motion
 
-The road draws once on load; nothing else moves on its own. Cards lift 3px on hover. `prefers-reduced-motion` disables all animation and transitions and leaves the road fully drawn.
+Motion tells the visitor something or answers what they did; nothing moves for decoration alone.
+
+- **On load**: the hero's lines rise in turn; the road draws, its stops pop in, then a light keeps travelling it and dust rises off the rubble. A programme's page draws its cover the same way.
+- **As the page is read** (`src/components/motion/Motion.tsx`): elements marked `data-reveal` rise into place when they are reached, one after another in a grid (`--i`). Everything already on screen when a page opens is shown at once and never hidden, and nothing is hidden before scripts run, so a page without scripts is simply complete. Figures count up from nothing as they arrive (`CountUp`), and only single numbers do.
+- **Always telling the state**: the stage funding now pulses wherever it appears (card cover, the head of its bar on the stage track, explorer, standing panel); the stretch of road the open stage will cover marches with a light on it.
+- **In answer to the visitor**: chips lift when chosen; the impact line moves with the amount; an opened stage's indicator fills again; a question opens smoothly in place; cards lift with a glow that follows the pointer; the header gains its shadow and a reading line fills under it as the page scrolls (CSS scroll timelines, where supported).
+- **Between pages**: opening a programme from its card, the card's cover grows into the page's (`ViewTransition`, the browser's View Transitions; elsewhere the page simply changes).
+
+`prefers-reduced-motion` turns all of it off: no animation or transition anywhere, nothing hidden, the road and covers fully drawn, the travelling lights and dust gone. Print shows everything.
 
 ## Content rules carried by the design
 

@@ -4,9 +4,12 @@ import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { MediaFrame } from '@/components/content/MediaFrame';
+import { Pillars } from '@/components/sections/Pillars';
+import { Projects } from '@/components/sections/Projects';
 import { CtaBand } from '@/components/ui/CtaBand';
+import { SectionNav } from '@/components/ui/SectionNav';
 import { integrations } from '@/data/integrations';
-import { about, pages, project } from '@/content/project';
+import { about, ctas, pages, project } from '@/content/project';
 export const metadata: Metadata = {
   title: pages.about.title,
   description: about.hero.lead,
@@ -21,7 +24,101 @@ export default function AboutPage() {
   return (
     <>
       <PageHero {...about.hero} />
-      <Section className="split" aria-labelledby="story-title">
+      <SectionNav
+        label="About Ardú, on this page"
+        items={[
+          { id: 'purpose', label: 'Vision' },
+          { id: 'goals', label: 'Goals' },
+          { id: 'serve', label: 'Who we serve' },
+          { id: 'how', label: 'How we work' },
+          { id: 'about-impact', label: 'Impact' },
+          { id: 'about-partners', label: 'Partners' },
+          { id: 'story', label: 'Story' },
+          { id: 'principles', label: 'Principles' },
+          { id: 'governance', label: 'Governance' },
+          { id: 'founder', label: 'Founder' },
+        ]}
+      />
+      <Section id="purpose" className="purpose" aria-label="Vision and mission">
+        <div className="purpose-grid">
+          <article
+            className="purpose-card purpose-card--vision"
+            data-reveal
+            data-spotlight
+          >
+            <h2>{about.purpose.vision.title}</h2>
+            <p>{about.purpose.vision.text}</p>
+          </article>
+          <article
+            className="purpose-card"
+            data-reveal
+            style={{ ['--i' as string]: 1 }}
+          >
+            <h2>{about.purpose.mission.title}</h2>
+            <p>{about.purpose.mission.text}</p>
+          </article>
+        </div>
+      </Section>
+      <Section id="goals" className="goals" aria-labelledby="goals-title">
+        <div className="section-heading" data-reveal>
+          <h2 id="goals-title">{about.goals.title}</h2>
+        </div>
+        <ol className="goal-list">
+          {about.goals.items.map((goal, i) => (
+            <li
+              key={goal.title}
+              className="goal"
+              data-reveal
+              style={{ ['--i' as string]: i }}
+            >
+              <span className="goal-number" aria-hidden="true">
+                0{i + 1}
+              </span>
+              <Icon name={goal.icon} />
+              <div>
+                <h3>{goal.title}</h3>
+                <p>{goal.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
+      <Section
+        id="serve"
+        className="split split--muted"
+        aria-labelledby="serve-title"
+      >
+        <h2 id="serve-title">{about.serve.title}</h2>
+        <div className="split-body">
+          {about.serve.body.map((p) => (
+            <p key={p.slice(0, 24)}>{p}</p>
+          ))}
+        </div>
+      </Section>
+      <Pillars expanded id="how" />
+      <Projects
+        id="about-impact"
+        title={about.impact.title}
+        lead={about.impact.lead}
+        more={false}
+      />
+      <Section
+        id="about-partners"
+        className="split split--muted"
+        aria-labelledby="about-partners-title"
+      >
+        <h2 id="about-partners-title">{about.partners.title}</h2>
+        <div className="split-body">
+          <p>{about.partners.body}</p>
+          <div className="actions">
+            <LinkButton href={pages.partners.href}>{ctas.partner}</LinkButton>
+            <LinkButton href={pages.impact.href} variant="outline">
+              {about.impact.more}
+            </LinkButton>
+          </div>
+        </div>
+      </Section>
+      <Section id="story" className="split" aria-labelledby="story-title">
         <h2 id="story-title">{about.story.title}</h2>
         <div className="split-body">
           {about.story.body.map((p) => (
@@ -34,14 +131,23 @@ export default function AboutPage() {
           <p>{about.name.body}</p>
         </div>
       </Section>
-      <Section className="principles" aria-labelledby="principles-title">
+      <Section
+        id="principles"
+        className="principles"
+        aria-labelledby="principles-title"
+      >
         <div className="panel">
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <h2 id="principles-title">{about.principles.title}</h2>
           </div>
           <ul className="card-grid card-grid--three">
-            {about.principles.items.map((item) => (
-              <li key={item.title} className="card">
+            {about.principles.items.map((item, i) => (
+              <li
+                key={item.title}
+                className="card"
+                data-reveal
+                style={{ ['--i' as string]: i }}
+              >
                 <Icon name={item.icon} />
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
@@ -50,33 +156,30 @@ export default function AboutPage() {
           </ul>
         </div>
       </Section>
-      <Section className="place" aria-labelledby="place-title">
-        <div className="place-copy">
-          <h2 id="place-title">{about.place.title}</h2>
-          {about.place.body.map((p) => (
-            <p key={p.slice(0, 24)}>{p}</p>
-          ))}
+      <Section
+        id="governance"
+        className="governance"
+        aria-labelledby="governance-title"
+      >
+        <div className="section-heading" data-reveal>
+          <h2 id="governance-title">{about.governance.title}</h2>
         </div>
-        <MediaFrame
-          image={integrations.hallImage}
-          caption={about.place.caption}
-          fallback={
-            <div className="hall-placeholder">
-              <span className="hall-measure">
-                {about.place.placeholder.measure}
-              </span>
-              <div className="hall-frame" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-                <i />
-              </div>
-              <span>{about.place.placeholder.label}</span>
-            </div>
-          }
-        />
+        <ul className="card-grid card-grid--four">
+          {about.governance.items.map((item, i) => (
+            <li
+              key={item.title}
+              className="card"
+              data-reveal
+              style={{ ['--i' as string]: i }}
+            >
+              <Icon name={item.icon} />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
       </Section>
-      <Section className="founder" aria-labelledby="founder-title">
+      <Section id="founder" className="founder" aria-labelledby="founder-title">
         <MediaFrame
           image={integrations.founderImage}
           caption={about.founder.caption}
@@ -95,7 +198,6 @@ export default function AboutPage() {
           {about.founder.body.map((p) => (
             <p key={p.slice(0, 24)}>{p}</p>
           ))}
-          <p className="small partners-note">{about.founder.partners}</p>
           <div className="actions">
             <LinkButton
               href={project.founderLinkedin}

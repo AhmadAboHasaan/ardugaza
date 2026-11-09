@@ -15,8 +15,8 @@ export function Hero() {
             <LinkButton href={giveAnchor.here} variant="light">
               {ctas.give}
             </LinkButton>
-            <LinkButton href={pages.partners.href} variant="outline">
-              {ctas.partner}
+            <LinkButton href={pages.programmes.href} variant="outline">
+              {ctas.programmes}
             </LinkButton>
           </div>
         </div>

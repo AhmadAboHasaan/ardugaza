@@ -1,18 +1,22 @@
+import type { ReactNode } from 'react';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { ctaBand, ctas, giveAnchor, pages } from '@/content/project';
 type Props = {
   title?: string;
   body?: string;
   lead?: 'give' | 'partner';
-  /** Where "Give now" goes: the giving panel on the support page by default. */
+  /** Where "Support Ardú" goes: Ardú's giving panel on the support page by default. */
   giveHref?: string;
+  /** Actions of the page's own, in place of Support Ardú and Partner with us (a programme's page). */
+  actions?: ReactNode;
 };
-/** The closing call to action on every page: give and partner, the lead one in sand. */
+/** The closing call to action on every page, the lead action in sand. */
 export function CtaBand({
   title = ctaBand.title,
   body = ctaBand.body,
   lead = 'give',
   giveHref = giveAnchor.href,
+  actions,
 }: Props) {
   const variant = (which: 'give' | 'partner') =>
     which === lead ? 'light' : 'outline';
@@ -28,7 +32,7 @@ export function CtaBand({
   );
   return (
     <section className="cta-band" aria-labelledby="cta-title">
-      <div className="cta-panel">
+      <div className="cta-panel" data-spotlight data-reveal>
         <svg
           className="cta-road"
           viewBox="0 0 640 200"
@@ -41,17 +45,18 @@ export function CtaBand({
           <h2 id="cta-title">{title}</h2>
           <p>{body}</p>
           <div className="actions">
-            {lead === 'partner' ? (
-              <>
-                {partner}
-                {give}
-              </>
-            ) : (
-              <>
-                {give}
-                {partner}
-              </>
-            )}
+            {actions ??
+              (lead === 'partner' ? (
+                <>
+                  {partner}
+                  {give}
+                </>
+              ) : (
+                <>
+                  {give}
+                  {partner}
+                </>
+              ))}
           </div>
         </div>
       </div>

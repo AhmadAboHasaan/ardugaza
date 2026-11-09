@@ -2,18 +2,19 @@ import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { pages, pillars, statement } from '@/content/project';
-type Props = { expanded?: boolean; heading?: boolean };
-/** The four things Ardú gives a young person. Short on the home page, in full on What we do. */
-export function Pillars({ expanded = false, heading = true }: Props) {
+type Props = { expanded?: boolean; heading?: boolean; id?: string };
+/** The four things Ardú delivers. Short on the home page, in full on What we do. */
+export function Pillars({ expanded = false, heading = true, id }: Props) {
   return (
     <Section
+      id={id}
       className="pillars"
       aria-labelledby={heading ? 'pillars-title' : undefined}
-      aria-label={heading ? undefined : 'How Ardú lifts'}
+      aria-label={heading ? undefined : 'What Ardú delivers'}
     >
       <div className="panel">
         {heading && (
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <h2 id="pillars-title">
               {pillars.title[0]} {pillars.title[1]}
             </h2>
@@ -23,8 +24,13 @@ export function Pillars({ expanded = false, heading = true }: Props) {
         <div
           className={`pillar-grid ${expanded ? 'pillar-grid--expanded' : ''}`}
         >
-          {pillars.items.map((item) => (
-            <article key={item.title} className="pillar">
+          {pillars.items.map((item, i) => (
+            <article
+              key={item.title}
+              className="pillar"
+              data-reveal
+              style={{ ['--i' as string]: i }}
+            >
               <Icon name={item.icon} />
               <h3>{item.title}</h3>
               <p>{expanded ? item.long : item.short}</p>

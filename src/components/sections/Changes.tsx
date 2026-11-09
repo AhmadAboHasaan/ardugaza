@@ -3,7 +3,7 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { changes, pages } from '@/content/project';
 type Props = { full?: boolean; title?: string; lead?: string };
-/** What changes for a young person when the road opens. */
+/** What changes for a student when Ardú's programmes reach them. */
 export function Changes({
   full = false,
   title,
@@ -16,15 +16,20 @@ export function Changes({
       className={`changes ${full ? 'changes--full' : ''}`}
       aria-labelledby="changes-title"
     >
-      <div className="section-heading">
+      <div className="section-heading" data-reveal>
         <h2 id="changes-title">
           {title ?? `${changes.title[0]} ${changes.title[1]}`}
         </h2>
         <p className="lead">{lead}</p>
       </div>
       <ul className="change-list">
-        {items.map((item) => (
-          <li key={item.text} className="change">
+        {items.map((item, i) => (
+          <li
+            key={item.text}
+            className="change"
+            data-reveal
+            style={{ ['--i' as string]: i }}
+          >
             <Icon name={item.icon} />
             <p>{item.text}</p>
           </li>

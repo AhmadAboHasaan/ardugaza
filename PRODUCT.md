@@ -16,11 +16,11 @@ Institutional funders first, followed by corporate partners and international in
 
 ## Product Purpose
 
-Make the infrastructure for professional progress available to young people in Gaza: a seat, electricity, connectivity, skills, mentorship and opportunities. The public site is promotional: it presents the entity, its direction, the impact it is built to deliver and the ways to support it, so that a visitor's first reaction is that this must be supported. The primary action is “Give now” (the configured giving page); the secondary is “Partner with us”. Operational detail is shared with partners and funders on request, not published. The site never shows a funding button that leads to an unavailable route.
+Make the infrastructure for professional progress available to young people in Gaza: a seat, electricity, connectivity, skills, mentorship and opportunities. The public site is promotional: it presents the entity, its direction, the impact it is built to deliver and the ways to support it, so that a visitor's first reaction is that this must be supported. The site presents Ardú as an organisation: its vision, who it serves (university students and graduates in technology and medicine first), the results it measures itself by, and the projects that carry it, each with a status tag, stages and a hand-updated funding bar on its own page. The primary action is “Support Ardú”, a gift to the organisation; a gift to one project is a separate choice made on that project's own page, reached from its card, and the two never share a panel or a checkout. The secondary action is “Partner with us”. Operational detail is shared with partners and funders on request, not published. The site never shows a funding button that leads to an unavailable route.
 
 ## Positioning
 
-A concrete plan to restore a roughly 500 m² hall in central Gaza City, built in Gaza for Gaza. Success concerns professional progress and income. All impact figures describe plans, not achievements.
+An organisation born under the rubble of its founder's family home, working through projects it funds and reports in the open; its first project, Ardú Space, restores a roughly 500 m² hall in central Gaza City. Success concerns degrees kept, income earned and work found. All impact figures describe plans, not achievements, until the first cohort reports.
 
 ## Operating Context
 
@@ -28,7 +28,7 @@ Factual authority: docs/ardu-project-summary.pdf, October 2026, prepared by foun
 
 ## Capabilities and Constraints
 
-The stage costs, payroll, energy arithmetic and running costs live in the partner brief (shared on request) and must not appear on the public site; the e2e suite checks this. The site may name the stages (clear, light, open, grow) and giving levels in pounds that match the giving page. Giving runs through the configured giving page only (the founder's Chuffed campaign, re-pointed to Ardú on 4 October 2026). No legal, tax, partner or achieved-impact claims may be invented.
+Payroll, energy arithmetic and running costs live in the partner brief (shared on request) and must not appear on the public site; the e2e suite checks this. Programme pages publish no amounts: each stage carries an indicator out of a hundred showing how far its funding has come, with the date it was last updated by hand; stage status is derived from the indicators, never typed. All funding goes to Ardú's general fund, which Ardú directs across its programmes: giving runs only through Ardú's one hosted Stripe checkout configured in src/data/integrations.ts, every link carrying the reference `ardu-general`; no programme has a checkout of its own, and the campaign page used until 18 October 2026 is closed. Mu’een's figures are published only as dated totals from its own dashboard, never a student's name or account; its founders are not named and its bot is not linked until the founder decides. No legal, tax, partner or achieved-impact claims may be invented.
 
 ## Brand Commitments
 

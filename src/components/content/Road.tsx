@@ -1,29 +1,36 @@
-import { BookOpen, Briefcase, Users, Zap } from 'lucide-react';
+import { Briefcase, GraduationCap, Laptop, Users } from 'lucide-react';
 import { hero } from '@/content/project';
 const stops = [
   {
     x: 151.5,
     y: 438.5,
-    Glyph: Users,
+    Glyph: GraduationCap,
     label: { x: 186, y: 444, anchor: 'start' },
   },
   {
     x: 286.1,
     y: 334.9,
-    Glyph: BookOpen,
+    Glyph: Laptop,
     label: { x: 320, y: 341, anchor: 'start' },
   },
   {
     x: 392.3,
     y: 219.6,
-    Glyph: Briefcase,
+    Glyph: Users,
     label: { x: 426, y: 226, anchor: 'start' },
   },
-  { x: 523.2, y: 133, Glyph: Zap, label: { x: 498, y: 108, anchor: 'end' } },
+  {
+    x: 523.2,
+    y: 133,
+    Glyph: Briefcase,
+    label: { x: 498, y: 108, anchor: 'end' },
+  },
 ] as const;
 /**
- * The road Ardú opens: a single stroke rising from the rubble to the ambition,
- * with the four things Ardú gives as stops along it. Drawn once on load.
+ * The road Ardú keeps open: a single stroke rising from the rubble to a
+ * working life, with the four things Ardú delivers as stops along it. Drawn once on load; then
+ * a light keeps travelling it and dust rises off the rubble. Under reduced
+ * motion it is simply drawn.
  */
 export function Road() {
   return (
@@ -79,6 +86,34 @@ export function Road() {
           d="M548 103 C566 90 586 76 610 60"
           pathLength={1}
         />
+        <g className="road-motes">
+          {[
+            [70, 470, 0],
+            [118, 486, 1.4],
+            [160, 470, 2.6],
+            [40, 452, 3.6],
+            [196, 492, 4.8],
+          ].map(([x, y, delay]) => (
+            <circle
+              key={`${x}-${y}`}
+              cx={x}
+              cy={y}
+              r={2.2}
+              style={{ ['--delay' as string]: `${delay}s` }}
+            />
+          ))}
+        </g>
+        <circle className="road-traveller" r={6}>
+          <animateMotion
+            dur="5.5s"
+            begin="2.2s"
+            repeatCount="indefinite"
+            path="M40 460 C230 460 300 300 380 230 S570 120 610 60"
+            calcMode="spline"
+            keyTimes="0;1"
+            keySplines="0.42 0 0.2 1"
+          />
+        </circle>
         {stops.map((stop, i) => (
           <g
             key={stop.label.x}

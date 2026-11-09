@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
-import { Vision } from '@/components/sections/Vision';
+import { Proof } from '@/components/sections/Proof';
+import { Organisation } from '@/components/sections/Organisation';
+import { Projects } from '@/components/sections/Projects';
 import { Pillars } from '@/components/sections/Pillars';
 import { Changes } from '@/components/sections/Changes';
-import { Direction } from '@/components/sections/Direction';
-import { Weight } from '@/components/sections/Weight';
 import { Ways } from '@/components/sections/Ways';
 import { TrustStrip } from '@/components/sections/Strips';
 import { CtaBand } from '@/components/ui/CtaBand';
@@ -17,11 +17,11 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Vision />
-      <Direction giveHref={giveAnchor.here} />
+      <Proof />
+      <Organisation />
+      <Projects />
       <Pillars />
       <Changes />
-      <Weight />
       <Ways />
       <TrustStrip />
       <CtaBand giveHref={giveAnchor.here} />

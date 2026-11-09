@@ -18,7 +18,7 @@ export function Footer() {
         </div>
         <nav aria-label="Footer" className="footer-col">
           <h2>{footer.explore}</h2>
-          {[...nav, pages.contact].map((link) => (
+          {[...nav, pages.support, pages.contact].map((link) => (
             <Link key={link.href} href={link.href}>
               {link.label}
             </Link>

@@ -5,12 +5,12 @@ import { weight } from '@/content/project';
 export function Weight() {
   return (
     <Section className="weight" aria-labelledby="weight-title">
-      <div className="weight-tile" aria-hidden="true">
+      <div className="weight-tile" aria-hidden="true" data-reveal>
         <Icon name="sun" tone="sand" size={30} />
         <span className="weight-value">{weight.figure.value}</span>
         <small>{weight.figure.label}</small>
       </div>
-      <div className="weight-copy">
+      <div className="weight-copy" data-reveal style={{ ['--i' as string]: 1 }}>
         <h2 id="weight-title">
           {weight.title[0]} {weight.title[1]}
         </h2>

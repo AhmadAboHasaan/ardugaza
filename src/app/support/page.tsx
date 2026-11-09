@@ -2,11 +2,13 @@ import type { Metadata } from 'next';
 import { Globe, Hash, Mail, MessageCircle } from 'lucide-react';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
-import { LinkButton } from '@/components/ui/LinkButton';
+import { Icon } from '@/components/ui/Icon';
+import { Faq } from '@/components/ui/Faq';
 import { CtaBand } from '@/components/ui/CtaBand';
-import { Give } from '@/components/sections/Give';
-import { contact, integrations } from '@/data/integrations';
-import { ctas, giveAnchor, pages, support } from '@/content/project';
+import { OrganisationGift } from '@/components/giving/OrganisationGift';
+import { Projects } from '@/components/sections/Projects';
+import { siteOrigin } from '@/data/integrations';
+import { giveAnchor, pages, support } from '@/content/project';
 export const metadata: Metadata = {
   title: pages.support.title,
   description: support.hero.lead,
@@ -17,15 +19,11 @@ export const metadata: Metadata = {
     description: support.hero.lead,
   },
 };
-const origin =
-  integrations.canonicalOrigin.status === 'ready'
-    ? integrations.canonicalOrigin.value
-    : 'https://ardugaza.org';
-const shareText = `${support.share.text} ${origin}`;
+const shareText = `${support.share.text} ${siteOrigin}`;
 const shareLinks = [
   {
     label: 'LinkedIn',
-    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(origin)}`,
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(siteOrigin)}`,
     Glyph: Globe,
   },
   {
@@ -40,37 +38,73 @@ const shareLinks = [
   },
   {
     label: 'Email',
-    href: `mailto:?subject=${encodeURIComponent('Ardú, a place rising in Gaza City')}&body=${encodeURIComponent(shareText)}`,
+    href: `mailto:?subject=${encodeURIComponent('Ardú: keeping Gaza’s students learning')}&body=${encodeURIComponent(shareText)}`,
     Glyph: Mail,
   },
 ];
+/** Support for Ardú: the one gift that funds every programme it runs. */
 export default function SupportPage() {
   return (
     <>
-      <PageHero {...support.hero} />
-      <Section className="give" aria-labelledby="give-title">
-        <Give />
-      </Section>
-      <Section className="split split--muted" aria-labelledby="stage-title">
-        <h2 id="stage-title">{support.stage.title}</h2>
-        <div className="split-body">
-          <p>{support.stage.body}</p>
-          <LinkButton href={contact.mailto(ctas.mailSubjects.funder)}>
-            {ctas.conversation}
-          </LinkButton>
+      <PageHero
+        title={support.hero.title}
+        lead={support.hero.lead}
+        aside={
+          <div
+            id={giveAnchor.id}
+            className="give-card give-card--hero"
+            aria-label="Give to Ardú"
+            role="region"
+          >
+            <OrganisationGift />
+          </div>
+        }
+      >
+        <ul className="hero-points">
+          {support.hero.points.map((point) => (
+            <li key={point.text}>
+              <Icon name={point.icon} size={18} />
+              {point.text}
+            </li>
+          ))}
+        </ul>
+      </PageHero>
+      <Projects
+        id="what-it-funds"
+        title={support.programmes.title}
+        lead={support.programmes.lead}
+        more={false}
+      />
+      <Section className="carries" aria-labelledby="one-fund-title">
+        <div className="section-heading" data-reveal>
+          <h2 id="one-fund-title">{support.oneFund.title}</h2>
         </div>
+        <ul className="card-grid card-grid--three">
+          {support.oneFund.items.map((item, i) => (
+            <li
+              key={item.title}
+              className="card"
+              data-reveal
+              style={{ ['--i' as string]: i }}
+            >
+              <Icon name={item.icon} />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
       </Section>
       <Section
         id="safeguarded"
         className="safeguards"
         aria-labelledby="safeguards-title"
       >
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <h2 id="safeguards-title">{support.safeguards.title}</h2>
         </div>
         <ol className="sequence">
           {support.safeguards.steps.map((step, i) => (
-            <li key={step.title}>
+            <li key={step.title} data-reveal style={{ ['--i' as string]: i }}>
               <span className="sequence-number">{i + 1}</span>
               <h3>{step.title}</h3>
               <p>{step.text}</p>
@@ -78,6 +112,12 @@ export default function SupportPage() {
           ))}
         </ol>
         <p className="small safeguards-small">{support.safeguards.small}</p>
+      </Section>
+      <Section className="questions" aria-labelledby="faq-title">
+        <div className="section-heading" data-reveal>
+          <h2 id="faq-title">{support.faq.title}</h2>
+        </div>
+        <Faq items={support.faq.items} />
       </Section>
       <Section className="split" aria-labelledby="share-title">
         <h2 id="share-title">{support.share.title}</h2>
