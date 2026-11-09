@@ -5,9 +5,9 @@ import { ArrowUpRight } from 'lucide-react';
 type Props = {
   /** "Ardú Space" */
   name: string;
-  /** "Stage two, Light: funding now" */
+  /** "Funding now: Sustain, 0%" */
   line: string;
-  /** "Fund this project" */
+  /** "Support Ardú" */
   cta: string;
   /** The hero and the giving section: the bar steps aside while either is on screen. */
   heroId: string;
@@ -15,9 +15,9 @@ type Props = {
 };
 
 /**
- * On a phone, a project's way to give stays one thumb away: a bar at the
- * foot of the screen once the hero has scrolled off, out of the way again
- * when the giving section itself is on screen.
+ * On a phone, the way to give stays one thumb away on a programme's page: a
+ * bar at the foot of the screen once the hero has scrolled off, out of the
+ * way again when the giving section itself is on screen.
  */
 export function FundBar({ name, line, cta, heroId, fundId }: Props) {
   const [show, setShow] = useState(false);

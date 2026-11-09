@@ -1,25 +1,23 @@
 /**
- * Funding arithmetic and formatting, kept apart from the project records so
- * interactive components can use it without shipping every project's copy.
+ * How far a stage's funding has come, and the few formatting helpers the
+ * giving and progress components share. Kept apart from the programme records
+ * so interactive components can use it without shipping every page's copy.
+ *
+ * No amounts are published for a programme's stages: each carries a share out
+ * of a hundred, set by hand as funding arrives, and the date it was set.
  */
-export type StageFunding = {
-  /** Pounds, whole numbers; formatted at render time. */
-  target: number;
-  raised: number;
-  /** The date the figures were last updated by hand. */
+export type StageProgress = {
+  /** 0 to 100, set by hand. */
+  percent: number;
+  /** The date the indicator was last updated. */
   updatedOn: string;
 };
 
 export const pounds = (n: number) => `£${n.toLocaleString('en-GB')}`;
 
-export const isFunded = (funding: StageFunding | null) =>
-  !!funding && funding.target > 0 && funding.raised >= funding.target;
+/** The indicator, kept within 0 to 100 and to whole numbers. */
+export const percentOf = (progress: StageProgress | null) =>
+  progress ? Math.max(0, Math.min(100, Math.round(progress.percent))) : 0;
 
-export const percentFunded = ({ raised, target }: StageFunding) =>
-  target > 0 ? Math.min(100, Math.round((raised / target) * 1000) / 10) : 0;
-
-/** "0.5%", "37%": one decimal below ten, whole numbers above. */
-export const percent = (fraction: number) => {
-  const p = Math.max(0, Math.min(100, fraction * 100));
-  return `${p < 10 && p > 0 ? Math.round(p * 10) / 10 : Math.round(p)}%`;
-};
+export const isFunded = (progress: StageProgress | null) =>
+  !!progress && percentOf(progress) >= 100;

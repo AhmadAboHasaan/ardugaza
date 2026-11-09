@@ -31,7 +31,9 @@ export const MediaPlaceholder: Story = {
       image={integrations.hallImage}
       caption="Approved photography to follow"
       fallback={
-        <div className="hall-placeholder">500 m² · a planned place to work</div>
+        <div className="hall-placeholder">
+          500 m² · a place to study and work
+        </div>
       }
     />
   ),

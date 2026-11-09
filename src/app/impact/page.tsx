@@ -3,6 +3,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
 import { Icon } from '@/components/ui/Icon';
 import { Projects } from '@/components/sections/Projects';
+import { Proof } from '@/components/sections/Proof';
 import { Changes } from '@/components/sections/Changes';
 import { Indicators } from '@/components/sections/Indicators';
 import { CtaBand } from '@/components/ui/CtaBand';
@@ -21,9 +22,16 @@ export default function ImpactPage() {
   return (
     <>
       <PageHero {...impactPage.hero} />
+      <Proof
+        id="delivered"
+        title={impactPage.delivered.title}
+        lead={impactPage.delivered.lead}
+        figures={impactPage.delivered.figures}
+        source={impactPage.delivered.source}
+      />
       <Projects
-        title={impactPage.projects.title}
-        lead={impactPage.projects.lead}
+        title={impactPage.programmes.title}
+        lead={impactPage.programmes.lead}
       />
       <Changes
         full

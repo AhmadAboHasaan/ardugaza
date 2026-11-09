@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Hero } from './Hero';
+import { Proof } from './Proof';
 import { Organisation } from './Organisation';
 import { Projects } from './Projects';
 import { Stages } from './Stages';
@@ -19,39 +20,32 @@ import { Navigation } from '../layout/Navigation';
 import { Footer } from '../layout/Footer';
 import { ProjectCard } from '../ui/ProjectCard';
 import { SupportPanel } from '../giving/SupportPanel';
-import { ProjectFund } from '../giving/ProjectFund';
 import { OrganisationGift } from '../giving/OrganisationGift';
 import { ProjectHero } from '../projects/ProjectHero';
 import { DayTimeline } from '../projects/DayTimeline';
 import { partners, support } from '@/content/project';
-import { projects, type Project } from '@/content/projects';
+import { findProject, type Project } from '@/content/projects';
 
-/** The first project with stages funded up to `n`, to show the states flip on their own. */
-const fundedTo = (n: number): Project => {
-  const project = projects[0];
-  return {
-    ...project,
-    stages: {
-      ...project.stages,
-      items: project.stages.items.map((stage) =>
-        stage.number <= n && stage.funding
-          ? {
-              ...stage,
-              funding: { ...stage.funding, raised: stage.funding.target },
-            }
-          : stage.number === n + 1 && stage.funding
-            ? {
-                ...stage,
-                funding: {
-                  ...stage.funding,
-                  raised: Math.round(stage.funding.target * 0.37),
-                },
-              }
-            : stage,
-      ),
-    },
-  };
-};
+const mueen = findProject('mueen')!;
+const arduSpace = findProject('ardu-space')!;
+
+/**
+ * A programme with its stages funded up to `n` and the next one part of the
+ * way, to show the states follow the indicators with no hand edit.
+ */
+const fundedTo = (project: Project, n: number, next = 37): Project => ({
+  ...project,
+  stages: {
+    ...project.stages,
+    items: project.stages.items.map((stage) =>
+      stage.number <= n
+        ? { ...stage, progress: { ...stage.progress, percent: 100 } }
+        : stage.number === n + 1
+          ? { ...stage, progress: { ...stage.progress, percent: next } }
+          : stage,
+    ),
+  },
+});
 const frame = { maxWidth: 1200, margin: '2rem auto', padding: '0 1.5rem' };
 const meta = {
   title: 'Compositions',
@@ -64,8 +58,10 @@ export const MobileHero: Story = {
   render: () => <Hero />,
   globals: { viewport: { value: 'mobile390', isRotated: false } },
 };
+/** The work already under way, read from Mu’een’s dashboard and dated. */
+export const TheProof: Story = { render: () => <Proof /> };
 export const TheOrganisation: Story = { render: () => <Organisation /> };
-export const TheProjects: Story = { render: () => <Projects /> };
+export const TheProgrammes: Story = { render: () => <Projects /> };
 export const FourPillars: Story = { render: () => <Pillars /> };
 export const FourPillarsExpanded: Story = {
   render: () => <Pillars expanded heading={false} />,
@@ -73,32 +69,36 @@ export const FourPillarsExpanded: Story = {
 export const WhatChanges: Story = { render: () => <Changes /> };
 /** The stages as stops on one road: the stage funding now opens first; any stop opens on click or with the arrow keys. */
 export const TheStages: Story = {
-  render: () => <Stages project={projects[0]} />,
+  render: () => <Stages project={mueen} />,
 };
-/** When stage two's funding completes it turns Live and stage three opens, with no hand edit of any status. */
+/** Ardú Space: every stage still to be funded, the clearing open now. */
+export const TheStagesFromTheStart: Story = {
+  render: () => <Stages project={arduSpace} />,
+};
+/** When a stage's indicator reaches a hundred it reads Funded and the next one opens, with no hand edit of any status. */
 export const TheStagesOneStageLater: Story = {
-  render: () => <Stages project={fundedTo(2)} />,
+  render: () => <Stages project={fundedTo(arduSpace, 1)} />,
 };
-export const TheProjectCard: Story = {
+export const TheProgrammeCard: Story = {
   render: () => (
     <div style={frame}>
       <ul className="project-grid">
         <li>
-          <ProjectCard project={projects[0]} />
+          <ProjectCard project={mueen} />
         </li>
       </ul>
     </div>
   ),
 };
-export const TheProjectCardInAGrid: Story = {
+export const TheProgrammeCardsInAGrid: Story = {
   render: () => (
     <div style={frame}>
       <ul className="project-grid">
         <li>
-          <ProjectCard project={projects[0]} />
+          <ProjectCard project={mueen} />
         </li>
         <li>
-          <ProjectCard project={fundedTo(2)} index={1} />
+          <ProjectCard project={arduSpace} index={1} />
         </li>
       </ul>
     </div>
@@ -106,27 +106,30 @@ export const TheProjectCardInAGrid: Story = {
 };
 export const WhereStagesStand: Story = {
   render: () => (
-    <div style={{ maxWidth: 520, margin: '2rem auto', display: 'grid', gap: 16 }}>
-      <StageTrack project={projects[0]} />
-      <StageTrack project={fundedTo(2)} />
+    <div
+      style={{ maxWidth: 520, margin: '2rem auto', display: 'grid', gap: 16 }}
+    >
+      <StageTrack project={mueen} />
+      <StageTrack project={arduSpace} />
+      <StageTrack project={fundedTo(arduSpace, 1, 30)} />
     </div>
   ),
 };
-export const WhereAProjectStands: Story = {
+export const WhereAProgrammeStands: Story = {
   render: () => (
     <div style={{ maxWidth: 460, margin: '2rem auto' }}>
-      <ProjectStanding project={projects[0]} />
+      <ProjectStanding project={mueen} />
     </div>
   ),
 };
-export const AProjectsOwnHero: Story = {
-  render: () => <ProjectHero project={projects[0]} />,
+export const AProgrammesOwnHero: Story = {
+  render: () => <ProjectHero project={mueen} />,
 };
-export const AProjectsDay: Story = {
+export const AProgrammesDay: Story = {
   render: () => (
     <div style={{ maxWidth: 720, margin: '2rem auto' }}>
       <DayTimeline
-        schedule={projects[0].day.schedule!}
+        schedule={arduSpace.day!.schedule!}
         label="A day at Ardú Space, hour by hour"
       />
     </div>
@@ -139,17 +142,17 @@ export const OnThisPage: Story = {
       items={[
         { id: 'overview', label: 'Overview' },
         { id: 'stages', label: 'The stages' },
-        { id: 'place', label: 'The place' },
-        { id: 'fund', label: 'Fund it' },
+        { id: 'people', label: 'Who it serves' },
+        { id: 'give', label: 'Support it' },
       ]}
-      action={{ href: '#fund', text: 'Fund this project' }}
+      action={{ href: '#give', text: 'Support Ardú' }}
     />
   ),
 };
 export const TheIndicators: Story = { render: () => <Indicators /> };
 export const OwnWeight: Story = { render: () => <Weight /> };
 export const ThreeWays: Story = { render: () => <Ways /> };
-/** A gift to Ardú itself: its own checkout and reference, no project in sight. */
+/** A gift to Ardú: the one checkout and the one reference, wherever it is offered. */
 export const SupportArdu: Story = {
   render: () => (
     <div style={frame}>
@@ -166,9 +169,13 @@ export const SupportArduCard: Story = {
     </div>
   ),
 };
-/** A gift to one project: any amount for its open stage with the bar it moves, or one of its pieces. */
-export const FundAProject: Story = {
-  render: () => <ProjectFund project={projects[0]} />,
+/** On a programme's page the panel makes that programme's case; the gift still goes to Ardú. */
+export const SupportArduFromAProgramme: Story = {
+  render: () => (
+    <div style={frame}>
+      <SupportPanel title={mueen.give.title} body={mueen.give.body} />
+    </div>
+  ),
 };
 export const Questions: Story = {
   render: () => (

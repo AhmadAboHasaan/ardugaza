@@ -2,7 +2,7 @@ import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { organisation, pages } from '@/content/project';
-/** Ardú as an organisation, in one breath: who it serves, what changes, how it works. */
+/** Ardú as an organisation, in one breath: who it serves, what it delivers, how it answers for it. */
 export function Organisation() {
   return (
     <Section className="org" aria-labelledby="org-title">

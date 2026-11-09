@@ -1,4 +1,5 @@
 import { ViewTransition } from 'react';
+import { icons } from '@/components/ui/Icon';
 import {
   resolveStages,
   stageState,
@@ -47,17 +48,18 @@ const reached: StageState[] = ['done', 'live'];
 
 type Props = {
   project: Project;
-  /** The card's cover, or the large one on the project's own page, with its stops named. */
+  /** The card's cover, or the large one on the programme's own page, with its stops named. */
   variant?: 'card' | 'hero';
 };
 
 /**
- * The cover of a project until its photographs arrive: the rubble, the road
- * rising out of it, one stop for each stage (filled with a check when funded,
- * ringed and pulsing where funding is open now), and a light travelling the
- * stretch the open stage will cover. Drawn from the same books as the bars,
- * so the picture never runs ahead of them. The card's cover becomes the
- * page's cover when a visitor opens the project.
+ * The cover of a programme until its photographs arrive: the rubble, the road
+ * rising out of it to the programme's emblem, one stop for each stage (filled
+ * with a check when funded, ringed and pulsing where funding is open now),
+ * and a light travelling the stretch the open stage will cover. Drawn from
+ * the same indicators as the bars, so the picture never runs ahead of them.
+ * The card's cover becomes the page's cover when a visitor opens the
+ * programme.
  */
 export function ProjectCover({ project, variant = 'card' }: Props) {
   const stages = resolveStages(project);
@@ -68,6 +70,7 @@ export function ProjectCover({ project, variant = 'card' }: Props) {
   });
   const last = stops.filter((s) => reached.includes(s.stage.state)).pop();
   const open = stops.find((s) => s.stage.state === 'now');
+  const Emblem = icons[project.icon];
   const travelled = last ? d(stretch(0, last.t)) : null;
   const ahead = open ? d(stretch(last?.t ?? 0, open.t)) : null;
   return (
@@ -132,8 +135,17 @@ export function ProjectCover({ project, variant = 'card' }: Props) {
               </circle>
             </>
           )}
-          <circle className="cover-end-glow" cx={P3[0]} cy={P3[1]} r="18" />
-          <circle className="cover-end" cx={P3[0]} cy={P3[1]} r="6" />
+          <circle className="cover-end-glow" cx={P3[0]} cy={P3[1]} r="26" />
+          <circle className="cover-end" cx={P3[0]} cy={P3[1]} r="16" />
+          <g className="cover-emblem">
+            <Emblem
+              x={P3[0] - 9}
+              y={P3[1] - 9}
+              width={18}
+              height={18}
+              strokeWidth={2}
+            />
+          </g>
           {stops.map(({ stage, x, y }, i) => (
             <g
               key={stage.number}

@@ -8,8 +8,8 @@ import {
 } from '@/data/integrations';
 import { ctas, give } from '@/content/project';
 /**
- * A gift to Ardú itself, in any amount: the organisation's own checkout,
- * carrying the organisation's own reference. No project is offered here.
+ * A gift to Ardú, in any amount: the organisation's one checkout, carrying
+ * the general fund's reference, wherever on the site it is offered.
  */
 export function OrganisationGift() {
   const giving = integrations.giving;

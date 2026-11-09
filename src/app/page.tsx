@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
+import { Proof } from '@/components/sections/Proof';
 import { Organisation } from '@/components/sections/Organisation';
 import { Projects } from '@/components/sections/Projects';
 import { Pillars } from '@/components/sections/Pillars';
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Proof />
       <Organisation />
       <Projects />
       <Pillars />

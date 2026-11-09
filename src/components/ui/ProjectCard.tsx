@@ -13,9 +13,9 @@ type Props = {
   index?: number;
 };
 /**
- * One project, as a door to its own page: its status as the crown on the
- * cover, what it is in a breath, where its stages stand, and the whole card
- * to click. Funding lives on the project's page, not here.
+ * One programme, as a door to its own page: its status as the crown on the
+ * cover, what it is in a breath, how far each stage's funding has come, and
+ * the whole card to click.
  */
 export function ProjectCard({ project, headingLevel = 3, index = 0 }: Props) {
   const Heading = headingLevel === 2 ? 'h2' : 'h3';
@@ -32,7 +32,7 @@ export function ProjectCard({ project, headingLevel = 3, index = 0 }: Props) {
         <StatusTag status={project.status} className="project-crown" />
       </div>
       <div className="project-card-body">
-        <p className="project-card-ordinal">{project.ordinal}</p>
+        <p className="project-card-kind">{project.kind}</p>
         <Heading className="project-card-title">
           <Link href={href} className="project-card-link">
             {project.name}
@@ -41,7 +41,7 @@ export function ProjectCard({ project, headingLevel = 3, index = 0 }: Props) {
         <p className="project-card-summary">{project.brief}</p>
         <StageTrack project={project} />
         <span className="project-card-cta" aria-hidden="true">
-          {ctas.project}
+          {ctas.programme}
           <ArrowUpRight size={20} />
         </span>
       </div>

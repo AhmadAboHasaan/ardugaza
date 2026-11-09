@@ -2,7 +2,12 @@ import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 import { ProjectFilter } from '@/components/projects/ProjectFilter';
-import { ctas, pages, projectsPage, projectsSection } from '@/content/project';
+import {
+  ctas,
+  pages,
+  programmesPage,
+  programmesSection,
+} from '@/content/project';
 import {
   projectStatus,
   projects,
@@ -12,19 +17,19 @@ type Props = {
   id?: string;
   title?: string;
   lead?: string;
-  /** Show the note that more projects follow, and the link to all of them. */
+  /** Show the note that more programmes follow, and the link to all of them. */
   more?: boolean;
-  /** Offer a filter by status, once there is more than one project to filter. */
+  /** Offer a filter by status, once there is more than one programme to filter. */
   filter?: boolean;
 };
 /**
- * The projects that carry the organisation, each a card with its status on
- * top that opens onto the project's own page.
+ * The programmes Ardú runs, each a card with its status on top and its stage
+ * indicators below, opening onto the programme's own page.
  */
 export function Projects({
-  id = 'projects',
+  id = 'programmes',
   title,
-  lead = projectsSection.lead,
+  lead = programmesSection.lead,
   more = true,
   filter = false,
 }: Props) {
@@ -42,15 +47,16 @@ export function Projects({
     <Section id={id} className="projects" aria-labelledby={`${id}-title`}>
       <div className="section-heading" data-reveal>
         <h2 id={`${id}-title`}>
-          {title ?? `${projectsSection.title[0]} ${projectsSection.title[1]}`}
+          {title ??
+            `${programmesSection.title[0]} ${programmesSection.title[1]}`}
         </h2>
         {lead && <p className="lead">{lead}</p>}
       </div>
       {filter && projects.length > 1 ? (
         <ProjectFilter
-          label={projectsPage.filter}
+          label={programmesPage.filter}
           options={[
-            { value: 'all', label: projectsPage.all, count: projects.length },
+            { value: 'all', label: programmesPage.all, count: projects.length },
             ...statuses.map((status) => ({
               value: status,
               label: projectStatus[status].label,
@@ -65,13 +71,13 @@ export function Projects({
       )}
       {more && (
         <div className="projects-foot">
-          <p className="small">{projectsSection.note}</p>
+          <p className="small">{programmesSection.note}</p>
           <LinkButton
-            href={pages.projects.href}
+            href={pages.programmes.href}
             variant="text"
             className="section-more"
           >
-            {ctas.allProjects}
+            {ctas.allProgrammes}
           </LinkButton>
         </div>
       )}

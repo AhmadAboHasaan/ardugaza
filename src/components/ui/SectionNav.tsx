@@ -7,7 +7,7 @@ type Props = {
   /** "On this page" */
   label: string;
   items: readonly Item[];
-  /** A call to action held at the end of the bar: "Fund this project". */
+  /** A call to action held at the end of the bar: "Support Ardú". */
   action?: { href: string; text: string };
 };
 

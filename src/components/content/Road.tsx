@@ -1,29 +1,34 @@
-import { BookOpen, Briefcase, Users, Zap } from 'lucide-react';
+import { Briefcase, GraduationCap, Laptop, Users } from 'lucide-react';
 import { hero } from '@/content/project';
 const stops = [
   {
     x: 151.5,
     y: 438.5,
-    Glyph: Users,
+    Glyph: GraduationCap,
     label: { x: 186, y: 444, anchor: 'start' },
   },
   {
     x: 286.1,
     y: 334.9,
-    Glyph: BookOpen,
+    Glyph: Laptop,
     label: { x: 320, y: 341, anchor: 'start' },
   },
   {
     x: 392.3,
     y: 219.6,
-    Glyph: Briefcase,
+    Glyph: Users,
     label: { x: 426, y: 226, anchor: 'start' },
   },
-  { x: 523.2, y: 133, Glyph: Zap, label: { x: 498, y: 108, anchor: 'end' } },
+  {
+    x: 523.2,
+    y: 133,
+    Glyph: Briefcase,
+    label: { x: 498, y: 108, anchor: 'end' },
+  },
 ] as const;
 /**
- * The road Ardú opens: a single stroke rising from the rubble to the ambition,
- * with the four things Ardú gives as stops along it. Drawn once on load; then
+ * The road Ardú keeps open: a single stroke rising from the rubble to a
+ * working life, with the four things Ardú delivers as stops along it. Drawn once on load; then
  * a light keeps travelling it and dust rises off the rubble. Under reduced
  * motion it is simply drawn.
  */

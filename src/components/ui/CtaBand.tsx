@@ -5,9 +5,9 @@ type Props = {
   title?: string;
   body?: string;
   lead?: 'give' | 'partner';
-  /** Where "Support Ardú" goes: the organisation's giving panel on the support page by default. */
+  /** Where "Support Ardú" goes: Ardú's giving panel on the support page by default. */
   giveHref?: string;
-  /** Actions of the page's own, in place of Support Ardú and Partner with us (a project's page). */
+  /** Actions of the page's own, in place of Support Ardú and Partner with us (a programme's page). */
   actions?: ReactNode;
 };
 /** The closing call to action on every page, the lead action in sand. */

@@ -4,13 +4,13 @@ import { StatusTag } from '@/components/ui/StatusTag';
 import { ShareButton } from '@/components/ui/ShareButton';
 import { ProjectCover } from '@/components/content/ProjectCover';
 import { ProjectStanding } from '@/components/sections/ProjectStanding';
-import { ctas, pages } from '@/content/project';
+import { ctas, giveAnchor, pages } from '@/content/project';
 import { projectHref, type Project } from '@/content/projects';
 import { siteOrigin } from '@/data/integrations';
 /**
- * The opening of a project's own page, written to make the case for this
- * project alone: what it is, the road it is on, where it stands now, and the
- * way to fund it, with the card's cover grown into the page's.
+ * The opening of a programme's own page: what it is, the road it is on and
+ * where it stands now, with the card's cover grown into the page's, and the
+ * one way to fund it: a gift to Ardú.
  */
 export function ProjectHero({ project }: { project: Project }) {
   return (
@@ -24,20 +24,22 @@ export function ProjectHero({ project }: { project: Project }) {
           <nav aria-label="Breadcrumb" className="breadcrumb">
             <ol>
               <li>
-                <Link href={pages.projects.href}>{pages.projects.label}</Link>
+                <Link href={pages.programmes.href}>
+                  {pages.programmes.label}
+                </Link>
               </li>
               <li aria-current="page">{project.name}</li>
             </ol>
           </nav>
           <p className="page-kicker">
-            <span>{project.ordinal}</span>
+            <span>{project.kind}</span>
             <StatusTag status={project.status} />
           </p>
           <h1 id="page-title">{project.hero.title}</h1>
           <p className="lead">{project.hero.lead}</p>
           <div className="actions">
-            <LinkButton href="#fund" variant="light">
-              {`Fund ${project.name}`}
+            <LinkButton href={giveAnchor.here} variant="light">
+              {ctas.give}
             </LinkButton>
             <ShareButton
               title={`${project.name} · Ardú`}

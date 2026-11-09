@@ -2,9 +2,9 @@ import type { ReactNode } from 'react';
 type Props = {
   title: string;
   lead: string;
-  /** A short line above the headline: "Project 01". */
+  /** A short line above the headline: "Study library". */
   kicker?: string;
-  /** A status tag beside the kicker, on project pages. */
+  /** A status tag beside the kicker. */
   tag?: ReactNode;
   /** A panel beside the headline: the organisation's own gift on the support page. */
   aside?: ReactNode;
@@ -12,14 +12,7 @@ type Props = {
   children?: ReactNode;
 };
 /** Opening block of every inner page: the headline and one lead paragraph. */
-export function PageHero({
-  title,
-  lead,
-  kicker,
-  tag,
-  aside,
-  children,
-}: Props) {
+export function PageHero({ title, lead, kicker, tag, aside, children }: Props) {
   return (
     <section
       className={`page-hero ${aside ? 'page-hero--split' : ''}`}

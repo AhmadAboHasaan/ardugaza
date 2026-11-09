@@ -15,19 +15,18 @@ import { SeatMatrix } from '@/components/content/SeatMatrix';
 import { splitFigure } from '@/components/motion/CountUp';
 import { Ways } from '@/components/sections/Ways';
 import { Stages } from '@/components/sections/Stages';
-import { ProjectFund } from '@/components/giving/ProjectFund';
+import { Proof } from '@/components/sections/Proof';
 import { SupportPanel } from '@/components/giving/SupportPanel';
 import { ProjectCard } from '@/components/ui/ProjectCard';
+import { StageTrack } from '@/components/ui/StageTrack';
 import { Pillars } from '@/components/sections/Pillars';
-import {
-  checkoutHref,
-  giftRef,
-  integrations,
-  projectCheckouts,
-} from '@/data/integrations';
-import { nav, pages, pillars } from '@/content/project';
+import { checkoutHref, giftRef, integrations } from '@/data/integrations';
+import { nav, pages, pillars, proof } from '@/content/project';
 import {
   currentStage,
+  findProject,
+  mueenDashboard,
+  percentOf,
   projectHref,
   projects,
   resolveStages,
@@ -35,7 +34,8 @@ import {
 } from '@/content/projects';
 vi.mock('next/navigation', () => ({ usePathname: () => '/about' }));
 
-const project = projects[0];
+const mueen = findProject('mueen')!;
+const arduSpace = findProject('ardu-space')!;
 const hrefs = (root: HTMLElement) =>
   within(root)
     .queryAllByRole('link')
@@ -144,9 +144,9 @@ describe('Navigation and semantic primitives', () => {
         label="On this page"
         items={[
           { id: 'overview', label: 'Overview' },
-          { id: 'fund', label: 'Fund it' },
+          { id: 'give', label: 'Support it' },
         ]}
-        action={{ href: '#fund', text: 'Fund this project' }}
+        action={{ href: '#give', text: 'Support Ardú' }}
       />,
     );
     const bar = screen.getByRole('navigation', { name: 'On this page' });
@@ -155,14 +155,14 @@ describe('Navigation and semantic primitives', () => {
       '#overview',
     );
     expect(
-      within(bar).getByRole('link', { name: /Fund this project/ }),
-    ).toHaveAttribute('href', '#fund');
+      within(bar).getByRole('link', { name: /Support Ardú/ }),
+    ).toHaveAttribute('href', '#give');
   });
   it('opens each question in place, with no script needed', async () => {
     const user = userEvent.setup();
     render(
       <Faq
-        items={[{ q: 'Where does my gift go?', a: 'To the project alone.' }]}
+        items={[{ q: 'Where does my gift go?', a: 'To Ardú’s general fund.' }]}
       />,
     );
     const question = screen.getByText('Where does my gift go?');
@@ -182,13 +182,15 @@ describe('Navigation and semantic primitives', () => {
       <ShareButton
         title="Ardú Space"
         text="A place that works"
-        url="https://ardugaza.org/projects/ardu-space"
-        label="Share this project"
+        url="https://ardugaza.org/programmes/mueen"
+        label="Share this programme"
       />,
     );
-    await user.click(screen.getByRole('button', { name: /Share this project/ }));
+    await user.click(
+      screen.getByRole('button', { name: /Share this programme/ }),
+    );
     expect(writeText).toHaveBeenCalledWith(
-      'https://ardugaza.org/projects/ardu-space',
+      'https://ardugaza.org/programmes/mueen',
     );
     expect(
       await screen.findByRole('button', { name: /Link copied/ }),
@@ -196,8 +198,8 @@ describe('Navigation and semantic primitives', () => {
   });
 });
 
-describe('Two kinds of gift, kept apart', () => {
-  it('gives to the organisation through its own checkout and reference, in any amount', async () => {
+describe('One gift, to Ardú', () => {
+  it('gives to Ardú through its one checkout and reference, in any amount', async () => {
     const user = userEvent.setup();
     const { container } = render(<SupportPanel />);
     const giving = integrations.giving;
@@ -217,7 +219,9 @@ describe('Two kinds of gift, kept apart', () => {
       'href',
       checkoutHref(giving.organisation, giftRef.organisation, 100),
     );
-    const other = screen.getByRole('spinbutton', { name: 'Or enter an amount' });
+    const other = screen.getByRole('spinbutton', {
+      name: 'Or enter an amount',
+    });
     await user.type(other, '3');
     expect(screen.getByText('The smallest gift is £5.')).toBeVisible();
     expect(screen.getByText('Give to Ardú').closest('a')).not.toHaveAttribute(
@@ -228,159 +232,178 @@ describe('Two kinds of gift, kept apart', () => {
       screen.getByRole('link', { name: /Give £35 to Ardú/ }),
     ).toHaveAttribute(
       'href',
-      expect.stringMatching(/client_reference_id=ardu-general&prefilled_amount=3500$/),
+      expect.stringMatching(
+        /client_reference_id=ardu-general&prefilled_amount=3500$/,
+      ),
     );
-    expect(screen.getByText(/£35 to Ardú, put where the road is blocked/)).toBeVisible();
-    // No project, no stage, no project reference in the organisation's panel.
-    expect(container.textContent).not.toMatch(new RegExp(project.name));
-    for (const href of hrefs(container))
-      expect(href).not.toContain(project.slug);
+    expect(
+      screen.getByText(/£35 to Ardú, directed to where it is needed most/),
+    ).toBeVisible();
     expect(container.querySelector('form')).toBeNull();
-    expect(screen.getByText(/No payment details touch this website/)).toBeVisible();
+    expect(
+      screen.getByText(/No payment details touch this website/),
+    ).toBeVisible();
   });
-  it('points to projects from the ways in, without a checkout of theirs', () => {
-    render(<Ways />);
+  it('makes a programme’s case on its page, and still gives to Ardú', () => {
     const giving = integrations.giving;
     if (giving.status !== 'live') return;
-    const card = screen.getByRole('heading', { name: 'Fund a project' })
-      .parentElement!;
+    const { container } = render(
+      <SupportPanel title={mueen.give.title} body={mueen.give.body} />,
+    );
     expect(
-      within(card).getByRole('link', { name: new RegExp(project.name) }),
-    ).toHaveAttribute('href', projectHref(project.slug));
-    for (const href of hrefs(card)) expect(href).not.toMatch(/stripe\.com/);
+      screen.getByRole('heading', { name: 'Keep Mu’een running.' }),
+    ).toBeVisible();
+    expect(
+      screen.getByText(/funded through Ardú’s general fund/),
+    ).toBeVisible();
+    const checkouts = hrefs(container).filter((href) =>
+      href.includes('stripe.com'),
+    );
+    expect(checkouts.length).toBeGreaterThan(0);
+    for (const href of checkouts) {
+      expect(href.startsWith(giving.organisation)).toBe(true);
+      expect(href).toContain(`client_reference_id=${giftRef.organisation}`);
+    }
+  });
+  it('offers three ways in, with only Ardú’s checkout among them', () => {
+    const giving = integrations.giving;
+    if (giving.status !== 'live') return;
+    const { container } = render(<Ways />);
+    for (const href of hrefs(container).filter((h) => h.includes('stripe.com')))
+      expect(href.startsWith(giving.organisation)).toBe(true);
     expect(
       screen.getByRole('link', { name: 'Partner with us' }),
     ).toHaveAttribute('href', pages.partners.href);
-  });
-  it('funds a project through the project’s checkouts alone, with a live preview of its stage', async () => {
-    const user = userEvent.setup();
-    const { container } = render(<ProjectFund project={project} />);
-    const checkouts = projectCheckouts(project.slug)!;
-    const open = currentStage(project)!;
-    const cta = screen.getByRole('link', { name: /Give £100 to Ardú Space/ });
-    expect(cta).toHaveAttribute(
-      'href',
-      checkoutHref(checkouts.any, giftRef.stage(project.slug, open.number), 100),
-    );
     expect(
-      screen.getByText(
-        'Your £100 takes stage two, Light, from 0% to 0.5% of £22,000.',
-      ),
-    ).toBeVisible();
-    await user.click(screen.getByRole('radio', { name: '£500' }));
-    expect(
-      screen.getByText(
-        'Your £500 takes stage two, Light, from 0% to 2.3% of £22,000.',
-      ),
-    ).toBeVisible();
-    await user.click(screen.getByRole('radio', { name: 'A piece of the place' }));
-    const pieces = screen.getAllByRole('radio', { name: /^£[\d,]+/ });
-    expect(pieces).toHaveLength(project.pieces.length);
-    expect(screen.getByRole('link', { name: /Give a seat, £150/ })).toHaveAttribute(
-      'href',
-      checkoutHref(checkouts.pieces.seat, giftRef.piece(project.slug, 'seat')),
-    );
-    await user.click(screen.getByRole('radio', { name: /£750/ }));
-    expect(
-      screen.getByRole('link', { name: /Give a laptop, £750/ }),
+      screen.getByRole('link', { name: 'Request the full plan' }),
     ).toHaveAttribute(
       'href',
-      checkoutHref(checkouts.pieces.laptop, giftRef.piece(project.slug, 'laptop')),
+      expect.stringMatching(/^mailto:info@ardugaza\.org/),
     );
-    for (const href of hrefs(container))
-      expect(href).not.toContain(giftRef.organisation);
     expect(
-      screen.getByRole('link', { name: /Support Ardú instead/ }),
-    ).toHaveAttribute('href', pages.support.href);
-    expect(container.querySelector('form')).toBeNull();
+      screen.queryByRole('heading', { name: /Fund a project/ }),
+    ).not.toBeInTheDocument();
   });
 });
 
-describe('Projects and their stages', () => {
-  it('reads every stage status from the books, never by hand', () => {
-    expect(resolveStages(project).map((stage) => stage.state)).toEqual([
+describe('Programmes and their stages', () => {
+  it('reads every stage status from its indicator, never by hand', () => {
+    expect(resolveStages(arduSpace).map((stage) => stage.state)).toEqual([
+      'now',
+      'next',
+      'later',
+      'later',
+    ]);
+    expect(resolveStages(mueen).map((stage) => stage.state)).toEqual([
+      'done',
+      'now',
+      'next',
+      'later',
+    ]);
+    const setTo = (project: Project, n: number, percent: number): Project => ({
+      ...project,
+      stages: {
+        ...project.stages,
+        items: project.stages.items.map((stage) =>
+          stage.number === n
+            ? { ...stage, progress: { ...stage.progress, percent } }
+            : stage,
+        ),
+      },
+    });
+    const almost = setTo(arduSpace, 1, 99);
+    expect(resolveStages(almost)[0].state).toBe('now');
+    const cleared = setTo(arduSpace, 1, 100);
+    expect(resolveStages(cleared).map((stage) => stage.state)).toEqual([
       'live',
       'now',
       'next',
       'later',
     ]);
-    const fund = (n: number) => ({
-      ...project,
-      stages: {
-        ...project.stages,
-        items: project.stages.items.map((stage) =>
-          stage.number === n && stage.funding
-            ? {
-                ...stage,
-                funding: { ...stage.funding, raised: stage.funding.target },
-              }
-            : stage,
-        ),
-      },
-    });
-    const secondFunded: Project = fund(2);
-    expect(resolveStages(secondFunded).map((stage) => stage.state)).toEqual([
-      'live',
-      'live',
-      'now',
-      'next',
-    ]);
-    const firstReported: Project = {
-      ...secondFunded,
-      stages: {
-        ...secondFunded.stages,
-        items: secondFunded.stages.items.map((stage) =>
-          stage.number === 1 ? { ...stage, done: true } : stage,
-        ),
-      },
-    };
-    expect(resolveStages(firstReported)[0].state).toBe('done');
-    expect(currentStage(firstReported)?.number).toBe(3);
+    expect(currentStage(cleared)?.number).toBe(2);
+    expect(percentOf({ percent: 120, updatedOn: '' })).toBe(100);
+    expect(percentOf({ percent: -4, updatedOn: '' })).toBe(0);
+    expect(percentOf({ percent: 37.4, updatedOn: '' })).toBe(37);
   });
   it('opens on the stage funding now, and opens any other stop on the road', async () => {
     const user = userEvent.setup();
-    render(<Stages project={project} />);
+    render(<Stages project={mueen} />);
     const tabs = screen.getAllByRole('tab');
-    expect(tabs).toHaveLength(project.stages.items.length);
-    expect(tabs[0]).toHaveTextContent(/Clear.*Live/);
-    expect(tabs[1]).toHaveTextContent(/Light.*Funding now/);
-    expect(tabs[2]).toHaveTextContent(/Open.*Next/);
-    expect(tabs[3]).toHaveTextContent(/Grow.*Later/);
+    expect(tabs).toHaveLength(mueen.stages.items.length);
+    expect(tabs[0]).toHaveTextContent(/Launch.*Complete/);
+    expect(tabs[1]).toHaveTextContent(/Sustain.*Funding now/);
+    expect(tabs[2]).toHaveTextContent(/Expand.*Next/);
+    expect(tabs[3]).toHaveTextContent(/Teach.*Later/);
     expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
     const panel = screen.getByRole('tabpanel');
     expect(within(panel).getByRole('progressbar')).toHaveAccessibleName(
-      /£0 of £22,000 raised/,
+      'Stage two, Sustain: 0% funded',
     );
+    expect(panel).toHaveTextContent(/0% funded\. Updated 9 November 2026\./);
+    expect(panel.textContent).not.toMatch(/£/);
     expect(
-      within(panel).getByRole('link', { name: 'Fund this stage' }),
-    ).toHaveAttribute('href', '#fund');
+      within(panel).getByRole('link', { name: 'Support Ardú' }),
+    ).toHaveAttribute('href', '#give');
     await user.click(tabs[0]);
     expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
     expect(
       within(screen.getByRole('tabpanel')).getByRole('progressbar'),
-    ).toHaveAccessibleName(/fully funded, £11,000/);
+    ).toHaveAccessibleName('Stage one, Launch: delivered');
     await user.keyboard('{End}');
     expect(tabs[3]).toHaveFocus();
     expect(screen.getByRole('tabpanel')).toHaveTextContent(
-      /Figures published when this stage is tendered/,
+      /Follows in order, once the stages before it are funded/,
     );
     await user.keyboard('{ArrowLeft}');
     expect(screen.getByRole('tabpanel')).toHaveTextContent(
-      /Opens for funding the moment stage two is funded/,
+      /Opens for funding once stage two is fully funded/,
     );
   });
-  it('makes each card a door to its project, crowned by status, with no money on it', () => {
-    const { container } = render(<ProjectCard project={project} />);
-    expect(screen.getByText('Under construction')).toBeVisible();
-    expect(
-      screen.getByRole('link', { name: project.name }),
-    ).toHaveAttribute('href', projectHref(project.slug));
-    expect(screen.getByText(project.brief)).toBeVisible();
-    expect(container).toHaveTextContent(
-      'One of four stages funded. Funding now: stage two, Light.',
+  it('makes each card a door to its programme, crowned by status, with an indicator for every stage and no amount', () => {
+    const { container } = render(<ProjectCard project={mueen} />);
+    expect(screen.getByText('Running')).toBeVisible();
+    expect(screen.getByText('Study library')).toBeVisible();
+    expect(screen.getByRole('link', { name: mueen.name })).toHaveAttribute(
+      'href',
+      projectHref(mueen.slug),
     );
-    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+    expect(projectHref(mueen.slug)).toBe('/programmes/mueen');
+    expect(screen.getByText(mueen.brief)).toBeVisible();
+    expect(container).toHaveTextContent(
+      'One of four stages complete. Funding now: stage two of four, Sustain, 0% funded.',
+    );
+    expect(container.querySelectorAll('.stage-track-step')).toHaveLength(4);
     expect(container.textContent).not.toMatch(/£/);
+  });
+  it('shows Ardú Space under construction, with its first stage still to fund', () => {
+    const { container } = render(<StageTrack project={arduSpace} />);
+    expect(container).toHaveTextContent(
+      'Funding now: stage one of four, Clear, 0% funded.',
+    );
+    expect(container.textContent).not.toMatch(/complete|fully funded/i);
+    render(<ProjectCard project={arduSpace} />);
+    expect(screen.getByText('Under construction')).toBeVisible();
+  });
+  it('carries the proof, dated at its source, through to Mu’een', () => {
+    render(<Proof />);
+    expect(
+      screen.getByRole('heading', { name: 'Proof, not promises.' }),
+    ).toBeVisible();
+    expect(screen.getAllByRole('term')[0]).toHaveTextContent(
+      mueenDashboard.students.toLocaleString('en-GB'),
+    );
+    expect(
+      screen.getByText(
+        `From Mu’een’s own dashboard, read on ${mueenDashboard.readOn}.`,
+      ),
+    ).toBeVisible();
+    expect(screen.getByRole('link', { name: proof.more })).toHaveAttribute(
+      'href',
+      '/programmes/mueen',
+    );
+  });
+  it('lists every programme it runs, Mu’een first', () => {
+    expect(projects.map((p) => p.slug)).toEqual(['mueen', 'ardu-space']);
   });
   it('shows the four pillars short on the home page and in full elsewhere', () => {
     const { unmount } = render(<Pillars />);
@@ -404,7 +427,7 @@ describe('Projects and their stages', () => {
     expect(actions[1]).toHaveTextContent('Support Ardú');
     expect(actions[1]).toHaveAttribute('href', '/support#give');
   });
-  it('keeps the footer free of operational documents', () => {
+  it('keeps the footer free of operational documents, and honest about registration', () => {
     render(<Footer />);
     expect(
       screen.queryByRole('link', { name: /plan|PDF/i }),
@@ -413,7 +436,7 @@ describe('Projects and their stages', () => {
       screen.getByRole('link', { name: 'info@ardugaza.org' }),
     ).toHaveAttribute('href', 'mailto:info@ardugaza.org');
     expect(
-      screen.getByText(/unregistered youth organisation/),
+      screen.getByText(/not yet a registered charity/),
     ).toBeInTheDocument();
   });
 });

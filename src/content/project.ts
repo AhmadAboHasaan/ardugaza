@@ -1,32 +1,39 @@
 /**
  * Ardú · public site content · November 2026.
  *
- * Ardú is presented as an organisation, not as a building: a vision, the
- * people it serves, the results it measures itself by, and the projects that
- * carry it. The projects themselves live in `projects.ts`, each with its own
- * page and its own giving. Support for the organisation and funding for a
- * project are two separate choices, and the copy never folds one into the
- * other. Operational detail (payroll, energy arithmetic, running costs) is not
+ * Ardú is presented as an education organisation first: what it is for, the
+ * students it serves, the results it answers for, and the programmes it runs.
+ * Every programme is funded through Ardú's general fund, so every call to give
+ * on the site is a call to support Ardú itself. The programmes live in
+ * `projects.ts`, each with its status and a funding indicator for each stage.
+ * Operational detail (payroll, energy arithmetic, running costs) is not
  * published here; it is shared with partners and funders on request.
  */
+import { mueenDashboard as dash } from '@/content/projects';
+
+const n = (value: number) => value.toLocaleString('en-GB');
 
 export const project = {
   name: 'Ardú',
-  title: 'Ardú · A youth organisation in Gaza City',
+  title: 'Ardú · Youth education in Gaza',
   titleTemplate: '%s · Ardú',
   description:
-    'Ardú is a youth organisation born under the rubble of the home in Gaza City where its founder’s road began. It lifts young people over everything between them and their ambition, starting with university students and graduates in technology and medicine, through projects you can see, count and fund in the open. Not relief. A lifting.',
+    'Ardú is a youth education organisation in Gaza. With campuses destroyed and power and connection uncertain, it keeps Gaza’s medical and technology students learning and moving toward work, through programmes built for the conditions they live in.',
   ogTitle:
-    'Ardú lifts Gaza’s young people over everything between them and their ambition.',
+    'Gaza’s students are still learning. Ardú is making sure they can keep going.',
   ogDescription:
-    'A youth organisation born under the rubble of the home in Gaza City where its founder’s road began: guidance, learning, openings and places that work, for university students and graduates in technology and medicine first. Its first project, Ardú Space, rises over that rubble. Not relief. A lifting.',
+    'A youth education organisation in Gaza, keeping medical and technology students learning and moving toward work. Its study library already serves more than 1,300 medical students, and its study and work hub is rising from the rubble. Back the organisation, and you back every programme it runs.',
   founder: 'Ahmed Abuhassan',
   founderLinkedin: 'https://www.linkedin.com/in/ahmadabohassan',
-  tagline: 'Not relief. A lifting.',
 } as const;
 
 export const pages = {
   about: { href: '/about', label: 'About', title: 'About Ardú' },
+  programmes: {
+    href: '/programmes',
+    label: 'Programmes',
+    title: 'Programmes',
+  },
   whatWeDo: { href: '/what-we-do', label: 'What we do', title: 'What we do' },
   impact: { href: '/impact', label: 'Impact', title: 'Impact' },
   partners: {
@@ -36,10 +43,9 @@ export const pages = {
   },
   support: { href: '/support', label: 'Support Ardú', title: 'Support Ardú' },
   contact: { href: '/contact', label: 'Contact', title: 'Contact' },
-  projects: { href: '/projects', label: 'Projects', title: 'Projects' },
 } as const;
 
-/** The organisation's giving panel: on the home page in place, elsewhere on the support page. */
+/** Ardú's giving panel: in place on the pages that carry it, elsewhere on the support page. */
 export const giveAnchor = {
   id: 'give',
   here: '#give',
@@ -48,29 +54,25 @@ export const giveAnchor = {
 
 export const nav = [
   pages.about,
-  pages.projects,
+  pages.programmes,
   pages.whatWeDo,
   pages.impact,
   pages.partners,
 ] as const;
 
 export const ctas = {
-  /** The organisation's own call: a gift to Ardú. */
+  /** The one call to give, everywhere on the site: a gift to Ardú. */
   give: 'Support Ardú',
   partner: 'Partner with us',
   conversation: 'Start a conversation',
   requestPlan: 'Request the full plan',
-  project: 'Explore the project',
-  projects: 'Explore our projects',
-  chooseProject: 'Choose a project',
-  allProjects: 'All projects',
-  /** A project's own call: a gift to that project alone. */
-  fundProject: 'Fund this project',
-  fundStage: 'Fund this stage',
-  share: 'Share this project',
+  programme: 'Explore the programme',
+  programmes: 'See our programmes',
+  allProgrammes: 'All programmes',
+  share: 'Share this programme',
   mailSubjects: {
     partner: 'Ardú · partnering with you',
-    funder: 'Ardú · funding a stage',
+    funder: 'Ardú · funding at scale',
     plan: 'Ardú · request for the full plan',
     youth: 'Ardú · tell me when registration opens',
     press: 'Ardú · press enquiry',
@@ -81,92 +83,122 @@ export const ctas = {
 /* ------------------------------------------------------------------ home */
 
 export const hero = {
-  titleStart:
-    'Ardú lifts Gaza’s young people over everything between them and ',
-  titleEmphasis: 'their ambition.',
-  lead: 'Ardú is a youth organisation born under the rubble of the home in Gaza City where its founder’s road began. It lifts young people over everything that trips them on the road from ability to income, starting with university students and graduates in technology and medicine, through projects you can see, count and fund in the open.',
-  tagline: 'Ardú is Irish for a lifting. Not relief. A lifting.',
+  titleStart: 'Gaza’s students are still learning. ',
+  titleEmphasis: 'We are making sure they can keep going.',
+  lead: 'With campuses destroyed and power and connection uncertain, Ardú keeps Gaza’s medical and technology students learning and moving toward work, through programmes built for the conditions they live in.',
+  tagline:
+    'Already at work: Mu’een, the study library used by more than 1,300 of Gaza’s medical students.',
   road: {
     start: 'Under the rubble',
-    stops: ['Guidance', 'Learning', 'Openings', 'A place that works'],
-    end: 'their ambition',
+    stops: ['Study', 'Skills', 'Mentors', 'Work'],
+    end: 'a working life',
     caption:
-      'The road Ardú opens: guidance from people who have walked it, learning that counts, openings that lead to income, and a place where the work gets done.',
+      'The road Ardú keeps open: study that continues, skills that pay, mentors from the profession, and openings into work.',
   },
 } as const;
 
-export const organisation = {
-  title: ['A youth organisation,', 'measured by one result.'],
-  body: 'Ardú exists for one result: young people in Gaza reaching the ambition their ability has earned them, from where they are. The organisation runs and funds its own projects, each with a status you can see and a page of its own. The first is Ardú Space, rising over the rubble where the founder’s road began. More join as Ardú adopts them.',
-  facts: [
+/** The figures that show Ardú's work is already under way, dated at the source. */
+export const proof = {
+  title: 'Proof, not promises.',
+  lead: 'Mu’een, the study library Ardú has adopted, already keeps more than 1,300 of Gaza’s medical students supplied with their course materials, on connections too weak for almost anything else. It is the standard every Ardú programme is held to: real students, real use, counted and published.',
+  figures: [
     {
-      icon: 'graduation',
-      title: 'Who it serves',
-      text: 'University students and graduates in technology and medicine, in Gaza, first: two fields full of ability, and two of the hardest to carry through a war.',
+      icon: 'users',
+      value: n(dash.students),
+      label: 'medical students have joined',
     },
     {
       icon: 'grow',
-      title: 'What changes',
-      text: 'Degrees kept on track through the war, first incomes earned, first jobs found, and a circle around each person of people who have walked the road.',
+      value: n(dash.joinedLast30Days),
+      label: 'of them in the past thirty days',
+    },
+    {
+      icon: 'files',
+      value: n(dash.requests),
+      label: 'requests for study materials',
+    },
+    {
+      icon: 'calendar',
+      value: n(dash.activeLast7Days),
+      label: 'students active in the past week',
+    },
+  ],
+  source: `From Mu’een’s own dashboard, read on ${dash.readOn}.`,
+  more: 'See Mu’een',
+} as const;
+
+export const organisation = {
+  title: ['Built for the students', 'the war could not stop.'],
+  body: 'Ardú is a youth education organisation in Gaza, answerable to one outcome: that the city’s students finish what they started and move into work, however the war has rearranged their lives. It builds its own programmes, adopts proven ones, and funds them all from one general fund, so every gift goes where it is needed most.',
+  facts: [
+    {
+      icon: 'graduation',
+      title: 'Who we serve',
+      text: 'University students and graduates in medicine and technology in Gaza: two fields full of talent, and two of the hardest to carry through a war.',
+    },
+    {
+      icon: 'grow',
+      title: 'What we deliver',
+      text: 'Study that continues without lecture halls, skills the market pays for, mentors from the profession, and openings into work.',
     },
     {
       icon: 'receipt',
-      title: 'How it works',
-      text: 'Projects built in the open: a trustee route for every pound, a receipt and a photograph for every expense, a statement to supporters every month.',
+      title: 'How we answer for it',
+      text: 'Every pound held by a trustee in the United Kingdom, every expense receipted and photographed, and a statement to supporters every month.',
     },
   ],
   more: 'About Ardú',
 } as const;
 
 export const statement = {
-  body: 'Gaza’s young people are not short of ability or ambition. They are short of the road: someone who has walked it to guide them, the skills and tools the market asks for, a door that opens, and a place where the work can be done. Ardú lifts them over each of those gaps, and measures itself by one result: degrees kept, income earned, work found.',
+  body: 'Gaza’s students are not short of talent or determination. They are short of what a working education system would give them: the materials and a place to study, skills the market pays for, someone from the profession to guide them, and a door into work. Ardú supplies each of these, programme by programme, and measures itself by the result: degrees kept, incomes earned, careers begun.',
 } as const;
 
 export const pillars = {
-  title: ['Four things', 'every road needs.'],
+  title: ['What Ardú delivers,', 'from study to work.'],
   items: [
     {
-      icon: 'people',
-      title: 'Guidance from people who have walked the road',
-      short:
-        'Mentors and introductions from people who have done it: how to keep a degree alive, land the first client, pass the interview, price the work.',
-      long: 'Guidance comes first. Mentoring, introductions and the kind of advice you only get from someone who has done it: how to keep a degree on track through a blackout, land the first client, pass the interview, price the work and keep the job. Live sessions bring in founders, team leads, doctors and academics.',
-    },
-    {
       icon: 'learn',
-      title: 'Learning that counts',
+      title: 'Study that continues',
       short:
-        'Courses with partner organisations in repeating cycles, with certificates from the partner, and the study materials a degree demands.',
-      long: 'Courses run with partner organisations in repeating cycles, so nobody who misses a round waits long: English, freelancing and remote work, career readiness, digital skills, and the study materials and exam preparation that students of medicine and technology need. Certificates come from the partner.',
+        'Course materials, exam preparation and places to study, so a degree outlives the loss of its campus.',
+      long: 'When the campuses fell, their lecture halls, libraries and study rooms fell with them. Ardú puts them back within reach: course materials organised the way degrees are taught, exam preparation, and places with power and connection where study can actually happen. Mu’een, the first of these programmes, is already used by more than 1,300 medical students.',
     },
     {
-      icon: 'work',
-      title: 'Openings that lead to income',
+      icon: 'award',
+      title: 'Skills that pay',
       short:
-        'Freelance clients, remote-work pipelines and introductions, so a skill becomes a client, a certificate, an interview, an income.',
-      long: 'Freelance clients, remote-work pipelines with partners, and a portfolio built on real work, so a skill turns into a client, a certificate, an interview, an income.',
+        'Courses with partner organisations in repeating cycles, with recognised certificates and portfolios built on real work.',
+      long: 'Courses run with partner organisations in repeating cycles, so no one who misses a round waits long: English, freelancing and remote work, career readiness, and the digital skills the market pays for. Certificates come from the partner, and portfolios are built on real work.',
     },
     {
-      icon: 'power',
-      title: 'A place where the work gets done',
+      icon: 'people',
+      title: 'Mentors from the profession',
       short:
-        'Power that stays on, internet that holds, a seat and quiet, so nothing on the road is lost to a blackout. The first is Ardú Space.',
-      long: 'Power that stays on through the working day, internet that holds, light, water and quiet, because a road is no use if the work is lost to a blackout. Ardú builds these places as projects, each with a team on the ground. The first is Ardú Space, rising over the rubble in Gaza City.',
+        'Doctors, engineers, founders and academics who have built the careers our students are working toward.',
+      long: 'Mentoring and introductions from people established in the professions our students are entering: doctors, engineers, founders, team leads and academics, in person and online. The guidance a working university and a professional network would have given them.',
+    },
+    {
+      icon: 'briefcase',
+      title: 'Openings into work',
+      short:
+        'Freelance clients, remote-work pipelines and introductions, so a skill becomes an income.',
+      long: 'Freelance clients, remote-work pipelines with partners, and introductions to employers, so that a skill becomes a client, an interview and an income. Ardú Space will give that work a desk with power that stays on and internet that holds.',
     },
   ],
-  more: 'How we work',
+  more: 'What we do',
 } as const;
 
 export const changes = {
-  title: ['What changes', 'when the road opens.'],
+  title: ['What your support', 'makes possible.'],
   items: [
     {
       icon: 'graduation',
-      text: 'A medical student whose university now exists only online sits her lectures and her exams on a connection that holds, with the materials her year demands.',
+      text: 'A first-year medical student whose campus is gone opens her course materials on her phone, on a connection that drops every few minutes, and sits her exams prepared.',
     },
     {
       icon: 'code',
-      text: 'A self-taught developer stops walking for signal and starts delivering for clients.',
+      text: 'A self-taught developer stops walking for a signal and starts delivering for clients.',
     },
     {
       icon: 'briefcase',
@@ -174,51 +206,51 @@ export const changes = {
     },
     {
       icon: 'laptop',
-      text: 'A freelancer who lost her clients to power cuts delivers on time again, from a desk that is hers for the month.',
+      text: 'A freelancer who lost her clients to power cuts delivers on time again, from a desk with power that stays on.',
     },
   ],
   closing:
-    'The measure is not seats filled. It is degrees kept, income earned and work found, published every month.',
+    'Ardú counts what changes, not what it spends: degrees kept, incomes earned and careers begun, published as they come in.',
   more: 'Our impact',
 } as const;
 
-export const projectsSection = {
-  title: ['The impact,', 'project by project.'],
-  lead: 'Ardú delivers its impact through projects. Each wears its status on top and opens onto a page of its own: what it is, where it stands, and how to fund it.',
-  note: 'More projects join here as Ardú adopts them, each with its own status, stages and page.',
+export const programmesSection = {
+  title: ['Our programmes.', 'One fund behind them all.'],
+  lead: 'Ardú runs every programme from one general fund. Each shows its status and, stage by stage, how far its funding has come.',
+  note: 'New programmes join as Ardú builds or adopts them, each funded through Ardú and reported in the open.',
 } as const;
 
-export const projectsPage = {
+export const programmesPage = {
   hero: {
-    title: 'Our projects, in the open.',
-    lead: 'Ardú works through projects. Each carries a status you can see, stages you can count and a page of its own, where you can fund it and nothing else. A stage turns live the moment its funding is complete, and the next one opens.',
+    title: 'Programmes built for the conditions Gaza’s students live in.',
+    lead: 'Ardú builds its own programmes and adopts proven ones, then funds them all from one general fund, directed to where it is needed most. Each programme shows its status and, stage by stage, how far its funding has come.',
   },
-  list: 'Every project, with its status',
-  filter: 'Show projects',
+  list: 'Every programme, with its status',
+  filter: 'Show programmes',
   all: 'All',
   note: {
-    title: 'Rather back all of them?',
-    body: 'A gift to Ardú goes to the organisation that runs and funds every project here, and the ones still to come.',
+    title: 'One gift funds them all.',
+    body: 'Gifts to Ardú are not split by programme. Every gift goes to Ardú’s general fund, which funds every programme here and the ones still to come, directed to where it is needed most.',
   },
 } as const;
 
 export const weight = {
-  title: ['Designed to carry', 'its own weight.'],
-  body: 'Every kilowatt of solar Ardú installs works twice: ten seats by day, and outside the hall’s hours surplus power and internet for the neighbourhood at below the market price, with the income going back into keeping the doors open. Together with the freelancer desks, the place is designed to earn a growing share of its own running costs, so that every gift goes further and lasts longer.',
+  title: ['Built to carry', 'its own weight.'],
+  body: 'Every kilowatt of solar power Ardú Space installs is designed to work twice: for students by day, and after hours as power and internet for the neighbourhood, priced below the market, with the income returned to running costs. With its freelancer desks, the hub is designed to earn a growing share of its own keep, so every gift goes further and lasts longer.',
   figure: {
     value: '×2',
     label:
-      'A kilowatt that works twice: the hall by day, the street after hours.',
+      'Every kilowatt works twice: for students by day, for the neighbourhood after hours.',
   },
 } as const;
 
 export const give = {
   icon: 'heart',
   title: ['Support', 'Ardú.'],
-  body: 'A gift to Ardú backs the organisation itself: the one that runs and funds every project it carries, and opens the next. Ardú puts it where the road is blocked, and it travels a trustee route that has already carried two years of public giving with every pound accounted for.',
+  body: 'Back the organisation, and you back every programme it runs: Mu’een’s library today, Ardú Space as it rises, and the programmes that follow. Ardú directs every gift to where it is needed most, through a trustee route that has already carried two years of public giving with every pound accounted for.',
   label: 'Choose your gift to Ardú',
   other: 'Or enter an amount',
-  impact: 'to Ardú, put where the road is blocked.',
+  impact: 'to Ardú, directed to where it is needed most.',
   minimum: 'The smallest gift is £5.',
   secure:
     'Secure checkout by Stripe, in pounds, by card or digital wallet. You can still change the amount there. No payment details touch this website.',
@@ -226,71 +258,53 @@ export const give = {
   pending: 'Giving opens shortly. Write to us to be told the moment it does.',
 } as const;
 
-/** A project's own giving: its open stage in any amount, or one of its pieces. */
-export const fundProject = {
-  label: 'How would you like to give?',
-  any: 'Any amount',
-  pieces: 'A piece of the place',
-  amountLabel: 'Choose an amount for',
-  pieceLabel: 'Choose a piece of',
-  other: 'Or enter an amount',
-  piecesNote: 'Choose how many on the next page.',
-  noStage: 'goes to the project, put where it is needed next.',
-  secure:
-    'Secure checkout by Stripe, in pounds. You can still change the amount there. No payment details touch this website.',
-  organisation: {
-    text: 'Rather back everything Ardú does?',
-    cta: 'Support Ardú instead',
-  },
-} as const;
-
 export const ways = {
-  title: ['Three ways', 'to lift it.'],
-  note: 'Give to Ardú and it goes where the road is blocked. Choose a project and your gift goes to that project alone. Or bring what money cannot buy.',
-  project: {
-    icon: 'landmark',
-    title: 'Fund a project',
-    text: 'Pick a project you can picture. Your gift goes to that project alone, to the stage open now, and comes back to you as its own receipts and photographs.',
-  },
+  title: ['Three ways', 'to stand with them.'],
+  note: 'Give to Ardú and your gift funds every programme it runs. Partner with us and bring what money cannot buy. Or fund at scale, with the full plan and reporting.',
   partner: {
     icon: 'handshake',
-    title: 'Partner',
-    text: 'Bring a course, mentors, laptops, or openings for the people who come through Ardú. The half that money cannot buy.',
+    title: 'Partner with Ardú',
+    text: 'Bring a course, mentors, equipment or openings into work for the students in Ardú’s programmes: the half of the work that money cannot buy.',
+  },
+  scale: {
+    icon: 'landmark',
+    title: 'Fund at scale',
+    text: 'Foundations, companies and institutions can underwrite a programme stage, a year of running costs or Ardú’s core costs, with the full plan, costs and reporting shared on request.',
   },
 } as const;
 
 export const trustStrip = {
   title: ['Every pound,', 'accounted for.'],
-  body: 'Gifts are held in the United Kingdom by an academic trustee under a signed agreement, released stage by stage to an account used only for Ardú, and spent against written quotes. Every expense gets a number, a receipt and a photograph of what it became, and supporters receive a monthly statement.',
+  body: 'Gifts are held in the United Kingdom by an academic trustee under a signed agreement, released stage by stage to an account used only for Ardú, and spent against written quotes. Every expense carries a number, a receipt and a photograph of what it became, and supporters receive a statement every month.',
   more: 'How gifts are safeguarded',
 } as const;
 
 export const founderStrip = {
-  title: ['Founded by someone', 'who walked this road alone.'],
-  body: 'Ahmed Abuhassan was pulled out of the rubble of his family’s home in October 2023. He learned to code afterwards on a borrowed laptop, walking each morning to find a socket and a signal, with nobody ahead of him on the road. Ardú is the lifting he needed, built as an organisation for the young people who need it now.',
+  title: ['Founded in Gaza,', 'by someone who lived it.'],
+  body: 'Ahmed Abuhassan was pulled from the rubble of his family’s home in October 2023. He taught himself software on a borrowed laptop, walking each morning to find power and a signal, and went on to build websites for local businesses, NGOs and startups. He founded Ardú so that Gaza’s students would not have to find that road alone.',
   more: 'About Ardú',
 } as const;
 
 export const ctaBand = {
-  title: 'Help lift it.',
-  body: 'One road began under this rubble. Ardú opens it for thousands of young people over the years ahead.',
+  title: 'Stand with Gaza’s students.',
+  body: 'Every gift to Ardú keeps a programme running and moves the next one forward. Give today.',
 } as const;
 
 /* ----------------------------------------------------------------- about */
 
 export const about = {
   hero: {
-    title: 'Ardú is an organisation born under the rubble, built to lift.',
-    lead: 'In October 2023 an air strike levelled its founder’s family home in Gaza City. He was pulled out of the rubble and walked the road from there alone. Ardú is that road, built as an organisation so that nobody who comes after has to walk it alone: a vision, the projects that carry it, the partners who share it, and books that stay open.',
+    title: 'An education organisation, born under the rubble.',
+    lead: 'Ardú was founded in Gaza City after the war levelled its founder’s family home. It exists so that Gaza’s students can keep learning and move into work, whatever the war has taken from them: through programmes built for the conditions they live in, partners who bring what money cannot buy, and accounts kept in the open.',
   },
   purpose: {
     vision: {
       title: 'Vision',
-      text: 'Gaza’s young people reaching the ambition their ability has earned them, from where they are.',
+      text: 'A generation of Gaza’s students who finish what they started and build the careers their talent has earned, from wherever they are.',
     },
     mission: {
       title: 'Mission',
-      text: 'To lift young people over everything between them and their ambition: guidance from people who have walked the road, learning that counts, openings that lead to income, and places where the work gets done. Ardú starts with university students and graduates in technology and medicine, and measures itself by one result: degrees kept, incomes earned, work found.',
+      text: 'To keep Gaza’s students learning and moving into work: study that continues without lecture halls, skills the market pays for, mentors from the profession and openings into work. Ardú starts with university students and graduates in medicine and technology, and measures itself by results: degrees kept, incomes earned, careers begun.',
     },
   },
   goals: {
@@ -299,17 +313,17 @@ export const about = {
       {
         icon: 'graduation',
         title: 'Keep students in their degrees.',
-        text: 'For students whose universities now exist only online: the materials, the connection and the mentors that keep a year of study from being lost.',
+        text: 'For students whose campuses are gone: the materials, the connection and the guidance that keep a year of study from being lost.',
       },
       {
         icon: 'briefcase',
-        title: 'Turn ability into income.',
-        text: 'For graduates with a skill and no opening: the guidance, the portfolio and the introductions that lead to a first client, a first job, a recognised certificate.',
+        title: 'Turn talent into income.',
+        text: 'For graduates with a skill and no opening: the training, the portfolio and the introductions that lead to a first client, a first job, a recognised certificate.',
       },
       {
         icon: 'people',
-        title: 'Build the circle.',
-        text: 'Gather under one roof what the organisations working on Palestinian talent already offer, and put a person who has walked the road beside each young person walking it now.',
+        title: 'Put the profession beside every student.',
+        text: 'Bring together what organisations working on Palestinian talent already offer, and put an established professional beside each student who needs one.',
       },
       {
         icon: 'power',
@@ -326,44 +340,44 @@ export const about = {
   serve: {
     title: 'Who Ardú serves',
     body: [
-      'University students and graduates in technology and medicine, in Gaza, first. Technology because it is the founder’s own road and the field most open to earning from where you are. Medicine because the war has stranded its students hardest: long degrees carried through universities that exist only online, without laboratories or wards, with exams sat on connections that cut mid-sentence.',
-      'Both are professions a person can carry anywhere. Ardú starts there, for adults of eighteen and over, women and men equally, and widens as its projects and partners allow.',
+      'University students and graduates in medicine and technology in Gaza, first. Medicine because the war has stranded its students hardest: six-year degrees carried on without campuses, laboratories or wards, with exams sat on connections that cut out mid-sentence. Technology because it is the field most open to earning from where you are, and the founder’s own.',
+      'Both are professions a person can carry anywhere. Ardú serves adults of eighteen and over, women and men equally, and widens its reach as its programmes and partners grow.',
     ],
   },
   impact: {
-    title: 'The impact, project by project',
-    lead: 'Ardú delivers its impact through projects, each wearing its status on top and opening onto a page of its own. What has been delivered is published on the impact page as it comes in, from the first cohort onward.',
+    title: 'Our programmes',
+    lead: 'Ardú delivers its work through programmes, each funded through Ardú’s general fund and reported in the open. What each has delivered is published on the impact page as it comes in.',
     more: 'How we measure impact',
   },
   partners: {
     title: 'Partners',
-    body: 'Ardú is built to gather under one roof what organisations working on Palestinian talent and education already offer: courses and curricula, trainers and mentors, laptops, and openings into work for the people who come through its projects. Partners are named here as their agreements are signed.',
+    body: 'Ardú is built to bring together what organisations working on Palestinian talent and education already offer: courses and curricula, trainers and mentors, equipment, and openings into work for the students in its programmes. Partners are named here once their agreements are signed.',
   },
   story: {
     title: 'The story',
     body: [
-      'The house above the hall did not survive. The hall did, and so did an idea: that a young person with ability should not have to walk for hours to find a socket and a signal to do their work.',
-      'For two years Ardú’s founder did exactly that: learning to code on a borrowed laptop with a cracked screen, charging where there was power, working where there was signal, and mentoring others caught in the same blackout. Along the way he built live websites for local shops, NGOs and startups, and saw the same pattern everywhere. The young people around him were not short of ability or ambition. They were short of the road: someone ahead of them who had walked it, the skills and tools the market asks for, a door that opens, and a place where the work could be done.',
-      'Ardú is the organisation that puts all of that within reach, project by project. Its first project, Ardú Space, rises from the hall under that rubble.',
+      'The house did not survive the war. Its founder did. In October 2023 an air strike levelled Ahmed Abuhassan’s family home in Gaza City, and he was pulled from the rubble.',
+      'For two years afterwards he taught himself software on a borrowed laptop with a cracked screen, charging where there was power, working where there was signal, and mentoring others caught in the same blackout. He built live websites for local shops, NGOs and startups, and saw the same pattern everywhere: the young people around him were not short of talent or determination. They were short of what a working education system would have given them.',
+      'Ardú is the organisation built to supply it. It began with the hall beneath that ruined home, the future Ardú Space, and grows with every programme it builds or adopts, beginning with Mu’een’s study library for medical students.',
     ],
   },
   name: {
     word: 'Ardú',
     meaning: 'Irish for “a lifting, a raising up.”',
-    body: 'The name is a promise: that the people who come through Ardú leave higher than they came in, with a degree kept, a skill, a certificate, a client, a job. Not relief. A lifting.',
+    body: 'The name is the commitment: every student who comes through Ardú leaves further along than they came in, with a degree kept, a skill, a certificate, a client, a job.',
   },
   principles: {
     title: 'What we stand on',
     items: [
       {
         icon: 'sparkles',
-        title: 'Ability is everywhere. Opportunity is not.',
+        title: 'Talent is everywhere. Opportunity is not.',
         text: 'Ardú exists to close that gap, for women and men equally, with identical hours and services.',
       },
       {
         icon: 'handheart',
-        title: 'Dignity, not charity.',
-        text: 'People at Ardú learn, earn, build and compete. Every project is a workshop, not a waiting room.',
+        title: 'Dignity, not dependency.',
+        text: 'Students at Ardú learn, earn, build and compete. Every programme is a workshop, not a waiting room.',
       },
       {
         icon: 'bookcheck',
@@ -373,12 +387,12 @@ export const about = {
       {
         icon: 'recycle',
         title: 'Built to last.',
-        text: 'Ardú’s places earn a growing share of their own keep, so the organisation does not live or die by the next appeal.',
+        text: 'Ardú’s places are designed to earn a growing share of their own keep, so the organisation does not live or die by the next appeal.',
       },
       {
         icon: 'list',
         title: 'Built in order.',
-        text: 'Each stage of each project stands on its own and is finished before the next begins.',
+        text: 'Every programme moves in stages, each funded and finished before the next begins.',
       },
     ],
   },
@@ -387,8 +401,8 @@ export const about = {
     items: [
       {
         icon: 'user',
-        title: 'A founder who leads, and teams on the ground',
-        text: 'Ahmed Abuhassan founded Ardú and leads it. Each project has its own team on the ground, on written contracts, because the work is designed to stand on more than one person.',
+        title: 'Led by its founder, run by teams on the ground',
+        text: 'Ahmed Abuhassan founded Ardú and leads it. Each programme has its own team on the ground, on written agreements, so the work stands on more than one person.',
       },
       {
         icon: 'shield',
@@ -398,20 +412,20 @@ export const about = {
       {
         icon: 'users',
         title: 'An advisory circle',
-        text: 'An advisory circle of people who have walked the road, from Gaza and from the organisations Ardú works with, is being formed to read each plan before it is published. Names appear here as each agrees to be named.',
+        text: 'An advisory circle of professionals from Gaza and from the organisations Ardú works with is being formed to review each plan before it is published. Members are named here as each agrees.',
       },
       {
         icon: 'list',
-        title: 'Unregistered today, registered when the ground allows',
-        text: 'Ardú is an unregistered initiative; formal registration is planned once its first project stands. No charitable registration or tax deductibility is claimed.',
+        title: 'Unregistered today, registration planned',
+        text: 'Ardú is an unregistered initiative today, and formal registration is planned. It claims no charitable registration and no tax deductibility.',
       },
     ],
   },
   founder: {
     title: 'The founder',
     body: [
-      'Ahmed Abuhassan is a self-taught software developer from Gaza City. Before software he worked in electrical installation, which is why Ardú’s power is designed with engineers and technicians he has worked beside. He has built live websites for local shops, NGOs and startups, and mentored young people online through the blackout.',
-      'He founded Ardú and leads it, with teams on the ground running each project, because the organisation is designed to stand on more than one person.',
+      'Ahmed Abuhassan is a self-taught software developer from Gaza City. Before software he worked in electrical installation, which is why Ardú’s power systems are designed with the engineers and technicians he has worked beside. He has built live websites for local shops, NGOs and startups, and mentored young people online through the blackouts.',
+      'He founded Ardú and leads it, with teams on the ground running each programme, because an organisation built to last cannot stand on one person.',
     ],
     caption: 'Ahmed Abuhassan, founder of Ardú',
     placeholder: ['From finding a socket', 'to building an organisation.'],
@@ -424,18 +438,18 @@ export const about = {
 
 export const whatWeDo = {
   hero: {
-    title: 'How Ardú lifts.',
-    lead: 'Four things every road to an ambition needs, delivered through projects and partners, for university students and graduates in technology and medicine first.',
+    title: 'From a disrupted degree to a working life.',
+    lead: 'Ardú delivers the four things Gaza’s students need to make that journey: study that continues, skills that pay, mentors from the profession and openings into work. All of it runs through Ardú’s programmes and partners, for students and graduates in medicine and technology first.',
   },
   who: {
     title: 'Who it is for',
-    body: 'Adults of eighteen and over in Gaza, starting with university students and graduates in technology and medicine: students whose universities now exist only online, graduates with a skill and no opening, freelancers who lose clients to power cuts, self-taught developers, designers and writers. Places in each project are allocated on published criteria that weigh ability and need together.',
-    note: 'Registration opens before the first intake. Leave your name and we will tell you when.',
+    body: 'Adults of eighteen and over in Gaza, starting with university students and graduates in medicine and technology: students whose campuses are gone, graduates with a skill and no opening, freelancers who lose clients to power cuts, self-taught developers, designers and writers. Places in each programme are allocated on published criteria that weigh ability and need together.',
+    note: 'Registration for each new intake opens before it starts. Leave your name and we will tell you when.',
     cta: 'Tell me when',
   },
   where: {
     title: 'Where it happens',
-    lead: 'The four things above are delivered through projects, each with its own page, status and figures.',
+    lead: 'Each of the four is delivered through a programme with its own page, its status and its figures.',
   },
 } as const;
 
@@ -443,21 +457,48 @@ export const whatWeDo = {
 
 export const impactPage = {
   hero: {
-    title:
-      'The measure is not seats filled. It is degrees kept, income earned and work found.',
-    lead: 'Ardú is built around results, not products: young people in Gaza, starting with students and graduates in technology and medicine, keeping their degrees, earning and working from where they are. This page is where the results live: the projects that deliver them, the indicators they are measured by, and the figures as they come in.',
+    title: 'We measure results, not activity.',
+    lead: 'Ardú exists for outcomes: Gaza’s students keeping their degrees, earning, and moving into work. This is where those outcomes are published: what each programme has delivered so far, the indicators Ardú measures itself by, and the figures as they come in.',
   },
-  projects: {
-    title: 'The projects that deliver it',
-    lead: 'Each project carries a status you can see, stages you can count, and a page with what it needs and where every pound went.',
+  delivered: {
+    title: 'Delivered so far',
+    lead: 'Mu’een, the study library Ardú has adopted, is the first programme with figures to publish. They are read from its own dashboard, published as totals, and dated.',
+    figures: [
+      {
+        icon: 'users',
+        value: n(dash.students),
+        label: 'medical students have joined',
+      },
+      {
+        icon: 'grow',
+        value: n(dash.joinedLast30Days),
+        label: 'of them in the past thirty days',
+      },
+      {
+        icon: 'files',
+        value: n(dash.requests),
+        label: 'requests for study materials',
+      },
+      {
+        icon: 'library',
+        value: n(dash.materials),
+        label: `study materials across ${dash.subjects} subjects`,
+      },
+    ],
+    source: `From Mu’een’s own dashboard, read on ${dash.readOn}.`,
+    more: 'See Mu’een',
+  },
+  programmes: {
+    title: 'The programmes that deliver it',
+    lead: 'Each programme shows its status and, stage by stage, how far its funding has come, with a page of its own for what it delivers.',
   },
   changes: {
     title: 'What changes',
-    lead: 'The people this road is built for. Their own stories follow here, published as they happen.',
+    lead: 'The students these programmes are built for. Their own stories are published here as they happen, with their consent.',
   },
   indicators: {
     title: 'How we measure',
-    lead: 'Five indicators, published every month from the first cohort onward, and never before. The dash is where the number goes.',
+    lead: 'Five indicators, published every month from the first cohort onward, and never before. A dash marks where each figure will go.',
     items: [
       {
         icon: 'graduation',
@@ -481,13 +522,13 @@ export const impactPage = {
         label: 'pounds spent in Gaza, with receipts',
       },
     ],
-    note: 'Counting starts with the first cohort of the first project.',
+    note: 'Counting starts with the first cohort at Ardú Space. Mu’een’s figures are published above, as read from its dashboard.',
   },
   measure: {
     title: 'How it is reported',
-    body: 'Every month Ardú publishes, project by project, attendance and participation, courses completed and certificates issued, work found and income reported by participants, and the accounts. Supporters receive the statement; partners and funders may ask for the full ledger.',
+    body: 'Every month Ardú publishes, programme by programme, participation, courses completed and certificates issued, work found and income reported by participants, and the accounts. Supporters receive the statement; partners and funders may ask for the full ledger.',
     items: [
-      { icon: 'calendar', text: 'Participation, by project and by cycle' },
+      { icon: 'calendar', text: 'Participation, by programme and by cycle' },
       { icon: 'award', text: 'Courses completed, certificates issued' },
       { icon: 'briefcase', text: 'Work found, income reported' },
       { icon: 'receipt', text: 'The accounts, reconciled monthly' },
@@ -500,20 +541,20 @@ export const impactPage = {
 export const partners = {
   hero: {
     title: 'Bring what money cannot buy.',
-    lead: 'Ardú’s projects run on the programmes you already deliver and the openings you can give: courses, mentors, laptops, jobs, for university students and graduates in technology and medicine in Gaza City.',
+    lead: 'Ardú’s programmes run on what partners bring: courses, mentors, equipment and openings into work, for Gaza’s students and graduates in medicine and technology. You bring the expertise; Ardú brings the students, the place and the reporting.',
   },
   why: {
-    title: 'Why partner',
+    title: 'Why partner with Ardú',
     items: [
       {
         icon: 'users',
-        title: 'A ready audience',
-        text: 'Motivated young adults selected on published criteria, students and graduates in technology and medicine first, with the connectivity to join your programme live.',
+        title: 'Students ready to work',
+        text: 'Motivated students and graduates in medicine and technology, selected on published criteria and already reached by Ardú’s programmes: more than 1,300 medical students use Mu’een alone.',
       },
       {
         icon: 'building',
-        title: 'Places that work',
-        text: 'Deliver in person or remotely into Ardú Space, a room with power, internet, screens and a team on the ground, or online through Ardú’s programmes.',
+        title: 'Delivery that works on the ground',
+        text: 'Deliver remotely through Ardú’s programmes, or in person at Ardú Space once it opens: a room with power, internet, screens and a team on the ground.',
       },
       {
         icon: 'chart',
@@ -528,9 +569,9 @@ export const partners = {
       'A course or curriculum, delivered in cycles',
       'Trainers and mentors, in person or online',
       'Laptops and equipment',
-      'Jobs, internships and freelance clients for the people who come through Ardú',
+      'Jobs, internships and freelance clients for students and graduates',
       'Certificates and pathways into further study',
-      'Your voice: tell your network what is rising in Gaza City',
+      'Your voice: tell your network what Gaza’s students are building',
     ],
   },
   how: {
@@ -546,7 +587,7 @@ export const partners = {
       },
       {
         title: 'The first cycle',
-        text: 'Scheduled into the project’s calendar, announced to participants, run with our team on the ground.',
+        text: 'Scheduled into the programme’s calendar, announced to students, and run with our team on the ground.',
       },
       {
         title: 'Reporting',
@@ -557,7 +598,7 @@ export const partners = {
   },
   funders: {
     title: 'For funders and institutions',
-    body: 'Foundations, companies and institutional funders can take a whole stage of a project, from light, water and the fibre line to the first kilowatts of solar, and follow it through with full figures and reporting. The complete plan, with stages, costs, verification, the energy design and the earned-income model, is shared on request, together with the location of the hall.',
+    body: 'Foundations, companies and institutional funders can underwrite Ardú at scale: a programme stage, a year of a programme’s running costs, or the organisation’s core costs, followed through with full figures and reporting. The complete plan, with stages, costs, verification and the earned-income model, is shared on request, together with the location of Ardú Space.',
   },
 } as const;
 
@@ -566,47 +607,50 @@ export const partners = {
 export const support = {
   hero: {
     title: 'Support Ardú.',
-    lead: 'A gift to Ardú backs the organisation itself: the one that runs and funds every project it carries, Ardú Space today and the projects that follow. Ardú puts it where the road is blocked, and it comes back to you as receipts and photographs.',
+    lead: 'Back the organisation, and you back every programme it runs. Your gift goes to Ardú’s general fund, which keeps Mu’een’s library running, moves Ardú Space forward and launches the programmes that follow, directed to where it is needed most.',
     points: [
-      { icon: 'shield', text: 'Held in the United Kingdom by an academic trustee' },
+      {
+        icon: 'shield',
+        text: 'Held in the United Kingdom by an academic trustee',
+      },
       { icon: 'receipt', text: 'A receipt and a photograph for every expense' },
       { icon: 'bookcheck', text: 'A statement to supporters every month' },
     ],
   },
-  carries: {
-    title: 'What a gift to Ardú carries',
+  programmes: {
+    title: 'What your gift keeps moving',
+    lead: 'Every programme Ardú runs is funded from the same general fund. This is where each one stands.',
+  },
+  oneFund: {
+    title: 'Why one fund',
     items: [
       {
         icon: 'milestone',
-        title: 'Every project it runs',
-        text: 'Ardú runs and funds its own projects, stage by stage, each one built in order and reported with its receipts.',
+        title: 'Directed where it is needed most',
+        text: 'Needs in Gaza shift fast. One fund lets Ardú move money to the stage or programme that needs it now, without waiting for the right gift to arrive.',
       },
       {
         icon: 'sparkles',
-        title: 'The next project',
-        text: 'New projects join as Ardú adopts them. A gift to the organisation is what lets the next one start.',
+        title: 'The next programme',
+        text: 'New programmes join as Ardú builds or adopts them. Support for the organisation is what lets the next one start.',
       },
       {
         icon: 'bookcheck',
-        title: 'The books that stay open',
+        title: 'Accounts that stay open',
         text: 'A trustee route for every pound, a receipt and a photograph for every expense, and a statement to supporters every month.',
       },
     ],
-  },
-  project: {
-    title: 'Rather fund one project?',
-    body: 'Every project Ardú runs has a page of its own, with its own stages and its own checkout. A gift there goes to that project alone.',
   },
   faq: {
     title: 'Questions about giving',
     items: [
       {
-        q: 'What does a gift to Ardú do?',
-        a: 'It backs the organisation itself, which runs and funds every project it carries: Ardú Space today, and the projects that follow. Ardú puts it where the road is blocked.',
+        q: 'What does a gift to Ardú fund?',
+        a: 'Every programme Ardú runs: Mu’een’s study library today, Ardú Space as it rises, and the programmes that follow. Gifts go to Ardú’s general fund, which Ardú directs to where it is needed most.',
       },
       {
-        q: 'Can I give to one project instead?',
-        a: 'Yes. Every project has its own page and its own checkout, and a gift there goes to that project alone. Each checkout carries its own reference, so the two never mix in the books.',
+        q: 'Can I give to one programme?',
+        a: 'Gifts are not restricted to a single programme: every gift goes to Ardú’s general fund. Each programme’s page shows its status and how far each stage’s funding has come. Institutions that want to underwrite a specific stage can write to us.',
       },
       {
         q: 'Is any payment taken on this website?',
@@ -614,7 +658,7 @@ export const support = {
       },
       {
         q: 'Is Ardú a registered charity?',
-        a: 'Not yet. Ardú is an unregistered initiative; formal registration is planned once its first project stands. No charitable registration or tax deductibility is claimed.',
+        a: 'Not yet. Ardú is an unregistered initiative, and formal registration is planned. It claims no charitable registration and no tax deductibility.',
       },
     ],
   },
@@ -647,8 +691,8 @@ export const support = {
   },
   share: {
     title: 'Share it',
-    body: 'If you cannot give, send Ardú to one person who would want to see the rubble go.',
-    text: 'From under the rubble of the home where its founder’s road began, Ardú is rising in Gaza City to lift young people over everything between them and their ambition: guidance, learning, openings and places that work, for students and graduates in technology and medicine first. Not relief. A lifting.',
+    body: 'If you cannot give today, send Ardú to one person who would want to stand with Gaza’s students.',
+    text: 'Gaza’s students are still learning. Ardú is making sure they can keep going: a study library already used by more than 1,300 medical students, and a study and work hub rising from the rubble in Gaza City.',
   },
 } as const;
 
@@ -657,19 +701,19 @@ export const support = {
 export const contactPage = {
   hero: {
     title: 'Write to us.',
-    lead: 'One address for everything. We reply within a week.',
+    lead: 'One address for supporters, partners, funders, students and the press. We reply within a week.',
   },
   routes: [
     {
       icon: 'handshake',
       title: 'Partners and funders',
-      text: 'Ask for the full plan and the location of the hall, or tell us what you can bring.',
+      text: 'Request the full plan and the location of Ardú Space, or tell us what you can bring.',
       subject: 'plan',
     },
     {
       icon: 'graduation',
-      title: 'Young people in Gaza',
-      text: 'Registration criteria are published before the first intake. Leave your name and we will tell you when.',
+      title: 'Students in Gaza',
+      text: 'Registration criteria are published before each intake. Leave your name and we will tell you when.',
       subject: 'youth',
     },
     {
@@ -683,9 +727,9 @@ export const contactPage = {
 } as const;
 
 export const footer = {
-  tagline: 'Built in Gaza. Not relief. A lifting.',
+  tagline: 'Keeping Gaza’s students learning, and moving into work.',
   explore: 'Explore',
   connect: 'Connect',
   small:
-    'Ardú is an unregistered youth organisation in Gaza City; formal registration is planned.',
+    'Ardú is a youth education initiative in Gaza City. It is not yet a registered charity; formal registration is planned.',
 } as const;

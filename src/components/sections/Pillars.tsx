@@ -3,14 +3,14 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { pages, pillars, statement } from '@/content/project';
 type Props = { expanded?: boolean; heading?: boolean; id?: string };
-/** The four things Ardú gives a young person. Short on the home page, in full on What we do. */
+/** The four things Ardú delivers. Short on the home page, in full on What we do. */
 export function Pillars({ expanded = false, heading = true, id }: Props) {
   return (
     <Section
       id={id}
       className="pillars"
       aria-labelledby={heading ? 'pillars-title' : undefined}
-      aria-label={heading ? undefined : 'How Ardú lifts'}
+      aria-label={heading ? undefined : 'What Ardú delivers'}
     >
       <div className="panel">
         {heading && (

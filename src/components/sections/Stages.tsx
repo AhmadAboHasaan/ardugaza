@@ -4,7 +4,8 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { Progress } from '@/components/ui/Progress';
 import { StageExplorer } from '@/components/projects/StageExplorer';
-import { ctas, pages } from '@/content/project';
+import { contact } from '@/data/integrations';
+import { ctas, giveAnchor } from '@/content/project';
 import {
   resolveStages,
   spell,
@@ -15,28 +16,29 @@ import {
 } from '@/content/projects';
 type Props = { project: Project };
 
-/** What a stage's state means for a giver, in one line. */
+/** What a stage's state means for a supporter, in one line; a delivered stage speaks for itself. */
 function note(stage: ResolvedStage, opener: ResolvedStage | undefined) {
   switch (stage.state) {
     case 'done':
-      return 'Complete, and reported with its receipts.';
+      return null;
     case 'live':
-      return 'Funded and on the ground. Its receipts and photographs are published here as it reports.';
+      return 'Fully funded through Ardú. The work is under way, and reported here as it happens.';
     case 'now':
-      return 'Open for funding now. The moment it is funded, it turns live and the next stage opens.';
+      return 'Funding now, through Ardú’s general fund. When its indicator reaches a hundred, this stage is marked funded and the next one opens.';
     case 'next':
       return opener
-        ? `Opens for funding the moment ${stageName(opener).toLowerCase()} is funded.`
-        : 'Opens for funding once its figures are published.';
+        ? `Opens for funding once ${stageName(opener).toLowerCase()} is fully funded.`
+        : 'Opens for funding next.';
     default:
-      return 'Follows in order, once the stages before it stand.';
+      return 'Follows in order, once the stages before it are funded.';
   }
 }
 
 /**
- * A project's stages as stops on one road. Each stage's status is read from
- * its funding: Live once funded, Funding now for the first one short of its
- * target, then Next and Later. Choosing a stop opens its story and its bar.
+ * A programme's stages as stops on one road. Each stage's status is read from
+ * its indicator: Funded at a hundred, Funding now for the first stage below
+ * it, then Next and Later; Complete once delivered. Choosing a stop opens its
+ * story and its indicator.
  */
 export function Stages({ project }: Props) {
   const { stages } = project;
@@ -72,31 +74,26 @@ export function Stages({ project }: Props) {
                     {stageName(stage)} of {spell(total)}
                   </p>
                   <h3>{stage.title}</h3>
-                  <span
-                    className={`stage-status stage-status--${stage.state}`}
-                  >
+                  <span className={`stage-status stage-status--${stage.state}`}>
                     {reached && <Check size={13} aria-hidden="true" />}
                     {stageState[stage.state]}
                   </span>
                   <p>{stage.text}</p>
                 </div>
                 <div className="stage-panel-figures">
-                  {stage.funding ? (
-                    <Progress
-                      funding={stage.funding}
-                      label={`${stageName(stage)}, ${stage.title}`}
-                      tone="ink"
-                      reveal={false}
-                    />
-                  ) : (
-                    <p className="stage-unpriced">
-                      Figures published when this stage is tendered.
-                    </p>
+                  <Progress
+                    progress={stage.progress}
+                    complete={stage.state === 'done'}
+                    label={`${stageName(stage)}, ${stage.title}`}
+                    tone="ink"
+                    reveal={false}
+                  />
+                  {note(stage, open) && (
+                    <p className="stage-panel-note">{note(stage, open)}</p>
                   )}
-                  <p className="stage-panel-note">{note(stage, open)}</p>
                   {stage.state === 'now' && (
-                    <a className="step-fund" href="#fund">
-                      {ctas.fundStage}
+                    <a className="step-fund" href={giveAnchor.here}>
+                      {ctas.give}
                       <ArrowUpRight size={18} aria-hidden="true" />
                     </a>
                   )}
@@ -107,13 +104,14 @@ export function Stages({ project }: Props) {
         </StageExplorer>
         <div className="direction-foot">
           <div className="actions">
-            {open && (
-              <LinkButton href="#fund" variant="light">
-                {`Fund ${stageName(open).toLowerCase()}`}
-              </LinkButton>
-            )}
-            <LinkButton href={pages.partners.href} variant="outline">
-              {stages.more}
+            <LinkButton href={giveAnchor.here} variant="light">
+              {ctas.give}
+            </LinkButton>
+            <LinkButton
+              href={contact.mailto(ctas.mailSubjects.plan)}
+              variant="outline"
+            >
+              {ctas.requestPlan}
             </LinkButton>
           </div>
           <p className="small">{stages.note}</p>

@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import { Globe, Hash, Mail, MessageCircle } from 'lucide-react';
 import { PageHero } from '@/components/ui/PageHero';
 import { Section } from '@/components/ui/Section';
-import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { Faq } from '@/components/ui/Faq';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { OrganisationGift } from '@/components/giving/OrganisationGift';
+import { Projects } from '@/components/sections/Projects';
 import { siteOrigin } from '@/data/integrations';
-import { ctas, giveAnchor, pages, support } from '@/content/project';
+import { giveAnchor, pages, support } from '@/content/project';
 export const metadata: Metadata = {
   title: pages.support.title,
   description: support.hero.lead,
@@ -38,11 +38,11 @@ const shareLinks = [
   },
   {
     label: 'Email',
-    href: `mailto:?subject=${encodeURIComponent('Ardú, an organisation rising in Gaza City')}&body=${encodeURIComponent(shareText)}`,
+    href: `mailto:?subject=${encodeURIComponent('Ardú: keeping Gaza’s students learning')}&body=${encodeURIComponent(shareText)}`,
     Glyph: Mail,
   },
 ];
-/** Support for the organisation, and only the organisation: its own gift, its own checkout. */
+/** Support for Ardú: the one gift that funds every programme it runs. */
 export default function SupportPage() {
   return (
     <>
@@ -69,12 +69,18 @@ export default function SupportPage() {
           ))}
         </ul>
       </PageHero>
-      <Section className="carries" aria-labelledby="carries-title">
+      <Projects
+        id="what-it-funds"
+        title={support.programmes.title}
+        lead={support.programmes.lead}
+        more={false}
+      />
+      <Section className="carries" aria-labelledby="one-fund-title">
         <div className="section-heading" data-reveal>
-          <h2 id="carries-title">{support.carries.title}</h2>
+          <h2 id="one-fund-title">{support.oneFund.title}</h2>
         </div>
         <ul className="card-grid card-grid--three">
-          {support.carries.items.map((item, i) => (
+          {support.oneFund.items.map((item, i) => (
             <li
               key={item.title}
               className="card"
@@ -89,18 +95,6 @@ export default function SupportPage() {
         </ul>
       </Section>
       <Section
-        className="split split--muted"
-        aria-labelledby="one-project-title"
-      >
-        <h2 id="one-project-title">{support.project.title}</h2>
-        <div className="split-body">
-          <p>{support.project.body}</p>
-          <LinkButton href={pages.projects.href} variant="outline">
-            {ctas.chooseProject}
-          </LinkButton>
-        </div>
-      </Section>
-      <Section
         id="safeguarded"
         className="safeguards"
         aria-labelledby="safeguards-title"
@@ -110,11 +104,7 @@ export default function SupportPage() {
         </div>
         <ol className="sequence">
           {support.safeguards.steps.map((step, i) => (
-            <li
-              key={step.title}
-              data-reveal
-              style={{ ['--i' as string]: i }}
-            >
+            <li key={step.title} data-reveal style={{ ['--i' as string]: i }}>
               <span className="sequence-number">{i + 1}</span>
               <h3>{step.title}</h3>
               <p>{step.text}</p>

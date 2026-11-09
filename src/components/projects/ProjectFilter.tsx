@@ -3,7 +3,7 @@ import { useState, type ReactNode } from 'react';
 
 type Option = { value: string; label: string; count: number };
 type Props = {
-  /** "Show projects" */
+  /** "Show programmes" */
   label: string;
   options: readonly Option[];
   /** The grid, rendered on the server; each item carries `data-status`. */
@@ -11,7 +11,7 @@ type Props = {
 };
 
 /**
- * Narrow the projects by where they stand. The grid stays server-rendered;
+ * Narrow the programmes by where they stand. The grid stays server-rendered;
  * the filter only says which status to show, so every card is still in the
  * page for search engines and for anyone without scripts.
  */

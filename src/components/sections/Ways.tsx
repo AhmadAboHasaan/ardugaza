@@ -1,16 +1,12 @@
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
-import { StatusTag } from '@/components/ui/StatusTag';
 import { SupportPanel } from '@/components/giving/SupportPanel';
+import { contact } from '@/data/integrations';
 import { ctas, pages, ways } from '@/content/project';
-import { projectHref, projects } from '@/content/projects';
 /**
- * The three ways in, kept apart: a gift to Ardú (the panel, with its own
- * checkout), a project of your choosing (on that project's own page), or a
- * partnership.
+ * The three ways in: a gift to Ardú (the panel, with its checkout), a
+ * partnership, or funding at scale with the full plan.
  */
 export function Ways() {
   return (
@@ -24,22 +20,11 @@ export function Ways() {
       <SupportPanel headingLevel={3} />
       <div className="way-grid">
         <article className="way" data-reveal data-spotlight>
-          <Icon name={ways.project.icon} />
-          <h3>{ways.project.title}</h3>
-          <p>{ways.project.text}</p>
-          <ul className="way-projects">
-            {projects.map((project) => (
-              <li key={project.slug}>
-                <Link href={projectHref(project.slug)}>
-                  <span className="way-project-name">{project.name}</span>
-                  <StatusTag status={project.status} />
-                  <ArrowUpRight size={18} aria-hidden="true" />
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <LinkButton href={pages.projects.href} variant="outline">
-            {ctas.chooseProject}
+          <Icon name={ways.partner.icon} />
+          <h3>{ways.partner.title}</h3>
+          <p>{ways.partner.text}</p>
+          <LinkButton href={pages.partners.href} variant="outline">
+            {ctas.partner}
           </LinkButton>
         </article>
         <article
@@ -48,11 +33,14 @@ export function Ways() {
           data-spotlight
           style={{ ['--i' as string]: 1 }}
         >
-          <Icon name={ways.partner.icon} />
-          <h3>{ways.partner.title}</h3>
-          <p>{ways.partner.text}</p>
-          <LinkButton href={pages.partners.href} variant="outline">
-            {ctas.partner}
+          <Icon name={ways.scale.icon} />
+          <h3>{ways.scale.title}</h3>
+          <p>{ways.scale.text}</p>
+          <LinkButton
+            href={contact.mailto(ctas.mailSubjects.plan)}
+            variant="outline"
+          >
+            {ctas.requestPlan}
           </LinkButton>
         </article>
       </div>

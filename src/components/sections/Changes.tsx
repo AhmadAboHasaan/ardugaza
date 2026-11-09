@@ -3,7 +3,7 @@ import { LinkButton } from '@/components/ui/LinkButton';
 import { Icon } from '@/components/ui/Icon';
 import { changes, pages } from '@/content/project';
 type Props = { full?: boolean; title?: string; lead?: string };
-/** What changes for a young person when the road opens. */
+/** What changes for a student when Ardú's programmes reach them. */
 export function Changes({
   full = false,
   title,

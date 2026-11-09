@@ -1,5 +1,5 @@
 import type { Project } from '@/content/projects';
-type Schedule = NonNullable<Project['day']['schedule']>;
+type Schedule = NonNullable<NonNullable<Project['day']>['schedule']>;
 
 const clock = (hour: number) => String(hour > 12 ? hour - 12 : hour);
 

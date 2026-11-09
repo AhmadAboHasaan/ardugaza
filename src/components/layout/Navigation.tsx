@@ -10,13 +10,15 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
-  // Support Ardú is the organisation's own call: in place where the page
-  // carries the organisation's giving panel, on the support page elsewhere.
+  // Support Ardú is the site's one call to give: in place where the page
+  // carries Ardú's giving panel (home, support, every programme's page), on
+  // the support page elsewhere.
+  const inPlace =
+    pathname === '/' ||
+    pathname === pages.support.href ||
+    pathname.startsWith(`${pages.programmes.href}/`);
   const cta = {
-    href:
-      pathname === '/' || pathname === pages.support.href
-        ? giveAnchor.here
-        : pages.support.href,
+    href: inPlace ? giveAnchor.here : pages.support.href,
     label: ctas.give,
   };
   const current = (href: string) =>

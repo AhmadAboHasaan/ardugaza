@@ -6,9 +6,17 @@ type Props = {
   /** h2 where the panel is the section, h3 under the "Three ways" heading. */
   headingLevel?: 2 | 3;
   id?: string;
+  /** A programme's page sets its own appeal; the gift is always to Ardú. */
+  title?: string;
+  body?: string;
 };
-/** The organisation's giving panel: why a gift to Ardú matters, and the gift itself. */
-export function SupportPanel({ headingLevel = 2, id = giveAnchor.id }: Props) {
+/** Ardú's giving panel: why a gift to Ardú matters, and the gift itself. */
+export function SupportPanel({
+  headingLevel = 2,
+  id = giveAnchor.id,
+  title = `${give.title[0]} ${give.title[1]}`,
+  body = give.body,
+}: Props) {
   const Heading = headingLevel === 2 ? 'h2' : 'h3';
   return (
     <div
@@ -19,10 +27,8 @@ export function SupportPanel({ headingLevel = 2, id = giveAnchor.id }: Props) {
     >
       <div className="give-copy">
         <Icon name={give.icon} tone="sand" />
-        <Heading id={`${id}-title`}>
-          {give.title[0]} {give.title[1]}
-        </Heading>
-        <p className="lead">{give.body}</p>
+        <Heading id={`${id}-title`}>{title}</Heading>
+        <p className="lead">{body}</p>
         <LinkButton href={`${pages.support.href}#safeguarded`} variant="text">
           {give.more}
         </LinkButton>

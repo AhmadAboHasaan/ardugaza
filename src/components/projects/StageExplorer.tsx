@@ -13,7 +13,7 @@ export type ExplorerTab = {
   number: number;
   title: string;
   state: 'done' | 'live' | 'now' | 'next' | 'later';
-  /** "Funding now", "Live"… */
+  /** "Funding now", "Funded"… */
   stateLabel: string;
 };
 
@@ -26,9 +26,9 @@ type Props = {
 };
 
 /**
- * A project's stages as stops on one road, each a tab: the road fills up to
- * the last funded stop, the stage open now is selected when the page opens,
- * and choosing a stop opens its story, its bar and what it needs.
+ * A programme's stages as stops on one road, each a tab: the road fills up
+ * to the last funded stop, the stage open now is selected when the page
+ * opens, and choosing a stop opens its story and its indicator.
  */
 export function StageExplorer({ label, tabs, children }: Props) {
   const uid = useId();
