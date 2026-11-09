@@ -37,3 +37,4 @@
 - Storybook: 44 stories render without errors, including the proof, both programmes' cards and stages, a stage reaching a hundred, and the panel on a programme's page.
 - Share image (`public/og-image.png`) redrawn with the new headline.
 
+- Follow-up, same day: the line under the home page's lead removed at the founder's request; Ardú Space's story, its first stage and a new question now say that what the strike left of the house still hangs over the hall, a danger to the families around it, and that clearing it returns steel and stone to the build and lifts that danger from the neighbours. Vitest 21 pass, Playwright 33 pass, visual baselines refreshed.

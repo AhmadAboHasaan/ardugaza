@@ -11,7 +11,6 @@ export function Hero() {
             <em>{hero.titleEmphasis}</em>
           </h1>
           <p>{hero.lead}</p>
-          <p className="hero-tagline">{hero.tagline}</p>
           <div className="actions">
             <LinkButton href={giveAnchor.here} variant="light">
               {ctas.give}

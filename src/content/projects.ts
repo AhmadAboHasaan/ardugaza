@@ -309,8 +309,8 @@ const arduSpace: Project = {
   story: {
     title: 'Where Ardú began.',
     body: [
-      'The house above the hall did not survive the war. The hall did. Ardú Space makes it a place where no student loses a lecture, an exam or a client to a blackout.',
-      'At the opening it will seat two hundred students and graduates a day across two shifts; at the full build, a thousand. Clearing the rubble is the first stage, and it is open for funding now.',
+      'The house above the hall did not survive the war. The hall did, on columns that held. Ardú Space will make it a place where no student loses a lecture, an exam or a client to a blackout: two hundred students and graduates a day at the opening, a thousand at the full build.',
+      'What the strike left of the house still hangs over the hall: broken concrete and steel, a danger to anyone beneath it and to the families living around it for as long as it stays. Clearing it is the first stage, open for funding now, and it does more than open the hall: what can be saved, steel and stone, goes back into building the space, and the neighbours no longer live beside the danger.',
     ],
   },
   facts: [
@@ -340,7 +340,7 @@ const arduSpace: Project = {
         number: 1,
         icon: 'clear',
         title: 'Clear',
-        text: 'The rubble comes off the hall, and what can be saved, steel and stone, goes back into preparing the space. The first photographs come from here.',
+        text: 'The remains of the house, left hanging and dangerous by the strike, are brought down safely and cleared. What can be saved, steel and stone, goes back into preparing the space, and the families around the house no longer live beside the danger. The first photographs come from here.',
         progress: { percent: 0, updatedOn },
       },
       {
@@ -418,6 +418,10 @@ const arduSpace: Project = {
       a: 'Through Ardú’s general fund. Every gift to Ardú funds all of its programmes, Ardú Space included, and Ardú directs it to where it is needed most.',
     },
     {
+      q: 'Why does clearing come first?',
+      a: 'Because what the strike left of the house still hangs over the hall, a danger to anyone beneath it and to the families around it. Bringing it down safely makes the hall usable, returns what can be saved to building the space, and makes the neighbourhood safer.',
+    },
+    {
       q: 'What happens when a stage is fully funded?',
       a: 'It is marked funded here, the work on it begins, and the next stage opens. Each stage is reported with its quotes, receipts and photographs.',
     },
@@ -432,7 +436,7 @@ const arduSpace: Project = {
   ],
   closing: {
     title: 'Raise the hall. Keep the lights on.',
-    body: 'One hall, cleared and lit, means two hundred students and graduates a day who no longer lose their work to a blackout. Every gift to Ardú brings that day closer.',
+    body: 'Clearing what the strike left of the house lifts a danger from the families around it. Lighting the hall gives two hundred students and graduates a day a place where a blackout no longer costs them their work. Every gift to Ardú brings both closer.',
   },
 };
 

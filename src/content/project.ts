@@ -86,8 +86,6 @@ export const hero = {
   titleStart: 'Gaza’s students are still learning. ',
   titleEmphasis: 'We are making sure they can keep going.',
   lead: 'With campuses destroyed and power and connection uncertain, Ardú keeps Gaza’s medical and technology students learning and moving toward work, through programmes built for the conditions they live in.',
-  tagline:
-    'Already at work: Mu’een, the study library used by more than 1,300 of Gaza’s medical students.',
   road: {
     start: 'Under the rubble',
     stops: ['Study', 'Skills', 'Mentors', 'Work'],
