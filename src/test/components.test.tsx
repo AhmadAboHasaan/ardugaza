@@ -25,7 +25,7 @@ import { nav, pages, pillars, proof } from '@/content/project';
 import {
   currentStage,
   findProject,
-  mueenDashboard,
+  maeenDashboard,
   percentOf,
   projectHref,
   projects,
@@ -34,7 +34,7 @@ import {
 } from '@/content/projects';
 vi.mock('next/navigation', () => ({ usePathname: () => '/about' }));
 
-const mueen = findProject('mueen')!;
+const maeen = findProject('maeen')!;
 const arduSpace = findProject('ardu-space')!;
 const hrefs = (root: HTMLElement) =>
   within(root)
@@ -182,7 +182,7 @@ describe('Navigation and semantic primitives', () => {
       <ShareButton
         title="Ardú Space"
         text="A place that works"
-        url="https://ardugaza.org/programmes/mueen"
+        url="https://ardugaza.org/programmes/maeen"
         label="Share this programme"
       />,
     );
@@ -190,7 +190,7 @@ describe('Navigation and semantic primitives', () => {
       screen.getByRole('button', { name: /Share this programme/ }),
     );
     expect(writeText).toHaveBeenCalledWith(
-      'https://ardugaza.org/programmes/mueen',
+      'https://ardugaza.org/programmes/maeen',
     );
     expect(
       await screen.findByRole('button', { name: /Link copied/ }),
@@ -248,7 +248,7 @@ describe('One gift, to Ardú', () => {
     const giving = integrations.giving;
     if (giving.status !== 'live') return;
     const { container } = render(
-      <SupportPanel title={mueen.give.title} body={mueen.give.body} />,
+      <SupportPanel title={maeen.give.title} body={maeen.give.body} />,
     );
     expect(
       screen.getByRole('heading', { name: 'Keep Ma’een running.' }),
@@ -294,7 +294,7 @@ describe('Programmes and their stages', () => {
       'later',
       'later',
     ]);
-    expect(resolveStages(mueen).map((stage) => stage.state)).toEqual([
+    expect(resolveStages(maeen).map((stage) => stage.state)).toEqual([
       'done',
       'now',
       'next',
@@ -327,9 +327,9 @@ describe('Programmes and their stages', () => {
   });
   it('opens on the stage funding now, and opens any other stop on the road', async () => {
     const user = userEvent.setup();
-    render(<Stages project={mueen} />);
+    render(<Stages project={maeen} />);
     const tabs = screen.getAllByRole('tab');
-    expect(tabs).toHaveLength(mueen.stages.items.length);
+    expect(tabs).toHaveLength(maeen.stages.items.length);
     expect(tabs[0]).toHaveTextContent(/Launch.*Complete/);
     expect(tabs[1]).toHaveTextContent(/Sustain.*Funding now/);
     expect(tabs[2]).toHaveTextContent(/Expand.*Next/);
@@ -360,15 +360,15 @@ describe('Programmes and their stages', () => {
     );
   });
   it('makes each card a door to its programme, crowned by status, with an indicator for every stage and no amount', () => {
-    const { container } = render(<ProjectCard project={mueen} />);
+    const { container } = render(<ProjectCard project={maeen} />);
     expect(screen.getByText('Running')).toBeVisible();
     expect(screen.getByText('Study library')).toBeVisible();
-    expect(screen.getByRole('link', { name: mueen.name })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: maeen.name })).toHaveAttribute(
       'href',
-      projectHref(mueen.slug),
+      projectHref(maeen.slug),
     );
-    expect(projectHref(mueen.slug)).toBe('/programmes/mueen');
-    expect(screen.getByText(mueen.brief)).toBeVisible();
+    expect(projectHref(maeen.slug)).toBe('/programmes/maeen');
+    expect(screen.getByText(maeen.brief)).toBeVisible();
     expect(container).toHaveTextContent(
       'One of four stages complete. Funding now: stage two of four, Sustain, 0% funded.',
     );
@@ -390,20 +390,20 @@ describe('Programmes and their stages', () => {
       screen.getByRole('heading', { name: 'Proof, not promises.' }),
     ).toBeVisible();
     expect(screen.getAllByRole('term')[0]).toHaveTextContent(
-      mueenDashboard.students.toLocaleString('en-GB'),
+      maeenDashboard.students.toLocaleString('en-GB'),
     );
     expect(
       screen.getByText(
-        `From Ma’een’s own dashboard, read on ${mueenDashboard.readOn}.`,
+        `From Ma’een’s own dashboard, read on ${maeenDashboard.readOn}.`,
       ),
     ).toBeVisible();
     expect(screen.getByRole('link', { name: proof.more })).toHaveAttribute(
       'href',
-      '/programmes/mueen',
+      '/programmes/maeen',
     );
   });
   it('lists every programme it runs, Ma’een first', () => {
-    expect(projects.map((p) => p.slug)).toEqual(['mueen', 'ardu-space']);
+    expect(projects.map((p) => p.slug)).toEqual(['maeen', 'ardu-space']);
   });
   it('shows the four pillars short on the home page and in full elsewhere', () => {
     const { unmount } = render(<Pillars />);

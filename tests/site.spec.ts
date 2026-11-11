@@ -20,7 +20,7 @@ const pages = [
   { path: '/', h1: /Gaza’s students are still learning/ },
   ...navPages,
   { path: '/support', h1: /Support Ardú/ },
-  { path: '/programmes/mueen', h1: /Ma’een/ },
+  { path: '/programmes/maeen', h1: /Ma’een/ },
   { path: '/programmes/ardu-space', h1: /Ardú Space/ },
 ];
 const tags = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'];
@@ -77,7 +77,7 @@ test('home page leads with the appeal, the proof, the programmes and Ardú’s g
   );
   await expect(proof.getByRole('link', { name: 'See Ma’een' })).toHaveAttribute(
     'href',
-    '/programmes/mueen',
+    '/programmes/maeen',
   );
   await expect(
     page.getByRole('heading', {
@@ -92,7 +92,7 @@ test('home page leads with the appeal, the proof, the programmes and Ardú’s g
   );
   await expect(
     cards.nth(0).getByRole('link', { name: 'Ma’een' }),
-  ).toHaveAttribute('href', '/programmes/mueen');
+  ).toHaveAttribute('href', '/programmes/maeen');
   await expect(cards.nth(1).locator('.project-crown')).toHaveText(
     'Under construction',
   );
@@ -187,7 +187,7 @@ test('a card opens its programme, whose page shows each stage’s indicator and 
     .first()
     .getByRole('link', { name: 'Ma’een' })
     .click();
-  await expect(page).toHaveURL(/\/programmes\/mueen$/);
+  await expect(page).toHaveURL(/\/programmes\/maeen$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     /^Ma’een: the medical library/,
   );
@@ -245,6 +245,17 @@ test('a card opens its programme, whose page shows each stage’s indicator and 
   ).toHaveAttribute('href', arduCheckout);
   await onlyArdu(page);
   await collectsNothing(page);
+});
+test('Ma’een’s old address forwards to its page, keeping the section asked for', async ({
+  page,
+}) => {
+  await page.goto('/programmes/mueen');
+  await expect(page).toHaveURL(/\/programmes\/maeen$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    /^Ma’een: the medical library/,
+  );
+  await page.goto('/programmes/mueen#give');
+  await expect(page).toHaveURL(/\/programmes\/maeen#give$/);
 });
 test('Ardú Space reads under construction, its first stage still to fund', async ({
   page,
@@ -415,7 +426,7 @@ for (const width of [320, 390, 768, 1024, 1440, 1920]) {
       '/',
       '/support',
       '/programmes',
-      '/programmes/mueen',
+      '/programmes/maeen',
       '/programmes/ardu-space',
       '/about',
     ]) {
@@ -441,7 +452,7 @@ for (const { path } of pages) {
 test('accessibility of the giving panel and an open question', async ({
   page,
 }) => {
-  await page.goto('/programmes/mueen');
+  await page.goto('/programmes/maeen');
   await page.locator('#give').getByRole('radio', { name: '£250' }).click();
   await page.getByText('How is Ma’een funded?').click();
   expect(

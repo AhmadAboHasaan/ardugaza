@@ -134,7 +134,7 @@ const n = (value: number) => value.toLocaleString('en-GB');
  * Ma’een’s own dashboard, as read on the date given: totals only, never a
  * student’s name or account. Update the figures and the date together.
  */
-export const mueenDashboard = {
+export const maeenDashboard = {
   readOn: '6 November 2026',
   /** Students who have joined. */
   students: 1377,
@@ -151,10 +151,10 @@ export const mueenDashboard = {
   activeLastDay: 121,
 } as const;
 
-const dash = mueenDashboard;
+const dash = maeenDashboard;
 
-const mueen: Project = {
-  slug: 'mueen',
+const maeen: Project = {
+  slug: 'maeen',
   name: 'Ma’een',
   status: 'running',
   kind: 'Study library',
@@ -441,7 +441,7 @@ const arduSpace: Project = {
 };
 
 /** In the order they appear: what is running first, then what is being built. */
-export const projects: readonly Project[] = [mueen, arduSpace];
+export const projects: readonly Project[] = [maeen, arduSpace];
 
 /* ---------------------------------------------------------- helpers */
 

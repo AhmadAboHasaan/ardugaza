@@ -9,7 +9,7 @@
  * Operational detail (payroll, energy arithmetic, running costs) is not
  * published here; it is shared with partners and funders on request.
  */
-import { mueenDashboard as dash } from '@/content/projects';
+import { maeenDashboard as dash } from '@/content/projects';
 
 const n = (value: number) => value.toLocaleString('en-GB');
 

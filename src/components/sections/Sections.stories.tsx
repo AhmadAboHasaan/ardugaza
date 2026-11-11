@@ -26,7 +26,7 @@ import { DayTimeline } from '../projects/DayTimeline';
 import { partners, support } from '@/content/project';
 import { findProject, type Project } from '@/content/projects';
 
-const mueen = findProject('mueen')!;
+const maeen = findProject('maeen')!;
 const arduSpace = findProject('ardu-space')!;
 
 /**
@@ -69,7 +69,7 @@ export const FourPillarsExpanded: Story = {
 export const WhatChanges: Story = { render: () => <Changes /> };
 /** The stages as stops on one road: the stage funding now opens first; any stop opens on click or with the arrow keys. */
 export const TheStages: Story = {
-  render: () => <Stages project={mueen} />,
+  render: () => <Stages project={maeen} />,
 };
 /** Ardú Space: every stage still to be funded, the clearing open now. */
 export const TheStagesFromTheStart: Story = {
@@ -84,7 +84,7 @@ export const TheProgrammeCard: Story = {
     <div style={frame}>
       <ul className="project-grid">
         <li>
-          <ProjectCard project={mueen} />
+          <ProjectCard project={maeen} />
         </li>
       </ul>
     </div>
@@ -95,7 +95,7 @@ export const TheProgrammeCardsInAGrid: Story = {
     <div style={frame}>
       <ul className="project-grid">
         <li>
-          <ProjectCard project={mueen} />
+          <ProjectCard project={maeen} />
         </li>
         <li>
           <ProjectCard project={arduSpace} index={1} />
@@ -109,7 +109,7 @@ export const WhereStagesStand: Story = {
     <div
       style={{ maxWidth: 520, margin: '2rem auto', display: 'grid', gap: 16 }}
     >
-      <StageTrack project={mueen} />
+      <StageTrack project={maeen} />
       <StageTrack project={arduSpace} />
       <StageTrack project={fundedTo(arduSpace, 1, 30)} />
     </div>
@@ -118,12 +118,12 @@ export const WhereStagesStand: Story = {
 export const WhereAProgrammeStands: Story = {
   render: () => (
     <div style={{ maxWidth: 460, margin: '2rem auto' }}>
-      <ProjectStanding project={mueen} />
+      <ProjectStanding project={maeen} />
     </div>
   ),
 };
 export const AProgrammesOwnHero: Story = {
-  render: () => <ProjectHero project={mueen} />,
+  render: () => <ProjectHero project={maeen} />,
 };
 export const AProgrammesDay: Story = {
   render: () => (
@@ -173,7 +173,7 @@ export const SupportArduCard: Story = {
 export const SupportArduFromAProgramme: Story = {
   render: () => (
     <div style={frame}>
-      <SupportPanel title={mueen.give.title} body={mueen.give.body} />
+      <SupportPanel title={maeen.give.title} body={maeen.give.body} />
     </div>
   ),
 };

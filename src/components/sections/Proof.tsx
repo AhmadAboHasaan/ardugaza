@@ -23,16 +23,16 @@ export function Proof({
   figures = proof.figures,
   source = proof.source,
 }: Props) {
-  const mueen = findProject('mueen');
+  const maeen = findProject('maeen');
   return (
     <Section id={id} className="proof" aria-labelledby={`${id}-title`}>
       <div className="panel proof-panel" data-spotlight>
         <div className="section-heading" data-reveal>
           <div>
-            {mueen && (
+            {maeen && (
               <p className="proof-kicker">
-                <span>{mueen.name}</span>
-                <StatusTag status={mueen.status} />
+                <span>{maeen.name}</span>
+                <StatusTag status={maeen.status} />
               </p>
             )}
             <h2 id={`${id}-title`}>{title}</h2>
@@ -42,8 +42,8 @@ export function Proof({
         <Figures figures={figures} className="proof-figures" />
         <div className="proof-foot">
           <p className="small">{source}</p>
-          {mueen && (
-            <LinkButton href={projectHref(mueen.slug)} variant="text">
+          {maeen && (
+            <LinkButton href={projectHref(maeen.slug)} variant="text">
               {proof.more}
             </LinkButton>
           )}

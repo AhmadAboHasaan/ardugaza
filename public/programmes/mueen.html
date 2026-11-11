@@ -1,0 +1,38 @@
+<!doctype html>
+<!--
+  Ma’een's page moved to /programmes/maeen when its name took the spelling
+  Ardú uses. This file keeps the old address working on any static host:
+  it forwards at once, keeping any query or #section, and search engines
+  are pointed to the new page as the one to index.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ma’een · Ardú</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://ardugaza.org/programmes/maeen" />
+    <script>
+      location.replace('maeen' + location.search + location.hash);
+    </script>
+    <noscript><meta http-equiv="refresh" content="0; url=maeen" /></noscript>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 16px;
+        background: #f3efe4;
+        color: #10302e;
+        font: 1rem/1.5 system-ui, sans-serif;
+      }
+      a {
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Ma’een’s page has moved. <a href="maeen">Open Ma’een</a>.</p>
+  </body>
+</html>

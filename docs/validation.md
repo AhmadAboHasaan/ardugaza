@@ -38,4 +38,4 @@
 - Share image (`public/og-image.png`) redrawn with the new headline.
 
 - Follow-up, same day: the line under the home page's lead removed at the founder's request; Ardú Space's story, its first stage and a new question now say that what the strike left of the house still hangs over the hall, a danger to the families around it, and that clearing it returns steel and stone to the build and lifts that danger from the neighbours. Vitest 21 pass, Playwright 33 pass, visual baselines refreshed.
-- Follow-up, 11 November 2026: the adopted library's name is spelled Ma’een everywhere it appears, on every page, in the share descriptions and in these documents; its page address stays `/programmes/mueen`. Vitest 21 pass, Playwright 33 pass, visual baselines unchanged.
+- Follow-up, 11 November 2026: the adopted library's name is spelled Ma’een everywhere it appears, on every page, in the share descriptions and in these documents; its page now lives at `/programmes/maeen`, and the old address `/programmes/mueen` forwards to it at once, keeping any #section, so links already shared still work. Vitest 21 pass, Playwright 34 pass, visual baselines unchanged.
