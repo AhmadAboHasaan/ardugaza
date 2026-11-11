@@ -299,12 +299,12 @@ const arduSpace: Project = {
   kind: 'Study and work hub',
   icon: 'building',
   summary:
-    'A study and work hub rising from the rubble of a family home in Gaza City: power that stays on, internet that holds, and room for two hundred students and graduates a day at the opening.',
+    'A study and work hub rising from the rubble in Gaza City: power that stays on, internet that holds, and room for two hundred students and graduates a day at the opening.',
   brief:
-    'A study and work hub in the hall beneath a family home in Gaza City: power that stays on, internet that holds, and room for two hundred students and graduates a day.',
+    'A study and work hub in a hall beneath the rubble in Gaza City: power that stays on, internet that holds, and room for two hundred students and graduates a day.',
   hero: {
     title: 'Ardú Space: a place to study and work, rising from the rubble.',
-    lead: 'Beneath its founder’s family home in Gaza City, a hall of five hundred square metres stands on columns that held. Ardú Space will turn it into what Gaza’s students and graduates lack most: power that stays on, internet that holds, seats, quiet and a team on the ground.',
+    lead: 'Beneath the rubble in Gaza City, a hall of five hundred square metres stands on columns that held. Ardú Space will turn it into what Gaza’s students and graduates lack most: power that stays on, internet that holds, seats, quiet and a team on the ground.',
   },
   story: {
     title: 'Where Ardú began.',
@@ -326,7 +326,7 @@ const arduSpace: Project = {
   place: {
     title: 'The place',
     body: [
-      'A hall of about five hundred square metres with a six-metre ceiling, beneath the founder’s family home in central Gaza City, standing on columns that held. It is family property, placed at Ardú’s disposal under a written agreement, and an engineer signs off the structure before anyone sits beneath it.',
+      'A hall of about five hundred square metres with a six-metre ceiling, beneath the rubble in central Gaza City, standing on columns that held. It is placed at Ardú’s disposal under a written agreement, and an engineer signs off the structure before anyone sits beneath it.',
       'For the safety of the people who will work in it, the exact location is shared with partners and funders and not published. Interior photographs follow the clearing of the rubble.',
     ],
     caption: 'Central Gaza City, about 500 m², interior photographs to follow',

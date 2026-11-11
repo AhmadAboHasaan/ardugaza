@@ -20,7 +20,7 @@ Make the infrastructure for professional progress available to young people in G
 
 ## Positioning
 
-An organisation born under the rubble of its founder's family home, working through projects it funds and reports in the open; its first project, Ardú Space, restores a roughly 500 m² hall in central Gaza City. Success concerns degrees kept, income earned and work found. All impact figures describe plans, not achievements, until the first cohort reports.
+An education organisation born under the rubble in Gaza City, working through programmes it funds from one general fund and reports in the open: Ardú Space will turn a roughly 500 m² hall beneath the rubble in central Gaza City into a place to study and work, and Mu’een, the study library it has adopted, already serves more than 1,300 medical students. Success concerns degrees kept, income earned and work found. All impact figures describe plans, not achievements, until the first cohort reports.
 
 ## Operating Context
 

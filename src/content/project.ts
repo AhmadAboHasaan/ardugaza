@@ -356,7 +356,7 @@ export const about = {
     body: [
       'The house did not survive the war. Its founder did. In October 2023 an air strike levelled Ahmed Abuhassan’s family home in Gaza City, and he was pulled from the rubble.',
       'For two years afterwards he taught himself software on a borrowed laptop with a cracked screen, charging where there was power, working where there was signal, and mentoring others caught in the same blackout. He built live websites for local shops, NGOs and startups, and saw the same pattern everywhere: the young people around him were not short of talent or determination. They were short of what a working education system would have given them.',
-      'Ardú is the organisation built to supply it. It began with the hall beneath that ruined home, the future Ardú Space, and grows with every programme it builds or adopts, beginning with Mu’een’s study library for medical students.',
+      'Ardú is the organisation built to supply it. It began with a hall beneath the rubble in Gaza City, the future Ardú Space, and grows with every programme it builds or adopts, Mu’een’s study library for medical students among them.',
     ],
   },
   name: {
