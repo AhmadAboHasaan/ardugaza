@@ -98,7 +98,7 @@ export const hero = {
 /** The figures that show Ardú's work is already under way, dated at the source. */
 export const proof = {
   title: 'Proof, not promises.',
-  lead: 'Mu’een, the study library Ardú has adopted, already keeps more than 1,300 of Gaza’s medical students supplied with their course materials, on connections too weak for almost anything else. It is the standard every Ardú programme is held to: real students, real use, counted and published.',
+  lead: 'Ma’een, the study library Ardú has adopted, already keeps more than 1,300 of Gaza’s medical students supplied with their course materials, on connections too weak for almost anything else. It is the standard every Ardú programme is held to: real students, real use, counted and published.',
   figures: [
     {
       icon: 'users',
@@ -121,8 +121,8 @@ export const proof = {
       label: 'students active in the past week',
     },
   ],
-  source: `From Mu’een’s own dashboard, read on ${dash.readOn}.`,
-  more: 'See Mu’een',
+  source: `From Ma’een’s own dashboard, read on ${dash.readOn}.`,
+  more: 'See Ma’een',
 } as const;
 
 export const organisation = {
@@ -160,7 +160,7 @@ export const pillars = {
       title: 'Study that continues',
       short:
         'Course materials, exam preparation and places to study, so a degree outlives the loss of its campus.',
-      long: 'When the campuses fell, their lecture halls, libraries and study rooms fell with them. Ardú puts them back within reach: course materials organised the way degrees are taught, exam preparation, and places with power and connection where study can actually happen. Mu’een, the first of these programmes, is already used by more than 1,300 medical students.',
+      long: 'When the campuses fell, their lecture halls, libraries and study rooms fell with them. Ardú puts them back within reach: course materials organised the way degrees are taught, exam preparation, and places with power and connection where study can actually happen. Ma’een, the first of these programmes, is already used by more than 1,300 medical students.',
     },
     {
       icon: 'award',
@@ -245,7 +245,7 @@ export const weight = {
 export const give = {
   icon: 'heart',
   title: ['Support', 'Ardú.'],
-  body: 'Back the organisation, and you back every programme it runs: Mu’een’s library today, Ardú Space as it rises, and the programmes that follow. Ardú directs every gift to where it is needed most, through a trustee route that has already carried two years of public giving with every pound accounted for.',
+  body: 'Back the organisation, and you back every programme it runs: Ma’een’s library today, Ardú Space as it rises, and the programmes that follow. Ardú directs every gift to where it is needed most, through a trustee route that has already carried two years of public giving with every pound accounted for.',
   label: 'Choose your gift to Ardú',
   other: 'Or enter an amount',
   impact: 'to Ardú, directed to where it is needed most.',
@@ -356,7 +356,7 @@ export const about = {
     body: [
       'The house did not survive the war. Its founder did. In October 2023 an air strike levelled Ahmed Abuhassan’s family home in Gaza City, and he was pulled from the rubble.',
       'For two years afterwards he taught himself software on a borrowed laptop with a cracked screen, charging where there was power, working where there was signal, and mentoring others caught in the same blackout. He built live websites for local shops, NGOs and startups, and saw the same pattern everywhere: the young people around him were not short of talent or determination. They were short of what a working education system would have given them.',
-      'Ardú is the organisation built to supply it. It began with a hall beneath the rubble in Gaza City, the future Ardú Space, and grows with every programme it builds or adopts, Mu’een’s study library for medical students among them.',
+      'Ardú is the organisation built to supply it. It began with a hall beneath the rubble in Gaza City, the future Ardú Space, and grows with every programme it builds or adopts, Ma’een’s study library for medical students among them.',
     ],
   },
   name: {
@@ -460,7 +460,7 @@ export const impactPage = {
   },
   delivered: {
     title: 'Delivered so far',
-    lead: 'Mu’een, the study library Ardú has adopted, is the first programme with figures to publish. They are read from its own dashboard, published as totals, and dated.',
+    lead: 'Ma’een, the study library Ardú has adopted, is the first programme with figures to publish. They are read from its own dashboard, published as totals, and dated.',
     figures: [
       {
         icon: 'users',
@@ -483,8 +483,8 @@ export const impactPage = {
         label: `study materials across ${dash.subjects} subjects`,
       },
     ],
-    source: `From Mu’een’s own dashboard, read on ${dash.readOn}.`,
-    more: 'See Mu’een',
+    source: `From Ma’een’s own dashboard, read on ${dash.readOn}.`,
+    more: 'See Ma’een',
   },
   programmes: {
     title: 'The programmes that deliver it',
@@ -520,7 +520,7 @@ export const impactPage = {
         label: 'pounds spent in Gaza, with receipts',
       },
     ],
-    note: 'Counting starts with the first cohort at Ardú Space. Mu’een’s figures are published above, as read from its dashboard.',
+    note: 'Counting starts with the first cohort at Ardú Space. Ma’een’s figures are published above, as read from its dashboard.',
   },
   measure: {
     title: 'How it is reported',
@@ -547,7 +547,7 @@ export const partners = {
       {
         icon: 'users',
         title: 'Students ready to work',
-        text: 'Motivated students and graduates in medicine and technology, selected on published criteria and already reached by Ardú’s programmes: more than 1,300 medical students use Mu’een alone.',
+        text: 'Motivated students and graduates in medicine and technology, selected on published criteria and already reached by Ardú’s programmes: more than 1,300 medical students use Ma’een alone.',
       },
       {
         icon: 'building',
@@ -605,7 +605,7 @@ export const partners = {
 export const support = {
   hero: {
     title: 'Support Ardú.',
-    lead: 'Back the organisation, and you back every programme it runs. Your gift goes to Ardú’s general fund, which keeps Mu’een’s library running, moves Ardú Space forward and launches the programmes that follow, directed to where it is needed most.',
+    lead: 'Back the organisation, and you back every programme it runs. Your gift goes to Ardú’s general fund, which keeps Ma’een’s library running, moves Ardú Space forward and launches the programmes that follow, directed to where it is needed most.',
     points: [
       {
         icon: 'shield',
@@ -644,7 +644,7 @@ export const support = {
     items: [
       {
         q: 'What does a gift to Ardú fund?',
-        a: 'Every programme Ardú runs: Mu’een’s study library today, Ardú Space as it rises, and the programmes that follow. Gifts go to Ardú’s general fund, which Ardú directs to where it is needed most.',
+        a: 'Every programme Ardú runs: Ma’een’s study library today, Ardú Space as it rises, and the programmes that follow. Gifts go to Ardú’s general fund, which Ardú directs to where it is needed most.',
       },
       {
         q: 'Can I give to one programme?',

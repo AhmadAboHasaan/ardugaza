@@ -58,7 +58,7 @@ export const MobileHero: Story = {
   render: () => <Hero />,
   globals: { viewport: { value: 'mobile390', isRotated: false } },
 };
-/** The work already under way, read from Mu’een’s dashboard and dated. */
+/** The work already under way, read from Ma’een’s dashboard and dated. */
 export const TheProof: Story = { render: () => <Proof /> };
 export const TheOrganisation: Story = { render: () => <Organisation /> };
 export const TheProgrammes: Story = { render: () => <Projects /> };

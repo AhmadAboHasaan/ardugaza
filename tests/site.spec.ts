@@ -20,7 +20,7 @@ const pages = [
   { path: '/', h1: /Gaza’s students are still learning/ },
   ...navPages,
   { path: '/support', h1: /Support Ardú/ },
-  { path: '/programmes/mueen', h1: /Mu’een/ },
+  { path: '/programmes/mueen', h1: /Ma’een/ },
   { path: '/programmes/ardu-space', h1: /Ardú Space/ },
 ];
 const tags = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'];
@@ -73,9 +73,9 @@ test('home page leads with the appeal, the proof, the programmes and Ardú’s g
   ).toBeVisible();
   await expect(proof).toContainText('1,377');
   await expect(proof).toContainText(
-    'From Mu’een’s own dashboard, read on 6 November 2026.',
+    'From Ma’een’s own dashboard, read on 6 November 2026.',
   );
-  await expect(proof.getByRole('link', { name: 'See Mu’een' })).toHaveAttribute(
+  await expect(proof.getByRole('link', { name: 'See Ma’een' })).toHaveAttribute(
     'href',
     '/programmes/mueen',
   );
@@ -91,7 +91,7 @@ test('home page leads with the appeal, the proof, the programmes and Ardú’s g
     'One of four stages complete. Funding now: stage two of four, Sustain, 0% funded.',
   );
   await expect(
-    cards.nth(0).getByRole('link', { name: 'Mu’een' }),
+    cards.nth(0).getByRole('link', { name: 'Ma’een' }),
   ).toHaveAttribute('href', '/programmes/mueen');
   await expect(cards.nth(1).locator('.project-crown')).toHaveText(
     'Under construction',
@@ -185,18 +185,18 @@ test('a card opens its programme, whose page shows each stage’s indicator and 
   await page
     .locator('.project-card')
     .first()
-    .getByRole('link', { name: 'Mu’een' })
+    .getByRole('link', { name: 'Ma’een' })
     .click();
   await expect(page).toHaveURL(/\/programmes\/mueen$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    /^Mu’een: the medical library/,
+    /^Ma’een: the medical library/,
   );
   await expect(page.locator('.project-hero .status-tag')).toHaveText('Running');
   await expect(
     page.getByRole('navigation', { name: 'Breadcrumb' }).getByRole('link'),
   ).toHaveAttribute('href', '/programmes');
   const standing = page.getByRole('complementary', {
-    name: 'Where Mu’een stands',
+    name: 'Where Ma’een stands',
   });
   await expect(standing).toContainText('Stage two of four: Sustain');
   await expect(standing.getByRole('progressbar')).toHaveAttribute(
@@ -206,7 +206,7 @@ test('a card opens its programme, whose page shows each stage’s indicator and 
   await expect(standing).toContainText('Stage one, Launch: complete');
   await expect(page.locator('#overview')).toContainText('1,377');
   await expect(page.locator('#overview')).toContainText(
-    'From Mu’een’s own dashboard, read on 6 November 2026.',
+    'From Ma’een’s own dashboard, read on 6 November 2026.',
   );
   await expect(
     page.getByRole('heading', { name: 'How it works' }),
@@ -238,7 +238,7 @@ test('a card opens its programme, whose page shows each stage’s indicator and 
   expect(await page.locator('#stages').innerText()).not.toMatch(/£/);
   const give = page.locator('#give');
   await expect(
-    give.getByRole('heading', { name: 'Keep Mu’een running.' }),
+    give.getByRole('heading', { name: 'Keep Ma’een running.' }),
   ).toBeVisible();
   await expect(
     give.getByRole('link', { name: /Give £50 to Ardú/ }),
@@ -443,7 +443,7 @@ test('accessibility of the giving panel and an open question', async ({
 }) => {
   await page.goto('/programmes/mueen');
   await page.locator('#give').getByRole('radio', { name: '£250' }).click();
-  await page.getByText('How is Mu’een funded?').click();
+  await page.getByText('How is Ma’een funded?').click();
   expect(
     (
       await new AxeBuilder({ page })

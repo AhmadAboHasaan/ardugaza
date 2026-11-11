@@ -13,7 +13,7 @@ type Props = {
   source?: string;
 };
 /**
- * The work already under way, in figures: what Mu'een's own dashboard
+ * The work already under way, in figures: what Ma'een's own dashboard
  * shows, dated at the source, with the way through to its page.
  */
 export function Proof({

@@ -20,7 +20,7 @@ Make the infrastructure for professional progress available to young people in G
 
 ## Positioning
 
-An education organisation born under the rubble in Gaza City, working through programmes it funds from one general fund and reports in the open: Ardú Space will turn a roughly 500 m² hall beneath the rubble in central Gaza City into a place to study and work, and Mu’een, the study library it has adopted, already serves more than 1,300 medical students. Success concerns degrees kept, income earned and work found. All impact figures describe plans, not achievements, until the first cohort reports.
+An education organisation born under the rubble in Gaza City, working through programmes it funds from one general fund and reports in the open: Ardú Space will turn a roughly 500 m² hall beneath the rubble in central Gaza City into a place to study and work, and Ma’een, the study library it has adopted, already serves more than 1,300 medical students. Success concerns degrees kept, income earned and work found. All impact figures describe plans, not achievements, until the first cohort reports.
 
 ## Operating Context
 
@@ -28,7 +28,7 @@ Factual authority: docs/ardu-project-summary.pdf, October 2026, prepared by foun
 
 ## Capabilities and Constraints
 
-Payroll, energy arithmetic and running costs live in the partner brief (shared on request) and must not appear on the public site; the e2e suite checks this. Programme pages publish no amounts: each stage carries an indicator out of a hundred showing how far its funding has come, with the date it was last updated by hand; stage status is derived from the indicators, never typed. All funding goes to Ardú's general fund, which Ardú directs across its programmes: giving runs only through Ardú's one hosted Stripe checkout configured in src/data/integrations.ts, every link carrying the reference `ardu-general`; no programme has a checkout of its own, and the campaign page used until 18 October 2026 is closed. Mu’een's figures are published only as dated totals from its own dashboard, never a student's name or account; its founders are not named and its bot is not linked until the founder decides. No legal, tax, partner or achieved-impact claims may be invented.
+Payroll, energy arithmetic and running costs live in the partner brief (shared on request) and must not appear on the public site; the e2e suite checks this. Programme pages publish no amounts: each stage carries an indicator out of a hundred showing how far its funding has come, with the date it was last updated by hand; stage status is derived from the indicators, never typed. All funding goes to Ardú's general fund, which Ardú directs across its programmes: giving runs only through Ardú's one hosted Stripe checkout configured in src/data/integrations.ts, every link carrying the reference `ardu-general`; no programme has a checkout of its own, and the campaign page used until 18 October 2026 is closed. Ma’een's figures are published only as dated totals from its own dashboard, never a student's name or account; its founders are not named and its bot is not linked until the founder decides. No legal, tax, partner or achieved-impact claims may be invented.
 
 ## Brand Commitments
 

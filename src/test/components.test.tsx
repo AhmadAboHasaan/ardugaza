@@ -251,7 +251,7 @@ describe('One gift, to Ardú', () => {
       <SupportPanel title={mueen.give.title} body={mueen.give.body} />,
     );
     expect(
-      screen.getByRole('heading', { name: 'Keep Mu’een running.' }),
+      screen.getByRole('heading', { name: 'Keep Ma’een running.' }),
     ).toBeVisible();
     expect(
       screen.getByText(/funded through Ardú’s general fund/),
@@ -384,7 +384,7 @@ describe('Programmes and their stages', () => {
     render(<ProjectCard project={arduSpace} />);
     expect(screen.getByText('Under construction')).toBeVisible();
   });
-  it('carries the proof, dated at its source, through to Mu’een', () => {
+  it('carries the proof, dated at its source, through to Ma’een', () => {
     render(<Proof />);
     expect(
       screen.getByRole('heading', { name: 'Proof, not promises.' }),
@@ -394,7 +394,7 @@ describe('Programmes and their stages', () => {
     );
     expect(
       screen.getByText(
-        `From Mu’een’s own dashboard, read on ${mueenDashboard.readOn}.`,
+        `From Ma’een’s own dashboard, read on ${mueenDashboard.readOn}.`,
       ),
     ).toBeVisible();
     expect(screen.getByRole('link', { name: proof.more })).toHaveAttribute(
@@ -402,7 +402,7 @@ describe('Programmes and their stages', () => {
       '/programmes/mueen',
     );
   });
-  it('lists every programme it runs, Mu’een first', () => {
+  it('lists every programme it runs, Ma’een first', () => {
     expect(projects.map((p) => p.slug)).toEqual(['mueen', 'ardu-space']);
   });
   it('shows the four pillars short on the home page and in full elsewhere', () => {

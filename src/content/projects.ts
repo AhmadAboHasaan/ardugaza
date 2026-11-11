@@ -131,7 +131,7 @@ const updatedOn = '9 November 2026';
 const n = (value: number) => value.toLocaleString('en-GB');
 
 /**
- * Mu’een’s own dashboard, as read on the date given: totals only, never a
+ * Ma’een’s own dashboard, as read on the date given: totals only, never a
  * student’s name or account. Update the figures and the date together.
  */
 export const mueenDashboard = {
@@ -155,22 +155,22 @@ const dash = mueenDashboard;
 
 const mueen: Project = {
   slug: 'mueen',
-  name: 'Mu’een',
+  name: 'Ma’een',
   status: 'running',
   kind: 'Study library',
   icon: 'library',
   summary:
     'A study library on Telegram that keeps Gaza’s medical students supplied with their course materials on the weakest connection, already used by more than 1,300 students.',
-  brief: `With their lecture halls gone, Gaza’s medical students reach their course materials through Mu’een, a study library on Telegram that works on the weakest connection. ${n(dash.students)} students had joined by ${dash.readOn}.`,
+  brief: `With their lecture halls gone, Gaza’s medical students reach their course materials through Ma’een, a study library on Telegram that works on the weakest connection. ${n(dash.students)} students had joined by ${dash.readOn}.`,
   hero: {
-    title: 'Mu’een: the medical library Gaza’s students carry in their pocket.',
-    lead: 'When Gaza’s campuses were destroyed, its medical students lost the lecture halls and libraries their degrees depend on. Mu’een puts their course materials back within reach: a study library on Telegram, organised by year, subject and section, that works on the weakest connection.',
+    title: 'Ma’een: the medical library Gaza’s students carry in their pocket.',
+    lead: 'When Gaza’s campuses were destroyed, its medical students lost the lecture halls and libraries their degrees depend on. Ma’een puts their course materials back within reach: a study library on Telegram, organised by year, subject and section, that works on the weakest connection.',
   },
   story: {
     title: 'A simple tool that keeps degrees alive.',
     body: [
-      'Mu’een began as an independent initiative in Gaza, built for one problem: medical students, cut off from in-person teaching by the war, could not reach their course materials on the connections they had.',
-      `It answered with something simple enough to work anywhere: open a chat, choose a year, a subject and a section, and receive the material. In the thirty days to ${dash.readOn} alone, ${n(dash.joinedLast30Days)} students joined. Ardú adopted Mu’een because it delivers exactly what Ardú exists to deliver, and now funds its running and its growth.`,
+      'Ma’een began as an independent initiative in Gaza, built for one problem: medical students, cut off from in-person teaching by the war, could not reach their course materials on the connections they had.',
+      `It answered with something simple enough to work anywhere: open a chat, choose a year, a subject and a section, and receive the material. In the thirty days to ${dash.readOn} alone, ${n(dash.joinedLast30Days)} students joined. Ardú adopted Ma’een because it delivers exactly what Ardú exists to deliver, and now funds its running and its growth.`,
     ],
   },
   facts: [
@@ -195,13 +195,13 @@ const mueen: Project = {
       label: 'subjects across six years of medicine',
     },
   ],
-  factsNote: `From Mu’een’s own dashboard, read on ${dash.readOn}.`,
+  factsNote: `From Ma’een’s own dashboard, read on ${dash.readOn}.`,
   how: {
     title: 'How it works',
     steps: [
       {
         icon: 'phone',
-        title: 'Open Mu’een on Telegram',
+        title: 'Open Ma’een on Telegram',
         text: 'An app students already have, light enough for the weakest connection.',
       },
       {
@@ -217,8 +217,8 @@ const mueen: Project = {
     ],
   },
   stages: {
-    title: 'Where Mu’een goes next.',
-    lead: 'Mu’een is already running. These are the stages Ardú is funding to keep it online and take it further, each marked funded the moment its indicator reaches a hundred.',
+    title: 'Where Ma’een goes next.',
+    lead: 'Ma’een is already running. These are the stages Ardú is funding to keep it online and take it further, each marked funded the moment its indicator reaches a hundred.',
     items: [
       {
         number: 1,
@@ -254,15 +254,15 @@ const mueen: Project = {
   },
   serves: {
     title: 'Who it serves',
-    body: `Medical students in Gaza, across the six years of the degree, nearly two in three of them in their first year. In the seven days to ${dash.readOn}, ${n(dash.activeLast7Days)} students used Mu’een, ${n(dash.activeLastDay)} of them in the final twenty-four hours.`,
+    body: `Medical students in Gaza, across the six years of the degree, nearly two in three of them in their first year. In the seven days to ${dash.readOn}, ${n(dash.activeLast7Days)} students used Ma’een, ${n(dash.activeLastDay)} of them in the final twenty-four hours.`,
   },
   give: {
-    title: 'Keep Mu’een running.',
-    body: 'Mu’een is funded through Ardú’s general fund. Your gift to Ardú keeps this library open for the students who depend on it, and sustains every other programme Ardú runs.',
+    title: 'Keep Ma’een running.',
+    body: 'Ma’een is funded through Ardú’s general fund. Your gift to Ardú keeps this library open for the students who depend on it, and sustains every other programme Ardú runs.',
   },
   updates: {
     title: 'Updates',
-    body: 'Mu’een’s figures are published here as they are read from its dashboard, each with its date, and every stage is reported as it is funded and delivered.',
+    body: 'Ma’een’s figures are published here as they are read from its dashboard, each with its date, and every stage is reported as it is funded and delivered.',
   },
   partners: {
     title: 'Partners',
@@ -270,11 +270,11 @@ const mueen: Project = {
   },
   faq: [
     {
-      q: 'How is Mu’een funded?',
-      a: 'Through Ardú’s general fund. Every gift to Ardú funds all of its programmes, Mu’een included, and Ardú directs it to where it is needed most.',
+      q: 'How is Ma’een funded?',
+      a: 'Through Ardú’s general fund. Every gift to Ardú funds all of its programmes, Ma’een included, and Ardú directs it to where it is needed most.',
     },
     {
-      q: 'Who is Mu’een for?',
+      q: 'Who is Ma’een for?',
       a: 'Medical students in Gaza, across the six years of the degree. Nearly two in three of the students using it are in their first year.',
     },
     {
@@ -283,12 +283,12 @@ const mueen: Project = {
     },
     {
       q: 'Where do the figures come from?',
-      a: 'From Mu’een’s own dashboard. Each figure is published with the date it was read, and only as a total: no student is ever named.',
+      a: 'From Ma’een’s own dashboard. Each figure is published with the date it was read, and only as a total: no student is ever named.',
     },
   ],
   closing: {
     title: 'Keep Gaza’s medical students studying.',
-    body: 'More than 1,300 students already open their course materials through Mu’een. Every gift to Ardú keeps their library running and builds what comes next.',
+    body: 'More than 1,300 students already open their course materials through Ma’een. Every gift to Ardú keeps their library running and builds what comes next.',
   },
 };
 
