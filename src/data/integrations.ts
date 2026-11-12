@@ -111,7 +111,9 @@ export const contact = {
 /* ----------------------------------------------------------- giving */
 
 /** The amounts offered first for a gift to Ardú, in pounds. */
-export const giftAmounts = [25, 50, 100, 250] as const;
+export const giftAmounts = [
+  10, 20, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 20000,
+] as const;
 /** The smallest gift the any-amount checkout accepts, in pounds. */
 export const minimumGift = 5;
 

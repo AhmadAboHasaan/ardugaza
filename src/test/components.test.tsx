@@ -244,6 +244,38 @@ describe('One gift, to Ardú', () => {
       screen.getByText(/No payment details touch this website/),
     ).toBeVisible();
   });
+  it('offers eleven amounts from £10 to £20,000, each carried to the checkout in pence', async () => {
+    const user = userEvent.setup();
+    render(<SupportPanel />);
+    const giving = integrations.giving;
+    if (giving.status !== 'live') return;
+    const offered = screen
+      .getAllByRole('radio')
+      .map((radio) => radio.closest('label')?.textContent);
+    expect(offered).toEqual([
+      '£10',
+      '£20',
+      '£50',
+      '£100',
+      '£250',
+      '£500',
+      '£1,000',
+      '£2,500',
+      '£5,000',
+      '£10,000',
+      '£20,000',
+    ]);
+    expect(screen.getByRole('radio', { name: '£50' })).toBeChecked();
+    await user.click(screen.getByRole('radio', { name: '£20,000' }));
+    expect(
+      screen.getByRole('link', { name: /Give £20,000 to Ardú/ }),
+    ).toHaveAttribute(
+      'href',
+      expect.stringMatching(
+        /client_reference_id=ardu-general&prefilled_amount=2000000$/,
+      ),
+    );
+  });
   it('makes a programme’s case on its page, and still gives to Ardú', () => {
     const giving = integrations.giving;
     if (giving.status !== 'live') return;

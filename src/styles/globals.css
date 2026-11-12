@@ -2852,6 +2852,8 @@ p + p {
 }
 .gift-pane {
   animation: panel-in 380ms var(--ease-out);
+  /* The amounts are laid out by the room the gift has, wherever it sits. */
+  container-type: inline-size;
 }
 .gift--pending {
   justify-items: start;
@@ -2866,6 +2868,8 @@ p + p {
 .gift-chip {
   position: relative;
   display: block;
+  flex: 1 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols) - 0.1px);
+  min-width: 0;
 }
 .gift-chip input {
   position: absolute;
@@ -2890,10 +2894,32 @@ p + p {
   font-weight: 650;
   color: var(--muted);
 }
+/*
+ * The amounts run in rows of three, four or six, as the room allows. The
+ * last row never leaves a gap: its tiles share the row, so the largest
+ * gifts, which close the list, get the widest tiles.
+ */
 .gift-chips {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(74px, 1fr));
-  gap: 0.55rem;
+  --cols: 3;
+  --gap: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+@container (min-width: 430px) {
+  .gift-chips {
+    --cols: 4;
+  }
+}
+@container (min-width: 560px) {
+  .gift-chips {
+    --cols: 6;
+  }
+}
+@container (max-width: 239px) {
+  .gift-pane .gift-chip span {
+    font-size: 0.95rem;
+  }
 }
 .gift-chip span {
   display: flex;
@@ -3493,8 +3519,7 @@ p + p {
     gap: 0.35rem;
   }
   .gift-chips {
-    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
-    gap: 0.4rem;
+    --gap: 0.4rem;
   }
   .gift-chip span {
     min-height: 54px;
